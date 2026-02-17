@@ -20,9 +20,7 @@ about:
 ---
 Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at
 [Harvey Mudd College](https://hmc.edu) interested in electrical and computer
-engineering (with appreciation for mechanical engineering.) I'm currently doing research developing an open source RISC-V verification suite
-for the CORE-V Wally Processor under the
-[Clay-Wolkin Fellowship](https://www.hmc.edu/engineering/engineering-fellowships/clay-wolkin-fellowship/). I also work alongside the USDA as a hardware/firmware engineer focused on
+engineering (with appreciation for mechanical engineering.) I'm currently doing research alongside the USDA as a hardware/firmware engineer focused on
 creating low-noise analog amplifiers for monitoring insect feeding behavior as
 part of the
 [Analog Circuitry Engineering (ACE) Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/).
