@@ -1,149 +1,465 @@
-# Class Projects
+---
+title: "Class Projects"
+toc: false
+format: html
+---
 
-
-::: {.media-content}
 ## Electric Vehicle Design Lab (E49C)
-Team project to build an electric vehicle. Principles of EV design, battery technology, vehicle dynamics, fabrication, wiring, and embedded software development.
 
-*Coming Soon!*
-:::
+### EV Design Team Project
 
-::: {.media-content}
-## Experiment Engineering (E80)
+```{=html}
+<script>
+  function toggleEV() {
+    var content = document.getElementById("moreContentEV");
+    var button = document.getElementById("toggleButtonEV");
+    if (content.style.display === "none") {
+      content.style.display = "block";
+      button.innerHTML = "Show Less";
+    } else {
+      content.style.display = "none";
+      button.innerHTML = "Show More";
+    }
+  }
+</script>
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 2; width: 300px;">
+    <img src="images/evcart.jpeg" alt="EV Project" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 2; min-width: 300px;">
+    <p class="justify-text">
+      <strong>Overview:</strong><br>
+      Team project to build an electric vehicle. Principles of EV design, battery technology, vehicle dynamics, fabrication, wiring, and embedded software development.
+    </p>
+    <p>
+      <strong>Skills:</strong><br>
+      EV Design, Battery Technology, Vehicle Dynamics, Fabrication, Embedded Software
+    </p>
+    <p><em>Coming Soon!</em></p>
+    <button id="toggleButtonEV" onclick="toggleEV()" style="border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer;">
+      Show More
+    </button>
+  </div>
+</div>
+
+<div id="moreContentEV" style="display:none;">
+  <div class="row">
+    <div class="column">
+      <strong>Background</strong>
+      <img src="https://placehold.co/400x300?text=EV+Background" alt="EV Background" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">- Coming soon.</div>
+    </div>
+    <div class="column">
+      <strong>Methods</strong>
+      <img src="https://placehold.co/400x300?text=EV+Methods" alt="EV Methods" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">- Coming soon.</div>
+    </div>
+    <div class="column">
+      <strong>Result</strong>
+      <img src="https://placehold.co/400x300?text=EV+Result" alt="EV Result" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">- Coming soon.</div>
+    </div>
+  </div>
+</div>
+```
+
+---
+
+## Experimental Engineering (E80)
+
 ### AUV Ocean Floor SONAR Mapping
 
- <!-- Image floats left -->
-  <img src="images/e80Robot.png" 
-     alt="E80 Robot" 
-     style="float: left; width: 300px; height 300px; margin: 0 20px 20px 0; 
-            border-radius: 15px; border: 3px solid #000000;">
+```{=html}
+<script>
+  function toggleAUV() {
+    var content = document.getElementById("moreContentAUV");
+    var button = document.getElementById("toggleButtonAUV");
+    if (content.style.display === "none") {
+      content.style.display = "block";
+      button.innerHTML = "Show Less";
+    } else {
+      content.style.display = "none";
+      button.innerHTML = "Show More";
+    }
+  }
+</script>
 
-  <!-- Text wraps around image with larger, responsive font -->
-  <p class="justify-text" style="break-word; font-size: clamp(18px, 2.5vw, 22px); line-height: 1.8;">
-    __Overview:__ <br>
-    Designed and created a Autonomous Underwater Vehicle (AUV) to create topography maps fo the harbor floor using Time-of-flight measurements via SONAR technology (10W Exciter & Electret Mic).
-    
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 2; width: 300px;">
+    <img src="images/e80Robot.png" alt="E80 Robot" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 2; min-width: 300px;">
+    <p class="justify-text">
+      <strong>Overview:</strong><br>
+      Designed and created an Autonomous Underwater Vehicle (AUV) to create topography maps of the harbor floor using Time-of-flight measurements via SONAR technology (10W Exciter &amp; Electret Mic).
+    </p>
+    <p><strong>Skills:</strong><br>Arduino, MATLAB, SONAR, Embedded Systems, PCB Assembly</p>
+    <button id="toggleButtonAUV" onclick="toggleAUV()" style="border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer;">
+      Show More
+    </button>
+  </div>
+</div>
 
-  </p>
-:::
+<div id="moreContentAUV" style="display:none;">
+  <div class="row">
+    <div class="column">
+      <strong>Background</strong>
+      <img src="https://placehold.co/400x300?text=AUV+Background" alt="AUV Background" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Created an AUV to map harbor floor topography.<br><br>
+        - Used Time-of-Flight SONAR measurements to generate depth data.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Methods</strong>
+      <img src="https://placehold.co/400x300?text=AUV+Methods" alt="AUV Methods" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Integrated SONAR transducer and microphone into waterproofed AUV housing.<br><br>
+        - Programmed microcontroller to record time-of-flight signals and log depth measurements.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Result</strong>
+      <img src="https://placehold.co/400x300?text=AUV+Result" alt="AUV Result" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Successfully generated topography maps of the harbor floor.<br><br>
+        - Validated low-cost SONAR-based AUV design for real-world underwater mapping.
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+---
 
 ## Digital Electronics / Computer Architecture (E85)
 
-::: {.media-content}
 ### Digital Level
 
+```{=html}
+<script>
+  function toggleLevel() {
+    var content = document.getElementById("moreContentLevel");
+    var button = document.getElementById("toggleButtonLevel");
+    if (content.style.display === "none") {
+      content.style.display = "block";
+      button.innerHTML = "Show Less";
+    } else {
+      content.style.display = "none";
+      button.innerHTML = "Show More";
+    }
+  }
+</script>
 
-  <!-- Image floats left -->
-  <img src="images/Digitallevel.png" 
-     alt="USDA Logo" 
-     style="float: left; width: 300px; height 300px; margin: 0 20px 20px 0; 
-            border-radius: 15px; border: 3px solid #000000;">
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 2; width: 300px;">
+    <img src="images/Digitallevel.png" alt="Digital Level" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 2; min-width: 300px;">
+    <p class="justify-text">
+      <strong>Overview:</strong><br>
+      Developed an embedded C application to implement a 2D digital level, interfacing a triple-axis accelerometer with a microcontroller to measure tilt along the x and y axes.
+      Designed and wired a complete hardware system on a breadboard, integrating a RED-V development board, LIS3DH accelerometer, and an 8x8 LED matrix.
+    </p>
+    <p><strong>Skills:</strong><br>C/C++, SPI Communication, Calibration, Soldering, Embedded Systems</p>
+    <button id="toggleButtonLevel" onclick="toggleLevel()" style="border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer;">
+      Show More
+    </button>
+  </div>
+</div>
 
-  <!-- Text wraps around image with larger, responsive font -->
-  <p class="justify-text" style="overflow-wrap: break-word; font-size: clamp(18px, 2.5vw, 22px); line-height: 1.8;">
-    __Overview:__ <br>
-    Developed an embedded C application to implement a 2D digital level, interfacing a triple-axis accelerometer with a microcontroller to measure tilt along the x and y axes.
-    
-    Designed and wired a complete hardware system on a breadboard, integrating a RED-V development board, LIS3DH accelerometer, and an 8×8 LED matrix.
-    
-    Processed sensor data and controlled peripheral hardware, calibrating accelerometer readings, converting tilt angles into discrete LED positions, and driving the LED matrix.
-  </p>
+<div id="moreContentLevel" style="display:none;">
+  <div class="row">
+    <div class="column">
+      <strong>Background</strong>
+      <img src="https://placehold.co/400x300?text=Level+Background" alt="Level Background" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Created a digital level mapping tilt angles to an 8x8 LED matrix bubble display.<br><br>
+        - Bubble motion indicated surface tilt in X and Y axes.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Methods</strong>
+      <img src="https://placehold.co/400x300?text=Level+Methods" alt="Level Methods" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Programmed RED-V ThingPlus in C using SPI to interface with LIS3DH accelerometer.<br><br>
+        - Implemented real-time signal processing and calibration for smooth bubble motion.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Result</strong>
+      <img src="https://placehold.co/400x300?text=Level+Result" alt="Level Result" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Achieved accurate, smooth, reliable bubble display validating full embedded system integration.<br><br>
+        - Designed a sensitive and practical 2D digital tool with real-world use.
+      </div>
+    </div>
+  </div>
+</div>
+```
 
-
-:::
-
-::: {.media-content}
 ### Multicycle Processor
 
+```{=html}
+<script>
+  function toggleCPU() {
+    var content = document.getElementById("moreContentCPU");
+    var button = document.getElementById("toggleButtonCPU");
+    if (content.style.display === "none") {
+      content.style.display = "block";
+      button.innerHTML = "Show Less";
+    } else {
+      content.style.display = "none";
+      button.innerHTML = "Show More";
+    }
+  }
+</script>
 
-  <!-- Image floats left -->
-  <img src="images/Multicycleprocessor.png" 
-     alt="USDA Logo" 
-     style="float: left; width: 300px; height 300px; margin: 0 20px 20px 0; 
-            border-radius: 15px; border: 3px solid #000000;">
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 2; width: 300px;">
+    <img src="images/Multicycleprocessor.png" alt="Multicycle Processor" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 2; min-width: 300px;">
+    <p class="justify-text">
+      <strong>Overview:</strong><br>
+      Designed a multicycle RISC-V processor in SystemVerilog, creating a hierarchical architecture with a finite-state machine, datapath, ALU, register file, and unified memory adapted from a single-cycle design.
+      Validated processor functionality through simulation and waveform analysis.
+    </p>
+    <p><strong>Skills:</strong><br>SystemVerilog, HDL, Assembly, RISC-V, Quartus FPGA, Questa</p>
+    <button id="toggleButtonCPU" onclick="toggleCPU()" style="border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer;">
+      Show More
+    </button>
+  </div>
+</div>
 
-  <!-- Text wraps around image with larger, responsive font -->
-  <p class="justify-text" style="overflow-wrap: break-word; font-size: clamp(18px, 2.5vw, 22px); line-height: 1.8;">
-    __Overview:__ <br>
-    Designed a multicycle RISC-V processor in SystemVerilog, creating a hierarchical architecture with a finite-state machine, datapath, ALU, register file, and unified memory adapted from a single-cycle design. 
-    
-    Validated processor functionality through simulation and waveform analysis, tracking key signals, and control states to ensure correct multi-cycle instruction execution. 
-    
-    Systematically debugged RTL using testbenches and predicted execution traces, identifying and resolving interface mismatches, and control signal errors, until the processor passed all tests.
-  </p>
+<div id="moreContentCPU" style="display:none;">
+  <div class="row">
+    <div class="column">
+      <strong>Background</strong>
+      <img src="https://placehold.co/400x300?text=CPU+Background" alt="CPU Background" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Built a multicycle RISC-V CPU capable of executing arithmetic instructions and managing memory.<br><br>
+        - Leveraged single-cycle components to construct a modular multicycle architecture.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Methods</strong>
+      <img src="https://placehold.co/400x300?text=CPU+Methods" alt="CPU Methods" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Wrote SystemVerilog datapath connecting controller, memory, and register file modules.<br><br>
+        - Debugged by comparing assembly testbenches against waveforms and consulted Quartus RTL schematic.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Result</strong>
+      <img src="https://placehold.co/400x300?text=CPU+Result" alt="CPU Result" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Processor matched waveform expectations confirming correct values at correct addresses.<br><br>
+        - Deepened understanding of RISC-V architecture and processor design principles.
+      </div>
+    </div>
+  </div>
+</div>
+```
 
+---
 
-:::
+## Systems Engineering (E79)
 
-## Systems Engineering Project (E79)
-
-::: {.media-content}
 ### Submersible Robot with Kp Control
 
+```{=html}
+<script>
+  function toggleROV() {
+    var content = document.getElementById("moreContentROV");
+    var button = document.getElementById("toggleButtonROV");
+    if (content.style.display === "none") {
+      content.style.display = "block";
+      button.innerHTML = "Show Less";
+    } else {
+      content.style.display = "none";
+      button.innerHTML = "Show More";
+    }
+  }
+</script>
 
-  <!-- Image floats left -->
-  <img src="images/E79robot.jpg" 
-     alt="E79 Robot" 
-     style="float: left; width: 300px; height 300px; margin: 0 20px 20px 0; 
-            border-radius: 15px; border: 3px solid #000000;">
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 2; width: 300px;">
+    <img src="images/E79robot.jpg" alt="E79 Robot" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 2; min-width: 300px;">
+    <p class="justify-text">
+      <strong>Overview:</strong><br>
+      Constructed an underwater remotely operated vehicle (ROV) to retrieve temperature, pressure, and other signals in lake environments via the MCP9701 thermistor and MPX5700ASX pressure gauge.
+      Assembled a PCB containing the MCP6002 OpAmp to return output voltages modeled and analyzed in LabVIEW.
+    </p>
+    <p><strong>Skills:</strong><br>LabVIEW, Soldering, PCB Assembly, Oscilloscope, DMM, Breadboarding</p>
+    <button id="toggleButtonROV" onclick="toggleROV()" style="border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer;">
+      Show More
+    </button>
+  </div>
+</div>
 
-  <!-- Text wraps around image with larger, responsive font -->
-  <p class="justify-text" style="overflow-wrap: break-word; font-size: clamp(18px, 2.5vw, 22px); line-height: 1.8;">
-    __Overview:__ <br>
-    Constructed an underwater remotely operated vehicle (ROV) used to retrieve temperature, pressure, and other signals in lake environments via the MCP9701 thermistor and MPX5700ASX pressure gauge. 
-    
-    Assembled a PCB containing the MCP6002 OpAmp to return output voltages that can be modeled and analyzed in LabView. 
-    
-    Also configured the thrusters, power regulation circuits, and user inputs with robust waterproofing considerations including wiring and motors.
-  </p>
+<div id="moreContentROV" style="display:none;">
+  <div class="row">
+    <div class="column">
+      <strong>Background</strong>
+      <img src="https://placehold.co/400x300?text=ROV+Background" alt="ROV Background" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Created a fully waterproof ROV to measure temperature and pressure across varying depths.<br><br>
+        - Implemented proportional (Kp) control for motor operation.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Methods</strong>
+      <img src="https://placehold.co/400x300?text=ROV+Methods" alt="ROV Methods" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Modeled ROV vertical motion by changing motor PWM duty cycle in LabVIEW.<br><br>
+        - Soldered pressure sensor and thermistor circuits to the project PCB.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Result</strong>
+      <img src="https://placehold.co/400x300?text=ROV+Result" alt="ROV Result" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Deployed ROV in a real-world environment and collected valid environmental data.<br><br>
+        - Gained hands-on experience in PCB assembly, soldering, and oscilloscope use.
+      </div>
+    </div>
+  </div>
+</div>
+```
 
+---
 
-:::
+## Engineering Design & Manufacturing (E4)
 
-## Engineering Design and Manufacturing Projects (E4)
-
-::: {.media-content}
 ### Digital Logic Demonstration Board
 
+```{=html}
+<script>
+  function toggleBoard() {
+    var content = document.getElementById("moreContentBoard");
+    var button = document.getElementById("toggleButtonBoard");
+    if (content.style.display === "none") {
+      content.style.display = "block";
+      button.innerHTML = "Show Less";
+    } else {
+      content.style.display = "none";
+      button.innerHTML = "Show More";
+    }
+  }
+</script>
 
-  <!-- Image floats left -->
-  <img src="images/Logicboard.jpeg" 
-     alt="USDA Logo" 
-     style="float: left; width: 300px; height 300px; margin: 0 20px 20px 0; 
-            border-radius: 15px; border: 3px solid #000000;">
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 2; width: 300px;">
+    <img src="images/Logicboard.jpeg" alt="Logic Board" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 2; min-width: 300px;">
+    <p class="justify-text">
+      <strong>Overview:</strong><br>
+      Designed and assembled a logic-gate demonstration board using 74HC Series integrated circuits, a 555 timer, and a potentiometer-based clock input.
+      Engineered intuitive controls with input switches, banana cables, and LEDs to clearly display output states.
+      Delivered a durable teaching tool now used by Professor Stone for the Digital Logic and Computer Architecture course.
+    </p>
+    <p><strong>Skills:</strong><br>Digital Logic, PCB Design, 74HC ICs, 555 Timer, Soldering</p>
+    <button id="toggleButtonBoard" onclick="toggleBoard()" style="border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer;">
+      Show More
+    </button>
+  </div>
+</div>
 
-  <!-- Text wraps around image with larger, responsive font -->
-  <p class="justify-text" style="overflow-wrap: break-word; font-size: clamp(18px, 2.5vw, 22px); line-height: 1.8;">
-    __Overview:__ <br>
-    Designed and assembled a logic-gate demonstration board using 74HC Series integrated circuits, a 555 timer, and a potentiometer-based clock input. 
-    
-    Engineered intuitive controls with input switches, banana cables and ports for adjustability, and LEDs to clearly display output states.
-    
-    Delivered a durable, lecture teaching tool now used by Professor Stone for the Digital Logic and Computer Architecture Course.
-  </p>
+<div id="moreContentBoard" style="display:none;">
+  <div class="row">
+    <div class="column">
+      <strong>Background</strong>
+      <img src="https://placehold.co/400x300?text=Board+Background" alt="Board Background" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Built a logic-gate demonstration board using 74HC Series ICs and a 555 timer.<br><br>
+        - Incorporated input switches, banana cable ports, and LEDs for clear output visualization.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Methods</strong>
+      <img src="https://placehold.co/400x300?text=Board+Methods" alt="Board Methods" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Designed board layout for intuitive student interaction and clear signal flow.<br><br>
+        - Wired and soldered 74HC gates, 555 timer clock, and potentiometer for adjustable frequency.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Result</strong>
+      <img src="https://placehold.co/400x300?text=Board+Result" alt="Board Result" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Delivered a durable teaching tool now actively used by Professor Stone in E85 lectures.<br><br>
+        - Reinforced understanding of combinational logic design and hands-on fabrication.
+      </div>
+    </div>
+  </div>
+</div>
+```
 
+### E4 Machinist Hammer
 
-:::
+```{=html}
+<script>
+  function toggleHammer() {
+    var content = document.getElementById("moreContentHammer");
+    var button = document.getElementById("toggleButtonHammer");
+    if (content.style.display === "none") {
+      content.style.display = "block";
+      button.innerHTML = "Show Less";
+    } else {
+      content.style.display = "none";
+      button.innerHTML = "Show More";
+    }
+  }
+</script>
 
-::: {.media-content}
-### E4 Hammer
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 2; width: 300px;">
+    <img src="images/hammer.jpg" alt="E4 Hammer" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 2; min-width: 300px;">
+    <p class="justify-text">
+      <strong>Overview:</strong><br>
+      Manufactured a precision machinist hammer from clear oak, AISI 1015 steel, AISI 4340 steel, and nylon, adhering to detailed engineering drawings, dimensional tolerances, and safety requirements.
+      Applied turning, facing, milling, tapping, and heat treatment processes to achieve specified mechanical properties.
+    </p>
+    <p><strong>Skills:</strong><br>GD&amp;T, Lathe, Mill, Bandsaw, Taps, Digital Micrometers, HRC Hardness Tester, Heat Treatment</p>
+    <button id="toggleButtonHammer" onclick="toggleHammer()" style="border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer;">
+      Show More
+    </button>
+  </div>
+</div>
 
-
-  <!-- Image floats left -->
-  <img src="images/hammer.jpg" 
-     alt="USDA Logo" 
-     style="float: left; width: 300px; height 300px; margin: 0 20px 20px 0; 
-            border-radius: 15px; border: 3px solid #000000;">
-
-  <!-- Text wraps around image with larger, responsive font -->
-  <p class="justify-text" style="overflow-wrap: break-word; font-size: clamp(18px, 2.5vw, 22px); line-height: 1.8;">
-    __Overview:__ <br>
-    Manufactured a precision machinist hammer from clear oak, AISI 1015 steel, AISI 4340 steel, and nylon, adhering to detailed engineering drawings, dimensional tolerances, and safety requirements. 
-    
-    The project emphasized material selection, fit, and functional performance. Applied a range of machining and fabrication processes, including turning and facing on manual lathes, milling operations, tapping, and controlled heat treatment using industrial ovens to achieve specified mechanical properties and final dimensions. 
-    
-    I now serve as a Machine Shop Proctor, responsible for training and supervising new engineering students in the step-by-step hammer manufacturing process, ensuring adherence to technical standards and best practices.
-  </p>
-
-
-:::
+<div id="moreContentHammer" style="display:none;">
+  <div class="row">
+    <div class="column">
+      <strong>Background</strong>
+      <img src="https://placehold.co/400x300?text=Hammer+Background" alt="Hammer Background" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Manufactured a functional machinist hammer from oak, steel, and nylon to precise GD&amp;T specs.<br><br>
+        - Contributed to the Harvey Mudd College tradition of student-made hammers.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Methods</strong>
+      <img src="https://placehold.co/400x300?text=Hammer+Methods" alt="Hammer Methods" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Machined head stock using lathe and milling operations, verified with digital micrometers.<br><br>
+        - Heat treated hard face, verified HRC hardness, and sandblasted for smooth finish.
+      </div>
+    </div>
+    <div class="column">
+      <strong>Result</strong>
+      <img src="https://placehold.co/400x300?text=Hammer+Result" alt="Hammer Result" style="width:100%; border-radius: 15px;">
+      <div style="padding: 5px; font-size: 0.8rem;">
+        - Delivered a high-quality hammer that scored near perfect in quality of manufacturing.<br><br>
+        - Now serve as a Machine Shop Proctor, training new students in shop safety.
+      </div>
+    </div>
+  </div>
+</div>
+```
