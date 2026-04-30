@@ -21,6 +21,8 @@ website:
         text: Microprocessors Projects 
       - href: personal.qmd
         text: Personal Projects
+      - href: publications.qmd
+        text: Publications & Reports
       - href: blog.qmd
         text: Blog
     right:
