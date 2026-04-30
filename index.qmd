@@ -18,50 +18,154 @@ about:
       href: https://github.com/jgonzalezsalgado     
 
 ---
-Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at
-[Harvey Mudd College](https://hmc.edu) interested in electrical and computer
-engineering (with appreciation for mechanical engineering.) I work alongside the USDA as a hardware/firmware engineer focused on
+Welcome to my Portfolio! I am a rising Junior Engineering major at
+[Harvey Mudd College](https://hmc.edu) interested in all things electrical and computer
+engineering. I work alongside the USDA as a hardware/firmware engineer focused on
 creating low-noise analog amplifiers for monitoring insect feeding behavior as
 part of the
-[Analog Circuitry Engineering (ACE) Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/).
+[Analog Circuitry Engineering (ACE) Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/). Check out my projects below!
 
 ---
 
+```{=html}
+<style>
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 1rem 0;
+}
+.proj-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.proj-card:hover {
+  transform: scale(1.045);
+  border-color: #aaa;
+  background: #f9f9f9;
+}
+.proj-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+.proj-label {
+  padding: 10px 12px;
+  border-top: 1px solid #e0e0e0;
+}
+.proj-course {
+  font-size: 11px;
+  color: #999;
+  margin: 0 0 2px;
+}
+.proj-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+  line-height: 1.3;
+}
+.resume-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  font-weight: 600;
+  color: inherit;
+  background: transparent;
+  display: inline-block;
+  transition: background 0.2s ease;
+}
+.resume-btn:hover {
+  background: #f5f5f5;
+}
+</style>
 
+<div class="proj-grid">
 
-
-<div style="text-align:center; margin-bottom: 1rem;">
-  <a href="Resume.pdf" target="_blank"
-     style="
-       padding: 8px 14px;
-       border-radius: 6px;
-       border: 1px solid #ccc;
-       text-decoration: none;
-       font-weight: 600;
-       color: inherit;
-       background: transparent;
-     "
-     onmouseover="this.style.background='transparent'"
-     onmouseout="this.style.background='transparent'">
-    Open Full Resume in New Tab
+  <a href="projects.html#ev-design-team-project" class="proj-card">
+    <img class="proj-img" src="images/evcart.jpeg" alt="EV Cart">
+    <div class="proj-label">
+      <p class="proj-course">E49C</p>
+      <p class="proj-name">EV Design Team</p>
+    </div>
   </a>
 
-  
+  <a href="projects.html#auv-ocean-floor-sonar-mapping" class="proj-card">
+    <img class="proj-img" src="images/e80Robot.png" alt="AUV Robot">
+    <div class="proj-label">
+      <p class="proj-course">E80</p>
+      <p class="proj-name">AUV Ocean Floor SONAR</p>
+    </div>
+  </a>
+
+  <a href="projects.html#digital-level" class="proj-card">
+    <img class="proj-img" src="images/Digitallevel.png" alt="Digital Level">
+    <div class="proj-label">
+      <p class="proj-course">E85</p>
+      <p class="proj-name">Digital Level</p>
+    </div>
+  </a>
+
+  <a href="projects.html#multicycle-processor" class="proj-card">
+    <img class="proj-img" src="images/Multicycleprocessor.png" alt="Multicycle Processor">
+    <div class="proj-label">
+      <p class="proj-course">E85</p>
+      <p class="proj-name">Multicycle Processor</p>
+    </div>
+  </a>
+
+  <a href="projects.html#submersible-robot-with-kp-control" class="proj-card">
+    <img class="proj-img" src="images/E79robot.jpg" alt="E79 ROV">
+    <div class="proj-label">
+      <p class="proj-course">E79</p>
+      <p class="proj-name">Submersible ROV</p>
+    </div>
+  </a>
+
+  <a href="projects.html#digital-logic-demonstration-board" class="proj-card">
+    <img class="proj-img" src="images/Logicboard.jpeg" alt="Logic Board">
+    <div class="proj-label">
+      <p class="proj-course">E4</p>
+      <p class="proj-name">Logic Demo Board</p>
+    </div>
+  </a>
+
+  <a href="projects.html#e4-machinist-hammer" class="proj-card">
+    <img class="proj-img" src="images/hammer.jpg" alt="Machinist Hammer">
+    <div class="proj-label">
+      <p class="proj-course">E4</p>
+      <p class="proj-name">Machinist Hammer</p>
+    </div>
+  </a>
+
 </div>
 
+<div style="text-align:center; margin: 1.5rem 0 1rem;">
+  <a href="Resume.pdf" target="_blank" class="resume-btn">
+    Open Full Resume in New Tab
+  </a>
+</div>
 
-
-<div style="text-align: center; padding: 0px 0;">
-  <iframe 
-    src="Resume.pdf" 
+<div style="text-align: center;">
+  <iframe
+    src="Resume.pdf"
     style="
-      width: 100%;           
-      max-width: 1000px;      
-      height: 600px;         
+      width: 100%;
+      max-width: 1000px;
+      height: 600px;
       border: 1px solid lightgrey;
       border-radius: 15px;
-      display: inline-block; 
+      display: inline-block;
     ">
   </iframe>
 </div>
-
+```
