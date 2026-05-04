@@ -103,9 +103,14 @@ format: html
       Designed and created an Autonomous Underwater Vehicle (AUV) to create topography maps of the harbor floor using Time-of-flight measurements via SONAR technology (10W Exciter &amp; Electret Mic).
     </p>
     <p><strong>Skills:</strong><br>Arduino, MATLAB, SONAR, Embedded Systems, PCB Assembly</p>
-    <button id="toggleButtonAUV" onclick="toggleAUV()" style="border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer;">
-      Show More
-    </button>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <button id="toggleButtonAUV" onclick="toggleAUV()" style="border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer;">
+        Show More
+      </button>
+      <a href="publications.html" target="_blank" style="display: inline-block; border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer; font-weight: 500; text-decoration: none; color: inherit;">
+        See Report Page
+      </a>
+    </div>
   </div>
 </div>
 
