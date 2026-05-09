@@ -1,0 +1,54 @@
+# Microprocessors (E155) Projects
+
+
+::: {.media-content}
+## FPGA and MCU Setup and Testing (Lab 1)
+
+
+*Coming Soon!*
+:::
+
+::: {.media-content}
+## Multiplexed 7-Segment Display (Lab 2)
+
+
+*Coming Soon!*
+:::
+
+::: {.media-content}
+
+## Keypad Scanner (Lab 3)
+
+
+*Coming Soon!*
+:::
+
+::: {.media-content}
+
+## Digital Audio (Lab 4)
+
+
+*Coming Soon!*
+:::
+
+::: {.media-content}
+## Interrupts (Lab 5)
+
+
+*Coming Soon!*
+:::
+
+::: {.media-content}
+## SPI and IoT (Lab 6)
+
+
+*Coming Soon!*
+:::
+
+::: {.media-content}
+## Advanced Encryption Standard (Lab 7)
+
+
+*Coming Soon!*
+:::
+

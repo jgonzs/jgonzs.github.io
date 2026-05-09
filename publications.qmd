@@ -1,0 +1,150 @@
+---
+title: "Publications & Reports"
+toc: false
+format: html
+---
+
+```{=html}
+<style>
+.pub-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.pub-card:hover {
+  border-color: #aaa;
+  background: #fafafa;
+}
+.pub-type {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin: 0 0 6px;
+}
+.pub-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 6px;
+}
+.pub-authors {
+  font-size: 0.88rem;
+  color: #555;
+  margin: 0 0 4px;
+}
+.pub-authors strong {
+  color: #111;
+}
+.pub-venue {
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+  margin: 0 0 12px;
+}
+.pub-description {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+.pub-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pub-link {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.pub-link:hover {
+  background: #f0f0f0;
+  border-color: #999;
+}
+.pub-link.primary {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+.pub-link.primary:hover {
+  background: #333;
+  border-color: #333;
+}
+</style>
+
+<!-- ── Journal Article ─────────────────────────────────── -->
+<div class="pub-card">
+  <p class="pub-type">Journal Article</p>
+  <p class="pub-title">Stress, Cognitive Load, and Specifications Grading in an Engineering Laboratory Course</p>
+  <p class="pub-authors">
+    Cleo McHenry, Sara Morishige, Jasmine Sampat, <strong>Joaquin Gonzalez-Salgado</strong>, Leah Uriarte, Matthew Spencer
+  </p>
+  <p class="pub-venue">IEEE Transactions on Education, 2025</p>
+  <p class="pub-description">
+    This paper presents a controlled two-year experiment at Harvey Mudd College studying how two evidence-based
+    interventions — simplified lab manuals and specifications grading — affected student stress and cognitive load
+    in a required sophomore engineering lab course (E80). Weekly validated surveys showed that stress was
+    significantly reduced in six of seven labs, and cognitive load dropped significantly in three. Students in
+    the treatment cohort also posted meaningfully higher scores on a summative technical memo, suggesting the
+    interventions did not harm learning. I contributed as a co-author on the study design, data collection,
+    and analysis.
+  </p>
+  <div class="pub-links">
+    <a class="pub-link primary" href="" target="_blank">Read Paper (PDF)</a>
+  </div>
+</div>
+
+<!-- ── Final Report ───────────────────────────────── -->
+<div class="pub-card">
+  <p class="pub-type">Report</p>
+  <p class="pub-title">Autonomous Surface &amp; Dive Robot for Underwater Depth Mapping</p>
+  <p class="pub-authors">
+    <strong>Joaquin Gonzalez-Salgado</strong>, Esteban Gonzalez, Ayla Greenstein, Kathy Guo
+  </p>
+  <p class="pub-venue">E80: Experimental Engineering, Harvey Mudd College — Spring 2026</p>
+  <p class="pub-description">
+    This report documents the design, construction, and field deployment of an autonomous underwater vehicle
+    (AUV) built to map the seafloor topography of Dana Point Harbor. The vehicle integrated a SONAR depth
+    sensor (CME1538-100LB microphone + daex25W-8 speaker), an MPX5700ASX pressure sensor for dive depth,
+    and a thermistor for temperature profiling across depth. The AUV featured four horizontal and two vertical
+    thrusters, a low center of gravity for surface stability, and a winch-based recovery system. Deployment
+    at Dana Point produced a topographic depth map of the harbor floor, with real-time data logging to an
+    onboard SD card. Sensor drift from ocean currents affected positional accuracy, motivating future work
+    on closed-loop horizontal control.
+  </p>
+  <div class="pub-links">
+    <a class="pub-link primary" href="images/e80Poster.pdf" target="_blank">View Poster (PDF)</a>
+    <a class="pub-link" href="projects.html#auv-ocean-floor-sonar-mapping">See Project Page</a>
+  </div>
+</div>
+
+<!-- ── Work in Progress ───────────────────────────────── -->
+<div class="pub-card">
+  <p class="pub-type" style="color: #b07800;">Work in Progress</p>
+  <p class="pub-title">Low-Noise Analog Amplifier for Electropenetrography and R/EMF Signal Acquisition</p>
+  <p class="pub-authors">
+    <strong>Joaquin Gonzalez-Salgado</strong>, Matthew Spencer — ACE Lab, Harvey Mudd College
+  </p>
+  <p class="pub-venue">In preparation — Analog Circuitry Engineering (ACE) Lab, USDA Collaboration</p>
+  <p class="pub-description">
+    Ongoing manuscript documenting the design and characterization of a low-noise analog amplifier
+    for monitoring insect feeding behavior via electropenetrography (EPG) and resistive/emf (R/EMF)
+    signal acquisition.
+  </p>
+  <div class="pub-links">
+    <span style="font-size: 0.82rem; color: #999; font-style: italic; padding: 5px 2px;">
+      Manuscript in preparation
+    </span>
+  </div>
+</div>
+```

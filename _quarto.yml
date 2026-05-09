@@ -5,7 +5,7 @@ website:
   search:
     location: navbar
     type: overlay
-  favicon: images/Joaquin.jpg
+  favicon: images/Joaquin.jpeg
   title: "Portfolio"
   navbar:
     left:  
@@ -17,8 +17,12 @@ website:
         text: Work Experience
       - href: projects.qmd
         text: Class Projects
+      - href: e155.qmd
+        text: Microprocessors Projects 
       - href: personal.qmd
         text: Personal Projects
+      - href: publications.qmd
+        text: Publications & Reports
       - href: blog.qmd
         text: Blog
     right:
