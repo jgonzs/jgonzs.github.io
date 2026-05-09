@@ -18,15 +18,9 @@ about:
       href: https://github.com/jgonzalezsalgado     
 
 ---
-<<<<<<< HEAD
 Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at
 [Harvey Mudd College](https://hmc.edu) interested in electrical and computer
 engineering (with appreciation for mechanical engineering.) I'm currently doing research alongside the USDA as a hardware/firmware engineer focused on
-=======
-Welcome to my Portfolio! I am a rising Junior Engineering major at
-[Harvey Mudd College](https://hmc.edu) interested in all things electrical and computer
-engineering. I work alongside the USDA as a hardware/firmware engineer focused on
->>>>>>> 3c3cb27b188bf237d7f480786729ed3a07359577
 creating low-noise analog amplifiers for monitoring insect feeding behavior as
 part of the
 [Analog Circuitry Engineering (ACE) Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/). Check out my projects below!
