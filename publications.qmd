@@ -84,7 +84,7 @@ format: html
 
 <!-- ── Journal Article ─────────────────────────────────── -->
 <div class="pub-card">
-  <p class="pub-type">Journal Article</p>
+   <p class="pub-type" style="color: #b07800;">Submitted to IEEE</p>
   <p class="pub-title">Stress, Cognitive Load, and Specifications Grading in an Engineering Laboratory Course</p>
   <p class="pub-authors">
     Cleo McHenry, Sara Morishige, Jasmine Sampat, <strong>Joaquin Gonzalez-Salgado</strong>, Leah Uriarte, Matthew Spencer
@@ -123,6 +123,7 @@ format: html
     on closed-loop horizontal control.
   </p>
   <div class="pub-links">
+    <a class="pub-link primary" href="images/e80Paper.pdf" target="_blank">Read Paper (PDF)</a>
     <a class="pub-link primary" href="images/e80Poster.pdf" target="_blank">View Poster (PDF)</a>
     <a class="pub-link" href="projects.html#auv-ocean-floor-sonar-mapping">See Project Page</a>
   </div>
