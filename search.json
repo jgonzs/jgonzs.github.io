@@ -1,24 +1,262 @@
 [
   {
-    "objectID": "research.html",
-    "href": "research.html",
-    "title": "Research & Fellowships",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
     "section": "",
-    "text": "Overview:  Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding behavior of disease-vector insects, supporting agricultural and ecological research.\nDeveloped microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog signals from insect feeding experiments.\nApplied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits, optimize signal quality, and improve reliability for field deployment.\n\n\n\n\n \n\n\nOverview:  Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\nDeveloped FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\nConfigured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python–based data analysis/visualization."
+    "text": "The labs for the E155 Microprocessors course are sourced from the E155 course website:\nE155 Course Website\nThis is where all lab assignments and related materials originate."
   },
   {
-    "objectID": "research.html#usda-electropenetography-hardwarefirmware",
-    "href": "research.html#usda-electropenetography-hardwarefirmware",
-    "title": "Research & Fellowships",
+    "objectID": "resources.html#microprocessors-e155",
+    "href": "resources.html#microprocessors-e155",
+    "title": "Resources",
     "section": "",
-    "text": "Overview:  Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding behavior of disease-vector insects, supporting agricultural and ecological research.\nDeveloped microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog signals from insect feeding experiments.\nApplied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits, optimize signal quality, and improve reliability for field deployment."
+    "text": "The labs for the E155 Microprocessors course are sourced from the E155 course website:\nE155 Course Website\nThis is where all lab assignments and related materials originate."
   },
   {
-    "objectID": "research.html#drone-fpga-radio-telescope-beam-mapping",
-    "href": "research.html#drone-fpga-radio-telescope-beam-mapping",
-    "title": "Research & Fellowships",
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications & Reports",
     "section": "",
-    "text": "Overview:  Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\nDeveloped FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\nConfigured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python–based data analysis/visualization."
+    "text": "Submitted to IEEE\n  Stress, Cognitive Load, and Specifications Grading in an Engineering Laboratory Course\n  \n    Cleo McHenry, Sara Morishige, Jasmine Sampat, Joaquin Gonzalez-Salgado, Leah Uriarte, Matthew Spencer\n  \n  IEEE Transactions on Education, 2025\n  \n    This paper presents a controlled two-year experiment at Harvey Mudd College studying how two evidence-based\n    interventions — simplified lab manuals and specifications grading — affected student stress and cognitive load\n    in a required sophomore engineering lab course (E80). Weekly validated surveys showed that stress was\n    significantly reduced in six of seven labs, and cognitive load dropped significantly in three. Students in\n    the treatment cohort also posted meaningfully higher scores on a summative technical memo, suggesting the\n    interventions did not harm learning. I contributed as a co-author on the study design, data collection,\n    and analysis.\n  \n  \n    *Currently being published*\n  \n\n\n\n\n  Report\n  Autonomous Surface & Dive Robot for Underwater Depth Mapping\n  \n    Joaquin Gonzalez-Salgado, Esteban Gonzalez, Ayla Greenstein, Kathy Guo\n  \n  E80: Experimental Engineering, Harvey Mudd College — Spring 2026\n  \n    This report documents the design, construction, and field deployment of an autonomous underwater vehicle\n    (AUV) built to map the seafloor topography of Dana Point Harbor. The vehicle integrated a SONAR depth\n    sensor (CME1538-100LB microphone + daex25W-8 speaker), an MPX5700ASX pressure sensor for dive depth,\n    and a thermistor for temperature profiling across depth. The AUV featured four horizontal and two vertical\n    thrusters, a low center of gravity for surface stability, and a winch-based recovery system. Deployment\n    at Dana Point produced a topographic depth map of the harbor floor, with real-time data logging to an\n    onboard SD card. Sensor drift from ocean currents affected positional accuracy, motivating future work\n    on closed-loop horizontal control.\n  \n  \n    Read Paper (PDF)\n    View Poster (PDF)\n    See Project Page\n  \n\n\n\n\n  Work in Progress\n  Low-Noise Analog Amplifier for Electropenetrography and R/EMF Signal Acquisition\n  \n    Joaquin Gonzalez-Salgado, Matthew Spencer — ACE Lab, Harvey Mudd College\n  \n  In preparation — Analog Circuitry Engineering (ACE) Lab, USDA Collaboration\n  \n    Ongoing manuscript documenting the design and characterization of a low-noise analog amplifier\n    for monitoring insect feeding behavior via electropenetrography (EPG) and resistive/emf (R/EMF)\n    signal acquisition.\n  \n  \n    \n      Manuscript in preparation"
+  },
+  {
+    "objectID": "posts/post4.html",
+    "href": "posts/post4.html",
+    "title": "Dana Point Harbor Deployment",
+    "section": "",
+    "text": "Today my team and I plunged our robot into the depths of Dana Point Harbor! Our goal was to take temperature, pressure, and ocean depth measurements (via SONAR) utilizing surface and dive control. We got to ride kayaks and it was super fun!"
+  },
+  {
+    "objectID": "posts/post2.html",
+    "href": "posts/post2.html",
+    "title": "Visit to NVIDIA Voyager",
+    "section": "",
+    "text": "This week, I had the incredible opportunity to job shadow at NVIDIA’s NVIDIA’s headquarters in Santa Clara with Mudd alumni Alisha Chulani! It was really cool to see what the workplace looks like day-to-day at such a large company, and it was fascinating watch teams collaborate on some exciting projects. So grateful for the experience!"
+  },
+  {
+    "objectID": "personal.html",
+    "href": "personal.html",
+    "title": "Personal Projects",
+    "section": "",
+    "text": "Overview:\n      Designed and built a modular french cleat wall system for the HMC Wood Shop to organize tools and keep the workspace clean and efficient.\n      French cleats use interlocking 45° angled cuts to create a flexible, reconfigurable mounting system — any holder or shelf can be moved or swapped without any hardware.\n      Cut and assembled custom holders for screwdrivers, wrenches, pliers, drill bits, sandpaper belts, and more.\n    \n    \n      Skills:\n      Table Saw, Woodworking, Shop Organization, Fabrication"
+  },
+  {
+    "objectID": "personal.html#wood-shop-french-cleat-wall",
+    "href": "personal.html#wood-shop-french-cleat-wall",
+    "title": "Personal Projects",
+    "section": "",
+    "text": "Overview:\n      Designed and built a modular french cleat wall system for the HMC Wood Shop to organize tools and keep the workspace clean and efficient.\n      French cleats use interlocking 45° angled cuts to create a flexible, reconfigurable mounting system — any holder or shelf can be moved or swapped without any hardware.\n      Cut and assembled custom holders for screwdrivers, wrenches, pliers, drill bits, sandpaper belts, and more.\n    \n    \n      Skills:\n      Table Saw, Woodworking, Shop Organization, Fabrication"
+  },
+  {
+    "objectID": "personal.html#rockler-wooden-speaker",
+    "href": "personal.html#rockler-wooden-speaker",
+    "title": "Personal Projects",
+    "section": "Rockler Wooden Speaker",
+    "text": "Rockler Wooden Speaker\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a bluetooth speaker by cutting 8 triangular pieces of plywood, and wood glueing them together in a box orientation!\n      Utilized the Rockler's Speaker Set to design and assemble the speaker kit, which connects via AUX and Bluetooth! It's also portable, as it runs on a lithium ion charged battery.\n      This project involved a lot of wood shop tools, including a Table Saw, Miter Saw, Planar, and much more!\n      This little project has now become a speaker I use day to day!\n    \n    \n      Skills:\n      Table Saw, Miter Saw, Planar, Wood Glue, Soldering, Bluetooth Electronics"
+  },
+  {
+    "objectID": "personal.html#red-ish-skateboard",
+    "href": "personal.html#red-ish-skateboard",
+    "title": "Personal Projects",
+    "section": "Red-ish Skateboard",
+    "text": "Red-ish Skateboard\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a skateboard completely from scratch under the HMC Makerspace Grant!\n      The materials for this assembly were a sheet of plywood, bearings and tires, grip tape, and red paint, assembled over the course of 3 weeks.\n      Used the ShopBot (CNC Router Table) to cut out the skateboard frame. This board is now used to travel around the Harvey Mudd campus!\n    \n    \n      Skills:\n      ShopBot CNC, CAD, Woodworking, Finishing"
+  },
+  {
+    "objectID": "labs/lab6/lab6.html",
+    "href": "labs/lab6/lab6.html",
+    "title": "Portfolio",
+    "section": "",
+    "text": "Overview:Coming Soon!"
+  },
+  {
+    "objectID": "labs/lab4/lab4.html",
+    "href": "labs/lab4/lab4.html",
+    "title": "Portfolio",
+    "section": "",
+    "text": "Overview:Coming Soon!"
+  },
+  {
+    "objectID": "labs/lab2/lab2.html",
+    "href": "labs/lab2/lab2.html",
+    "title": "Portfolio",
+    "section": "",
+    "text": "Overview:Coming Soon!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Joaquin Gonzalez-Salgado",
+    "section": "",
+    "text": "Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at Harvey Mudd College interested in electrical and computer engineering (with appreciation for mechanical engineering.) I’m currently doing research alongside the USDA as a hardware/firmware engineer focused on creating low-noise analog amplifiers for monitoring insect feeding behavior as part of the Analog Circuitry Engineering (ACE) Lab. Check out my projects below!\n\n\n\n  \n    \n    \n      E49C\n      EV Design Team\n    \n  \n  \n    \n    \n      E80\n      AUV Ocean Floor SONAR\n    \n  \n  \n    \n    \n      E85\n      Digital Level\n    \n  \n  \n    \n    \n      E85\n      Multicycle Processor\n    \n  \n  \n    \n    \n      E79\n      Submersible ROV\n    \n  \n  \n    \n    \n      E4\n      Logic Demo Board\n    \n  \n  \n    \n    \n      E4\n      Machinist Hammer\n    \n  \n\n\n  \n    Open Full Resume in New Tab"
+  },
+  {
+    "objectID": "e155.html",
+    "href": "e155.html",
+    "title": "Microprocessors (E155) Projects",
+    "section": "",
+    "text": "Overview:Coming Soon!\n    \n      See Lab Report"
+  },
+  {
+    "objectID": "e155.html#fpga-and-mcu-setup-and-testing-lab-1",
+    "href": "e155.html#fpga-and-mcu-setup-and-testing-lab-1",
+    "title": "Microprocessors (E155) Projects",
+    "section": "",
+    "text": "Overview:Coming Soon!\n    \n      See Lab Report"
+  },
+  {
+    "objectID": "e155.html#multiplexed-7-segment-display-lab-2",
+    "href": "e155.html#multiplexed-7-segment-display-lab-2",
+    "title": "Microprocessors (E155) Projects",
+    "section": "Multiplexed 7-Segment Display (Lab 2)",
+    "text": "Multiplexed 7-Segment Display (Lab 2)\n\n  \n    Overview:Coming Soon!\n    \n      See Lab Report"
+  },
+  {
+    "objectID": "e155.html#keypad-scanner-lab-3",
+    "href": "e155.html#keypad-scanner-lab-3",
+    "title": "Microprocessors (E155) Projects",
+    "section": "Keypad Scanner (Lab 3)",
+    "text": "Keypad Scanner (Lab 3)\n\n  \n    Overview:Coming Soon!\n    \n      See Lab Report"
+  },
+  {
+    "objectID": "e155.html#digital-audio-lab-4",
+    "href": "e155.html#digital-audio-lab-4",
+    "title": "Microprocessors (E155) Projects",
+    "section": "Digital Audio (Lab 4)",
+    "text": "Digital Audio (Lab 4)\n\n  \n    Overview:Coming Soon!\n    \n      See Lab Report"
+  },
+  {
+    "objectID": "e155.html#interrupts-lab-5",
+    "href": "e155.html#interrupts-lab-5",
+    "title": "Microprocessors (E155) Projects",
+    "section": "Interrupts (Lab 5)",
+    "text": "Interrupts (Lab 5)\n\n  \n    Overview:Coming Soon!\n    \n      See Lab Report"
+  },
+  {
+    "objectID": "e155.html#spi-and-iot-lab-6",
+    "href": "e155.html#spi-and-iot-lab-6",
+    "title": "Microprocessors (E155) Projects",
+    "section": "SPI and IoT (Lab 6)",
+    "text": "SPI and IoT (Lab 6)\n\n  \n    Overview:Coming Soon!\n    \n      See Lab Report"
+  },
+  {
+    "objectID": "e155.html#advanced-encryption-standard-lab-7",
+    "href": "e155.html#advanced-encryption-standard-lab-7",
+    "title": "Microprocessors (E155) Projects",
+    "section": "Advanced Encryption Standard (Lab 7)",
+    "text": "Advanced Encryption Standard (Lab 7)\n\n  \n    Overview:Coming Soon!\n    \n      See Lab Report"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "My Blog! See what I’ve been up to:",
+    "section": "",
+    "text": "Starting Microprocesor Labs!\n\n\nBeginning my Microprocessors Journey\n\n\n\n\n\nMay 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nDana Point Harbor Deployment\n\n\nDeploying our E80 Robot at Dana Point!\n\n\n\n\n\nApr 25, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nVisit to NVIDIA Voyager\n\n\nMudd Job Shadow\n\n\n\n\n\nMar 17, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nVisit to Harbinger Motors\n\n\nMudd Job Shadow\n\n\n\n\n\nMay 23, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "experience.html",
+    "href": "experience.html",
+    "title": "Work Experience",
+    "section": "",
+    "text": "Overview:  Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.\n\nMachine Shop Website →\n\n\n\n \n\n\nOverview:  Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects. Oversaw project grants and budget distribution, supporting student innovation while ensuring responsible and equitable use of resources.\n\nMakerspace Website →"
+  },
+  {
+    "objectID": "experience.html#machine-shop-proctor",
+    "href": "experience.html#machine-shop-proctor",
+    "title": "Work Experience",
+    "section": "",
+    "text": "Overview:  Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.\n\nMachine Shop Website →"
+  },
+  {
+    "objectID": "experience.html#makerspace-repair-steward",
+    "href": "experience.html#makerspace-repair-steward",
+    "title": "Work Experience",
+    "section": "",
+    "text": "Overview:  Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects. Oversaw project grants and budget distribution, supporting student innovation while ensuring responsible and equitable use of resources.\n\nMakerspace Website →"
+  },
+  {
+    "objectID": "labs/lab1/lab1.html",
+    "href": "labs/lab1/lab1.html",
+    "title": "Annotated Lab Report Template",
+    "section": "",
+    "text": "TipAnnotated Report Template\n\n\n\nThe following is a template to clarify what should be part of the writeup you post for each lab you complete. It is a sample report written to explain a simple FPGA blink demo. Each section contains a brief explanation of the purpose of the section and the information that should be included in it."
+  },
+  {
+    "objectID": "labs/lab1/lab1.html#introduction",
+    "href": "labs/lab1/lab1.html#introduction",
+    "title": "Annotated Lab Report Template",
+    "section": "Introduction",
+    "text": "Introduction\n\n\n\n\n\n\nNoteIntroduction\n\n\n\nBriefly explain what was done.\n\n\nIn this lab, a design was implemented on the FPGA to demonstrate the functionality of the on-board high-speed oscillator by blinking one of the on-board LEDs. The high speed oscillator was configured at a frequency of 24 MHz and divided down using a counter to achieve a blinking frequency of ~1.5 Hz."
+  },
+  {
+    "objectID": "labs/lab1/lab1.html#design-and-testing-methodology",
+    "href": "labs/lab1/lab1.html#design-and-testing-methodology",
+    "title": "Annotated Lab Report Template",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\n\n\n\n\n\n\nNoteDesign and Testing Methodology\n\n\n\nExplain how you approached the design of this assignment from both a software and a hardware standpoint (as appropriate). Include how you tested your design. These tests should convince the reader that the requirements of the assignment have been met.\n\n\nThe on-board high-speed oscillator (HSOSC) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs.\nThe design was developed using a simple clock divider module which drives the external LED."
+  },
+  {
+    "objectID": "labs/lab1/lab1.html#technical-documentation",
+    "href": "labs/lab1/lab1.html#technical-documentation",
+    "title": "Annotated Lab Report Template",
+    "section": "Technical Documentation:",
+    "text": "Technical Documentation:\n\n\n\n\n\n\nNoteTechnical Documentation\n\n\n\nInclude a link to a Git repository with your Verilog code, a block diagram of your design, and schematics of your circuits.\n\n\nThe source code for the project can be found in the associated Github repository.\n\nBlock Diagram\n\n\n\n\n\n\nFigure 1: Block diagram of the Verilog design.\n\n\n\nThe block diagram in Figure 1 demonstrates the overall architecture of the design. The top-level module top includes two submodules: the high-speed oscillator block (HSOSC) and the clock divider module (clk_divider). Every net and port in the block diagram must be labeled – that means each wire at the top level has to have a name, and the connection to a submodule must show the name inside the module. This is true even if the submodule port name is the same as the top level net name.\n\n\nSchematic\n\n\n\n\n\n\nFigure 2: Schematic of the physical circuit.\n\n\n\nFigure 2 shows the physical layout of the design. An internal 100 k\\(\\Omega\\) pullup resistor was used to ensure the active low reset pin was not floating. The output LED was connected using a 1 k\\(\\Omega\\) current-limiting resistor to ensure the output current (~2.6 mA) did not exceed the maximum output current of the FPGA I/O pins."
+  },
+  {
+    "objectID": "labs/lab1/lab1.html#results-and-discussion",
+    "href": "labs/lab1/lab1.html#results-and-discussion",
+    "title": "Annotated Lab Report Template",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\n\n\n\n\n\n\nNoteResults and Discussion\n\n\n\nDid you accomplish all of the prescribed tasks? If not, what are the shortcomings? How might you address them given more time? As appropriate, how did the design perform (e.g., How fast/accurate/reliable was it?).\n\n\n\nTestbench Simulation\n\n\n\n\n\n\nFigure 3: A screenshot of a QuestaSim simulation demonstrating the blinking output signal. Note that the timescale for the clock divider was modified to divide by 4.\n\n\n\nThe design met all intended design objectives. Figure 3 shows a screenshot of the QuestaSim simulation. If a more precise output frequency was desired, a more sophisticated counter could be developed. The current design only allows for the clock to be divided by powers of two."
+  },
+  {
+    "objectID": "labs/lab1/lab1.html#conclusion",
+    "href": "labs/lab1/lab1.html#conclusion",
+    "title": "Annotated Lab Report Template",
+    "section": "Conclusion",
+    "text": "Conclusion\n\n\n\n\n\n\nNoteConclusion\n\n\n\nBriefly summarize what was done and how it performed. Also note how many hours you spent working on the lab.\n\n\nThe design successfully blinked an external LED using the on-board high-speed oscillator. I spent a total of two hours working on this lab."
+  },
+  {
+    "objectID": "labs/lab1/lab1.html#ai-prototype-summary",
+    "href": "labs/lab1/lab1.html#ai-prototype-summary",
+    "title": "Annotated Lab Report Template",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nInclude generated code, easy-to-read chat transcripts, and a reflection on how well it worked."
+  },
+  {
+    "objectID": "labs/lab3/lab3.html",
+    "href": "labs/lab3/lab3.html",
+    "title": "Portfolio",
+    "section": "",
+    "text": "Overview:Coming Soon!"
+  },
+  {
+    "objectID": "labs/lab5/lab5.html",
+    "href": "labs/lab5/lab5.html",
+    "title": "Portfolio",
+    "section": "",
+    "text": "Overview:Coming Soon!"
+  },
+  {
+    "objectID": "labs/lab7/lab7.html",
+    "href": "labs/lab7/lab7.html",
+    "title": "Portfolio",
+    "section": "",
+    "text": "Overview:Coming Soon!"
+  },
+  {
+    "objectID": "posts/post1.html",
+    "href": "posts/post1.html",
+    "title": "Visit to Harbinger Motors",
+    "section": "",
+    "text": "Yesterday, I had the incredible opportunity to visit and job shadow at Harbinger Motors Inc.! Harbinger is a company leading the way in EV commercial vehicle innovation for trucks, RVs, and much more. It was super exciting to see the intricacies of trucks that we see everyday, and how we as engineers can continue to innovate and improve them for the future.\nI would also like to give a HUGE thank you to Zane Bodenbender (Harvey Mudd alum!) for hosting us and generously sharing insights about his work and journey — your passion and expertise made this experience especially impactful, and have truly shown me what it means to be an Engineer!"
+  },
+  {
+    "objectID": "posts/post3.html",
+    "href": "posts/post3.html",
+    "title": "Starting Microprocesor Labs!",
+    "section": "",
+    "text": "This fall semester (2026), I will be taking an upper division course called Microprocessors Systems: Design & Application which focuses on microcontrollers and embedded system design, and how to apply HDL and logic to the real world. My goal this semester is to focus on having a thorough engineering workflow. I want to not only understand and create embedded and physical systems, but also document these processes thoroughly."
   },
   {
     "objectID": "projects.html",
@@ -63,129 +301,24 @@
     "text": "Engineering Design & Manufacturing (E4)\n\nDigital Logic Demonstration Board\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and assembled a logic-gate demonstration board using 74HC Series integrated circuits, a 555 timer, and a potentiometer-based clock input.\n      Engineered intuitive controls with input switches, banana cables, and LEDs to clearly display output states.\n      Delivered a durable teaching tool now used by Professor Stone for the Digital Logic and Computer Architecture course.\n    \n    Skills:Digital Logic, PCB Design, 74HC ICs, 555 Timer, Soldering\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Built a logic-gate demonstration board using 74HC Series ICs and a 555 timer.\n        - Incorporated input switches, banana cable ports, and LEDs for clear output visualization.\n      \n    \n    \n      Methods\n      \n      \n        - Designed board layout for intuitive student interaction and clear signal flow.\n        - Wired and soldered 74HC gates, 555 timer clock, and potentiometer for adjustable frequency.\n      \n    \n    \n      Result\n      \n      \n        - Delivered a durable teaching tool now actively used by Professor Stone in E85 lectures.\n        - Reinforced understanding of combinational logic design and hands-on fabrication.\n      \n    \n  \n\n\n\nE4 Machinist Hammer\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Manufactured a precision machinist hammer from clear oak, AISI 1015 steel, AISI 4340 steel, and nylon, adhering to detailed engineering drawings, dimensional tolerances, and safety requirements.\n      Applied turning, facing, milling, tapping, and heat treatment processes to achieve specified mechanical properties.\n    \n    Skills:GD&T, Lathe, Mill, Bandsaw, Taps, Digital Micrometers, HRC Hardness Tester, Heat Treatment\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Manufactured a functional machinist hammer from oak, steel, and nylon to precise GD&T specs.\n        - Contributed to the Harvey Mudd College tradition of student-made hammers.\n      \n    \n    \n      Methods\n      \n      \n        - Machined head stock using lathe and milling operations, verified with digital micrometers.\n        - Heat treated hard face, verified HRC hardness, and sandblasted for smooth finish.\n      \n    \n    \n      Result\n      \n      \n        - Delivered a high-quality hammer that scored near perfect in quality of manufacturing.\n        - Now serve as a Machine Shop Proctor, training new students in shop safety."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Joaquin Gonzalez-Salgado",
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research & Fellowships",
     "section": "",
-    "text": "Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at Harvey Mudd College interested in electrical and computer engineering (with appreciation for mechanical engineering.) I’m currently doing research alongside the USDA as a hardware/firmware engineer focused on creating low-noise analog amplifiers for monitoring insect feeding behavior as part of the Analog Circuitry Engineering (ACE) Lab. Check out my projects below!\n\n\n\n  \n    \n    \n      E49C\n      EV Design Team\n    \n  \n  \n    \n    \n      E80\n      AUV Ocean Floor SONAR\n    \n  \n  \n    \n    \n      E85\n      Digital Level\n    \n  \n  \n    \n    \n      E85\n      Multicycle Processor\n    \n  \n  \n    \n    \n      E79\n      Submersible ROV\n    \n  \n  \n    \n    \n      E4\n      Logic Demo Board\n    \n  \n  \n    \n    \n      E4\n      Machinist Hammer\n    \n  \n\n\n  \n    Open Full Resume in New Tab"
+    "text": "Overview:  Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding behavior of disease-vector insects, supporting agricultural and ecological research.\nDeveloped microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog signals from insect feeding experiments.\nApplied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits, optimize signal quality, and improve reliability for field deployment.\n\n\n\n\n \n\n\nOverview:  Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\nDeveloped FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\nConfigured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python–based data analysis/visualization."
   },
   {
-    "objectID": "e155.html",
-    "href": "e155.html",
-    "title": "Microprocessors (E155) Projects",
+    "objectID": "research.html#usda-electropenetography-hardwarefirmware",
+    "href": "research.html#usda-electropenetography-hardwarefirmware",
+    "title": "Research & Fellowships",
     "section": "",
-    "text": "Coming Soon!\n\n\n\nComing Soon!\n\n\n\nComing Soon!\n\n\n\nComing Soon!\n\n\n\nComing Soon!\n\n\n\nComing Soon!\n\n\n\nComing Soon!"
+    "text": "Overview:  Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding behavior of disease-vector insects, supporting agricultural and ecological research.\nDeveloped microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog signals from insect feeding experiments.\nApplied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits, optimize signal quality, and improve reliability for field deployment."
   },
   {
-    "objectID": "e155.html#fpga-and-mcu-setup-and-testing-lab-1",
-    "href": "e155.html#fpga-and-mcu-setup-and-testing-lab-1",
-    "title": "Microprocessors (E155) Projects",
+    "objectID": "research.html#drone-fpga-radio-telescope-beam-mapping",
+    "href": "research.html#drone-fpga-radio-telescope-beam-mapping",
+    "title": "Research & Fellowships",
     "section": "",
-    "text": "Coming Soon!"
-  },
-  {
-    "objectID": "e155.html#multiplexed-7-segment-display-lab-2",
-    "href": "e155.html#multiplexed-7-segment-display-lab-2",
-    "title": "Microprocessors (E155) Projects",
-    "section": "",
-    "text": "Coming Soon!"
-  },
-  {
-    "objectID": "e155.html#keypad-scanner-lab-3",
-    "href": "e155.html#keypad-scanner-lab-3",
-    "title": "Microprocessors (E155) Projects",
-    "section": "",
-    "text": "Coming Soon!"
-  },
-  {
-    "objectID": "e155.html#digital-audio-lab-4",
-    "href": "e155.html#digital-audio-lab-4",
-    "title": "Microprocessors (E155) Projects",
-    "section": "",
-    "text": "Coming Soon!"
-  },
-  {
-    "objectID": "e155.html#interrupts-lab-5",
-    "href": "e155.html#interrupts-lab-5",
-    "title": "Microprocessors (E155) Projects",
-    "section": "",
-    "text": "Coming Soon!"
-  },
-  {
-    "objectID": "e155.html#spi-and-iot-lab-6",
-    "href": "e155.html#spi-and-iot-lab-6",
-    "title": "Microprocessors (E155) Projects",
-    "section": "",
-    "text": "Coming Soon!"
-  },
-  {
-    "objectID": "e155.html#advanced-encryption-standard-lab-7",
-    "href": "e155.html#advanced-encryption-standard-lab-7",
-    "title": "Microprocessors (E155) Projects",
-    "section": "",
-    "text": "Coming Soon!"
-  },
-  {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Portfolio",
-    "section": "",
-    "text": "Blogs Coming Soon!"
-  },
-  {
-    "objectID": "experience.html",
-    "href": "experience.html",
-    "title": "Work Experience",
-    "section": "",
-    "text": "Overview:  Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.\n\nMachine Shop Website →\n\n\n\n \n\n\nOverview:  Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects. Oversaw project grants and budget distribution, supporting student innovation while ensuring responsible and equitable use of resources.\n\nMakerspace Website →"
-  },
-  {
-    "objectID": "experience.html#machine-shop-proctor",
-    "href": "experience.html#machine-shop-proctor",
-    "title": "Work Experience",
-    "section": "",
-    "text": "Overview:  Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.\n\nMachine Shop Website →"
-  },
-  {
-    "objectID": "experience.html#makerspace-repair-steward",
-    "href": "experience.html#makerspace-repair-steward",
-    "title": "Work Experience",
-    "section": "",
-    "text": "Overview:  Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects. Oversaw project grants and budget distribution, supporting student innovation while ensuring responsible and equitable use of resources.\n\nMakerspace Website →"
-  },
-  {
-    "objectID": "personal.html",
-    "href": "personal.html",
-    "title": "Personal Projects",
-    "section": "",
-    "text": "Overview:\n      Designed and built a modular french cleat wall system for the HMC Wood Shop to organize tools and keep the workspace clean and efficient.\n      French cleats use interlocking 45° angled cuts to create a flexible, reconfigurable mounting system — any holder or shelf can be moved or swapped without any hardware.\n      Cut and assembled custom holders for screwdrivers, wrenches, pliers, drill bits, sandpaper belts, and more.\n    \n    \n      Skills:\n      Table Saw, Woodworking, Shop Organization, Fabrication"
-  },
-  {
-    "objectID": "personal.html#wood-shop-french-cleat-wall",
-    "href": "personal.html#wood-shop-french-cleat-wall",
-    "title": "Personal Projects",
-    "section": "",
-    "text": "Overview:\n      Designed and built a modular french cleat wall system for the HMC Wood Shop to organize tools and keep the workspace clean and efficient.\n      French cleats use interlocking 45° angled cuts to create a flexible, reconfigurable mounting system — any holder or shelf can be moved or swapped without any hardware.\n      Cut and assembled custom holders for screwdrivers, wrenches, pliers, drill bits, sandpaper belts, and more.\n    \n    \n      Skills:\n      Table Saw, Woodworking, Shop Organization, Fabrication"
-  },
-  {
-    "objectID": "personal.html#rockler-wooden-speaker",
-    "href": "personal.html#rockler-wooden-speaker",
-    "title": "Personal Projects",
-    "section": "Rockler Wooden Speaker",
-    "text": "Rockler Wooden Speaker\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a bluetooth speaker by cutting 8 triangular pieces of plywood, and wood glueing them together in a box orientation!\n      Utilized the Rockler's Speaker Set to design and assemble the speaker kit, which connects via AUX and Bluetooth! It's also portable, as it runs on a lithium ion charged battery.\n      This project involved a lot of wood shop tools, including a Table Saw, Miter Saw, Planar, and much more!\n      This little project has now become a speaker I use day to day!\n    \n    \n      Skills:\n      Table Saw, Miter Saw, Planar, Wood Glue, Soldering, Bluetooth Electronics"
-  },
-  {
-    "objectID": "personal.html#red-ish-skateboard",
-    "href": "personal.html#red-ish-skateboard",
-    "title": "Personal Projects",
-    "section": "Red-ish Skateboard",
-    "text": "Red-ish Skateboard\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a skateboard completely from scratch under the HMC Makerspace Grant!\n      The materials for this assembly were a sheet of plywood, bearings and tires, grip tape, and red paint, assembled over the course of 3 weeks.\n      Used the ShopBot (CNC Router Table) to cut out the skateboard frame. This board is now used to travel around the Harvey Mudd campus!\n    \n    \n      Skills:\n      ShopBot CNC, CAD, Woodworking, Finishing"
-  },
-  {
-    "objectID": "publications.html",
-    "href": "publications.html",
-    "title": "Publications & Reports",
-    "section": "",
-    "text": "Submitted to IEEE\n  Stress, Cognitive Load, and Specifications Grading in an Engineering Laboratory Course\n  \n    Cleo McHenry, Sara Morishige, Jasmine Sampat, Joaquin Gonzalez-Salgado, Leah Uriarte, Matthew Spencer\n  \n  IEEE Transactions on Education, 2025\n  \n    This paper presents a controlled two-year experiment at Harvey Mudd College studying how two evidence-based\n    interventions — simplified lab manuals and specifications grading — affected student stress and cognitive load\n    in a required sophomore engineering lab course (E80). Weekly validated surveys showed that stress was\n    significantly reduced in six of seven labs, and cognitive load dropped significantly in three. Students in\n    the treatment cohort also posted meaningfully higher scores on a summative technical memo, suggesting the\n    interventions did not harm learning. I contributed as a co-author on the study design, data collection,\n    and analysis.\n  \n  \n    *Currently being published*\n  \n\n\n\n\n  Report\n  Autonomous Surface & Dive Robot for Underwater Depth Mapping\n  \n    Joaquin Gonzalez-Salgado, Esteban Gonzalez, Ayla Greenstein, Kathy Guo\n  \n  E80: Experimental Engineering, Harvey Mudd College — Spring 2026\n  \n    This report documents the design, construction, and field deployment of an autonomous underwater vehicle\n    (AUV) built to map the seafloor topography of Dana Point Harbor. The vehicle integrated a SONAR depth\n    sensor (CME1538-100LB microphone + daex25W-8 speaker), an MPX5700ASX pressure sensor for dive depth,\n    and a thermistor for temperature profiling across depth. The AUV featured four horizontal and two vertical\n    thrusters, a low center of gravity for surface stability, and a winch-based recovery system. Deployment\n    at Dana Point produced a topographic depth map of the harbor floor, with real-time data logging to an\n    onboard SD card. Sensor drift from ocean currents affected positional accuracy, motivating future work\n    on closed-loop horizontal control.\n  \n  \n    Read Paper (PDF)\n    View Poster (PDF)\n    See Project Page\n  \n\n\n\n\n  Work in Progress\n  Low-Noise Analog Amplifier for Electropenetrography and R/EMF Signal Acquisition\n  \n    Joaquin Gonzalez-Salgado, Matthew Spencer — ACE Lab, Harvey Mudd College\n  \n  In preparation — Analog Circuitry Engineering (ACE) Lab, USDA Collaboration\n  \n    Ongoing manuscript documenting the design and characterization of a low-noise analog amplifier\n    for monitoring insect feeding behavior via electropenetrography (EPG) and resistive/emf (R/EMF)\n    signal acquisition.\n  \n  \n    \n      Manuscript in preparation"
+    "text": "Overview:  Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\nDeveloped FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\nConfigured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python–based data analysis/visualization."
   }
 ]
