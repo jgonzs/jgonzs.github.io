@@ -23,6 +23,8 @@ website:
         text: Personal Projects
       - href: publications.qmd
         text: Publications & Reports
+      - href: resources.qmd
+        text: Resources
       - href: blog.qmd
         text: Blog
     right:

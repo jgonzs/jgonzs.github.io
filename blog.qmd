@@ -1,1 +1,8 @@
-Blogs Coming Soon!
+---
+title: "My Blog! See what I've been up to:"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: false
+---

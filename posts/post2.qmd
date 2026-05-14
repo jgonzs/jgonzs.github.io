@@ -1,0 +1,13 @@
+---
+title: "Visit to NVIDIA Voyager"
+description: "Mudd Job Shadow"
+author: ""
+date: "3/17/26"
+categories:
+  - Job Shadow
+  - NVIDIA
+draft: false
+---
+![](images/nvidia.jpeg)
+
+This week, I had the incredible opportunity to job shadow at NVIDIA's [NVIDIA's](https://www.nvidia.com/en-us/) headquarters in Santa Clara with Mudd alumni Alisha Chulani! It was really cool to see what the workplace looks like day-to-day at such a large company, and it was fascinating watch teams collaborate on some exciting projects. So grateful for the experience!

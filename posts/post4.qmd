@@ -1,0 +1,14 @@
+---
+title: "Dana Point Harbor Deployment"
+description: "Deploying our E80 Robot at Dana Point!"
+author: ""
+date: "4/25/26"
+categories:
+  - E80
+  - Robot
+  - Team Project
+draft: false
+---
+![](images/danaPoint.jpg)
+
+Today my team and I plunged our robot into the depths of Dana Point Harbor! Our goal was to take temperature, pressure, and ocean depth measurements (via SONAR) utilizing surface and dive control. We got to ride kayaks and it was super fun!

@@ -1,0 +1,9 @@
+# Resources
+
+## Microprocessors (E155) 
+
+The labs for the E155 Microprocessors course are sourced from the **E155 course website**:
+
+[E155 Course Website](https://hmc-e155.github.io)
+
+This is where all lab assignments and related materials originate.
