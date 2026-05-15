@@ -303,22 +303,29 @@
   {
     "objectID": "research.html",
     "href": "research.html",
-    "title": "Research & Fellowships",
+    "title": "Clinic & Research",
     "section": "",
-    "text": "Overview:  Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding behavior of disease-vector insects, supporting agricultural and ecological research.\nDeveloped microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog signals from insect feeding experiments.\nApplied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits, optimize signal quality, and improve reliability for field deployment.\n\n\n\n\n \n\n\nOverview:  Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\nDeveloped FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\nConfigured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python–based data analysis/visualization."
+    "text": "Coming Soon!\n    \n    \n      Details about my clinic project will be posted here soon. Stay tuned!\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding\n      behavior of disease-vector insects, supporting agricultural and ecological research.\n\n      Developed microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog\n      signals from insect feeding experiments.\n\n      Applied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits,\n      optimize signal quality, and improve reliability for field deployment.\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\n\n      Developed FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\n\n      Configured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python-based data analysis/visualization."
+  },
+  {
+    "objectID": "research.html#junior-clinic",
+    "href": "research.html#junior-clinic",
+    "title": "Clinic & Research",
+    "section": "",
+    "text": "Coming Soon!\n    \n    \n      Details about my clinic project will be posted here soon. Stay tuned!"
   },
   {
     "objectID": "research.html#usda-electropenetography-hardwarefirmware",
     "href": "research.html#usda-electropenetography-hardwarefirmware",
-    "title": "Research & Fellowships",
+    "title": "Clinic & Research",
     "section": "",
-    "text": "Overview:  Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding behavior of disease-vector insects, supporting agricultural and ecological research.\nDeveloped microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog signals from insect feeding experiments.\nApplied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits, optimize signal quality, and improve reliability for field deployment."
+    "text": "Overview:\n      Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding\n      behavior of disease-vector insects, supporting agricultural and ecological research.\n\n      Developed microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog\n      signals from insect feeding experiments.\n\n      Applied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits,\n      optimize signal quality, and improve reliability for field deployment."
   },
   {
     "objectID": "research.html#drone-fpga-radio-telescope-beam-mapping",
     "href": "research.html#drone-fpga-radio-telescope-beam-mapping",
-    "title": "Research & Fellowships",
+    "title": "Clinic & Research",
     "section": "",
-    "text": "Overview:  Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\nDeveloped FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\nConfigured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python–based data analysis/visualization."
+    "text": "Overview:\n      Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\n\n      Developed FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\n\n      Configured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python-based data analysis/visualization."
   }
 ]
