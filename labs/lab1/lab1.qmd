@@ -1,31 +1,32 @@
 ---
-title: "Annotated Lab Report Template"
+title: "Lab 1: FPGA and MCU Setup and Testing"
 ---
 
-::: {.callout-tip}
-## Annotated Report Template
-
-The following is a template to clarify what should be part of the writeup you post for each lab you complete. It is a sample report written to explain a simple FPGA blink demo. Each section contains a brief explanation of the purpose of the section and the information that should be included in it.
-:::
-
 ## Introduction
-
-::: {.callout-note}
-## Introduction
-
-Briefly explain what was done.
-:::
-
-In this lab, a design was implemented on the FPGA to demonstrate the functionality of the on-board high-speed oscillator by blinking one of the on-board LEDs. The high speed oscillator was configured at a frequency of 24 MHz and divided down using a counter to achieve a blinking frequency of ~1.5 Hz.
+In this lab, a development board was assembled by soldering SMT and THT components, and a SystemVerilog design was implemented on the `iCE40 UltraPlus FPGA` to demonstrate the functionality of that board. Code was written to utilize the high-speed oscillator to control three on-board LEDS and a 7-Segment Display using 4 DIP switch inputs on the board. 
 
 ## Design and Testing Methodology
+### Development Board Interface 
+To start, the development board system consisted of Surface-Mount (SMT) and Through-Hole (THT) components that were hand-soldered onto the board. Two development boards are integrated into this PCB using female header pins: The `UPduino v3.1 FPGA` and the `Nucleo-L432KC MCU`. The resulting development board is shown in @fig-dev-board:
 
-::: {.callout-note}
-## Design and Testing Methodology
+![Finished Development Board with FPGA & MCU](images/uPBoard.jpeg){#fig-dev-board}
 
-Explain how you approached the design of this assignment from both a software and a hardware standpoint (as appropriate). Include how you tested your design. These tests should convince the reader that the requirements of the assignment have been met.
-:::
+### FPGA Implementation
+| Signal Name | Signal Type | Description                                      |   |   |
+|-------------|-------------|--------------------------------------------------|---|---|
+| clk         | input       | 48 MHz clock on FPGA                             |   |   |
+| s[3:0]      | input       | Four DIP switches (SW6)        |   |   |
+| led[2:0]    | output      | 3 On-Board LEDS           |   |   |
+| seg[6:0]    | output      | Common-Anode 7-segment display segments  |   |   |
 
+: Demonstration of pipe table syntax
+
+
+
+
+
+
+: Demonstration of pipe table syntax
 The on-board high-speed oscillator (`HSOSC`) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs.
 
 The design was developed using a simple clock divider module which drives the external LED.
@@ -33,22 +34,23 @@ The design was developed using a simple clock divider module which drives the ex
 ## Technical Documentation:
 
 ::: {.callout-note}
-## Technical Documentation
-
-Include a link to a Git repository with your Verilog code, a block diagram of your design, and schematics of your circuits.
+## Source Code
+The source code for the project can be found in the associated [Github Repo](https://github.com/jgonzalezsalgado/e155-Lab1).
 :::
-
-The source code for the project can be found in the associated [Github repository](https://github.com/HMC-E155/fpga-blink-test-demo).
 
 ### Block Diagram
 
-![Block diagram of the Verilog design.](images/block-diagram.png){#fig-block-diagram}
+*Lab 1 Block Diagram // Joaquin Gonzalez-Salgado // September x 2025*
 
-The block diagram in @fig-block-diagram demonstrates the overall architecture of the design. The top-level module `top` includes two submodules: the high-speed oscillator block (`HSOSC`) and the clock divider module (`clk_divider`). Every net and port in the block diagram must be labeled -- that means each wire at the top level has to have a name, and the connection to a submodule must show the name inside the module. This is true even if the submodule port name is the same as the top level net name.
+![Top-Level Block Diagram of'Lab1_jg' and 'sevenSegment'.](images/blockDiagram.jpeg){#fig-block-diagram}
+
+The block diagram in @fig-block-diagram demonstrates the overall architecture of the design. The top-level module `lab1_jg` includes three submodules: a high-speed oscillator block (`HSOSC`), a sequential logic counter which acts as a clock divider, and the combinational logic for the 7-Segment display (`sevenSegment`).
 
 ### Schematic
 
-![Schematic of the physical circuit.](images/schematic.png){#fig-schematic}
+*Lab 1 Wiring Schematic // Joaquin Gonzalez-Salgado // September x 2025*
+
+![Schematic of](images/schematic.jpeg){#fig-schematic}
 
 @fig-schematic shows the physical layout of the design. An internal 100 k$\Omega$ pullup resistor was used to ensure the active low reset pin was not floating. The output LED was connected using a 1 k$\Omega$ current-limiting resistor to ensure the output current (~2.6 mA) did not exceed the maximum output current of the FPGA I/O pins.
 
@@ -62,20 +64,66 @@ Did you accomplish all of the prescribed tasks? If not, what are the shortcoming
 
 ### Testbench Simulation
 
-![A screenshot of a QuestaSim simulation demonstrating the blinking output signal. Note that the timescale for the clock divider was modified to divide by 4.](images/testbench-screenshot.png){#fig-testbench}
+![A screenshot of a QuestaSim simulation demonstrating the blinking output signal. Note that the timescale for the clock divider was modified to divide by 4.](images/waveforms.png){#fig-testbench}
 
 The design met all intended design objectives. @fig-testbench shows a screenshot of the QuestaSim simulation. If a more precise output frequency was desired, a more sophisticated counter could be developed. The current design only allows for the clock to be divided by powers of two.
 
 ## Conclusion
 
 ::: {.callout-note}
-## Conclusion
-
-Briefly summarize what was done and how it performed. Also note how many hours you spent working on the lab.
+## Hours Spent on Lab
+This lab took 20 hours. Soldering on the components to the developoment board required a lot of time, and setting up the Lattice Radiant and Programmer Environments took a bit to get used to. A huge chunk of time was dedicated to debugging USB Serial Driver issues!
 :::
 
 The design successfully blinked an external LED using the on-board high-speed oscillator. I spent a total of two hours working on this lab.
 
 ## AI Prototype Summary
+The purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:
 
-Include generated code, easy-to-read chat transcripts, and a reflection on how well it worked.
+::: {.callout-tip}
+## AI Protoype (ChatGPT)
+**Prompt:** Write SystemVerilog HDL to leverage the internal high speed oscillator in the Lattice UP5K FPGA and blink an LED at 2 Hz. Take full advantage of SystemVerilog syntax, for example, using logic instead of wire and reg.
+:::
+
+::: {.callout-note}
+## Generated Code:
+module top (
+    output logic LED
+);
+
+    logic clk_hf;
+    logic clk_enable;
+
+    assign clk_enable = 1'b1;
+
+    HSOSC #(
+        .CLKHF_DIV("0b00")
+    ) hf_oscillator (
+        .CLKHFPU (1'b1),
+        .CLKHFEN (clk_enable),
+        .CLKHF   (clk_hf)
+    );
+
+    localparam int unsigned TOGGLE_COUNT = 12_000_000 - 1;
+
+    logic [$clog2(TOGGLE_COUNT + 1)-1:0] counter = '0;
+
+    always_ff @(posedge clk_hf) begin
+        if (counter == TOGGLE_COUNT) begin
+            counter <= '0;
+            LED     <= ~LED;
+        end
+        else begin
+            counter <= counter + 1'b1;
+        end
+    end
+
+endmodule
+:::
+
+### Reflection:
+Every week I will try a different AI model, just to get a scope of the variety of LLMs. This week is `ChatGPT-5.5`. `ChatGPT-5.5` was able to create code that was synthesizable in Lattice Radiant, and produced a succesful verilog file that allowed for an LED to pulse at `2.01 Hz` (verified via Oscilloscope), completely on the first try. The only work I had to do was route the resulting led output to the pin on the FPGA. 
+
+As for the quality of the output, `ChatGPT-5.5` did exactly what I told it to do, with no errors from Radiant at all. The LLM generated some syntax that I was unfamiliar with, as I have never used `$clog2` before. It also used a different method than what I had used (stating an unsigned integer for the count) so that was new. 
+
+The next time I utilize an LLM in my workflow, I would most likely ask it to use terms/methods that I am familiar with, or explain what the different parts of the SystemVerilog file do. `ChatGPT-5.5` did not explain the workflow at all, and just gave me the code with not context.

@@ -4,6 +4,15 @@ toc: false
 format: html
 ---
 
+
+```{=html}
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 2; min-width: 300px;">
+    <p>This Fall 2026, I am taking an upper division  engineering elective, <a href="https://hmc-e155.github.io/" target="_blank" rel="noopener noreferrer">
+  E155: Microprocessor Systems</a> at Harvey Mudd College. In this course I built a variety of systems with FPGAs, microcontrollers, and custom digital logic. Along the way, I gained experience with RTL design, simulation and verification in Questa, and FPGA development using Lattice Radiant. Check out my work below!
+    </p>
+```
+
 ## FPGA and MCU Setup and Testing (Lab 1)
 
 ```{=html}
