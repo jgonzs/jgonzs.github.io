@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Annotated Lab Report Template – Portfolio</title>
+<title>Lab 1: FPGA and MCU Setup and Testing – Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -290,12 +290,8 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../research.html"> 
-<span class="menu-text">Research &amp; Fellowships</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../experience.html"> 
-<span class="menu-text">Work Experience</span></a>
+<span class="menu-text">Industry &amp; Research Experience</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../projects.html"> 
@@ -351,7 +347,11 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a></li>
+  <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a>
+  <ul class="collapse">
+  <li><a href="#development-board-interface" id="toc-development-board-interface" class="nav-link" data-scroll-target="#development-board-interface">Development Board Interface</a></li>
+  <li><a href="#fpga-implementation" id="toc-fpga-implementation" class="nav-link" data-scroll-target="#fpga-implementation">FPGA Implementation</a></li>
+  </ul></li>
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation:</a>
   <ul class="collapse">
   <li><a href="#block-diagram" id="toc-block-diagram" class="nav-link" data-scroll-target="#block-diagram">Block Diagram</a></li>
@@ -362,7 +362,10 @@ window.Quarto = {
   <li><a href="#testbench-simulation" id="toc-testbench-simulation" class="nav-link" data-scroll-target="#testbench-simulation">Testbench Simulation</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#ai-prototype-summary" id="toc-ai-prototype-summary" class="nav-link" data-scroll-target="#ai-prototype-summary">AI Prototype Summary</a></li>
+  <li><a href="#ai-prototype-summary" id="toc-ai-prototype-summary" class="nav-link" data-scroll-target="#ai-prototype-summary">AI Prototype Summary</a>
+  <ul class="collapse">
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection:</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -372,7 +375,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Annotated Lab Report Template</h1>
+<h1 class="title">Lab 1: FPGA and MCU Setup and Testing</h1>
 </div>
 
 
@@ -389,53 +392,80 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Annotated Report Template
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The following is a template to clarify what should be part of the writeup you post for each lab you complete. It is a sample report written to explain a simple FPGA blink demo. Each section contains a brief explanation of the purpose of the section and the information that should be included in it.</p>
-</div>
-</div>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Introduction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Briefly explain what was done.</p>
-</div>
-</div>
-<p>In this lab, a design was implemented on the FPGA to demonstrate the functionality of the on-board high-speed oscillator by blinking one of the on-board LEDs. The high speed oscillator was configured at a frequency of 24 MHz and divided down using a counter to achieve a blinking frequency of ~1.5 Hz.</p>
+<p>In this lab, a development board was assembled by soldering SMT and THT components, and a SystemVerilog design was implemented on the <code>iCE40 UltraPlus FPGA</code> to demonstrate the functionality of that board. Code was written to utilize the high-speed oscillator to control three on-board LEDS and a 7-Segment Display using 4 DIP switch inputs on the board.</p>
 </section>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="development-board-interface" class="level3">
+<h3 class="anchored" data-anchor-id="development-board-interface">Development Board Interface</h3>
+<p>To start, the development board system consisted of Surface-Mount (SMT) and Through-Hole (THT) components that were hand-soldered onto the board. Two development boards are integrated into this PCB using female header pins: The <code>UPduino v3.1 FPGA</code> and the <code>Nucleo-L432KC MCU</code>. The resulting development board is shown in <a href="#fig-dev-board" class="quarto-xref">Figure&nbsp;1</a>:</p>
+<div id="fig-dev-board" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dev-board-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/uPBoard.jpeg" class="img-fluid figure-img">
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Design and Testing Methodology
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dev-board-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Finished Development Board with FPGA &amp; MCU
+</figcaption>
+</figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Explain how you approached the design of this assignment from both a software and a hardware standpoint (as appropriate). Include how you tested your design. These tests should convince the reader that the requirements of the assignment have been met.</p>
-</div>
-</div>
-<p>The on-board high-speed oscillator (<code>HSOSC</code>) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs.</p>
+</section>
+<section id="fpga-implementation" class="level3">
+<h3 class="anchored" data-anchor-id="fpga-implementation">FPGA Implementation</h3>
+<table class="caption-top table">
+<caption>Demonstration of pipe table syntax</caption>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 60%">
+<col style="width: 3%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Signal Name</th>
+<th>Signal Type</th>
+<th>Description</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>input</td>
+<td>48 MHz clock on FPGA</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>s[3:0]</td>
+<td>input</td>
+<td>Four DIP switches (SW6)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>led[2:0]</td>
+<td>output</td>
+<td>3 On-Board LEDS</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>seg[6:0]</td>
+<td>output</td>
+<td>Common-Anode 7-segment display segments</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>: Demonstration of pipe table syntax The on-board high-speed oscillator (<code>HSOSC</code>) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs.</p>
 <p>The design was developed using a simple clock divider module which drives the external LED.</p>
+</section>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation:</h2>
@@ -445,41 +475,42 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Technical Documentation
+<span class="screen-reader-only">Note</span>Source Code
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Include a link to a Git repository with your Verilog code, a block diagram of your design, and schematics of your circuits.</p>
+<p>The source code for the project can be found in the associated <a href="https://github.com/jgonzalezsalgado/e155-Lab1">Github Repo</a>.</p>
 </div>
 </div>
-<p>The source code for the project can be found in the associated <a href="https://github.com/HMC-E155/fpga-blink-test-demo">Github repository</a>.</p>
 <section id="block-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
+<p><em>Lab 1 Block Diagram // Joaquin Gonzalez-Salgado // September x 2025</em></p>
 <div id="fig-block-diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/block-diagram.png" class="img-fluid figure-img">
+<img src="images/blockDiagram.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Block diagram of the Verilog design.
+Figure&nbsp;2: Top-Level Block Diagram of’Lab1_jg’ and ‘sevenSegment’.
 </figcaption>
 </figure>
 </div>
-<p>The block diagram in <a href="#fig-block-diagram" class="quarto-xref">Figure&nbsp;1</a> demonstrates the overall architecture of the design. The top-level module <code>top</code> includes two submodules: the high-speed oscillator block (<code>HSOSC</code>) and the clock divider module (<code>clk_divider</code>). Every net and port in the block diagram must be labeled – that means each wire at the top level has to have a name, and the connection to a submodule must show the name inside the module. This is true even if the submodule port name is the same as the top level net name.</p>
+<p>The block diagram in <a href="#fig-block-diagram" class="quarto-xref">Figure&nbsp;2</a> demonstrates the overall architecture of the design. The top-level module <code>lab1_jg</code> includes three submodules: a high-speed oscillator block (<code>HSOSC</code>), a sequential logic counter which acts as a clock divider, and the combinational logic for the 7-Segment display (<code>sevenSegment</code>).</p>
 </section>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
+<p><em>Lab 1 Wiring Schematic // Joaquin Gonzalez-Salgado // September x 2025</em></p>
 <div id="fig-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/schematic.png" class="img-fluid figure-img">
+<img src="images/schematic.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Schematic of the physical circuit.
+Figure&nbsp;3: Schematic of
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;2</a> shows the physical layout of the design. An internal 100 k<span class="math inline">\(\Omega\)</span> pullup resistor was used to ensure the active low reset pin was not floating. The output LED was connected using a 1 k<span class="math inline">\(\Omega\)</span> current-limiting resistor to ensure the output current (~2.6 mA) did not exceed the maximum output current of the FPGA I/O pins.</p>
+<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;3</a> shows the physical layout of the design. An internal 100 k<span class="math inline">\(\Omega\)</span> pullup resistor was used to ensure the active low reset pin was not floating. The output LED was connected using a 1 k<span class="math inline">\(\Omega\)</span> current-limiting resistor to ensure the output current (~2.6 mA) did not exceed the maximum output current of the FPGA I/O pins.</p>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
@@ -502,14 +533,14 @@ Figure&nbsp;2: Schematic of the physical circuit.
 <div id="fig-testbench" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-testbench-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/testbench-screenshot.png" class="img-fluid figure-img">
+<img src="images/waveforms.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-testbench-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: A screenshot of a QuestaSim simulation demonstrating the blinking output signal. Note that the timescale for the clock divider was modified to divide by 4.
+Figure&nbsp;4: A screenshot of a QuestaSim simulation demonstrating the blinking output signal. Note that the timescale for the clock divider was modified to divide by 4.
 </figcaption>
 </figure>
 </div>
-<p>The design met all intended design objectives. <a href="#fig-testbench" class="quarto-xref">Figure&nbsp;3</a> shows a screenshot of the QuestaSim simulation. If a more precise output frequency was desired, a more sophisticated counter could be developed. The current design only allows for the clock to be divided by powers of two.</p>
+<p>The design met all intended design objectives. <a href="#fig-testbench" class="quarto-xref">Figure&nbsp;4</a> shows a screenshot of the QuestaSim simulation. If a more precise output frequency was desired, a more sophisticated counter could be developed. The current design only allows for the clock to be divided by powers of two.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
@@ -520,20 +551,79 @@ Figure&nbsp;3: A screenshot of a QuestaSim simulation demonstrating the blinking
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Conclusion
+<span class="screen-reader-only">Note</span>Hours Spent on Lab
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Briefly summarize what was done and how it performed. Also note how many hours you spent working on the lab.</p>
+<p>This lab took 20 hours. Soldering on the components to the developoment board required a lot of time, and setting up the Lattice Radiant and Programmer Environments took a bit to get used to. A huge chunk of time was dedicated to debugging USB Serial Driver issues!</p>
 </div>
 </div>
 <p>The design successfully blinked an external LED using the on-board high-speed oscillator. I spent a total of two hours working on this lab.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">
 <h2 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>
-<p>Include generated code, easy-to-read chat transcripts, and a reflection on how well it worked.</p>
+<p>The purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI Protoype (ChatGPT)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Prompt:</strong> Write SystemVerilog HDL to leverage the internal high speed oscillator in the Lattice UP5K FPGA and blink an LED at 2 Hz. Take full advantage of SystemVerilog syntax, for example, using logic instead of wire and reg.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Generated Code:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>module top ( output logic LED );</p>
+<pre><code>logic clk_hf;
+logic clk_enable;
+
+assign clk_enable = 1'b1;
+
+HSOSC #(
+    .CLKHF_DIV("0b00")
+) hf_oscillator (
+    .CLKHFPU (1'b1),
+    .CLKHFEN (clk_enable),
+    .CLKHF   (clk_hf)
+);
+
+localparam int unsigned TOGGLE_COUNT = 12_000_000 - 1;
+
+logic [$clog2(TOGGLE_COUNT + 1)-1:0] counter = '0;
+
+always_ff @(posedge clk_hf) begin
+    if (counter == TOGGLE_COUNT) begin
+        counter &lt;= '0;
+        LED     &lt;= ~LED;
+    end
+    else begin
+        counter &lt;= counter + 1'b1;
+    end
+end</code></pre>
+<p>endmodule</p>
+</div>
+</div>
+<section id="reflection" class="level3">
+<h3 class="anchored" data-anchor-id="reflection">Reflection:</h3>
+<p>Every week I will try a different AI model, just to get a scope of the variety of LLMs. This week is <code>ChatGPT-5.5</code>. <code>ChatGPT-5.5</code> was able to create code that was synthesizable in Lattice Radiant, and produced a succesful verilog file that allowed for an LED to pulse at <code>2.01 Hz</code> (verified via Oscilloscope), completely on the first try. The only work I had to do was route the resulting led output to the pin on the FPGA.</p>
+<p>As for the quality of the output, <code>ChatGPT-5.5</code> did exactly what I told it to do, with no errors from Radiant at all. The LLM generated some syntax that I was unfamiliar with, as I have never used <code>$clog2</code> before. It also used a different method than what I had used (stating an unsigned integer for the count) so that was new.</p>
+<p>The next time I utilize an LLM in my workflow, I would most likely ask it to use terms/methods that I am familiar with, or explain what the different parts of the SystemVerilog file do. <code>ChatGPT-5.5</code> did not explain the workflow at all, and just gave me the code with not context.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
