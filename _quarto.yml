@@ -11,10 +11,8 @@ website:
     left:  
       - href: index.qmd
         text: Home
-      - href: research.qmd
-        text: "Research & Fellowships"
       - href: experience.qmd
-        text: Work Experience
+        text: Industry & Research Experience
       - href: projects.qmd
         text: Class Projects
       - href: e155.qmd
