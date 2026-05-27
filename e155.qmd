@@ -34,7 +34,7 @@ format: html
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
   <div style="flex: 2; min-width: 300px;">
     <p><strong>Overview:</strong><br><em>Coming Soon!</em></p>
-    <a href="labs/lab2/lab2.qmd" style="display: inline-block; border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer; font-weight: 500; text-decoration: none; color: inherit;">
+    <a href="labs/lab7/lab7.qmd" style="display: inline-block; border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer; font-weight: 500; text-decoration: none; color: inherit;">
       See Lab Report
     </a>
   </div>

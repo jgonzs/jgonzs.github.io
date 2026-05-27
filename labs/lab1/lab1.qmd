@@ -65,7 +65,7 @@ $$ {#eq-resistor}
 The Design was a Success!
 :::
 
-The design successfully met all objectives. The LED truth table was verified both in Questa and the on-board LEDs. `led[0]` correctly implements XOR of S1 and S0, and `led[1]` correctly illuminates only when both S2 and S3 are high (AND). `led[2]` blinks at approximately 2.4 Hz, verified by observing the counter period in simulation. All 16 hexadecimal digits (0–F) were confirmed to display correctly on the 7-segment display, with distinguishable representations for visually similar digits such as b vs 8 and 6 vs G.
+The design successfully met all objectives. The LED truth table was verified both in Questa and the on-board LEDs. `led[0]` correctly implements XOR of S1 and S0, and `led[1]` correctly illuminates only when both S2 and S3 are high (AND). `led[2]` blinks at approximately 2.4 Hz, verified by observing the counter period in simulation. All 16 hexadecimal digits (0–F) were confirmed to display correctly on the 7-segment display, with distinguishable representations for visually similar digits such as b vs 8.
 
 ### Testbench Simulation
 
