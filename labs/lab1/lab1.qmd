@@ -3,7 +3,7 @@ title: "Lab 1: FPGA and MCU Setup and Testing"
 ---
 
 ## Introduction
-In this lab, a development board was assembled by soldering SMT and THT components, and a SystemVerilog design was implemented on the `iCE40 UltraPlus FPGA` to demonstrate the functionality of that board. Code was written to utilize the high-speed oscillator to control three on-board LEDS and a 7-Segment Display using 4 DIP switch inputs on the board. 
+In this lab, a development board was assembled by soldering SMT and THT components, and a SystemVerilog design was implemented on the `UPduino v3.1 FPGA` to demonstrate the functionality of that board. Code was written to utilize the high-speed oscillator to control three on-board LEDS and a 7-Segment Display using 4 DIP switch inputs on the board. 
 
 ## Design and Testing Methodology
 ### Development Board Interface 
@@ -19,14 +19,9 @@ To start, the development board system consisted of Surface-Mount (SMT) and Thro
 | led[2:0]    | output      | 3 On-Board LEDS           |   |   |
 | seg[6:0]    | output      | Common-Anode 7-segment display segments  |   |   |
 
-: Demonstration of pipe table syntax
+: Digital Inputs and Outputs for Lab 1 {#tbl-letters}
 
 
-
-
-
-
-: Demonstration of pipe table syntax
 The on-board high-speed oscillator (`HSOSC`) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs.
 
 The design was developed using a simple clock divider module which drives the external LED.
@@ -50,23 +45,33 @@ The block diagram in @fig-block-diagram demonstrates the overall architecture of
 
 *Lab 1 Wiring Schematic // Joaquin Gonzalez-Salgado // September x 2025*
 
-![Schematic of](images/schematic.jpeg){#fig-schematic}
+![Schematic of FPGA, DIP switches, and 7-segment wiring.](images/schematic.jpeg){#fig-schematic}
 
-@fig-schematic shows the physical layout of the design. An internal 100 k$\Omega$ pullup resistor was used to ensure the active low reset pin was not floating. The output LED was connected using a 1 k$\Omega$ current-limiting resistor to ensure the output current (~2.6 mA) did not exceed the maximum output current of the FPGA I/O pins.
+@fig-schematic Shows the wiring approach for this lab. Each on-board LED is connected to an SMT 1 k$\Omega$ resistor via the development board. 
+
+As for the 7-Segment display, 5 to 20 mA of current was advised in the lab manual. Since the FPGA GPIO pins output 3.3V, Ohm's law can be used to find an effective resistor for this current. (For this calculation, I chose 13 mA of current). This is shown in @eq-resistor:
+
+
+$$
+V = IR \implies R = \frac{V}{I} = \frac{3.3\,\text{V} - 2.0\,\text{V}}{0.013\,\text{A}} = 100\,\Omega
+$$ {#eq-resistor}
+
+
 
 ## Results and Discussion
 
 ::: {.callout-note}
 ## Results and Discussion
-
-Did you accomplish all of the prescribed tasks? If not, what are the shortcomings? How might you address them given more time? As appropriate, how did the design perform (e.g., How fast/accurate/reliable was it?).
+The Design was a Success!
 :::
+
+The design successfully met all objectives. The LED truth table was verified both in Questa and the on-board LEDs. `led[0]` correctly implements XOR of S1 and S0, and `led[1]` correctly illuminates only when both S2 and S3 are high (AND). `led[2]` blinks at approximately 2.4 Hz, verified by observing the counter period in simulation. All 16 hexadecimal digits (0–F) were confirmed to display correctly on the 7-segment display, with distinguishable representations for visually similar digits such as b vs 8 and 6 vs G.
 
 ### Testbench Simulation
 
 ![A screenshot of a QuestaSim simulation demonstrating the blinking output signal. Note that the timescale for the clock divider was modified to divide by 4.](images/waveforms.png){#fig-testbench}
 
-The design met all intended design objectives. @fig-testbench shows a screenshot of the QuestaSim simulation. If a more precise output frequency was desired, a more sophisticated counter could be developed. The current design only allows for the clock to be divided by powers of two.
+@fig-testbench shows a screenshot of the QuestaSim simulation. Asserts were also used to verify all 8 LED truth table cases, and all decoder outputs. 
 
 ## Conclusion
 
@@ -75,13 +80,12 @@ The design met all intended design objectives. @fig-testbench shows a screenshot
 This lab took 20 hours. Soldering on the components to the developoment board required a lot of time, and setting up the Lattice Radiant and Programmer Environments took a bit to get used to. A huge chunk of time was dedicated to debugging USB Serial Driver issues!
 :::
 
-The design successfully blinked an external LED using the on-board high-speed oscillator. I spent a total of two hours working on this lab.
 
 ## AI Prototype Summary
 The purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:
 
 ::: {.callout-tip}
-## AI Protoype (ChatGPT)
+## AI Prototype (ChatGPT)
 **Prompt:** Write SystemVerilog HDL to leverage the internal high speed oscillator in the Lattice UP5K FPGA and blink an LED at 2 Hz. Take full advantage of SystemVerilog syntax, for example, using logic instead of wire and reg.
 :::
 
