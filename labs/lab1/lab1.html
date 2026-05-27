@@ -394,7 +394,7 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In this lab, a development board was assembled by soldering SMT and THT components, and a SystemVerilog design was implemented on the <code>iCE40 UltraPlus FPGA</code> to demonstrate the functionality of that board. Code was written to utilize the high-speed oscillator to control three on-board LEDS and a 7-Segment Display using 4 DIP switch inputs on the board.</p>
+<p>In this lab, a development board was assembled by soldering SMT and THT components, and a SystemVerilog design was implemented on the <code>UPduino v3.1 FPGA</code> to demonstrate the functionality of that board. Code was written to utilize the high-speed oscillator to control three on-board LEDS and a 7-Segment Display using 4 DIP switch inputs on the board.</p>
 </section>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
@@ -414,8 +414,13 @@ Figure&nbsp;1: Finished Development Board with FPGA &amp; MCU
 </section>
 <section id="fpga-implementation" class="level3">
 <h3 class="anchored" data-anchor-id="fpga-implementation">FPGA Implementation</h3>
+<div id="tbl-letters" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-letters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Digital Inputs and Outputs for Lab 1
+</figcaption>
+<div aria-describedby="tbl-letters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
-<caption>Demonstration of pipe table syntax</caption>
 <colgroup>
 <col style="width: 15%">
 <col style="width: 15%">
@@ -463,7 +468,10 @@ Figure&nbsp;1: Finished Development Board with FPGA &amp; MCU
 </tr>
 </tbody>
 </table>
-<p>: Demonstration of pipe table syntax The on-board high-speed oscillator (<code>HSOSC</code>) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs.</p>
+</div>
+</figure>
+</div>
+<p>The on-board high-speed oscillator (<code>HSOSC</code>) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs.</p>
 <p>The design was developed using a simple clock divider module which drives the external LED.</p>
 </section>
 </section>
@@ -506,11 +514,15 @@ Figure&nbsp;2: Top-Level Block Diagram of’Lab1_jg’ and ‘sevenSegment’.
 <img src="images/schematic.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Schematic of
+Figure&nbsp;3: Schematic of FPGA, DIP switches, and 7-segment wiring.
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;3</a> shows the physical layout of the design. An internal 100 k<span class="math inline">\(\Omega\)</span> pullup resistor was used to ensure the active low reset pin was not floating. The output LED was connected using a 1 k<span class="math inline">\(\Omega\)</span> current-limiting resistor to ensure the output current (~2.6 mA) did not exceed the maximum output current of the FPGA I/O pins.</p>
+<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;3</a> Shows the wiring approach for this lab. Each on-board LED is connected to an SMT 1 k<span class="math inline">\(\Omega\)</span> resistor via the development board.</p>
+<p>As for the 7-Segment display, 5 to 20 mA of current was advised in the lab manual. Since the FPGA GPIO pins output 3.3V, Ohm’s law can be used to find an effective resistor for this current. (For this calculation, I chose 13 mA of current). This is shown in <a href="#eq-resistor" class="quarto-xref">Equation&nbsp;1</a>:</p>
+<p><span id="eq-resistor"><span class="math display">\[
+V = IR \implies R = \frac{V}{I} = \frac{3.3\,\text{V} - 2.0\,\text{V}}{0.013\,\text{A}} = 100\,\Omega
+\tag{1}\]</span></span></p>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
@@ -525,9 +537,10 @@ Figure&nbsp;3: Schematic of
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Did you accomplish all of the prescribed tasks? If not, what are the shortcomings? How might you address them given more time? As appropriate, how did the design perform (e.g., How fast/accurate/reliable was it?).</p>
+<p>The Design was a Success!</p>
 </div>
 </div>
+<p>The design successfully met all objectives. The LED truth table was verified both in Questa and the on-board LEDs. <code>led[0]</code> correctly implements XOR of S1 and S0, and <code>led[1]</code> correctly illuminates only when both S2 and S3 are high (AND). <code>led[2]</code> blinks at approximately 2.4 Hz, verified by observing the counter period in simulation. All 16 hexadecimal digits (0–F) were confirmed to display correctly on the 7-segment display, with distinguishable representations for visually similar digits such as b vs 8 and 6 vs G.</p>
 <section id="testbench-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="testbench-simulation">Testbench Simulation</h3>
 <div id="fig-testbench" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -540,7 +553,7 @@ Figure&nbsp;4: A screenshot of a QuestaSim simulation demonstrating the blinking
 </figcaption>
 </figure>
 </div>
-<p>The design met all intended design objectives. <a href="#fig-testbench" class="quarto-xref">Figure&nbsp;4</a> shows a screenshot of the QuestaSim simulation. If a more precise output frequency was desired, a more sophisticated counter could be developed. The current design only allows for the clock to be divided by powers of two.</p>
+<p><a href="#fig-testbench" class="quarto-xref">Figure&nbsp;4</a> shows a screenshot of the QuestaSim simulation. Asserts were also used to verify all 8 LED truth table cases, and all decoder outputs.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
@@ -558,7 +571,6 @@ Figure&nbsp;4: A screenshot of a QuestaSim simulation demonstrating the blinking
 <p>This lab took 20 hours. Soldering on the components to the developoment board required a lot of time, and setting up the Lattice Radiant and Programmer Environments took a bit to get used to. A huge chunk of time was dedicated to debugging USB Serial Driver issues!</p>
 </div>
 </div>
-<p>The design successfully blinked an external LED using the on-board high-speed oscillator. I spent a total of two hours working on this lab.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">
 <h2 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>
@@ -569,7 +581,7 @@ Figure&nbsp;4: A screenshot of a QuestaSim simulation demonstrating the blinking
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>AI Protoype (ChatGPT)
+<span class="screen-reader-only">Tip</span>AI Prototype (ChatGPT)
 </div>
 </div>
 <div class="callout-body-container callout-body">
