@@ -14,7 +14,7 @@ To start, the development board system consisted of Surface-Mount (SMT) and Thro
 ### FPGA Implementation
 | Signal Name | Signal Type | Description                                      |   |   |
 |-------------|-------------|--------------------------------------------------|---|---|
-| clk         | input       | 48 MHz clock on FPGA                             |   |   |
+| int_osc         | input       | 48 MHz clock on FPGA                             |   |   |
 | s[3:0]      | input       | Four DIP switches (SW6)        |   |   |
 | led[2:0]    | output      | 3 On-Board LEDS           |   |   |
 | seg[6:0]    | output      | Common-Anode 7-segment display segments  |   |   |
