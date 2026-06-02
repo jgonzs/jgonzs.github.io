@@ -401,7 +401,6 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
 </div>
-<hr>
 </section>
 </section>
 <section id="experimental-engineering-e80" class="level2">
@@ -424,14 +423,14 @@ ul.task-list li input[type="checkbox"] {
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
   <div style="flex: 2; width: 300px;">
-    <img src="images/e80Robot.png" alt="E80 Robot" style="width:100%; border-radius: 15px;">
+    <img src="images/e80/e80a.jpeg" alt="E80 AUV" style="width:100%; border-radius: 15px;">
   </div>
   <div style="flex: 2; min-width: 300px;">
     <p class="justify-text">
       <strong>Overview:</strong><br>
-      Designed and created an Autonomous Underwater Vehicle (AUV) to create topography maps of the harbor floor using Time-of-flight measurements via SONAR technology (10W Exciter &amp; Electret Mic). Also analyzed temperature and pressure measurements by diving.
+      Designed and built an AUV to topographically map the floor of Dana Point Harbor using SONAR time-of-flight measurements. Personally designed analog circuits for temperature, pressure, and SONAR signal processing — all from scratch. Featured a Teensy 4.0, Adafruit GPS, and a custom motor driver motherboard.
     </p>
-    <p><strong>Skills:</strong><br>Arduino, MATLAB, SONAR, Embedded Systems, PCB Assembly</p>
+    <p><strong>Skills:</strong><br>Arduino, MATLAB, SONAR, Embedded Systems, PCB Assembly, Op-Amp Circuit Design, Sensor Calibration</p>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
       <button id="toggleButtonAUV" onclick="toggleAUV()" style="border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer;">
         Show More
@@ -446,32 +445,34 @@ ul.task-list li input[type="checkbox"] {
 <div id="moreContentAUV" style="display:none;">
   <div class="row">
     <div class="column">
-      <strong>Background</strong>
-      <img src="https://placehold.co/400x300?text=AUV+Background" alt="AUV Background" style="width:100%; border-radius: 15px;">
+      <strong>Custom Sensor Circuits</strong>
+      <img src="images/e80/e801.jpeg" alt="SONAR Circuit" style="width:100%; border-radius: 15px;">
       <div style="padding: 5px; font-size: 0.8rem;">
-        - Created an AUV to map harbor floor topography.<br><br>
-        - Used Time-of-Flight SONAR measurements to generate depth data.
+        - Designed a thermistor interface circuit with a unity gain buffer and non-inverting offset amplifier to expand the output voltage range for better Teensy resolution.<br><br>
+        - Built a pressure sensor circuit with the same offset amplifier approach to enable precise P-control during dives.<br><br>
+        - For SONAR, designed both a TX chain (555 timer + LM384 audio amplifier driving a waterproof exciter at 3kHz) and a full RX chain with 10,000x gain across four op-amp stages, a Sallen-Key bandpass filter, and a max detector circuit.
       </div>
     </div>
     <div class="column">
-      <strong>Methods</strong>
-      <img src="https://placehold.co/400x300?text=AUV+Methods" alt="AUV Methods" style="width:100%; border-radius: 15px;">
+      <strong>Deployment at Dana Point</strong>
+      <img src="images/e80/e802.jpg" alt="AUV Deployment" style="width:100%; border-radius: 15px;">
       <div style="padding: 5px; font-size: 0.8rem;">
-        - Integrated SONAR transducer and microphone into waterproofed AUV housing.<br><br>
-        - Programmed microcontroller to record time-of-flight signals and log depth measurements.
+        - Deployed the AUV at Dana Point Harbor, following alongside in kayaks to monitor and recover it.<br><br>
+        - GPS module handled surface navigation while the pressure sensor controlled dive depth autonomously via P-control.<br><br>
+        - All sensor data was logged to an onboard SD card and post-processed in MATLAB to generate the topography map.
       </div>
     </div>
     <div class="column">
-      <strong>Result</strong>
-      <img src="https://placehold.co/400x300?text=AUV+Result" alt="AUV Result" style="width:100%; border-radius: 15px;">
+      <strong>Results &amp; Presentation</strong>
+      <img src="images/e80/e803.jpeg" alt="AUV Presentation" style="width:100%; border-radius: 15px;">
       <div style="padding: 5px; font-size: 0.8rem;">
-        - Successfully generated topography maps of the harbor floor.<br><br>
-        - Validated low-cost SONAR-based AUV design for real-world underwater mapping.
+        - Successfully mapped the ocean floor depth along the AUV's path, with results consistent with nautical chart ground truth data for Dana Point Harbor.<br><br>
+        - Also measured water temperature at depth and confirmed a temperature decrease with depth during dives.<br><br>
+        - Presented findings at the end-of-semester showcase — our team took first place!
       </div>
     </div>
   </div>
 </div>
-<hr>
 </section>
 </section>
 <section id="digital-electronics-computer-architecture-e85" class="level2">
