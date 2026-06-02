@@ -106,7 +106,7 @@ part of the
   </a>
 
   <a href="projects.html#auv-ocean-floor-sonar-mapping" class="proj-card">
-    <img class="proj-img" src="images/e80Robot.png" alt="AUV Robot">
+    <img class="proj-img" src="images/e80/e80a.jpeg" alt="AUV Robot">
     <div class="proj-label">
       <p class="proj-course">E80</p>
       <p class="proj-name">AUV Ocean Floor SONAR</p>
@@ -116,7 +116,7 @@ part of the
   <a href="personal.html#built-a-multimeter" class="proj-card">
   <img class="proj-img" src="images/personal/multimeter/multimeter1.jpeg" alt="Multimeter">
   <div class="proj-label">
-    <p class="proj-name">Built a Multimeter</p>
+    <p class="proj-name">DIY Multimeter</p>
   </div>
   </a>
 
