@@ -19,8 +19,7 @@ about:
 
 ---
 Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at
-[Harvey Mudd College](https://hmc.edu) interested in electrical and computer
-engineering (with appreciation for mechanical engineering.) I'm currently doing research alongside the USDA as a hardware/firmware engineer focused on
+[Harvey Mudd College](https://hmc.edu) interested in electrical engineering. I'm currently doing research alongside the USDA as a hardware/firmware engineer focused on
 creating low-noise analog amplifiers for monitoring insect feeding behavior as
 part of the
 [Analog Circuitry Engineering (ACE) Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/). Check out my projects below!
@@ -90,12 +89,19 @@ part of the
 </style>
 
 <div class="proj-grid">
-
   <a href="projects.html#ev-design-team-project" class="proj-card">
     <img class="proj-img" src="images/evcart.jpeg" alt="EV Cart">
     <div class="proj-label">
       <p class="proj-course">E49C</p>
       <p class="proj-name">EV Design Team</p>
+    </div>
+  </a>
+
+  <a href="e155.html" class="proj-card">
+    <img class="proj-img" src="labs/lab1/images/uPBoard.jpeg" alt="uP Board">
+    <div class="proj-label">
+      <p class="proj-course">E155</p>
+      <p class="proj-name">Microproccesor Projects</p>
     </div>
   </a>
 
@@ -105,6 +111,13 @@ part of the
       <p class="proj-course">E80</p>
       <p class="proj-name">AUV Ocean Floor SONAR</p>
     </div>
+  </a>
+
+  <a href="personal.html#built-a-multimeter" class="proj-card">
+  <img class="proj-img" src="images/personal/multimeter/multimeter1.jpeg" alt="Multimeter">
+  <div class="proj-label">
+    <p class="proj-name">Built a Multimeter</p>
+  </div>
   </a>
 
   <a href="projects.html#digital-level" class="proj-card">
