@@ -356,7 +356,6 @@ window.Quarto = {
   </ul></li>
   <li><a href="#calculations" id="toc-calculations" class="nav-link" data-scroll-target="#calculations">Calculations</a></li>
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a></li>
-  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#ai-prototype-summary" id="toc-ai-prototype-summary" class="nav-link" data-scroll-target="#ai-prototype-summary">AI Prototype Summary</a>
   <ul class="collapse">
@@ -391,38 +390,37 @@ window.Quarto = {
 <p>Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | May 31, 2026</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In this lab, the internal hardware timer TIM2 of the <code>STM32L432KC MCU</code> was used to drive an 8-ohm speaker to play music. A single timer was configured to toggle a GPIO pin at a specified frequency, generating a square wave corresponding to each musical note, and also to produce precise millisecond delays for note durations. The system was tested by playing the provided score of <em>Für Elise</em>, and as an optional extension, <em>Mice on Venus</em> was also implemented.</p>
+<p>In this lab, an hardware timer of the <code>STM32L432KC MCU</code> was used to drive an 8-ohm speaker to play music. The timer was configured to toggle a GPIO pin at a specified frequency, generating a square wave corresponding to each musical note, and also to produce millisecond delays for note durations. The system was tested by playing <em>Für Elise</em>, and as an optional piece, <em>Fallen Down</em> was also implemented.</p>
 </section>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
 <section id="lab-overview" class="level3">
 <h3 class="anchored" data-anchor-id="lab-overview">Lab Overview</h3>
-<p>A single timer, TIM2, was used for both frequency generation and duration control. Rather than using PWM output-compare hardware, the design manually toggles GPIO pin PA1 in software by polling TIM2’s update flag. The <code>ARR</code> register is reloaded each note to set the correct half-period, and the GPIO pin is flipped on every update event, producing a square wave. For rests, the GPIO pin is held low and <code>ARR</code> is set for a 1 ms tick, looping for the required number of milliseconds.</p>
-<p>All peripheral registers — for <code>RCC</code>, <code>GPIO</code>, and TIM2 — were manually defined via <code>#define</code> using base addresses and offsets from the STM32L432KC Reference Manual. No CMSIS headers were used at any point.</p>
+<p>A single timer, TIM2, was used for both frequency generation and duration control. The <code>ARR</code> register is reloaded each note to set the correct half-period, and the GPIO pin is flipped on every update event, producing a square wave. For rests, the GPIO pin is held low and <code>ARR</code> is set for a 1 ms tick, looping for the required number of milliseconds.</p>
+<p>All peripheral registers of <code>RCC</code>, <code>GPIO</code>, and <code>TIM2</code> were manually defined via <code>#define</code> using base addresses and offsets from the <code>STM32L432KC</code> Reference Manual. No CMSIS headers were used!</p>
 </section>
 <section id="clock-and-timer-configuration" class="level3">
 <h3 class="anchored" data-anchor-id="clock-and-timer-configuration">Clock and Timer Configuration</h3>
-<p>The MCU runs on the default 4 MHz clock at startup. TIM2 is clocked from <code>APB1ENR1</code> and is configured with a prescaler (<code>PSC</code>) of 3, dividing the 4 MHz clock by 4 to produce a <strong>1 MHz timer clock</strong>:</p>
+<p>The MCU runs on the default 4 MHz clock. TIM2 is clocked from <code>APB1ENR1</code> and is configured with a prescaler (<code>PSC</code>) of 3, dividing the 4 MHz clock by 4 to produce a <strong>1 MHz timer clock</strong>!:</p>
 <p><span class="math display">\[
 f_{\text{timer}} = \frac{4\,\text{MHz}}{PSC + 1} = \frac{4\,\text{MHz}}{4} = 1\,\text{MHz}
 \]</span></p>
-<p>TIM2 is started once in <code>main()</code> by setting <code>CR1[0]</code> and never stopped — it runs continuously. The <code>ARR</code> and <code>EGR</code> registers are updated per note to reconfigure the period on the fly.</p>
 </section>
 <section id="frequency-generation" class="level3">
 <h3 class="anchored" data-anchor-id="frequency-generation">Frequency Generation</h3>
-<p>For a note at frequency <code>f</code>, the GPIO pin must be toggled twice per period (once high, once low), so the timer must fire at <code>2f</code>. The <code>ARR</code> is set as:</p>
+<p>For a note at frequency <code>f</code>, the GPIO pin must be toggled twice per period (once high, once low), so the timer must have double the intended frequency <code>2f</code>. Then, we can write an expression for the Auto-Reload Register <code>ARR</code>:</p>
+<p><span class="math display">\[
+f_{\text{out}} = \frac{f_{\text{clock}}}{\text{ARR}+1}
+= \frac{1{,}000{,}000}{\text{ARR}+1}
+\]</span></p>
+<p>Solving for <code>ARR</code>, we get:</p>
 <p><span class="math display">\[
 \text{ARR} = \frac{f_{\text{timer}}}{2f} - 1 = \frac{1{,}000{,}000}{2f} - 1
 \]</span></p>
-<p>The number of timer cycles needed to sustain the note for <code>d</code> milliseconds is:</p>
-<p><span class="math display">\[
-\text{cycles} = 2f \times \frac{d}{1000}
-\]</span></p>
-<p>The <code>freqf()</code> function loads this <code>ARR</code>, triggers an update event (<code>EGR[0]</code>), clears the status flag (<code>SR[0]</code>), then polls <code>SR</code> in a loop, toggling <code>PA1</code> on each update until the required number of half-cycles have elapsed. The GPIO is then driven low between notes to prevent buzzing.</p>
 </section>
 <section id="duration-control-rests" class="level3">
 <h3 class="anchored" data-anchor-id="duration-control-rests">Duration Control (Rests)</h3>
-<p>For rests (<code>freq == 0</code>), the <code>delayf()</code> function sets <code>ARR</code> to produce a 1 ms tick:</p>
+<p>For rests (<code>freq == 0</code>), the delay function sets <code>ARR</code> to produce a 1 ms tick:</p>
 <p><span class="math display">\[
 \text{ARR}_{\text{delay}} = \frac{1{,}000{,}000}{1{,}000} - 1 = 999
 \]</span></p>
@@ -434,37 +432,37 @@ f_{\text{timer}} = \frac{4\,\text{MHz}}{PSC + 1} = \frac{4\,\text{MHz}}{4} = 1\,
 <h2 class="anchored" data-anchor-id="calculations">Calculations</h2>
 <p><strong>Frequency range (TIM2, PSC = 3, timer clock = 1 MHz):</strong></p>
 <p><span class="math display">\[
-f_{\text{max}} = \frac{1{,}000{,}000}{2 \times (\text{ARR}_{\text{min}} + 1)} = \frac{1{,}000{,}000}{2 \times 1} = 500{,}000\,\text{Hz}
-\]</span></p>
+f_{\text{min}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{max}} + 1)} = \frac{1{,}000{,}000}{2 \times 2^{32}} \approx 0.000116\,\text{Hz}\]</span></p>
 <p><span class="math display">\[
-f_{\text{min}} = \frac{1{,}000{,}000}{2 \times (\text{ARR}_{\text{max}} + 1)} = \frac{1{,}000{,}000}{2 \times 65{,}536} \approx 7.6\,\text{Hz}
+f_{\text{max}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{min}} + 1)} = \frac{1{,}000{,}000}{2 \times 2} = 250{,}000\,\text{Hz}
 \]</span></p>
-<p>Both values comfortably cover the required 220–1000 Hz range.</p>
+<p>Note that because TIM2 is a 32-bit timer, ARR_max = <span class="math inline">\(2^{32} - 1\)</span> = 4,294,967,295. Both values comfortably cover the required 220–1000 Hz range.</p>
 <p><strong>Duration range (1 ms tick loop):</strong></p>
-<p>The minimum supported duration is <strong>1 ms</strong> (one loop iteration). The maximum is bounded by the <code>uint32_t</code> loop counter:</p>
+<p>The minimum supported duration is <strong>1 ms</strong> (one loop iteration). The maximum is bounded by the <code>uint32_t</code> loop counter in the delay function:</p>
 <p><span class="math display">\[
-t_{\text{max}} = 2^{32} - 1\,\text{ms} \approx 4.3 \times 10^6\,\text{s}
+t_{\text{max}} = (2^{32} - 1)\,\text{ms} \approx 4.3 \times 10^6\,\text{s} \approx 49.7\,\text{days}
 \]</span></p>
 <p>This is far more than sufficient for any musical duration.</p>
 <p><strong>Frequency accuracy (220–1000 Hz):</strong></p>
-<p>Because <code>ARR</code> is an integer, rounding introduces a small error. Checking the boundary cases:</p>
+<p>Because <code>ARR</code> is an integer, rounding introduces a small quantization error. Checking boundary and mid-range cases:</p>
 <p>At 220 Hz: <span class="math display">\[
-\text{ARR} = \left\lfloor \frac{1{,}000{,}000}{2 \times 220} \right\rfloor - 1 = 2272 - 1 = 2271
-\]</span> <span class="math display">\[
-f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 2272} \approx 220.07\,\text{Hz} \quad (0.03\%\,\text{error})
+\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 220}\right\rfloor - 1 = 2271\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 2272} \approx 220.07\,\text{Hz} \qquad (0.03\%\,\text{error})
+\]</span></p>
+<p>At 440 Hz: <span class="math display">\[
+\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 440}\right\rfloor - 1 = 1135\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 1136} \approx 440.14\,\text{Hz} \qquad (0.03\%\,\text{error})
+\]</span></p>
+<p>At 659 Hz: <span class="math display">\[
+\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 659}\right\rfloor - 1 = 757\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 758} \approx 659.63\,\text{Hz} \qquad (0.10\%\,\text{error})
 \]</span></p>
 <p>At 1000 Hz: <span class="math display">\[
-\text{ARR} = \frac{1{,}000{,}000}{2 \times 1000} - 1 = 499
-\]</span> <span class="math display">\[
-f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 500} = 1000.0\,\text{Hz} \quad (0.00\%\,\text{error})
+\text{ARR} = \frac{1{,}000{,}000}{2 \times 1000} - 1 = 499\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 500} = 1000.00\,\text{Hz} \qquad (0.00\%\,\text{error})
 \]</span></p>
-<p>All frequencies in the 220–1000 Hz range are within <strong>0.05% of their target</strong>, well within the 1% requirement.</p>
-<hr>
+<p>All frequencies in the 220–1000 Hz range are within <strong>0.10 of their target</strong>, well within the 1% requirement.</p>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
-<p>PA1 was configured as a general-purpose output (<code>MODER = 0b01</code>) by enabling GPIOA via <code>RCC-&gt;AHB2ENR</code> and setting the appropriate mode bits. TIM2 was enabled via <code>RCC-&gt;APB1ENR1</code>. All register access uses manually defined struct typedefs — no CMSIS headers.</p>
-<p><em>Lab 4 Wiring Schematic // Joaquin Gonzalez-Salgado // May 2026</em></p>
+<p>PA1 was configured as a general-purpose output (<code>MODER = 0b01</code>) by enabling GPIOA via <code>RCC-&gt;AHB2ENR</code> and setting the appropriate mode bits. TIM2 was enabled via <code>RCC-&gt;APB1ENR1</code>. All register access were manually defined struct typedefs, meaning no CMSIS headers!</p>
+<p><em>Lab 4 Wiring Schematic // Joaquin Gonzalez-Salgado // June 3rd 2026</em></p>
 <div id="fig-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -475,19 +473,14 @@ Figure&nbsp;1: Schematic of MCU, LM386 amplifier, potentiometer, and 8-ohm speak
 </figcaption>
 </figure>
 </div>
-<p>The PA1 output was connected to the non-inverting input (pin 3) of the LM386 amplifier. The LM386 was powered from the 3.3 V MCU supply with decoupling capacitors per the datasheet, and its output (pin 5) drove the 8-ohm speaker directly. A 10 kΩ potentiometer between PA1 and the LM386 input provided adjustable volume. The GPIO output was verified with an oscilloscope before connecting the speaker.</p>
+<p>The PA1 output was connected to the non-inverting input of the <code>LM386 amplifier</code>. The <code>LM386</code> was powered from the <code>3.3 V</code> MCU supply, and its output drove the 8-ohm speaker directly. A <code>10 kΩ</code> potentiometer between PA1 and the LM386 input provided adjustable volume!</p>
 <p>The code for this project can be accessed on <a href="https://github.com/jgonzalezsalgado/e155-Lab4">GitHub</a>.</p>
-</section>
-<section id="results-and-discussion" class="level2">
-<h2 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h2>
-<p>The design successfully met all lab requirements. <em>Für Elise</em> played at the correct tempo with all pitches accurate to well within 1% across the full 220–1000 Hz range, as verified by the ARR calculations above. All rests were rendered as silence for the correct durations, and the GPIO pin was correctly driven low between notes to prevent buzzing. The optional composition <em>Mice on Venus</em> also played correctly. Volume control via the potentiometer functioned as expected.</p>
-<hr>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This lab successfully demonstrated bare-metal C programming on the STM32L432KC to synthesize digital audio using a single hardware timer. By configuring TIM2 entirely from scratch with manually defined register structs and polling its update flag to toggle a GPIO pin, the MCU generated accurate square waves for musical playback without any vendor abstraction layers or a second timer. The LM386 amplifier safely drove the speaker, and the potentiometer provided convenient volume control.</p>
-<p>The lab took approximately 11 hours to complete. The most time-consuming parts were navigating the reference manual to find the correct register offsets and working out the half-cycle counting logic for accurate note durations.</p>
-<hr>
+<p>The design successfully met all lab requirements. <em>Für Elise</em> played at the correct tempo with all pitches accurate to well within <code>1%</code> across the full <code>220–1000</code> Hz range, as verified by the <code>ARR</code> calculations above. All rests were rendered as silence for the correct durations. The optional composition <em>Fallen Down</em> also played correctly! And the Potentiometer did vary the volume as intended.</p>
+<p>This lab successfully demonstrated C programming on the <code>STM32L432KC</code> to synthesize digital audio using a single hardware timer. By configuring TIM2 entirely from scratch with manually defined register structs and polling its update flag to toggle a GPIO pin, the MCU generated accurate square waves for musical playback!</p>
+<p>The lab took approximately 15 hours to complete. The most time-consuming parts were navigating the reference manual to find the correct register offsets, and understanding C code in a more thorough way.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">
 <h2 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>
@@ -509,9 +502,11 @@ Figure&nbsp;1: Schematic of MCU, LM386 amplifier, potentiometer, and 8-ohm speak
 <h3 class="anchored" data-anchor-id="reflection">Reflection:</h3>
 <p>This week is <code>Claude Sonnet</code>. <code>Claude Sonnet</code> claimed that the following timers would work for generating 220 Hz to 1kHz frequencies: TIM1, TIM2, TIM15, and TIM16. This makes sense, as I had used TIM2. It chose TIM2 as the best option due to its resolution, # of channels, and ease of accessibility.</p>
 <p>It also gave the following formula:</p>
-<p>f_output = f_TIMx_CLK / ((PSC + 1) × (ARR + 1))</p>
+<p><span class="math display">\[
+f_{output} = \frac{f_{TIMx\_CLK}}{(PSC + 1) \times (ARR + 1)}
+\]</span></p>
 <p>with an example for 440 Hz (A4) with PWM. It also provided the maximum and minimum ARR, which it stated were 4544 and 999 for a given PSC of 79. Not sure how accurate that is, as I did not use that PSC value.</p>
-<p><code>Claude Sonnet</code> also provided the correct register configuration, and how to enable the clocks with RCC, and even configure the GPIO pin! Overall the LLM returned the correct information, however it was a ltitle too much information than I asked for.</p>
+<p><code>Claude Sonnet</code> also provided the correct register configuration, and how to enable the clocks with RCC, and even configure the GPIO pin! Overall the LLM returned mostly the correct information, however it was a litle too much information than I asked for.</p>
 
 
 </section>
