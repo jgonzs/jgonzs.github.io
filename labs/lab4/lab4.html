@@ -408,7 +408,7 @@ f_{\text{timer}} = \frac{4\,\text{MHz}}{PSC + 1} = \frac{4\,\text{MHz}}{4} = 1\,
 </section>
 <section id="frequency-generation" class="level3">
 <h3 class="anchored" data-anchor-id="frequency-generation">Frequency Generation</h3>
-<p>For a note at frequency <code>f</code>, the GPIO pin must be toggled twice per period (once high, once low), so the timer must have double the intended frequency <code>2f</code>. Then, we can write an expression for the Auto-Reload Register <code>ARR</code>:</p>
+<p>For a note at frequency <code>f</code>, the GPIO pin must be toggled twice per period (once high, once low), the timer update event must occur at <code>2f</code>, so the GPIO toggles at <code>2f</code> and the resulting square wave has frequency <code>f</code>. Then, we can write an expression for the Auto-Reload Register <code>ARR</code>:</p>
 <p><span class="math display">\[
 f_{\text{out}} = \frac{f_{\text{clock}}}{\text{ARR}+1}
 = \frac{1{,}000{,}000}{\text{ARR}+1}
@@ -430,13 +430,14 @@ f_{\text{out}} = \frac{f_{\text{clock}}}{\text{ARR}+1}
 </section>
 <section id="calculations" class="level2">
 <h2 class="anchored" data-anchor-id="calculations">Calculations</h2>
-<p><strong>Frequency range (TIM2, PSC = 3, timer clock = 1 MHz):</strong></p>
+<p>First, we need to calculate the possible range of frequencies given the TIM2 and PSC setup. Plugging in the maximum and minimum ARR can help us find the frequency range. Note that because TIM2 is a 32-bit timer, ARR_max = <span class="math inline">\(2^{32} - 1\)</span> = 4,294,967,295. ARR_min is simply 0. <strong>Frequency range (TIM2, PSC = 3, timer clock = 1 MHz):</strong></p>
 <p><span class="math display">\[
-f_{\text{min}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{max}} + 1)} = \frac{1{,}000{,}000}{2 \times 2^{32}} \approx 0.000116\,\text{Hz}\]</span></p>
-<p><span class="math display">\[
-f_{\text{max}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{min}} + 1)} = \frac{1{,}000{,}000}{2 \times 2} = 250{,}000\,\text{Hz}
+f_{\text{min}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{max}} + 1)} = \frac{1{,}000{,}000}{2 \times 2^{32}} \approx 0.000116\,\text{Hz}
 \]</span></p>
-<p>Note that because TIM2 is a 32-bit timer, ARR_max = <span class="math inline">\(2^{32} - 1\)</span> = 4,294,967,295. Both values comfortably cover the required 220–1000 Hz range.</p>
+<p><span class="math display">\[
+f_{\text{max}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{min}} + 1)} = \frac{1{,}000{,}000}{2 \times 1} = 500{,}000\,\text{Hz}
+\]</span></p>
+<p>Both values comfortably cover the required 220–1000 Hz range.</p>
 <p><strong>Duration range (1 ms tick loop):</strong></p>
 <p>The minimum supported duration is <strong>1 ms</strong> (one loop iteration). The maximum is bounded by the <code>uint32_t</code> loop counter in the delay function:</p>
 <p><span class="math display">\[
@@ -457,7 +458,7 @@ t_{\text{max}} = (2^{32} - 1)\,\text{ms} \approx 4.3 \times 10^6\,\text{s} \appr
 <p>At 1000 Hz: <span class="math display">\[
 \text{ARR} = \frac{1{,}000{,}000}{2 \times 1000} - 1 = 499\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 500} = 1000.00\,\text{Hz} \qquad (0.00\%\,\text{error})
 \]</span></p>
-<p>All frequencies in the 220–1000 Hz range are within <strong>0.10 of their target</strong>, well within the 1% requirement.</p>
+<p>All frequencies in the 220–1000 Hz range are within <strong>0.10% of their target</strong>, well within the 1% requirement.</p>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
@@ -506,7 +507,7 @@ Figure&nbsp;1: Schematic of MCU, LM386 amplifier, potentiometer, and 8-ohm speak
 f_{output} = \frac{f_{TIMx\_CLK}}{(PSC + 1) \times (ARR + 1)}
 \]</span></p>
 <p>with an example for 440 Hz (A4) with PWM. It also provided the maximum and minimum ARR, which it stated were 4544 and 999 for a given PSC of 79. Not sure how accurate that is, as I did not use that PSC value.</p>
-<p><code>Claude Sonnet</code> also provided the correct register configuration, and how to enable the clocks with RCC, and even configure the GPIO pin! Overall the LLM returned mostly the correct information, however it was a litle too much information than I asked for.</p>
+<p><code>Claude Sonnet</code> also provided the correct register configuration, and how to enable the clocks with RCC, and even configure the GPIO pin! Overall the LLM returned mostly the correct information, however it was too much information than I asked for.</p>
 
 
 </section>
