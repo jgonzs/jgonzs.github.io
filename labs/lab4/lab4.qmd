@@ -24,7 +24,7 @@ $$
 
 ### Frequency Generation
 
-For a note at frequency `f`, the GPIO pin must be toggled twice per period (once high, once low), so the timer must have double the intended frequency `2f`. Then, we can write an expression for the Auto-Reload Register `ARR`:
+For a note at frequency `f`, the GPIO pin must be toggled twice per period (once high, once low), the timer update event must occur at `2f`, so the GPIO toggles at `2f` and the resulting square wave has frequency `f`. Then, we can write an expression for the Auto-Reload Register `ARR`:
 
 $$
 f_{\text{out}} = \frac{f_{\text{clock}}}{\text{ARR}+1}
@@ -50,19 +50,19 @@ It then loops, polling the update flag once per millisecond for the desired dura
 ---
 
 ## Calculations
-
+First, we need to calculate the possible range of frequencies given the TIM2 and PSC setup. Plugging in the maximum and minimum ARR can help us find the frequency range. Note that because TIM2 is a 32-bit timer, ARR_max = $2^{32} - 1$ = 4,294,967,295. ARR_min is simply 0.
 **Frequency range (TIM2, PSC = 3, timer clock = 1 MHz):**
 
 $$
-f_{\text{min}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{max}} + 1)} = \frac{1{,}000{,}000}{2 \times 2^{32}} \approx 0.000116\,\text{Hz}$$
-
-
-$$
-f_{\text{max}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{min}} + 1)} = \frac{1{,}000{,}000}{2 \times 2} = 250{,}000\,\text{Hz}
+f_{\text{min}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{max}} + 1)} = \frac{1{,}000{,}000}{2 \times 2^{32}} \approx 0.000116\,\text{Hz}
 $$
 
 
-Note that because TIM2 is a 32-bit timer, ARR_max = $2^{32} - 1$ = 4,294,967,295. Both values comfortably cover the required 220–1000 Hz range.
+$$
+f_{\text{max}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{min}} + 1)} = \frac{1{,}000{,}000}{2 \times 1} = 500{,}000\,\text{Hz}
+$$
+
+Both values comfortably cover the required 220–1000 Hz range.
 
 **Duration range (1 ms tick loop):**
 
@@ -102,7 +102,7 @@ $$
 $$f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 500} = 1000.00\,\text{Hz} \qquad (0.00\%\,\text{error})
 $$
 
-All frequencies in the 220–1000 Hz range are within **0.10 of their target**, well within the 1% requirement.
+All frequencies in the 220–1000 Hz range are within **0.10% of their target**, well within the 1% requirement.
 
 
 ## Technical Documentation
@@ -145,4 +145,4 @@ $$
 
 with an example for 440 Hz (A4) with PWM. It also provided the maximum and minimum ARR, which it stated were 4544 and 999 for a given PSC of 79. Not sure how accurate that is, as I did not use that PSC value.
 
-`Claude Sonnet` also provided the correct register configuration, and how to enable the clocks with RCC, and even configure the GPIO pin! Overall the LLM returned mostly the correct information, however it was a litle too much information than I asked for.
+`Claude Sonnet` also provided the correct register configuration, and how to enable the clocks with RCC, and even configure the GPIO pin! Overall the LLM returned mostly the correct information, however it was too much information than I asked for.
