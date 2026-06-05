@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>experience – Portfolio</title>
+<title>PCB Designs – Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -77,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -261,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./experience.html" aria-current="page"> 
+    <a class="nav-link" href="./experience.html"> 
 <span class="menu-text">Industry &amp; Research Experience</span></a>
   </li>  
   <li class="nav-item">
@@ -277,7 +277,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Personal Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./pcb.html"> 
+    <a class="nav-link active" href="./pcb.html" aria-current="page"> 
 <span class="menu-text">PCB Designs</span></a>
   </li>  
   <li class="nav-item">
@@ -316,137 +316,52 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#industry-research-experience" id="toc-industry-research-experience" class="nav-link active" data-scroll-target="#industry-research-experience">Industry &amp; Research Experience</a>
-  <ul class="collapse">
-  <li><a href="#junior-clinic" id="toc-junior-clinic" class="nav-link" data-scroll-target="#junior-clinic">Junior Clinic</a></li>
-  <li><a href="#usda-electropenetography-hardwarefirmware" id="toc-usda-electropenetography-hardwarefirmware" class="nav-link" data-scroll-target="#usda-electropenetography-hardwarefirmware">USDA: Electropenetography Hardware/Firmware</a></li>
-  <li><a href="#drone-fpga-radio-telescope-beam-mapping" id="toc-drone-fpga-radio-telescope-beam-mapping" class="nav-link" data-scroll-target="#drone-fpga-radio-telescope-beam-mapping">Drone FPGA Radio-Telescope Beam Mapping</a></li>
-  <li><a href="#head-machine-shop-proctor" id="toc-head-machine-shop-proctor" class="nav-link" data-scroll-target="#head-machine-shop-proctor">Head Machine Shop Proctor</a></li>
-  <li><a href="#e79-practicum-proctor" id="toc-e79-practicum-proctor" class="nav-link" data-scroll-target="#e79-practicum-proctor">E79 Practicum Proctor</a></li>
-  <li><a href="#makerspace-repair-steward" id="toc-makerspace-repair-steward" class="nav-link" data-scroll-target="#makerspace-repair-steward">Makerspace Repair Steward</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PCB Designs</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-<section id="industry-research-experience" class="level1">
-<h1>Industry &amp; Research Experience</h1>
-<section id="junior-clinic" class="level2">
-<h2 class="anchored" data-anchor-id="junior-clinic">Junior Clinic</h2>
+</header>
+
+
+<section id="lipo-battery-charger-monitor" class="level2">
+<h2 class="anchored" data-anchor-id="lipo-battery-charger-monitor">LiPo Battery Charger &amp; Monitor</h2>
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
-  <div style="flex: 2; min-width: 300px;">
-    <p style="font-size: 1.4em; font-weight: bold; color: #888888; font-style: italic; margin-top: 0.5em;">
-      Coming Soon!
-    </p>
-    <p class="justify-text">
-      Details about my clinic project will be posted here soon. Stay tuned!
-    </p>
+  <div style="flex: 1; min-width: 200px;">
+    <img src="images/pcb/batt1.png" alt="LiPo Charger PCB Layout" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 1; min-width: 200px;">
+    <img src="images/pcb/batt1f.png" alt="LiPo Charger 3D Render" style="width:100%; border-radius: 15px;">
   </div>
 </div>
+
+<p>
+  <strong>Overview:</strong><br>
+  (My first PCB!) A single-cell LiPo battery charger and power management board featuring USB-C input, a dedicated charge IC, 5V and 3.7V regulated outputs, fuel gauge IC with I²C interface, and status indicator LEDs. Designed for use as a standalone supply module in embedded systems projects.
+</p>
+<p>
+  <strong>Key Features:</strong><br>
+  USB-C charging input, dual regulated outputs (5V / 3.7V), I²C fuel gauge, charge/power-good status LEDs, onboard enable/alert header.
+</p>
 <hr>
-</section>
-<section id="usda-electropenetography-hardwarefirmware" class="level2">
-<h2 class="anchored" data-anchor-id="usda-electropenetography-hardwarefirmware">USDA: Electropenetography Hardware/Firmware</h2>
-<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
-  <div style="flex: 1; min-width: 200px; max-width: 300px;">
-    <img src="images/Usda.png" alt="USDA Logo" style="width:100%; border-radius: 15px; border: 3px solid #000000;">
-  </div>
-  <div style="flex: 2; min-width: 300px;">
-    <p class="justify-text">
-      <strong>Overview:</strong><br>
-      Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding
-      behavior of disease-vector insects, supporting agricultural and ecological research.
-      Developed microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog
-      signals from insect feeding experiments.
-      Applied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits,
-      optimize signal quality, and improve reliability for field deployment.
-    </p>
-  </div>
-</div>
-<hr>
-</section>
-<section id="drone-fpga-radio-telescope-beam-mapping" class="level2">
-<h2 class="anchored" data-anchor-id="drone-fpga-radio-telescope-beam-mapping">Drone FPGA Radio-Telescope Beam Mapping</h2>
-<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
-  <div style="flex: 1; min-width: 200px; max-width: 300px;">
-    <img src="images/Drone.jpeg" alt="Drone" style="width:100%; border-radius: 15px; border: 3px solid #000000;">
-  </div>
-  <div style="flex: 2; min-width: 300px;">
-    <p class="justify-text">
-      <strong>Overview:</strong><br>
-      Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.
-      Developed FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).
-      Configured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python-based data analysis/visualization.
-    </p>
-  </div>
-</div>
-<hr>
-</section>
-<section id="head-machine-shop-proctor" class="level2">
-<h2 class="anchored" data-anchor-id="head-machine-shop-proctor">Head Machine Shop Proctor</h2>
-<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
-  <div style="flex: 1; min-width: 200px; max-width: 300px;">
-    <img src="images/Machineshop.png" alt="Machine Shop Picture" style="width:100%; border-radius: 15px; border: 3px solid #000000;">
-  </div>
-  <div style="flex: 2; min-width: 300px;">
-    <p class="justify-text">
-      <strong>Overview:</strong><br>
-      Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.
-    </p>
-    <a href="https://sites.google.com/g.hmc.edu/hmc-machine-shop/home?authuser=0" class="learn-btn">Machine Shop Website →</a>
-  </div>
-</div>
-<hr>
-</section>
-<section id="e79-practicum-proctor" class="level2">
-<h2 class="anchored" data-anchor-id="e79-practicum-proctor">E79 Practicum Proctor</h2>
-<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
-  <div style="flex: 1; min-width: 200px; max-width: 300px;">
-    <img src="images/E79robot.jpg" alt="E79 Practicum" style="width:100%; border-radius: 15px; border: 3px solid #000000;">
-  </div>
-  <div style="flex: 2; min-width: 300px;">
-    <p class="justify-text">
-      <strong>Overview:</strong><br>
-      Will supervise and support students through 13 hands-on lab practicums in Harvey Mudd's E79 Systems Engineering course, 
-      where underwater robotics serves as the teaching vehicle for modeling, constructing, and controlling mechanical, thermal, 
-      and electrical systems. Will guide student pairs through 2.5-hour sessions spanning circuit work, soldering, and 
-      field experiences, providing real-time debugging assistance and ensuring adherence to lab safety protocols. 
-      Responsible for fostering a collaborative and inclusive lab environment while helping students develop practical 
-      engineering intuition across all five course modules.
-    </p>
-    <a href="https://sites.google.com/g.hmc.edu/e79-practicum/" class="learn-btn">E79 Practicum Website →</a>
-  </div>
-</div>
-<hr>
-</section>
-<section id="makerspace-repair-steward" class="level2">
-<h2 class="anchored" data-anchor-id="makerspace-repair-steward">Makerspace Repair Steward</h2>
-<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
-  <div style="flex: 1; min-width: 200px; max-width: 300px;">
-    <img src="images/Makerspace.png" alt="Makerspace Logo" style="width:100%; border-radius: 15px; border: 3px solid #000000;">
-  </div>
-  <div style="flex: 2; min-width: 300px;">
-    <p class="justify-text">
-      <strong>Overview:</strong><br>
-      Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects, supporting student innovation while ensuring responsible and equitable use of resources.
-    </p>
-    <a href="https://make.hmc.edu/" class="learn-btn">Makerspace Website →</a>
-  </div>
-</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
