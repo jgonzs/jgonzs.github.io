@@ -1,0 +1,29 @@
+---
+title: "PCB Designs"
+toc: false
+format: html
+---
+
+## LiPo Battery Charger & Monitor
+
+```{=html}
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 1; min-width: 200px;">
+    <img src="images/pcb/batt1.png" alt="LiPo Charger PCB Layout" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 1; min-width: 200px;">
+    <img src="images/pcb/batt1f.png" alt="LiPo Charger 3D Render" style="width:100%; border-radius: 15px;">
+  </div>
+</div>
+
+<p>
+  <strong>Overview:</strong><br>
+  (My first PCB!) A single-cell LiPo battery charger and power management board featuring USB-C input, a dedicated charge IC, 5V and 3.7V regulated outputs, fuel gauge IC with I²C interface, and status indicator LEDs. Designed for use as a standalone supply module in embedded systems projects.
+</p>
+<p>
+  <strong>Key Features:</strong><br>
+  USB-C charging input, dual regulated outputs (5V / 3.7V), I²C fuel gauge, charge/power-good status LEDs, onboard enable/alert header.
+</p>
+```
+
+---

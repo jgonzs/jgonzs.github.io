@@ -123,8 +123,8 @@ format: html
     on closed-loop horizontal control.
   </p>
   <div class="pub-links">
-    <a class="pub-link primary" href="images/e80Paper.pdf" target="_blank">Read Paper (PDF)</a>
-    <a class="pub-link primary" href="images/e80Poster.pdf" target="_blank">View Poster (PDF)</a>
+    <a class="pub-link primary" href="images/e80/e80Paper.pdf" target="_blank">Read Paper (PDF)</a>
+    <a class="pub-link primary" href="images/e80/e80Poster.pdf" target="_blank">View Poster (PDF)</a>
     <a class="pub-link" href="projects.html#auv-ocean-floor-sonar-mapping">See Project Page</a>
   </div>
 </div>

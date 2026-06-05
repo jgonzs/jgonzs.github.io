@@ -19,6 +19,8 @@ website:
         text: Microprocessors Projects 
       - href: personal.qmd
         text: Personal Projects
+      - href: pcb.qmd
+        text: PCB Designs
       - href: publications.qmd
         text: Publications & Reports
       - href: resources.qmd
