@@ -428,7 +428,6 @@ f_{\text{out}} = \frac{f_{\text{clock}}}{\text{ARR}+1}
 <p><span class="math display">\[
 \text{ARR}_{\text{delay}} = \frac{1{,}000{,}000}{1{,}000} - 1 = 999
 \]</span></p>
-<p>It then loops, polling the update flag once per millisecond for the desired duration. The GPIO pin stays low throughout.</p>
 <hr>
 </section>
 </section>
@@ -449,15 +448,9 @@ t_{\text{max}} = (2^{32} - 1)\,\text{ms} \approx 4.3 \times 10^6\,\text{s} \appr
 \]</span></p>
 <p>This is far more than sufficient for any musical duration.</p>
 <p><strong>Frequency accuracy (220–1000 Hz):</strong></p>
-<p>Because <code>ARR</code> is an integer, rounding introduces a small quantization error. Checking boundary and mid-range cases:</p>
+<p>Because <code>ARR</code> is an integer, rounding introduces a small error. Here are some calculatiions checking the error between desired and actual frequencies</p>
 <p>At 220 Hz: <span class="math display">\[
 \text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 220}\right\rfloor - 1 = 2271\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 2272} \approx 220.07\,\text{Hz} \qquad (0.03\%\,\text{error})
-\]</span></p>
-<p>At 440 Hz: <span class="math display">\[
-\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 440}\right\rfloor - 1 = 1135\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 1136} \approx 440.14\,\text{Hz} \qquad (0.03\%\,\text{error})
-\]</span></p>
-<p>At 659 Hz: <span class="math display">\[
-\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 659}\right\rfloor - 1 = 757\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 758} \approx 659.63\,\text{Hz} \qquad (0.10\%\,\text{error})
 \]</span></p>
 <p>At 1000 Hz: <span class="math display">\[
 \text{ARR} = \frac{1{,}000{,}000}{2 \times 1000} - 1 = 499\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 500} = 1000.00\,\text{Hz} \qquad (0.00\%\,\text{error})
@@ -466,7 +459,7 @@ t_{\text{max}} = (2^{32} - 1)\,\text{ms} \approx 4.3 \times 10^6\,\text{s} \appr
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
-<p>PA1 was configured as a general-purpose output (<code>MODER = 0b01</code>) by enabling GPIOA via <code>RCC-&gt;AHB2ENR</code> and setting the appropriate mode bits. TIM2 was enabled via <code>RCC-&gt;APB1ENR1</code>. All register access were manually defined struct typedefs, meaning no CMSIS headers!</p>
+<p>PA1 was configured as a general-purpose output by enabling GPIOA via <code>RCC-&gt;AHB2ENR</code>. TIM2 was enabled via <code>RCC-&gt;APB1ENR1</code>. All register access were manually defined struct typedefs, meaning no CMSIS headers! Very baremetal C code.</p>
 <p><em>Lab 4 Wiring Schematic // Joaquin Gonzalez-Salgado // June 3rd 2026</em></p>
 <div id="fig-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -484,7 +477,6 @@ Figure&nbsp;1: Schematic of MCU, LM386 amplifier, potentiometer, and 8-ohm speak
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>The design successfully met all lab requirements. <em>Für Elise</em> played at the correct tempo with all pitches accurate to well within <code>1%</code> across the full <code>220–1000</code> Hz range, as verified by the <code>ARR</code> calculations above. All rests were rendered as silence for the correct durations. The optional composition <em>Fallen Down</em> also played correctly! And the Potentiometer did vary the volume as intended.</p>
-<p>This lab successfully demonstrated C programming on the <code>STM32L432KC</code> to synthesize digital audio using a single hardware timer. By configuring TIM2 entirely from scratch with manually defined register structs and polling its update flag to toggle a GPIO pin, the MCU generated accurate square waves for musical playback!</p>
 <p>The lab took approximately 15 hours to complete. The most time-consuming parts were navigating the reference manual to find the correct register offsets, and understanding C code in a more thorough way.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">
