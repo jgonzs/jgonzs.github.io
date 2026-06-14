@@ -8,5 +8,6 @@ categories:
   - labreport
 draft: false
 ---
+![](images/uPBoard.jpeg)
 
 This fall semester (2026), I will be taking an upper division course called [Microprocessors Systems: Design & Application](https://hmc-e155.github.io) which focuses on microcontrollers and embedded system design, and how to apply HDL and logic to the real world. My goal this semester is to focus on having a thorough engineering workflow. I want to not only understand and create embedded and physical systems, but also document these processes thoroughly.
