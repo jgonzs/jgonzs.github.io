@@ -114,9 +114,51 @@
   {
     "objectID": "labs/lab5/lab5.html",
     "href": "labs/lab5/lab5.html",
-    "title": "Portfolio",
+    "title": "Lab 5: Interrupts",
     "section": "",
-    "text": "Overview:Coming Soon!"
+    "text": "In this lab,"
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#introduction",
+    "href": "labs/lab5/lab5.html#introduction",
+    "title": "Lab 5: Interrupts",
+    "section": "",
+    "text": "In this lab,"
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#design-and-testing-methodology",
+    "href": "labs/lab5/lab5.html#design-and-testing-methodology",
+    "title": "Lab 5: Interrupts",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\n\nMCU"
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#technical-documentation",
+    "href": "labs/lab5/lab5.html#technical-documentation",
+    "title": "Lab 5: Interrupts",
+    "section": "Technical Documentation:",
+    "text": "Technical Documentation:\n\n\n\n\n\n\nNoteSource Code\n\n\n\nThe source code for the project can be found in the associated Github Repo.\n\n\n\nSchematic\nLab 5 Wiring Schematic // Joaquin Gonzalez-Salgado // June 9 2026\n\n\n\n\n\n\nFigure 1: Schematic.\n\n\n\nFigure 1 Shows the wiring approach for this lab. Each on-board LED is connected to an SMT 1 k\\(\\Omega\\) resistor via the development board.\nAs for the 7-Segment display, 5 to 20 mA of current was advised in the lab manual. Since the FPGA GPIO pins output 3.3V, Ohm’s law can be used to find an effective resistor for this current. (For this calculation, I chose 13 mA of current). This is shown in Equation 1:\n\\[\nV = IR \\implies R = \\frac{V}{I} = \\frac{3.3\\,\\text{V} - 2.0\\,\\text{V}}{0.013\\,\\text{A}} = 100\\,\\Omega\n\\tag{1}\\]"
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#results-and-discussion",
+    "href": "labs/lab5/lab5.html#results-and-discussion",
+    "title": "Lab 5: Interrupts",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\n\n\n\n\n\n\nNoteResults and Discussion\n\n\n\nThe Design was a Success!\n\n\nThe design successfully met all objectives."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#conclusion",
+    "href": "labs/lab5/lab5.html#conclusion",
+    "title": "Lab 5: Interrupts",
+    "section": "Conclusion",
+    "text": "Conclusion\n\n\n\n\n\n\nNoteHours Spent on Lab\n\n\n\nThis lab took ___ hours."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#ai-prototype-summary",
+    "href": "labs/lab5/lab5.html#ai-prototype-summary",
+    "title": "Lab 5: Interrupts",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nThe purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:\n\n\n\n\n\n\nTipAI Prototype (Claude)\n\n\n\nPrompt: Write me interrupt handlers to interface with a quadrature encoder. I’m using the STM32L432KC, what pins should I connect the encoder to in order to allow it to easily trigger the interrupts?\n\n\n\n\n\n\n\n\nNoteGenerated Code:\n\n\n\n#include “stm32l4xx_hal.h”\nvolatile int32_t encoder_count = 0;\nvoid Encoder_GPIO_Init(void) { __HAL_RCC_GPIOA_CLK_ENABLE();\nGPIO_InitTypeDef gpio = {0};\ngpio.Pin  = GPIO_PIN_0 | GPIO_PIN_1;\ngpio.Mode = GPIO_MODE_IT_RISING_FALLING; // Trigger on both edges\ngpio.Pull = GPIO_PULLUP;\nHAL_GPIO_Init(GPIOA, &gpio);\n\nHAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);\nHAL_NVIC_EnableIRQ(EXTI0_IRQn);\nHAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);\nHAL_NVIC_EnableIRQ(EXTI1_IRQn);\n}\n// Read current state of both channels static inline uint8_t read_A(void) { return HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0); } static inline uint8_t read_B(void) { return HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1); }\n// Standard quadrature decode table // Index: [prev_A][prev_B][curr_A][curr_B] static const int8_t QEM[16] = { 0, -1, 1, 0, 1, 0, 0, -1, -1, 0, 0, 1, 0, 1, -1, 0 };\nstatic uint8_t last_state = 0;\nstatic void update_encoder(void) { uint8_t curr_state = (read_A() &lt;&lt; 1) | read_B(); encoder_count += QEM[(last_state &lt;&lt; 2) | curr_state]; last_state = curr_state; }\nvoid EXTI0_IRQHandler(void) { update_encoder(); HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0); }\nvoid EXTI1_IRQHandler(void) { update_encoder(); HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1); }\n\n\n\nReflection:\nThis week is Claude Sonnet again! Rather than helping me with the specific question I asked, it gave me two options: Using the Interrupt approach I asked for, or using the “Hardware Timer Encoder Mode”. It provided me with code for both options, and stated that for Encoder A I should use PA0 with EXTI Line EXTI0 and for Encoder B I should use PA1 with EXTI Line EXTI1."
   },
   {
     "objectID": "labs/lab3/lab3.html",
@@ -235,7 +277,7 @@
     "href": "e155.html",
     "title": "Microprocessors (E155) Projects",
     "section": "",
-    "text": "This Fall 2026, I will be taking an upper division  engineering elective, \n  E155: Microprocessor Systems at Harvey Mudd College. In this course I will build a variety of systems with FPGAs, microcontrollers, and custom digital logic. Along the way, I will gain experience with RTL design, simulation and verification in Questa, and FPGA development using Lattice Radiant. Check out my work below!\n    \n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Assembled a development board by hand-soldering SMT and THT components, integrating the UPduino v3.1 FPGA and Nucleo-L432KC MCU via female header pins. Implemented a SystemVerilog design leveraging the on-board high-speed oscillator to blink an LED at 2.4 Hz, drive three on-board LEDs using combinational logic from DIP switch inputs, and display all 16 hexadecimal digits on a 7-segment display.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      A time-multiplexed dual 7-segment display was implemented on the UPduino v3.1 FPGA, simultaneously showing two independent 4-bit hexadecimal values provided via DIP switches. A 2N3906 PNP transistor circuit was constructed to drive the display anodes, and five on-board LEDs display the binary sum of the two inputs.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    Summary:Coming Soon!\n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Configured TIM2 on the STM32L432KC to drive an 8-ohm speaker via an LM386 amplifier, generating square waves by toggling a GPIO pin at twice the target frequency. Using a 1 MHz timer clock (4 MHz system clock and PSC=3), computed ARR values achieve 0.10% frequency error across 220–1000 Hz. Successfully played Für Elise and an optional piece Fallen Down, with a potentiometer providing adjustable volume.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    Summary:Coming Soon!\n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    Summary:Coming Soon!\n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    Summary:Coming Soon!\n    \n      See Lab Report"
+    "text": "This Fall 2026, I will be taking an upper division  engineering elective, \n  E155: Microprocessor Systems at Harvey Mudd College. In this course I will build a variety of systems with FPGAs, microcontrollers, and custom digital logic. Along the way, I will gain experience with RTL design, simulation and verification in Questa, and FPGA development using Lattice Radiant. Check out my work below!\n    \n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Assembled a development board by hand-soldering SMT and THT components, integrating the UPduino v3.1 FPGA and Nucleo-L432KC MCU via female header pins. Implemented a SystemVerilog design leveraging the on-board high-speed oscillator to blink an LED at 2.4 Hz, drive three on-board LEDs using combinational logic from DIP switch inputs, and display all 16 hexadecimal digits on a 7-segment display.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      A time-multiplexed dual 7-segment display was implemented on the UPduino v3.1 FPGA, simultaneously showing two independent 4-bit hexadecimal values provided via DIP switches. A 2N3906 PNP transistor circuit was constructed to drive the display anodes, and five on-board LEDs display the binary sum of the two inputs.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    Summary:Coming Soon!\n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Configured TIM2 on the STM32L432KC to drive an 8-ohm speaker via an LM386 amplifier, generating square waves by toggling a GPIO pin at twice the target frequency. Using a 1 MHz timer clock (4 MHz system clock and PSC=3), computed ARR values achieve 0.10% frequency error across 220–1000 Hz. Successfully played Für Elise and an optional piece Fallen Down, with a potentiometer providing adjustable volume.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n      Summary:\n      Designed an interrupt-driven system on the STM32L432KC to measure the angular velocity and direction of a brushed DC motor using a quadrature encoder. Configured GPIO interrupts on 5V-tolerant pins to process encoder pulses at both high and low speeds, computing revolutions per second and displaying velocity with an update rate of at least 1 Hz.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n      Summary:\n      Built an internet-accessible IoT device using an STM32L432KC MCU, DS1722 SPI temperature sensor, and ESP8266 WiFi module. Developed custom C SPI drivers using CMSIS device templates to read ambient temperature data, and implemented UART communication at 125,000 baud to serve a dynamically generated HTML webpage allowing remote LED control and real-time temperature monitoring.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    Summary:Coming Soon!\n    \n      See Lab Report"
   },
   {
     "objectID": "e155.html#fpga-and-mcu-setup-and-testing-lab-1",
@@ -270,14 +312,14 @@
     "href": "e155.html#interrupts-lab-5",
     "title": "Microprocessors (E155) Projects",
     "section": "",
-    "text": "Summary:Coming Soon!\n    \n      See Lab Report"
+    "text": "Summary:\n      Designed an interrupt-driven system on the STM32L432KC to measure the angular velocity and direction of a brushed DC motor using a quadrature encoder. Configured GPIO interrupts on 5V-tolerant pins to process encoder pulses at both high and low speeds, computing revolutions per second and displaying velocity with an update rate of at least 1 Hz.\n    \n    \n      See Lab Report"
   },
   {
     "objectID": "e155.html#spi-and-iot-lab-6",
     "href": "e155.html#spi-and-iot-lab-6",
     "title": "Microprocessors (E155) Projects",
     "section": "",
-    "text": "Summary:Coming Soon!\n    \n      See Lab Report"
+    "text": "Summary:\n      Built an internet-accessible IoT device using an STM32L432KC MCU, DS1722 SPI temperature sensor, and ESP8266 WiFi module. Developed custom C SPI drivers using CMSIS device templates to read ambient temperature data, and implemented UART communication at 125,000 baud to serve a dynamically generated HTML webpage allowing remote LED control and real-time temperature monitoring.\n    \n    \n      See Lab Report"
   },
   {
     "objectID": "e155.html#advanced-encryption-standard-lab-7",
