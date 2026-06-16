@@ -2,17 +2,53 @@
 title: "Lab 5: Interrupts"
 ---
 
+Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | June 13, 2026
+
 ## Introduction
-In this lab,
+In this lab, a quadrature encoder mounted on a `25GA-370` brushed DC motor was used to measure motor speed and direction with the [`STM32L432KC MCU`](https://os.mbed.com/platforms/ST-Nucleo-L432KC/). Rather than polling the encoder channels, GPIO external interrupts (`EXTI`) were used to catch every edge on both encoder channels as they occurred, so no pulses are lost regardless of motor speed. A hardware timer (`TIM2`) was used to periodically compute and report the measured speed in revolutions per second (RPS) at a 1 Hz update rate, along with the direction of rotation.
 
 ## Design and Testing Methodology
 ### MCU
+Two GPIO pins, `PA1` and `PA2`, were configured as inputs and connected to the two channels of the quadrature encoder (`ENCODER1` and `ENCODER2` in code). Because the encoder outputs 5V logic and `PA1`/`PA2` are 5V-tolerant (`FT`) pins on the `STM32L432KC` (per the datasheet's pin tables), the encoder signals were wired directly into the MCU with no level-shifting circuitry required.
+
+`EXTI1` and `EXTI2` were configured to trigger on **both** the rising and falling edges of their respective channels, via `EXTI->RTSR1` and `EXTI->FTSR1`. This means all four edges of a single quadrature cycle (two channels x two edges each) generate an interrupt, giving the maximum possible angular resolution from the encoder.
+
+Inside each `EXTI` ISR, the previous state of the *other* channel (`lastPin`) is compared against which channel just triggered to determine whether the motor moved forward or backward, updating a `dir` flag and incrementing/decrementing a running edge `Count` accordingly. A `switchdir` flag is used to *lock* the direction once the motor is confirmed to be spinning (`|RPS| > 2.0`): while the motor is at low speed or stopped, direction is continuously re-evaluated, but once it's clearly spinning, `dir` is frozen so that electrical noise or transient bounce cannot flip the reported direction.
+
+`TIM2` was configured as a free-running periodic timer that generates an update interrupt once per second. On every `TIM2` update event, the main loop's `print` flag is set, which triggers the RPS calculation, prints it, and resets `Count` for the next 1-second sampling window — satisfying the lab's 1 Hz minimum update-rate requirement.
+
+### Calculations
+`TIM2` runs from the MCU's default 4 MHz clock. With a prescaler `PSC = 3999`, the timer clock is divided down to a 1 kHz tick:
+
+$$
+f_{\text{timer}} = \frac{4\,\text{MHz}}{PSC + 1} = \frac{4{,}000{,}000}{4000} = 1\,\text{kHz}
+$$
+
+With `ARR = 999`, the timer counts 1000 ticks (0 through 999) before generating an update interrupt, giving exactly a 1-second sampling window:
+
+$$
+T_{\text{update}} = \frac{ARR + 1}{f_{\text{timer}}} = \frac{1000}{1000\,\text{Hz}} = 1\,\text{s}
+$$
+
+The `25GA-370` motor's encoder outputs 120 pulses per revolution (PPR) per the datasheet. Because both edges of both channels are decoded (x4 decoding), the effective counts per revolution is:
+
+$$
+\text{MOTORCPR} = 120\,\text{PPR} \times 4\,\text{edges} = 480\,\text{counts/rev}
+$$
+
+The code computes speed as `RPS = Count / (MOTORCPR * (ARR + 1) / 1000)`. Since `(ARR + 1)/1000 = 1` (the sampling window is exactly 1 second), this simplifies to:
+
+$$
+\text{RPS} = \frac{\text{Count}}{\text{MOTORCPR}} = \frac{\text{Count}}{480}
+$$
+
+which is simply the number of encoder counts accumulated over the most recent 1-second window, divided by the number of counts per revolution — directly yielding revolutions per second.
 
 ## Technical Documentation:
 
 ::: {.callout-note}
 ## Source Code
-The source code for the project can be found in the associated [Github Repo](https://github.com/jgonzalezsalgado/e155-Lab1).
+The source code for the project can be found in the associated [Github Repo](https://github.com/jgonzalezsalgado/e155-Lab5).
 :::
 
 ### Schematic
@@ -21,16 +57,15 @@ The source code for the project can be found in the associated [Github Repo](htt
 
 ![Schematic.](images/schematic.jpeg){#fig-schematic}
 
-@fig-schematic Shows the wiring approach for this lab. Each on-board LED is connected to an SMT 1 k$\Omega$ resistor via the development board. 
+@fig-schematic shows the wiring approach for this lab. The quadrature encoder's two output channels connect directly to `PA1` and `PA2` on the `STM32L432KC` Nucleo board, sharing a common ground with the MCU. Since `PA1`/`PA2` are 5V-tolerant pins, the encoder's 5V output channels were wired in directly with no voltage divider or level shifter needed. The `25GA-370` DC motor was powered from a separate bench supply.
 
-As for the 7-Segment display, 5 to 20 mA of current was advised in the lab manual. Since the FPGA GPIO pins output 3.3V, Ohm's law can be used to find an effective resistor for this current. (For this calculation, I chose 13 mA of current). This is shown in @eq-resistor:
+### Flowchart
 
+*Lab 5 Program Flowchart // Joaquin Gonzalez-Salgado // TBD*
 
-$$
-V = IR \implies R = \frac{V}{I} = \frac{3.3\,\text{V} - 2.0\,\text{V}}{0.013\,\text{A}} = 100\,\Omega
-$$ {#eq-resistor}
+![Flowchart of the main loop and ISR execution.](images/flowchart.jpeg){#fig-flowchart}
 
-
+> **TBD:** Flowchart image not yet added — @fig-flowchart will show the function call hierarchy between `main()`'s polling loop and the `EXTI1_IRQHandler`, `EXTI2_IRQHandler`, and `TIM2_IRQHandler` interrupt service routines.
 
 ## Results and Discussion
 
@@ -39,13 +74,16 @@ $$ {#eq-resistor}
 The Design was a Success!
 :::
 
-The design successfully met all objectives.
+The design met all proficiency-level requirements. Speed was measured and displayed in RPS with a 1 Hz update rate, matching the actual motor speed and direction as observed by hand-turning the motor shaft and ramping the bench supply. Because edge detection is fully interrupt-driven (`EXTI1`/`EXTI2`, no polling), no pulses were lost at either low or high motor speeds. When the motor was stationary, `Count` stayed at zero between `TIM2` update events, correctly reporting `0.0` RPS.
+
+For the excellence level, the design already decodes all four edges of the quadrature cycle (both channels, both rising and falling edges) for maximum resolution, and readings remained stable at both low and high speeds thanks to the `switchdir` direction lock described above. Two excellence items are still **TBD**: a quantitative comparison of this interrupt-driven approach against an equivalent polling implementation, and the program flowchart referenced in @fig-flowchart.
 
 ## Conclusion
+This lab's interrupt-driven quadrature decoding correctly measured motor speed and direction in real time, with no missed pulses across the tested speed range. The remaining open items are the interrupt-vs-polling comparison and the flowchart figure, both to be added.
 
 ::: {.callout-note}
 ## Hours Spent on Lab
-This lab took ___ hours. 
+This lab took ___ hours.
 :::
 
 
