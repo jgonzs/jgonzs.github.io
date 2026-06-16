@@ -433,7 +433,7 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In this lab, a time-multiplexed dual 7-segment display was implemented using the <code>UPduino v3.1 FPGA</code>. Two independent 4-bit hexadecimal values are provided via DIP switches: one from the on-board switch bank and one from a breadboard DIP switch. These two values are displayed simultaneously on a dual 7-segment display by rapidly alternating between the two digits. A single shared sevenSegment decoder module drives the cathodes for both digits. The sum of the two input values is displayed across five on-board LEDs. A 2N3906 PNP transistor circuit was built to source the large anode current required by each display digit.</p>
+<p>In this lab, a time-multiplexed dual 7-segment display was implemented using the <a href="https://upduino.readthedocs.io/en/latest/features/specs.html#upduino-pinout"><code>UPduino v3.1 FPGA</code></a>. Two independent 4-bit hexadecimal values are provided via DIP switches: one from the on-board switch bank and one from a breadboard DIP switch. These two values are displayed simultaneously on a dual 7-segment display by rapidly alternating between the two digits. A single shared <code>sevenSegment</code> decoder module drives the cathodes for both digits. The sum of the two input values is displayed across five on-board LEDs. A <code>2N3906</code> PNP transistor circuit was built to source the large anode current required by each display digit.</p>
 </section>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
@@ -524,12 +524,12 @@ Table&nbsp;1: Digital Inputs and Outputs for Lab 2
 </div>
 </figure>
 </div>
-<p>The top-level module <code>lab2_jg</code> uses the same 24 MHz internal high-speed oscillator (<code>HSOSC</code>) divider from Lab 1. A 20-bit counter is incremented by 10 on every rising clock edge, producing an approximately <code>229 Hz</code> toggle. This toggle signal called <code>state</code>, is the input to the multiplexer that selects between <code>s1</code> and <code>s2</code>, the two numbers to be displayed. At the same time, it controls the <code>active</code> and <code>inactive</code> signals to the PNP transistors, which control the COM ports. Each digit is therefore illuminated at roughly <strong>114 Hz</strong>, which is above the flicker threshold of the human eye.</p>
-<p>The selected 4-bit value (between s1 and s2) <code>s</code> is fed into the <code>sevenSegment</code> decoder, which works as previously in Lab 1 mapping hex numbers 0 to F on the display. Five LEDs on a breadboard directly implement the 5-bit sum <code>s1 + s2</code>.</p>
+<p>The top-level module <code>lab2_jg</code> uses the same 24 MHz internal high-speed oscillator (<code>HSOSC</code>) divider from Lab 1. A 20-bit counter is incremented by 10 on every rising clock edge, producing an approximately <code>229 Hz</code> toggle. This toggle signal called <code>state</code>, is the input to the multiplexer that selects between <code>s1</code> and <code>s2</code>, the two numbers to be displayed. At the same time, it controls the <code>active</code> and <code>inactive</code> signals to the PNP transistors, which control the COM ports. Each digit is therefore illuminated at roughly <code>114 Hz</code>, which is above the flicker threshold of the human eye.</p>
+<p>The selected 4-bit value (between <code>s1</code> and <code>s2</code>) <code>s</code> is fed into the <code>sevenSegment</code> decoder, which works as previously in Lab 1 mapping hex numbers 0 to F on the display. Five LEDs on a breadboard directly implement the 5-bit sum <code>s1 + s2</code>.</p>
 </section>
 <section id="multiplexing-frequency-calculation" class="level3">
 <h3 class="anchored" data-anchor-id="multiplexing-frequency-calculation">Multiplexing Frequency Calculation</h3>
-<p>The counter increments by 10 each cycle at 24 MHz, and state = counter[19]:</p>
+<p>The counter increments by 10 each cycle at 24 MHz, and <code>state</code> = <code>counter[19]</code>:</p>
 <p><span class="math display">\[
 \begin{aligned}
 f_{\text{switching}} &amp;= \frac{24{,}000{,}000 \times 10}{2^{20}} \approx 228.9 \text{ Hz} \\
@@ -555,7 +555,7 @@ f_{\text{display}} &amp;= \frac{f_{\text{switching}}}{2} \approx 114.4 \text{ Hz
 </div>
 <section id="block-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
-<p><em>Lab 2 Block Diagram // Joaquin Gonzalez-Salgado // September x 2026</em></p>
+<p><em>Lab 2 Block Diagram // Joaquin Gonzalez-Salgado // May 29th 2026</em></p>
 <div id="fig-block-diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -566,11 +566,11 @@ Figure&nbsp;1: Top-Level Block Diagram of’Lab2_jg’ and ‘sevenSegment’.
 </figcaption>
 </figure>
 </div>
-<p>The top-level module <code>lab2_jg</code> contains four submodules: the HSOSC clock, a sequential 20-bit counter acting as a clock divider and display controller, a mux selecting between <code>s1</code> and <code>s2</code>, and the sevenSegment decoder from previous labs. The active and inactive anode control signals are connected to the bases of two <code>2N3906</code> PNP transistors.</p>
+<p>The top-level module <code>lab2_jg</code> contains four submodules: the <code>HSOSC</code> clock, a sequential 20-bit counter acting as a clock divider and display controller, a mux selecting between <code>s1</code> and <code>s2</code>, and the <code>sevenSegment</code> decoder from previous labs. The active and inactive anode control signals are connected to the bases of two <code>2N3906</code> PNP transistors.</p>
 </section>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
-<p><em>Lab 2 Wiring Schematic // Joaquin Gonzalez-Salgado // September x 2026</em></p>
+<p><em>Lab 2 Wiring Schematic // Joaquin Gonzalez-Salgado // May 29th 2026</em></p>
 <div id="fig-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -582,7 +582,7 @@ Figure&nbsp;2: Schematic of FPGA, DIP switches, and 7-segment wiring.
 </figure>
 </div>
 <p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;2</a> Shows the wiring schematic for this lab. 270 Ohm resistors were used for the LEDS and Display, and 510 Ohm resistors were used for the Base of the PNPs. The calculations for these resistors are described below:</p>
-<p>The 7-segment display and Green LEDS have a forward voltage of roughly 2.0 V, and we do not want to exceed the FPGA GPIO current of 8 mA. So, we can use Ohm’s kaw to find the desired resistor (using a current of 5 mA) This is shown in <a href="#eq-leds" class="quarto-xref">Equation&nbsp;1</a>:</p>
+<p>The 7-segment display and Green LEDS have a forward voltage of roughly 2.0 V, and we do not want to exceed the FPGA GPIO current of 8 mA. So, we can use Ohm’s law to find the desired resistor (using a current of 5 mA) This is shown in <a href="#eq-leds" class="quarto-xref">Equation&nbsp;1</a>:</p>
 <p><span id="eq-leds"><span class="math display">\[
 V = IR \implies R = \frac{V}{I} = \frac{3.3\,\text{V} - 2\,\text{V}}{0.005\,\text{A}} = 260\,\Omega \approx 270\,\Omega
 \tag{1}\]</span></span></p>
@@ -626,7 +626,7 @@ Figure&nbsp;3: Questa Simulation of the Lab2 testbench, with expected waveforms.
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This lab successfully demonstrated time-multiplexing to share a single 7-segment decoder and a single set of I/O pins to display two separate digits. The design reused the sevenSegment decoder from Lab 1 without any changes.</p>
+<p>This lab successfully demonstrated time-multiplexing to share a single 7-segment decoder and a single set of I/O pins to display two separate digits. The design reused the <code>sevenSegment</code> decoder from Lab 1 without any changes.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -643,8 +643,6 @@ Figure&nbsp;3: Questa Simulation of the Lab2 testbench, with expected waveforms.
 </section>
 <section id="ai-prototype" class="level2">
 <h2 class="anchored" data-anchor-id="ai-prototype">AI Prototype</h2>
-<p><strong>Prompt 1:</strong> Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits.</p>
-<p>Then, starting a new AI conversation and attaching my lab 1 files as context, I entered this prompt:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -652,6 +650,20 @@ Figure&nbsp;3: Questa Simulation of the Lab2 testbench, with expected waveforms.
 </div>
 <div class="callout-title-container flex-fill">
 <span class="screen-reader-only">Tip</span>AI Prototype (Gemini)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Prompt 1:</strong> Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits.</p>
+</div>
+</div>
+<p>Then, starting a new AI conversation and attaching my lab 1 files as context, I entered this prompt:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>AI Prototype (Gemini) — With Context
 </div>
 </div>
 <div class="callout-body-container callout-body">

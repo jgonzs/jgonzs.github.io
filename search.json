@@ -1,276 +1,199 @@
 [
   {
-    "objectID": "RF.html",
-    "href": "RF.html",
-    "title": "Radio Frequency (E157) Projects",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
     "section": "",
-    "text": "This Fall 2026, I will take an upper division  engineering elective, \n  E157: RF Circuit Design at Harvey Mudd College. In this course I will design and characterize RF circuits including filters, impedance matching networks, and antennas. Along the way, I will gain experience with transmission line theory, S-parameter measurement using a VNA, and building a receiver to decode a live RF signal. Check out my work below!\n    \n\n\n\n  \n    Overview:Coming Soon!\n  \n\n\n\n\n\n\n  \n    Overview:Coming Soon!\n  \n\n\n\n\n\n\n  \n    Overview:Coming Soon!\n  \n\n\n\n\n\n\n  \n    Overview:Coming Soon!\n  \n\n\n\n\n\n\n  \n    Overview:Coming Soon!\n  \n\n\n\n\n\n\n  \n    Overview:Coming Soon!\n  \n\n\n\n\n\n\n  \n    Overview:Coming Soon!"
+    "text": "The labs for the E155 Microprocessors course are sourced from the E155 course website:\nE155 Course Website\nThis is where all lab assignments and related materials originate."
   },
   {
-    "objectID": "RF.html#lab-certification-ltspice-lab-1",
-    "href": "RF.html#lab-certification-ltspice-lab-1",
-    "title": "Radio Frequency (E157) Projects",
+    "objectID": "resources.html#microprocessors-e155",
+    "href": "resources.html#microprocessors-e155",
+    "title": "Resources",
     "section": "",
-    "text": "Overview:Coming Soon!"
+    "text": "The labs for the E155 Microprocessors course are sourced from the E155 course website:\nE155 Course Website\nThis is where all lab assignments and related materials originate."
   },
   {
-    "objectID": "RF.html#transmission-line-time-responses-lab-2",
-    "href": "RF.html#transmission-line-time-responses-lab-2",
-    "title": "Radio Frequency (E157) Projects",
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Class Projects",
     "section": "",
-    "text": "Overview:Coming Soon!"
+    "text": "Overview:\n      Team project to build an electric vehicle. Principles of EV design, battery technology, vehicle dynamics, fabrication, wiring, and embedded software development.\n    \n    \n      Skills:\n      EV Design, Battery Technology, Vehicle Dynamics, Fabrication, Embedded Software\n    \n    \n      \n        Show More\n      \n      \n        ▶ Video\n      \n    \n  \n\n\n\n  \n    \n      CAD & Design\n      \n       - Developed a CAD assembly of the EV components, from the battery to the display. Implemented high-voltage motor controllers and safety circuitry (relays, fuses, and breakers) with low-voltage Raspberry Pi logic. Integrated software to connect motors to a PS4 controller, and for a Raspberry Pi Display. \n    \n    \n      Assembly\n      \n       \n        - Utilized crimped ring connectors for secure battery-to-controller links and automotive male/female connectors for quick-disconnect capability across the control interface. \n      \n        - Joined wire extensions with butt splices and applied heat shrink to all terminals to ensure vibration-resistant, short-proof connections.\n    \n    \n      Result\n      \n      \n        - The cart is fully operational, steady at a safe speed of 15 mph. A custom UI displays real-time speed and direction data, while the PS4 controller integration provides smooth, intuitive steering and throttle control. The result is a fast, stable build that handles reliably at peak performance."
   },
   {
-    "objectID": "RF.html#vna-calibration-and-de-embedding-lab-3",
-    "href": "RF.html#vna-calibration-and-de-embedding-lab-3",
-    "title": "Radio Frequency (E157) Projects",
+    "objectID": "projects.html#electric-vehicle-design-lab-e49c",
+    "href": "projects.html#electric-vehicle-design-lab-e49c",
+    "title": "Class Projects",
     "section": "",
-    "text": "Overview:Coming Soon!"
+    "text": "Overview:\n      Team project to build an electric vehicle. Principles of EV design, battery technology, vehicle dynamics, fabrication, wiring, and embedded software development.\n    \n    \n      Skills:\n      EV Design, Battery Technology, Vehicle Dynamics, Fabrication, Embedded Software\n    \n    \n      \n        Show More\n      \n      \n        ▶ Video\n      \n    \n  \n\n\n\n  \n    \n      CAD & Design\n      \n       - Developed a CAD assembly of the EV components, from the battery to the display. Implemented high-voltage motor controllers and safety circuitry (relays, fuses, and breakers) with low-voltage Raspberry Pi logic. Integrated software to connect motors to a PS4 controller, and for a Raspberry Pi Display. \n    \n    \n      Assembly\n      \n       \n        - Utilized crimped ring connectors for secure battery-to-controller links and automotive male/female connectors for quick-disconnect capability across the control interface. \n      \n        - Joined wire extensions with butt splices and applied heat shrink to all terminals to ensure vibration-resistant, short-proof connections.\n    \n    \n      Result\n      \n      \n        - The cart is fully operational, steady at a safe speed of 15 mph. A custom UI displays real-time speed and direction data, while the PS4 controller integration provides smooth, intuitive steering and throttle control. The result is a fast, stable build that handles reliably at peak performance."
   },
   {
-    "objectID": "RF.html#design-project-1-filter",
-    "href": "RF.html#design-project-1-filter",
-    "title": "Radio Frequency (E157) Projects",
+    "objectID": "projects.html#experimental-engineering-e80",
+    "href": "projects.html#experimental-engineering-e80",
+    "title": "Class Projects",
+    "section": "Experimental Engineering (E80)",
+    "text": "Experimental Engineering (E80)\n\nAUV Ocean Floor SONAR Mapping\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and built an AUV to topographically map the floor of Dana Point Harbor using SONAR time-of-flight measurements. Personally designed analog circuits for temperature, pressure, and SONAR signal processing — all from scratch. Featured a Teensy 4.0, Adafruit GPS, and a custom motor driver motherboard.\n    \n    Skills:Arduino, MATLAB, SONAR, Embedded Systems, PCB Assembly, Op-Amp Circuit Design, Sensor Calibration\n    \n      \n        Show More\n      \n      \n        See Report Page\n      \n    \n  \n\n\n\n  \n    \n      Custom Sensor Circuits\n      \n      \n        - Designed a thermistor interface circuit with a unity gain buffer and non-inverting offset amplifier to expand the output voltage range for better Teensy resolution.\n        - Built a pressure sensor circuit with the same offset amplifier approach to enable precise P-control during dives.\n        - For SONAR, designed both a TX chain (555 timer + LM384 audio amplifier driving a waterproof exciter at 3kHz) and a full RX chain with 10,000x gain across four op-amp stages, a Sallen-Key bandpass filter, and a max detector circuit.\n      \n    \n    \n      Deployment at Dana Point\n      \n      \n        - Deployed the AUV at Dana Point Harbor, following alongside in kayaks to monitor and recover it.\n        - GPS module handled surface navigation while the pressure sensor controlled dive depth autonomously via P-control.\n        - All sensor data was logged to an onboard SD card and post-processed in MATLAB to generate the topography map.\n      \n    \n    \n      Results & Presentation\n      \n      \n        - Successfully mapped the ocean floor depth along the AUV's path, with results consistent with nautical chart ground truth data for Dana Point Harbor.\n        - Also measured water temperature at depth and confirmed a temperature decrease with depth during dives.\n        - Presented findings at the end-of-semester showcase — our team took first place!"
+  },
+  {
+    "objectID": "projects.html#digital-electronics-computer-architecture-e85",
+    "href": "projects.html#digital-electronics-computer-architecture-e85",
+    "title": "Class Projects",
+    "section": "Digital Electronics / Computer Architecture (E85)",
+    "text": "Digital Electronics / Computer Architecture (E85)\n\nDigital Level\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Developed an embedded C application to implement a 2D digital level, interfacing a triple-axis accelerometer with a microcontroller to measure tilt along the x and y axes.\n      Designed and wired a complete hardware system on a breadboard, integrating a RED-V development board, LIS3DH accelerometer, and an 8x8 LED matrix.\n    \n    Skills:C/C++, SPI Communication, Calibration, Soldering, Embedded Systems\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Created a digital level mapping tilt angles to an 8x8 LED matrix bubble display.\n        - Bubble motion indicated surface tilt in X and Y axes.\n      \n    \n    \n      Methods\n      \n      \n        - Programmed RED-V ThingPlus in C using SPI to interface with LIS3DH accelerometer.\n        - Implemented real-time signal processing and calibration for smooth bubble motion.\n      \n    \n    \n      Result\n      \n      \n        - Achieved accurate, smooth, reliable bubble display validating full embedded system integration.\n        - Designed a sensitive and practical 2D digital tool with real-world use.\n      \n    \n  \n\n\n\nMulticycle Processor\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed a multicycle RISC-V processor in SystemVerilog, creating a hierarchical architecture with a finite-state machine, datapath, ALU, register file, and unified memory adapted from a single-cycle design.\n      Validated processor functionality through simulation and waveform analysis.\n    \n    Skills:SystemVerilog, HDL, Assembly, RISC-V, Quartus FPGA, Questa\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Built a multicycle RISC-V CPU capable of executing arithmetic instructions and managing memory.\n        - Leveraged single-cycle components to construct a modular multicycle architecture.\n      \n    \n    \n      Methods\n      \n      \n        - Wrote SystemVerilog datapath connecting controller, memory, and register file modules.\n        - Debugged by comparing assembly testbenches against waveforms and consulted Quartus RTL schematic.\n      \n    \n    \n      Result\n      \n      \n        - Processor matched waveform expectations confirming correct values at correct addresses.\n        - Deepened understanding of RISC-V architecture and processor design principles."
+  },
+  {
+    "objectID": "projects.html#systems-engineering-e79",
+    "href": "projects.html#systems-engineering-e79",
+    "title": "Class Projects",
+    "section": "Systems Engineering (E79)",
+    "text": "Systems Engineering (E79)\n\nSubmersible Robot with Kp Control\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Constructed an underwater remotely operated vehicle (ROV) to retrieve temperature, pressure, and other signals in lake environments via the MCP9701 thermistor and MPX5700ASX pressure gauge.\n      Assembled a PCB containing the MCP6002 OpAmp to return output voltages modeled and analyzed in LabVIEW.\n    \n    Skills:LabVIEW, Soldering, PCB Assembly, Oscilloscope, DMM, Breadboarding\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Created a fully waterproof ROV to measure temperature and pressure across varying depths.\n        - Implemented proportional (Kp) control for motor operation.\n      \n    \n    \n      Methods\n      \n      \n        - Modeled ROV vertical motion by changing motor PWM duty cycle in LabVIEW.\n        - Soldered pressure sensor and thermistor circuits to the project PCB.\n      \n    \n    \n      Result\n      \n      \n        - Deployed ROV in a real-world environment and collected valid environmental data.\n        - Gained hands-on experience in PCB assembly, soldering, and oscilloscope use."
+  },
+  {
+    "objectID": "projects.html#engineering-design-manufacturing-e4",
+    "href": "projects.html#engineering-design-manufacturing-e4",
+    "title": "Class Projects",
+    "section": "Engineering Design & Manufacturing (E4)",
+    "text": "Engineering Design & Manufacturing (E4)\n\nDigital Logic Demonstration Board\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and assembled a logic-gate demonstration board using 74HC Series integrated circuits, a 555 timer, and a potentiometer-based clock input.\n      Engineered intuitive controls with input switches, banana cables, and LEDs to clearly display output states.\n      Delivered a durable teaching tool now used by Professor Stone for the Digital Logic and Computer Architecture course.\n    \n    Skills:Digital Logic, PCB Design, 74HC ICs, 555 Timer, Soldering\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Built a logic-gate demonstration board using 74HC Series ICs and a 555 timer.\n        - Incorporated input switches, banana cable ports, and LEDs for clear output visualization.\n      \n    \n    \n      Methods\n      \n      \n        - Designed board layout for intuitive student interaction and clear signal flow.\n        - Wired and soldered 74HC gates, 555 timer clock, and potentiometer for adjustable frequency.\n      \n    \n    \n      Result\n      \n      \n        - Delivered a durable teaching tool now actively used by Professor Stone in E85 lectures.\n        - Reinforced understanding of combinational logic design and hands-on fabrication.\n      \n    \n  \n\n\n\nE4 Machinist Hammer\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Manufactured a precision machinist hammer from clear oak, AISI 1015 steel, AISI 4340 steel, and nylon, adhering to detailed engineering drawings, dimensional tolerances, and safety requirements.\n      Applied turning, facing, milling, tapping, and heat treatment processes to achieve specified mechanical properties.\n    \n    Skills:GD&T, Lathe, Mill, Bandsaw, Taps, Digital Micrometers, HRC Hardness Tester, Heat Treatment\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Manufactured a functional machinist hammer from oak, steel, and nylon to precise GD&T specs.\n        - Contributed to the Harvey Mudd College tradition of student-made hammers.\n      \n    \n    \n      Methods\n      \n      \n        - Machined head stock using lathe and milling operations, verified with digital micrometers.\n        - Heat treated hard face, verified HRC hardness, and sandblasted for smooth finish.\n      \n    \n    \n      Result\n      \n      \n        - Delivered a high-quality hammer that scored near perfect in quality of manufacturing.\n        - Now serve as a Machine Shop Proctor, training new students in shop safety."
+  },
+  {
+    "objectID": "posts/post3.html",
+    "href": "posts/post3.html",
+    "title": "Starting Microprocesor Labs!",
     "section": "",
-    "text": "Overview:Coming Soon!"
+    "text": "This fall semester (2026), I will be taking an upper division course called Microprocessors Systems: Design & Application which focuses on microcontrollers and embedded system design, and how to apply HDL and logic to the real world. This summer, I’m doing some of the labs early (with approval) to better understand embedded systems and microcontrollers! My goal this summer (and future semester) is to focus on having a thorough engineering workflow. I want to not only understand and create embedded and physical systems, but also document these processes thoroughly."
   },
   {
-    "objectID": "RF.html#near-field-measurements-lab-4",
-    "href": "RF.html#near-field-measurements-lab-4",
-    "title": "Radio Frequency (E157) Projects",
+    "objectID": "posts/post1.html",
+    "href": "posts/post1.html",
+    "title": "Visit to Harbinger Motors",
     "section": "",
-    "text": "Overview:Coming Soon!"
+    "text": "Yesterday, I had the incredible opportunity to visit and job shadow at Harbinger Motors Inc.! Harbinger is a company leading the way in EV commercial vehicle innovation for trucks, RVs, and much more. It was super exciting to see the intricacies of trucks that we see everyday, and how we as engineers can continue to innovate and improve them for the future.\nI would also like to give a HUGE thank you to Zane Bodenbender (Harvey Mudd alum!) for hosting us and generously sharing insights about his work and journey — your passion and expertise made this experience especially impactful, and have truly shown me what it means to be an Engineer!"
   },
   {
-    "objectID": "RF.html#antenna-characterization-lab-5",
-    "href": "RF.html#antenna-characterization-lab-5",
-    "title": "Radio Frequency (E157) Projects",
+    "objectID": "pcb.html",
+    "href": "pcb.html",
+    "title": "PCB Designs",
     "section": "",
-    "text": "Overview:Coming Soon!"
+    "text": "Overview:\n  (My first PCB!) A single-cell LiPo battery charger and power management board featuring USB-C input, a dedicated charge IC, 5V and 3.7V regulated outputs, fuel gauge IC with I²C interface, and status indicator LEDs. Designed for use as a standalone supply module in embedded systems projects.\n\n\n  Key Features:\n  USB-C charging input, dual regulated outputs (5V / 3.7V), I²C fuel gauge, charge/power-good status LEDs, onboard enable/alert header."
   },
   {
-    "objectID": "RF.html#design-project-2-communication-system",
-    "href": "RF.html#design-project-2-communication-system",
-    "title": "Radio Frequency (E157) Projects",
+    "objectID": "pcb.html#lipo-battery-charger-monitor",
+    "href": "pcb.html#lipo-battery-charger-monitor",
+    "title": "PCB Designs",
     "section": "",
-    "text": "Overview:Coming Soon!"
+    "text": "Overview:\n  (My first PCB!) A single-cell LiPo battery charger and power management board featuring USB-C input, a dedicated charge IC, 5V and 3.7V regulated outputs, fuel gauge IC with I²C interface, and status indicator LEDs. Designed for use as a standalone supply module in embedded systems projects.\n\n\n  Key Features:\n  USB-C charging input, dual regulated outputs (5V / 3.7V), I²C fuel gauge, charge/power-good status LEDs, onboard enable/alert header."
   },
   {
-    "objectID": "publications.html",
-    "href": "publications.html",
-    "title": "Publications & Reports",
-    "section": "",
-    "text": "Submitted to IEEE\n  Stress, Cognitive Load, and Specifications Grading in an Engineering Laboratory Course\n  \n    Cleo McHenry, Sara Morishige, Jasmine Sampat, Joaquin Gonzalez-Salgado, Leah Uriarte, Matthew Spencer\n  \n  IEEE Transactions on Education, 2025\n  \n    This paper presents a controlled two-year experiment at Harvey Mudd College studying how two evidence-based\n    interventions — simplified lab manuals and specifications grading — affected student stress and cognitive load\n    in a required sophomore engineering lab course (E80). Weekly validated surveys showed that stress was\n    significantly reduced in six of seven labs, and cognitive load dropped significantly in three. Students in\n    the treatment cohort also posted meaningfully higher scores on a summative technical memo, suggesting the\n    interventions did not harm learning. I contributed as a co-author on the study design, data collection,\n    and analysis.\n  \n  \n    *Currently being published*\n  \n\n\n\n\n  Report\n  Autonomous Surface & Dive Robot for Underwater Depth Mapping\n  \n    Joaquin Gonzalez-Salgado, Esteban Gonzalez, Ayla Greenstein, Kathy Guo\n  \n  E80: Experimental Engineering, Harvey Mudd College — Spring 2026\n  \n    This report documents the design, construction, and field deployment of an autonomous underwater vehicle\n    (AUV) built to map the seafloor topography of Dana Point Harbor. The vehicle integrated a SONAR depth\n    sensor (CME1538-100LB microphone + daex25W-8 speaker), an MPX5700ASX pressure sensor for dive depth,\n    and a thermistor for temperature profiling across depth. The AUV featured four horizontal and two vertical\n    thrusters, a low center of gravity for surface stability, and a winch-based recovery system. Deployment\n    at Dana Point produced a topographic depth map of the harbor floor, with real-time data logging to an\n    onboard SD card. Sensor drift from ocean currents affected positional accuracy, motivating future work\n    on closed-loop horizontal control.\n  \n  \n    Read Paper (PDF)\n    View Poster (PDF)\n    See Project Page"
-  },
-  {
-    "objectID": "posts/post4.html",
-    "href": "posts/post4.html",
-    "title": "Dana Point Harbor Deployment",
-    "section": "",
-    "text": "Today my team and I plunged our robot into the depths of Dana Point Harbor! Our goal was to take temperature, pressure, and ocean depth measurements (via SONAR) utilizing surface and dive control. We got to ride kayaks and it was super fun!"
-  },
-  {
-    "objectID": "posts/post2.html",
-    "href": "posts/post2.html",
-    "title": "Visit to NVIDIA Voyager",
-    "section": "",
-    "text": "This week, I had the incredible opportunity to job shadow at NVIDIA’s NVIDIA’s headquarters in Santa Clara with Mudd alumni Alisha Chulani! It was really cool to see what the workplace looks like day-to-day at such a large company, and it was fascinating watch teams collaborate on some exciting projects. So grateful for the experience!"
-  },
-  {
-    "objectID": "personal.html",
-    "href": "personal.html",
-    "title": "Personal Projects",
-    "section": "",
-    "text": "Overview:\n      Built a fully functional 34-range digital multimeter from scratch that measures AC/DC voltage and current, resistance, capacitance, transistor hFE, diode junctions, and has a continuity buzzer. \n    \n    Skills:Soldering, Circuit Calibration, Analog/Digital Electronics, Component Identification\n    \n      \n        Show More\n      \n    \n  \n\n\n\n  \n    \n      Calibration\n      \n      \n        - Calibrated DC/AC voltage and current circuits against a reference meter across all ranges (200μA – 20A).\n        - Separately calibrated the capacitance circuit using known capacitor values from 2nF to 200μF.\n      \n    \n    \n      Cool Features\n      \n      \n        - Has a real continuity buzzer — short the leads and it beeps!\n        - Built-in hFE socket can test NPN and PNP transistors and read their DC current gain.\n        - Runs on a custom ICL7106 A/D converter chip for a 3Hz reading frequency.\n      \n    \n    \n      It Works!\n      \n      \n        - Verified measurement voltage, current, resistance, capacitance, and many other features of the multimeter using a power supply and another multimeter as reference.\n        - An LCD display includes a zebra connector and housing which was all assembled by hand, and a Fuse and other safety measures were incoporated as well."
-  },
-  {
-    "objectID": "personal.html#wood-shop-french-cleat-wall",
-    "href": "personal.html#wood-shop-french-cleat-wall",
-    "title": "Personal Projects",
-    "section": "Wood Shop French Cleat Wall",
-    "text": "Wood Shop French Cleat Wall\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and built a modular french cleat wall system for the HMC Wood Shop to organize tools and keep the workspace clean and efficient.\n      French cleats use interlocking 45° angled cuts to create a flexible, reconfigurable mounting system — any holder or shelf can be moved or swapped without any hardware.\n      Cut and assembled custom holders for screwdrivers, wrenches, pliers, drill bits, sandpaper belts, and more.\n    \n    \n      Skills:\n      Table Saw, Woodworking, Shop Organization, Fabrication"
-  },
-  {
-    "objectID": "personal.html#rockler-wooden-speaker",
-    "href": "personal.html#rockler-wooden-speaker",
-    "title": "Personal Projects",
-    "section": "Rockler Wooden Speaker",
-    "text": "Rockler Wooden Speaker\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a bluetooth speaker by cutting 8 triangular pieces of plywood, and wood glueing them together in a box orientation!\n      Utilized the Rockler's Speaker Set to design and assemble the speaker kit, which connects via AUX and Bluetooth! It's also portable, as it runs on a lithium ion charged battery.\n      This project involved a lot of wood shop tools, including a Table Saw, Miter Saw, Planar, and much more!\n      This little project has now become a speaker I use day to day!\n    \n    \n      Skills:\n      Table Saw, Miter Saw, Planar, Wood Glue, Soldering, Bluetooth Electronics"
-  },
-  {
-    "objectID": "personal.html#red-ish-skateboard",
-    "href": "personal.html#red-ish-skateboard",
-    "title": "Personal Projects",
-    "section": "Red-ish Skateboard",
-    "text": "Red-ish Skateboard\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a skateboard completely from scratch under the HMC Makerspace Grant!\n      The materials for this assembly were a sheet of plywood, bearings and tires, grip tape, and red paint, assembled over the course of 3 weeks.\n      Used the ShopBot (CNC Router Table) to cut out the skateboard frame. This board is now used to travel around the Harvey Mudd campus!\n    \n    \n      Skills:\n      ShopBot CNC, CAD, Woodworking, Finishing"
-  },
-  {
-    "objectID": "labs/lab7/lab7.html",
-    "href": "labs/lab7/lab7.html",
+    "objectID": "labs/lab6/lab6.html",
+    "href": "labs/lab6/lab6.html",
     "title": "Portfolio",
     "section": "",
     "text": "Overview:Coming Soon!"
   },
   {
-    "objectID": "labs/lab5/lab5.html",
-    "href": "labs/lab5/lab5.html",
-    "title": "Lab 5: Interrupts",
+    "objectID": "labs/lab4/lab4.html",
+    "href": "labs/lab4/lab4.html",
+    "title": "Lab 4: Digital Audio",
     "section": "",
-    "text": "In this lab,"
+    "text": "Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | May 31, 2026"
   },
   {
-    "objectID": "labs/lab5/lab5.html#introduction",
-    "href": "labs/lab5/lab5.html#introduction",
-    "title": "Lab 5: Interrupts",
-    "section": "",
-    "text": "In this lab,"
+    "objectID": "labs/lab4/lab4.html#introduction",
+    "href": "labs/lab4/lab4.html#introduction",
+    "title": "Lab 4: Digital Audio",
+    "section": "Introduction",
+    "text": "Introduction\nIn this lab, a hardware timer of the STM32L432KC MCU was used to drive an 8-ohm speaker to play music. The timer was configured to toggle a GPIO pin at a specified frequency, generating a square wave corresponding to each musical note, and also to produce millisecond delays for note durations. The system was tested by playing Für Elise, and as an optional piece, Fallen Down was also implemented."
   },
   {
-    "objectID": "labs/lab5/lab5.html#design-and-testing-methodology",
-    "href": "labs/lab5/lab5.html#design-and-testing-methodology",
-    "title": "Lab 5: Interrupts",
+    "objectID": "labs/lab4/lab4.html#design-and-testing-methodology",
+    "href": "labs/lab4/lab4.html#design-and-testing-methodology",
+    "title": "Lab 4: Digital Audio",
     "section": "Design and Testing Methodology",
-    "text": "Design and Testing Methodology\n\nMCU"
+    "text": "Design and Testing Methodology\n\nLab Overview\nA single timer, TIM2, was used for both frequency generation and duration control. The ARR register is reloaded each note to set the correct half-period, and the GPIO pin is flipped on every update event, producing a square wave. For rests, the GPIO pin is held low and ARR is set for a 1 ms tick, looping for the required number of milliseconds.\nAll peripheral registers of RCC, GPIO, and TIM2 were manually defined via #define using base addresses and offsets from the STM32L432KC Reference Manual. No CMSIS headers were used!\n\n\nClock and Timer Configuration\nThe MCU runs on the default 4 MHz clock. TIM2 is clocked from APB1ENR1 and is configured with a prescaler (PSC) of 3, dividing the 4 MHz clock by 4 to produce a 1 MHz timer clock!:\n\\[\nf_{\\text{timer}} = \\frac{4\\,\\text{MHz}}{PSC + 1} = \\frac{4\\,\\text{MHz}}{4} = 1\\,\\text{MHz}\n\\]\n\n\nFrequency Generation\nFor a note at frequency f, the GPIO pin must be toggled twice per period (once high, once low), the timer update event must occur at 2f, so the GPIO toggles at 2f and the resulting square wave has frequency f. Then, we can write an expression for the Auto-Reload Register ARR:\n\\[\nf_{\\text{out}} = \\frac{f_{\\text{clock}}}{\\text{ARR}+1}\n= \\frac{1{,}000{,}000}{\\text{ARR}+1}\n\\]\nSolving for ARR, we get:\n\\[\n\\text{ARR} = \\frac{f_{\\text{timer}}}{2f} - 1 = \\frac{1{,}000{,}000}{2f} - 1\n\\]\n\n\nDuration Control (Rests)\nFor rests (freq == 0), the delay function sets ARR to produce a 1 ms tick:\n\\[\n\\text{ARR}_{\\text{delay}} = \\frac{1{,}000{,}000}{1{,}000} - 1 = 999\n\\]"
   },
   {
-    "objectID": "labs/lab5/lab5.html#technical-documentation",
-    "href": "labs/lab5/lab5.html#technical-documentation",
-    "title": "Lab 5: Interrupts",
-    "section": "Technical Documentation:",
-    "text": "Technical Documentation:\n\n\n\n\n\n\nNoteSource Code\n\n\n\nThe source code for the project can be found in the associated Github Repo.\n\n\n\nSchematic\nLab 5 Wiring Schematic // Joaquin Gonzalez-Salgado // June 9 2026\n\n\n\n\n\n\nFigure 1: Schematic.\n\n\n\nFigure 1 Shows the wiring approach for this lab. Each on-board LED is connected to an SMT 1 k\\(\\Omega\\) resistor via the development board.\nAs for the 7-Segment display, 5 to 20 mA of current was advised in the lab manual. Since the FPGA GPIO pins output 3.3V, Ohm’s law can be used to find an effective resistor for this current. (For this calculation, I chose 13 mA of current). This is shown in Equation 1:\n\\[\nV = IR \\implies R = \\frac{V}{I} = \\frac{3.3\\,\\text{V} - 2.0\\,\\text{V}}{0.013\\,\\text{A}} = 100\\,\\Omega\n\\tag{1}\\]"
+    "objectID": "labs/lab4/lab4.html#calculations",
+    "href": "labs/lab4/lab4.html#calculations",
+    "title": "Lab 4: Digital Audio",
+    "section": "Calculations",
+    "text": "Calculations\nFirst, we need to calculate the possible range of frequencies given the TIM2 and PSC setup. Plugging in the maximum and minimum ARR can help us find the frequency range. Note that because TIM2 is a 32-bit timer, ARR_max = \\(2^{32} - 1\\) = 4,294,967,295. ARR_min is simply 0. Frequency range (TIM2, PSC = 3, timer clock = 1 MHz):\n\\[\nf_{\\text{min}} = \\frac{f_{\\text{timer}}}{2 \\times (\\text{ARR}_{\\text{max}} + 1)} = \\frac{1{,}000{,}000}{2 \\times 2^{32}} \\approx 0.000116\\,\\text{Hz}\n\\]\n\\[\nf_{\\text{max}} = \\frac{f_{\\text{timer}}}{2 \\times (\\text{ARR}_{\\text{min}} + 1)} = \\frac{1{,}000{,}000}{2 \\times 1} = 500{,}000\\,\\text{Hz}\n\\]\nBoth values comfortably cover the required 220–1000 Hz range.\nDuration range (1 ms tick loop):\nThe minimum supported duration is 1 ms (one loop iteration). The maximum is bounded by the uint32_t loop counter in the delay function:\n\\[\nt_{\\text{max}} = (2^{32} - 1)\\,\\text{ms} \\approx 4.3 \\times 10^6\\,\\text{s} \\approx 49.7\\,\\text{days}\n\\]\nThis is far more than sufficient for any musical duration.\nFrequency accuracy (220–1000 Hz):\nBecause ARR is an integer, rounding introduces a small error. Here are some calculatiions checking the error between desired and actual frequencies\nAt 220 Hz: \\[\n\\text{ARR} = \\left\\lfloor\\frac{1{,}000{,}000}{2 \\times 220}\\right\\rfloor - 1 = 2271\\] \\[f_{\\text{actual}} = \\frac{1{,}000{,}000}{2 \\times 2272} \\approx 220.07\\,\\text{Hz} \\qquad (0.03\\%\\,\\text{error})\n\\]\nAt 1000 Hz: \\[\n\\text{ARR} = \\frac{1{,}000{,}000}{2 \\times 1000} - 1 = 499\\] \\[f_{\\text{actual}} = \\frac{1{,}000{,}000}{2 \\times 500} = 1000.00\\,\\text{Hz} \\qquad (0.00\\%\\,\\text{error})\n\\]\nAll frequencies in the 220–1000 Hz range are within 0.10% of their target, well within the 1% requirement."
   },
   {
-    "objectID": "labs/lab5/lab5.html#results-and-discussion",
-    "href": "labs/lab5/lab5.html#results-and-discussion",
-    "title": "Lab 5: Interrupts",
-    "section": "Results and Discussion",
-    "text": "Results and Discussion\n\n\n\n\n\n\nNoteResults and Discussion\n\n\n\nThe Design was a Success!\n\n\nThe design successfully met all objectives."
+    "objectID": "labs/lab4/lab4.html#technical-documentation",
+    "href": "labs/lab4/lab4.html#technical-documentation",
+    "title": "Lab 4: Digital Audio",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\n\n\n\n\n\n\nNoteSource Code\n\n\n\nThe source code for the project can be found in the associated GitHub Repo.\n\n\nPA1 was configured as a general-purpose output by enabling GPIOA via RCC-&gt;AHB2ENR. TIM2 was enabled via RCC-&gt;APB1ENR1. All register access were manually defined struct typedefs, meaning no CMSIS headers! Very baremetal C code.\nLab 4 Wiring Schematic // Joaquin Gonzalez-Salgado // June 3rd 2026\n\n\n\n\n\n\nFigure 1: Schematic of MCU, LM386 amplifier, potentiometer, and 8-ohm speaker.\n\n\n\nThe PA1 output was connected to the non-inverting input of the LM386 amplifier. The LM386 was powered from the 3.3 V MCU supply, and its output drove the 8-ohm speaker directly. A 10 kΩ potentiometer between PA1 and the LM386 input provided adjustable volume!"
   },
   {
-    "objectID": "labs/lab5/lab5.html#conclusion",
-    "href": "labs/lab5/lab5.html#conclusion",
-    "title": "Lab 5: Interrupts",
+    "objectID": "labs/lab4/lab4.html#conclusion",
+    "href": "labs/lab4/lab4.html#conclusion",
+    "title": "Lab 4: Digital Audio",
     "section": "Conclusion",
-    "text": "Conclusion\n\n\n\n\n\n\nNoteHours Spent on Lab\n\n\n\nThis lab took ___ hours."
+    "text": "Conclusion\nThe design successfully met all lab requirements. Für Elise played at the correct tempo with all pitches accurate to well within 1% across the full 220–1000 Hz range, as verified by the ARR calculations above. All rests were rendered as silence for the correct durations. The optional composition Fallen Down also played correctly! And the Potentiometer did vary the volume as intended.\n\n\n\n\n\n\nNoteHours Spent on Lab\n\n\n\nThis lab took approximately 15 hours to complete. The most time-consuming parts were navigating the reference manual to find the correct register offsets, and understanding C code in a more thorough way."
   },
   {
-    "objectID": "labs/lab5/lab5.html#ai-prototype-summary",
-    "href": "labs/lab5/lab5.html#ai-prototype-summary",
-    "title": "Lab 5: Interrupts",
+    "objectID": "labs/lab4/lab4.html#ai-prototype-summary",
+    "href": "labs/lab4/lab4.html#ai-prototype-summary",
+    "title": "Lab 4: Digital Audio",
     "section": "AI Prototype Summary",
-    "text": "AI Prototype Summary\nThe purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:\n\n\n\n\n\n\nTipAI Prototype (Claude)\n\n\n\nPrompt: Write me interrupt handlers to interface with a quadrature encoder. I’m using the STM32L432KC, what pins should I connect the encoder to in order to allow it to easily trigger the interrupts?\n\n\n\n\n\n\n\n\nNoteGenerated Code:\n\n\n\n#include “stm32l4xx_hal.h”\nvolatile int32_t encoder_count = 0;\nvoid Encoder_GPIO_Init(void) { __HAL_RCC_GPIOA_CLK_ENABLE();\nGPIO_InitTypeDef gpio = {0};\ngpio.Pin  = GPIO_PIN_0 | GPIO_PIN_1;\ngpio.Mode = GPIO_MODE_IT_RISING_FALLING; // Trigger on both edges\ngpio.Pull = GPIO_PULLUP;\nHAL_GPIO_Init(GPIOA, &gpio);\n\nHAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);\nHAL_NVIC_EnableIRQ(EXTI0_IRQn);\nHAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);\nHAL_NVIC_EnableIRQ(EXTI1_IRQn);\n}\n// Read current state of both channels static inline uint8_t read_A(void) { return HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0); } static inline uint8_t read_B(void) { return HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1); }\n// Standard quadrature decode table // Index: [prev_A][prev_B][curr_A][curr_B] static const int8_t QEM[16] = { 0, -1, 1, 0, 1, 0, 0, -1, -1, 0, 0, 1, 0, 1, -1, 0 };\nstatic uint8_t last_state = 0;\nstatic void update_encoder(void) { uint8_t curr_state = (read_A() &lt;&lt; 1) | read_B(); encoder_count += QEM[(last_state &lt;&lt; 2) | curr_state]; last_state = curr_state; }\nvoid EXTI0_IRQHandler(void) { update_encoder(); HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0); }\nvoid EXTI1_IRQHandler(void) { update_encoder(); HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1); }\n\n\n\nReflection:\nThis week is Claude Sonnet again! Rather than helping me with the specific question I asked, it gave me two options: Using the Interrupt approach I asked for, or using the “Hardware Timer Encoder Mode”. It provided me with code for both options, and stated that for Encoder A I should use PA0 with EXTI Line EXTI0 and for Encoder B I should use PA1 with EXTI Line EXTI1."
+    "text": "AI Prototype Summary\nThe purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:\n\n\n\n\n\n\nTipAI Prototype (Claude Sonnet)\n\n\n\nPrompt: What timers should I use on the STM32L432KC to generate frequencies ranging from 220Hz to 1kHz? What’s the best choice of timer if I want to easily connect it to a GPIO pin? What formulae are relevant, and what registers need to be set to configure them properly?\n\n\n\nReflection:\nThis week is Claude Sonnet. Claude Sonnet claimed that the following timers would work for generating 220 Hz to 1kHz frequencies: TIM1, TIM2, TIM15, and TIM16. This makes sense, as I had used TIM2. It chose TIM2 as the best option due to its resolution, # of channels, and ease of accessibility.\nIt also gave the following formula:\n\\[\nf_{output} = \\frac{f_{TIMx\\_CLK}}{(PSC + 1) \\times (ARR + 1)}\n\\]\nwith an example for 440 Hz (A4) with PWM. It also provided the maximum and minimum ARR, which it stated were 4544 and 999 for a given PSC of 79. Not sure how accurate that is, as I did not use that PSC value.\nClaude Sonnet also provided the correct register configuration, and how to enable the clocks with RCC, and even configure the GPIO pin! Overall the LLM returned mostly the correct information, however it was too much information than I asked for."
   },
   {
-    "objectID": "labs/lab3/lab3.html",
-    "href": "labs/lab3/lab3.html",
-    "title": "Portfolio",
+    "objectID": "labs/lab2/lab2.html",
+    "href": "labs/lab2/lab2.html",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
     "section": "",
-    "text": "Overview:Coming Soon!"
+    "text": "In this lab, a time-multiplexed dual 7-segment display was implemented using the UPduino v3.1 FPGA. Two independent 4-bit hexadecimal values are provided via DIP switches: one from the on-board switch bank and one from a breadboard DIP switch. These two values are displayed simultaneously on a dual 7-segment display by rapidly alternating between the two digits. A single shared sevenSegment decoder module drives the cathodes for both digits. The sum of the two input values is displayed across five on-board LEDs. A 2N3906 PNP transistor circuit was built to source the large anode current required by each display digit."
   },
   {
-    "objectID": "labs/lab1/lab1.html",
-    "href": "labs/lab1/lab1.html",
-    "title": "Lab 1: FPGA and MCU Setup and Testing",
+    "objectID": "labs/lab2/lab2.html#introduction",
+    "href": "labs/lab2/lab2.html#introduction",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
     "section": "",
-    "text": "In this lab, a development board was assembled by soldering SMT and THT components, and a SystemVerilog design was implemented on the UPduino v3.1 FPGA to demonstrate the functionality of that board. Code was written to utilize the high-speed oscillator to control three on-board LEDS and a 7-Segment Display using 4 DIP switch inputs on the board."
+    "text": "In this lab, a time-multiplexed dual 7-segment display was implemented using the UPduino v3.1 FPGA. Two independent 4-bit hexadecimal values are provided via DIP switches: one from the on-board switch bank and one from a breadboard DIP switch. These two values are displayed simultaneously on a dual 7-segment display by rapidly alternating between the two digits. A single shared sevenSegment decoder module drives the cathodes for both digits. The sum of the two input values is displayed across five on-board LEDs. A 2N3906 PNP transistor circuit was built to source the large anode current required by each display digit."
   },
   {
-    "objectID": "labs/lab1/lab1.html#introduction",
-    "href": "labs/lab1/lab1.html#introduction",
-    "title": "Lab 1: FPGA and MCU Setup and Testing",
-    "section": "",
-    "text": "In this lab, a development board was assembled by soldering SMT and THT components, and a SystemVerilog design was implemented on the UPduino v3.1 FPGA to demonstrate the functionality of that board. Code was written to utilize the high-speed oscillator to control three on-board LEDS and a 7-Segment Display using 4 DIP switch inputs on the board."
-  },
-  {
-    "objectID": "labs/lab1/lab1.html#design-and-testing-methodology",
-    "href": "labs/lab1/lab1.html#design-and-testing-methodology",
-    "title": "Lab 1: FPGA and MCU Setup and Testing",
+    "objectID": "labs/lab2/lab2.html#design-and-testing-methodology",
+    "href": "labs/lab2/lab2.html#design-and-testing-methodology",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
     "section": "Design and Testing Methodology",
-    "text": "Design and Testing Methodology\n\nDevelopment Board Interface\nTo start, the development board system consisted of Surface-Mount (SMT) and Through-Hole (THT) components that were hand-soldered onto the board. Two development boards are integrated into this PCB using female header pins: The UPduino v3.1 FPGA and the Nucleo-L432KC MCU. The resulting development board is shown in Figure 1:\n\n\n\n\n\n\nFigure 1: Finished Development Board with FPGA & MCU\n\n\n\n\n\nFPGA Implementation\n\n\n\nTable 1: Digital Inputs and Outputs for Lab 1\n\n\n\n\n\n\n\n\n\n\n\n\nSignal Name\nSignal Type\nDescription\n\n\n\n\n\n\nint_osc\ninput\n48 MHz clock on FPGA\n\n\n\n\ns[3:0]\ninput\nFour DIP switches (SW6)\n\n\n\n\nled[2:0]\noutput\n3 On-Board LEDS\n\n\n\n\nseg[6:0]\noutput\nCommon-Anode 7-segment display segments\n\n\n\n\n\n\n\n\nThe on-board high-speed oscillator (HSOSC) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs.\nThe design was developed using a simple clock divider module which drives the external LED."
+    "text": "Design and Testing Methodology\n\nFPGA Implementation\n\n\n\nTable 1: Digital Inputs and Outputs for Lab 2\n\n\n\n\n\n\n\n\n\n\n\n\nSignal Name\nSignal Type\nDescription\n\n\n\n\n\n\nint_osc\ninternal\n48 MHz clock\n\n\n\n\ns1[3:0]\ninput\nFirst 7-segment\n\n\n\n\ns2[3:0]\ninput\nSecond 7-segment\n\n\n\n\nreset\ninput\nHold to turn off Display\n\n\n\n\nactive\noutput\nCurrently Active Anode\n\n\n\n\ninactive\noutput\nCurrently Inactive Anode\n\n\n\n\nled[4:0]\noutput\n5-bit sum of s1 and s2\n\n\n\n\nseg[6:0]\noutput\nResulting displayed output (switches between s1 and s2)\n\n\n\n\n\n\n\n\nThe top-level module lab2_jg uses the same 24 MHz internal high-speed oscillator (HSOSC) divider from Lab 1. A 20-bit counter is incremented by 10 on every rising clock edge, producing an approximately 229 Hz toggle. This toggle signal called state, is the input to the multiplexer that selects between s1 and s2, the two numbers to be displayed. At the same time, it controls the active and inactive signals to the PNP transistors, which control the COM ports. Each digit is therefore illuminated at roughly 114 Hz, which is above the flicker threshold of the human eye.\nThe selected 4-bit value (between s1 and s2) s is fed into the sevenSegment decoder, which works as previously in Lab 1 mapping hex numbers 0 to F on the display. Five LEDs on a breadboard directly implement the 5-bit sum s1 + s2.\n\n\nMultiplexing Frequency Calculation\nThe counter increments by 10 each cycle at 24 MHz, and state = counter[19]:\n\\[\n\\begin{aligned}\nf_{\\text{switching}} &= \\frac{24{,}000{,}000 \\times 10}{2^{20}} \\approx 228.9 \\text{ Hz} \\\\\nf_{\\text{display}} &= \\frac{f_{\\text{switching}}}{2} \\approx 114.4 \\text{ Hz per display}\n\\end{aligned}\n\\]"
   },
   {
-    "objectID": "labs/lab1/lab1.html#technical-documentation",
-    "href": "labs/lab1/lab1.html#technical-documentation",
-    "title": "Lab 1: FPGA and MCU Setup and Testing",
+    "objectID": "labs/lab2/lab2.html#technical-documentation",
+    "href": "labs/lab2/lab2.html#technical-documentation",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
     "section": "Technical Documentation:",
-    "text": "Technical Documentation:\n\n\n\n\n\n\nNoteSource Code\n\n\n\nThe source code for the project can be found in the associated Github Repo.\n\n\n\nBlock Diagram\nLab 1 Block Diagram // Joaquin Gonzalez-Salgado // September x 2025\n\n\n\n\n\n\nFigure 2: Top-Level Block Diagram of’Lab1_jg’ and ‘sevenSegment’.\n\n\n\nThe block diagram in Figure 2 demonstrates the overall architecture of the design. The top-level module lab1_jg includes three submodules: a high-speed oscillator block (HSOSC), a sequential logic counter which acts as a clock divider, and the combinational logic for the 7-Segment display (sevenSegment).\n\n\nSchematic\nLab 1 Wiring Schematic // Joaquin Gonzalez-Salgado // September x 2025\n\n\n\n\n\n\nFigure 3: Schematic of FPGA, DIP switches, and 7-segment wiring.\n\n\n\nFigure 3 Shows the wiring approach for this lab. Each on-board LED is connected to an SMT 1 k\\(\\Omega\\) resistor via the development board.\nAs for the 7-Segment display, 5 to 20 mA of current was advised in the lab manual. Since the FPGA GPIO pins output 3.3V, Ohm’s law can be used to find an effective resistor for this current. (For this calculation, I chose 13 mA of current). This is shown in Equation 1:\n\\[\nV = IR \\implies R = \\frac{V}{I} = \\frac{3.3\\,\\text{V} - 2.0\\,\\text{V}}{0.013\\,\\text{A}} = 100\\,\\Omega\n\\tag{1}\\]"
+    "text": "Technical Documentation:\n\n\n\n\n\n\nNoteSource Code\n\n\n\nThe source code for the project can be found in the associated Github Repo.\n\n\n\nBlock Diagram\nLab 2 Block Diagram // Joaquin Gonzalez-Salgado // May 29th 2026\n\n\n\n\n\n\nFigure 1: Top-Level Block Diagram of’Lab2_jg’ and ‘sevenSegment’.\n\n\n\nThe top-level module lab2_jg contains four submodules: the HSOSC clock, a sequential 20-bit counter acting as a clock divider and display controller, a mux selecting between s1 and s2, and the sevenSegment decoder from previous labs. The active and inactive anode control signals are connected to the bases of two 2N3906 PNP transistors.\n\n\nSchematic\nLab 2 Wiring Schematic // Joaquin Gonzalez-Salgado // May 29th 2026\n\n\n\n\n\n\nFigure 2: Schematic of FPGA, DIP switches, and 7-segment wiring.\n\n\n\nFigure 2 Shows the wiring schematic for this lab. 270 Ohm resistors were used for the LEDS and Display, and 510 Ohm resistors were used for the Base of the PNPs. The calculations for these resistors are described below:\nThe 7-segment display and Green LEDS have a forward voltage of roughly 2.0 V, and we do not want to exceed the FPGA GPIO current of 8 mA. So, we can use Ohm’s law to find the desired resistor (using a current of 5 mA) This is shown in Equation 1:\n\\[\nV = IR \\implies R = \\frac{V}{I} = \\frac{3.3\\,\\text{V} - 2\\,\\text{V}}{0.005\\,\\text{A}} = 260\\,\\Omega \\approx 270\\,\\Omega\n\\tag{1}\\]\nThe 2N3906 PNP transistor has a forward voltage drop from the Base to the Emitter of about 0.7 V. With the same current constraint of 8 mA, we can find a desired resistor for the circuit. (Once again choosing a current of 5 mA.) This is shown in Equation 2:\n\\[\nV = IR \\implies R = \\frac{V}{I} = \\frac{3.3\\,\\text{V} - 0.7\\,\\text{V}}{0.005\\,\\text{A}} = 520\\,\\Omega \\approx 510\\,\\Omega\n\\tag{2}\\]\n*Note, the two resistor approximations were made as those were the resistor values available."
   },
   {
-    "objectID": "labs/lab1/lab1.html#results-and-discussion",
-    "href": "labs/lab1/lab1.html#results-and-discussion",
-    "title": "Lab 1: FPGA and MCU Setup and Testing",
+    "objectID": "labs/lab2/lab2.html#results-and-discussion",
+    "href": "labs/lab2/lab2.html#results-and-discussion",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
     "section": "Results and Discussion",
-    "text": "Results and Discussion\n\n\n\n\n\n\nNoteResults and Discussion\n\n\n\nThe Design was a Success!\n\n\nThe design successfully met all objectives. The LED truth table was verified both in Questa and the on-board LEDs. led[0] correctly implements XOR of S1 and S0, and led[1] correctly illuminates only when both S2 and S3 are high (AND). led[2] blinks at approximately 2.4 Hz, verified by observing the counter period in simulation. All 16 hexadecimal digits (0–F) were confirmed to display correctly on the 7-segment display, with distinguishable representations for visually similar digits such as b vs 8.\n\nTestbench Simulation\n\n\n\n\n\n\nFigure 4: A screenshot of a QuestaSim simulation demonstrating the blinking output signal. Note that the timescale for the clock divider was modified to divide by 4.\n\n\n\nFigure 4 shows a screenshot of the QuestaSim simulation. Asserts were also used to verify all 8 LED truth table cases, and all decoder outputs."
+    "text": "Results and Discussion\n\n\n\n\n\n\nNoteResults and Discussion\n\n\n\nThe Design was a Success!\n\n\nThe design successfully met all lab requirements. Both display digits independently show the correct hexadecimal representation of s1 and s2, with all 16 digits (0–F) rendering correctly with unique, distinguishable shapes. The multiplexed display shows no visible flicker at the ~114 Hz per digit switching rate. The five LEDs correctly display the binary sum s1 + s2, including the carry bit on led[4]. The QuestaSim testbench verified correct decoder outputs for all 16 input combinations, and asserts in the tesetbenched all passed.\n\nTestbench Simulation\n\n\n\n\n\n\nFigure 3: Questa Simulation of the Lab2 testbench, with expected waveforms.\n\n\n\nThe simulation confirmed the correct behavior for toggling between s1 and s2. Asserts showed that the 7-segment decoder remained accurate, and the summing logic for the 5 leds was proved accurate with this as well. (These were also verified visually on the breadboard)"
   },
   {
-    "objectID": "labs/lab1/lab1.html#conclusion",
-    "href": "labs/lab1/lab1.html#conclusion",
-    "title": "Lab 1: FPGA and MCU Setup and Testing",
+    "objectID": "labs/lab2/lab2.html#conclusion",
+    "href": "labs/lab2/lab2.html#conclusion",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
     "section": "Conclusion",
-    "text": "Conclusion\n\n\n\n\n\n\nNoteHours Spent on Lab\n\n\n\nThis lab took 20 hours. Soldering on the components to the developoment board required a lot of time, and setting up the Lattice Radiant and Programmer Environments took a bit to get used to. A huge chunk of time was dedicated to debugging USB Serial Driver issues!"
+    "text": "Conclusion\nThis lab successfully demonstrated time-multiplexing to share a single 7-segment decoder and a single set of I/O pins to display two separate digits. The design reused the sevenSegment decoder from Lab 1 without any changes.\n\n\n\n\n\n\nNoteHours Spent on Lab\n\n\n\nThis lab took 9 hours. Setting up the breadboard was slightly difficult, due to the number of components necessary for the lab."
   },
   {
-    "objectID": "labs/lab1/lab1.html#ai-prototype-summary",
-    "href": "labs/lab1/lab1.html#ai-prototype-summary",
-    "title": "Lab 1: FPGA and MCU Setup and Testing",
-    "section": "AI Prototype Summary",
-    "text": "AI Prototype Summary\nThe purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:\n\n\n\n\n\n\nTipAI Prototype (ChatGPT)\n\n\n\nPrompt: Write SystemVerilog HDL to leverage the internal high speed oscillator in the Lattice UP5K FPGA and blink an LED at 2 Hz. Take full advantage of SystemVerilog syntax, for example, using logic instead of wire and reg.\n\n\n\n\n\n\n\n\nNoteGenerated Code:\n\n\n\nmodule top ( output logic LED );\nlogic clk_hf;\nlogic clk_enable;\n\nassign clk_enable = 1'b1;\n\nHSOSC #(\n    .CLKHF_DIV(\"0b00\")\n) hf_oscillator (\n    .CLKHFPU (1'b1),\n    .CLKHFEN (clk_enable),\n    .CLKHF   (clk_hf)\n);\n\nlocalparam int unsigned TOGGLE_COUNT = 12_000_000 - 1;\n\nlogic [$clog2(TOGGLE_COUNT + 1)-1:0] counter = '0;\n\nalways_ff @(posedge clk_hf) begin\n    if (counter == TOGGLE_COUNT) begin\n        counter &lt;= '0;\n        LED     &lt;= ~LED;\n    end\n    else begin\n        counter &lt;= counter + 1'b1;\n    end\nend\nendmodule\n\n\n\nReflection:\nEvery week I will try a different AI model, just to get a scope of the variety of LLMs. This week is ChatGPT-5.5. ChatGPT-5.5 was able to create code that was synthesizable in Lattice Radiant, and produced a succesful verilog file that allowed for an LED to pulse at 2.01 Hz (verified via Oscilloscope), completely on the first try. The only work I had to do was route the resulting led output to the pin on the FPGA.\nAs for the quality of the output, ChatGPT-5.5 did exactly what I told it to do, with no errors from Radiant at all. The LLM generated some syntax that I was unfamiliar with, as I have never used $clog2 before. It also used a different method than what I had used (stating an unsigned integer for the count) so that was new.\nThe next time I utilize an LLM in my workflow, I would most likely ask it to use terms/methods that I am familiar with, or explain what the different parts of the SystemVerilog file do. ChatGPT-5.5 did not explain the workflow at all, and just gave me the code with not context."
+    "objectID": "labs/lab2/lab2.html#ai-prototype",
+    "href": "labs/lab2/lab2.html#ai-prototype",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "section": "AI Prototype",
+    "text": "AI Prototype\n\n\n\n\n\n\nTipAI Prototype (Gemini)\n\n\n\nPrompt 1: Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits.\n\n\nThen, starting a new AI conversation and attaching my lab 1 files as context, I entered this prompt:\n\n\n\n\n\n\nTipAI Prototype (Gemini) — With Context\n\n\n\nPrompt 2: Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits.\n\n\n\n\n\n\n\n\nNoteFirst Round of Generated Code (No Context):\n\n\n\nmodule top_seven_seg_mux (\n    input  logic        clk,\n    input  logic        rst_n,\n    input  logic [3:0]  in_data0,\n    input  logic [3:0]  in_data1,\n    output logic [6:0]  seg,\n    output logic [1:0]  anode\n);\n\n    logic [15:0] refresh_counter;\n    logic        mux_sel;\n    logic [3:0]  current_nibble;\n\n    always_ff @(posedge clk or negedge rst_n) begin\n        if (!rst_n) refresh_counter &lt;= '0;\n        else        refresh_counter &lt;= refresh_counter + 1'b1;\n    end\n\n    assign mux_sel = refresh_counter[15];\n\n    always_comb begin\n        if (mux_sel == 1'b0) begin\n            current_nibble = in_data0;\n            anode          = 2'b10;\n        end else begin\n            current_nibble = in_data1;\n            anode          = 2'b01;\n        end\n    end\n\n    always_comb begin\n        case (current_nibble)\n            4'h0: seg = 7'b100_0000;\n            4'h1: seg = 7'b111_1001;\n            4'h2: seg = 7'b010_0100;\n            4'h3: seg = 7'b011_0000;\n            4'h4: seg = 7'b001_1001;\n            4'h5: seg = 7'b001_0010;\n            4'h6: seg = 7'b000_0010;\n            4'h7: seg = 7'b111_1000;\n            4'h8: seg = 7'b000_0000;\n            4'h9: seg = 7'b001_0000;\n            4'hA: seg = 7'b000_1000;\n            4'hB: seg = 7'b000_0011;\n            4'hC: seg = 7'b100_0110;\n            4'hD: seg = 7'b010_0001;\n            4'hE: seg = 7'b000_0110;\n            4'hF: seg = 7'b000_1110;\n            default: seg = 7'b111_1111;\n        endcase\n    end\n\nendmodule\n\n\n\n\n\n\n\n\nNoteSecond Round of Generated Code (With Lab 1 Files):\n\n\n\nmodule top_multiplex (\n    input  logic       reset,\n    input  logic [3:0] s1,\n    input  logic [3:0] s2,\n    output logic [6:0] seg,\n    output logic [1:0] anode\n);\n\n    logic int_osc;\n    logic [31:0] counter = 0;\n    logic [3:0] mux_digit;\n    logic mux_clk;\n\n    HSOSC #(.CLKHF_DIV(2'b01)) \n         hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(int_osc)); \n\n    always_ff @(posedge int_osc) begin\n        if (reset == 0) counter &lt;= 0;\n        else            counter &lt;= counter + 1;\n    end\n\n    assign mux_clk = counter[15];\n\n    always_comb begin\n        if (mux_clk) begin\n            mux_digit = s1;\n            anode     = 2'b10;\n        end else begin\n            mux_digit = s2;\n            anode     = 2'b01;\n        end\n    end\n\nendmodule\n\n\n\nReflection:\nNew week new AI model! This week is Gemini-3.5 Flash. Gemini-3.5 Flash was able to create code off the first prompt that was synthesizable in Lattice Radiant, and produced a file that seemed very reasonable. The only concern was that the file had an external clk, and did not use the oscillator on the FPGA board.\nFor the second prompt, after uploading the files to show Gemini-3.5 Flash context for the problem, Gemini-3.5 Flash could not get the code to synthesize. This shocked me, because I would have assumed the context would have been more helpful, but that was not the case. Although Gemini-3.5 Flash incorporated the oscillator in the design, it ultimately failed in writing code that could be synthesized.\nThe next time I utilize an LLM in my workflow, I think I will ask it to produce code on its own first, then provide context in the same AI chat, allowing for it to incorporate those aspects into its already written design."
   },
   {
-    "objectID": "experience.html",
-    "href": "experience.html",
-    "title": "Industry & Research Experience",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Joaquin Gonzalez-Salgado",
     "section": "",
-    "text": "Coming Soon!\n    \n    \n      Details about my clinic project will be posted here soon. Stay tuned!\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding\n      behavior of disease-vector insects, supporting agricultural and ecological research.\n      Developed microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog\n      signals from insect feeding experiments.\n      Applied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits,\n      optimize signal quality, and improve reliability for field deployment.\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\n      Developed FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\n      Configured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python-based data analysis/visualization.\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.\n    \n    Machine Shop Website →\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Will supervise and support students through 13 hands-on lab practicums in Harvey Mudd's E79 Systems Engineering course, \n      where underwater robotics serves as the teaching vehicle for modeling, constructing, and controlling mechanical, thermal, \n      and electrical systems. Will guide student pairs through 2.5-hour sessions spanning circuit work, soldering, and \n      field experiences, providing real-time debugging assistance and ensuring adherence to lab safety protocols. \n      Responsible for fostering a collaborative and inclusive lab environment while helping students develop practical \n      engineering intuition across all five course modules.\n    \n    E79 Practicum Website →\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects, supporting student innovation while ensuring responsible and equitable use of resources.\n    \n    Makerspace Website →"
-  },
-  {
-    "objectID": "experience.html#junior-clinic",
-    "href": "experience.html#junior-clinic",
-    "title": "Industry & Research Experience",
-    "section": "",
-    "text": "Coming Soon!\n    \n    \n      Details about my clinic project will be posted here soon. Stay tuned!"
-  },
-  {
-    "objectID": "experience.html#usda-electropenetography-hardwarefirmware",
-    "href": "experience.html#usda-electropenetography-hardwarefirmware",
-    "title": "Industry & Research Experience",
-    "section": "",
-    "text": "Overview:\n      Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding\n      behavior of disease-vector insects, supporting agricultural and ecological research.\n      Developed microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog\n      signals from insect feeding experiments.\n      Applied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits,\n      optimize signal quality, and improve reliability for field deployment."
-  },
-  {
-    "objectID": "experience.html#drone-fpga-radio-telescope-beam-mapping",
-    "href": "experience.html#drone-fpga-radio-telescope-beam-mapping",
-    "title": "Industry & Research Experience",
-    "section": "",
-    "text": "Overview:\n      Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\n      Developed FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\n      Configured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python-based data analysis/visualization."
-  },
-  {
-    "objectID": "experience.html#head-machine-shop-proctor",
-    "href": "experience.html#head-machine-shop-proctor",
-    "title": "Industry & Research Experience",
-    "section": "",
-    "text": "Overview:\n      Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.\n    \n    Machine Shop Website →"
-  },
-  {
-    "objectID": "experience.html#e79-practicum-proctor",
-    "href": "experience.html#e79-practicum-proctor",
-    "title": "Industry & Research Experience",
-    "section": "",
-    "text": "Overview:\n      Will supervise and support students through 13 hands-on lab practicums in Harvey Mudd's E79 Systems Engineering course, \n      where underwater robotics serves as the teaching vehicle for modeling, constructing, and controlling mechanical, thermal, \n      and electrical systems. Will guide student pairs through 2.5-hour sessions spanning circuit work, soldering, and \n      field experiences, providing real-time debugging assistance and ensuring adherence to lab safety protocols. \n      Responsible for fostering a collaborative and inclusive lab environment while helping students develop practical \n      engineering intuition across all five course modules.\n    \n    E79 Practicum Website →"
-  },
-  {
-    "objectID": "experience.html#makerspace-repair-steward",
-    "href": "experience.html#makerspace-repair-steward",
-    "title": "Industry & Research Experience",
-    "section": "",
-    "text": "Overview:\n      Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects, supporting student innovation while ensuring responsible and equitable use of resources.\n    \n    Makerspace Website →"
-  },
-  {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "My Blog! See what I’ve been up to:",
-    "section": "",
-    "text": "Starting Microprocesor Labs!\n\n\nBeginning my Microprocessors Journey\n\n\n\n\n\nMay 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nDana Point Harbor Deployment\n\n\nDeploying our E80 Robot at Dana Point!\n\n\n\n\n\nApr 25, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nVisit to NVIDIA Voyager\n\n\nMudd Job Shadow\n\n\n\n\n\nMar 17, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nVisit to Harbinger Motors\n\n\nMudd Job Shadow\n\n\n\n\n\nMay 23, 2025\n\n\n\n\n\nNo matching items"
+    "text": "Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at Harvey Mudd College interested in electrical engineering. I’m currently doing research alongside the USDA as a hardware/firmware engineer focused on creating low-noise analog amplifiers for monitoring insect feeding behavior as part of the Analog Circuitry Engineering (ACE) Lab. Check out my projects below!\n\n\n\n  \n    \n    \n      E49C\n      EV Design Team\n    \n  \n  \n    \n    \n      E155\n      Microproccesor Projects\n    \n  \n  \n  \n  \n    PCB\n    PCB Designs\n  \n\n  \n    \n    \n      E80\n      AUV Ocean Floor SONAR\n    \n  \n  \n  \n  \n    DIY Multimeter\n  \n  \n  \n    \n    \n      E85\n      Digital Level\n    \n  \n  \n    \n    \n      E85\n      Multicycle Processor\n    \n  \n  \n    \n    \n      E79\n      Submersible ROV\n    \n  \n  \n    \n    \n      E4\n      Logic Demo Board\n    \n  \n  \n    \n    \n      E4\n      Machinist Hammer\n    \n  \n\n\n  \n    Open Full Resume in New Tab"
   },
   {
     "objectID": "e155.html",
@@ -329,199 +252,220 @@
     "text": "Summary:Coming Soon!\n    \n      See Lab Report"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Joaquin Gonzalez-Salgado",
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "My Blog! See what I’ve been up to:",
     "section": "",
-    "text": "Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at Harvey Mudd College interested in electrical engineering. I’m currently doing research alongside the USDA as a hardware/firmware engineer focused on creating low-noise analog amplifiers for monitoring insect feeding behavior as part of the Analog Circuitry Engineering (ACE) Lab. Check out my projects below!\n\n\n\n  \n    \n    \n      E49C\n      EV Design Team\n    \n  \n  \n    \n    \n      E155\n      Microproccesor Projects\n    \n  \n  \n  \n  \n    PCB\n    PCB Designs\n  \n\n  \n    \n    \n      E80\n      AUV Ocean Floor SONAR\n    \n  \n  \n  \n  \n    DIY Multimeter\n  \n  \n  \n    \n    \n      E85\n      Digital Level\n    \n  \n  \n    \n    \n      E85\n      Multicycle Processor\n    \n  \n  \n    \n    \n      E79\n      Submersible ROV\n    \n  \n  \n    \n    \n      E4\n      Logic Demo Board\n    \n  \n  \n    \n    \n      E4\n      Machinist Hammer\n    \n  \n\n\n  \n    Open Full Resume in New Tab"
+    "text": "Starting Microprocesor Labs!\n\n\nBeginning my Microprocessors Journey\n\n\n\n\n\nMay 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nDana Point Harbor Deployment\n\n\nDeploying our E80 Robot at Dana Point!\n\n\n\n\n\nApr 25, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nVisit to NVIDIA Voyager\n\n\nMudd Job Shadow\n\n\n\n\n\nMar 17, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nVisit to Harbinger Motors\n\n\nMudd Job Shadow\n\n\n\n\n\nMay 23, 2025\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "labs/lab2/lab2.html",
-    "href": "labs/lab2/lab2.html",
-    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "objectID": "experience.html",
+    "href": "experience.html",
+    "title": "Industry & Research Experience",
     "section": "",
-    "text": "In this lab, a time-multiplexed dual 7-segment display was implemented using the UPduino v3.1 FPGA. Two independent 4-bit hexadecimal values are provided via DIP switches: one from the on-board switch bank and one from a breadboard DIP switch. These two values are displayed simultaneously on a dual 7-segment display by rapidly alternating between the two digits. A single shared sevenSegment decoder module drives the cathodes for both digits. The sum of the two input values is displayed across five on-board LEDs. A 2N3906 PNP transistor circuit was built to source the large anode current required by each display digit."
+    "text": "Coming Soon!\n    \n    \n      Details about my clinic project will be posted here soon. Stay tuned!\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding\n      behavior of disease-vector insects, supporting agricultural and ecological research.\n      Developed microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog\n      signals from insect feeding experiments.\n      Applied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits,\n      optimize signal quality, and improve reliability for field deployment.\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\n      Developed FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\n      Configured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python-based data analysis/visualization.\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.\n    \n    Machine Shop Website →\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Will supervise and support students through 13 hands-on lab practicums in Harvey Mudd's E79 Systems Engineering course, \n      where underwater robotics serves as the teaching vehicle for modeling, constructing, and controlling mechanical, thermal, \n      and electrical systems. Will guide student pairs through 2.5-hour sessions spanning circuit work, soldering, and \n      field experiences, providing real-time debugging assistance and ensuring adherence to lab safety protocols. \n      Responsible for fostering a collaborative and inclusive lab environment while helping students develop practical \n      engineering intuition across all five course modules.\n    \n    E79 Practicum Website →\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects, supporting student innovation while ensuring responsible and equitable use of resources.\n    \n    Makerspace Website →"
   },
   {
-    "objectID": "labs/lab2/lab2.html#introduction",
-    "href": "labs/lab2/lab2.html#introduction",
-    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "objectID": "experience.html#junior-clinic",
+    "href": "experience.html#junior-clinic",
+    "title": "Industry & Research Experience",
     "section": "",
-    "text": "In this lab, a time-multiplexed dual 7-segment display was implemented using the UPduino v3.1 FPGA. Two independent 4-bit hexadecimal values are provided via DIP switches: one from the on-board switch bank and one from a breadboard DIP switch. These two values are displayed simultaneously on a dual 7-segment display by rapidly alternating between the two digits. A single shared sevenSegment decoder module drives the cathodes for both digits. The sum of the two input values is displayed across five on-board LEDs. A 2N3906 PNP transistor circuit was built to source the large anode current required by each display digit."
+    "text": "Coming Soon!\n    \n    \n      Details about my clinic project will be posted here soon. Stay tuned!"
   },
   {
-    "objectID": "labs/lab2/lab2.html#design-and-testing-methodology",
-    "href": "labs/lab2/lab2.html#design-and-testing-methodology",
-    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "objectID": "experience.html#usda-electropenetography-hardwarefirmware",
+    "href": "experience.html#usda-electropenetography-hardwarefirmware",
+    "title": "Industry & Research Experience",
+    "section": "",
+    "text": "Overview:\n      Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding\n      behavior of disease-vector insects, supporting agricultural and ecological research.\n      Developed microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog\n      signals from insect feeding experiments.\n      Applied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits,\n      optimize signal quality, and improve reliability for field deployment."
+  },
+  {
+    "objectID": "experience.html#drone-fpga-radio-telescope-beam-mapping",
+    "href": "experience.html#drone-fpga-radio-telescope-beam-mapping",
+    "title": "Industry & Research Experience",
+    "section": "",
+    "text": "Overview:\n      Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\n      Developed FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\n      Configured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python-based data analysis/visualization."
+  },
+  {
+    "objectID": "experience.html#head-machine-shop-proctor",
+    "href": "experience.html#head-machine-shop-proctor",
+    "title": "Industry & Research Experience",
+    "section": "",
+    "text": "Overview:\n      Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.\n    \n    Machine Shop Website →"
+  },
+  {
+    "objectID": "experience.html#e79-practicum-proctor",
+    "href": "experience.html#e79-practicum-proctor",
+    "title": "Industry & Research Experience",
+    "section": "",
+    "text": "Overview:\n      Will supervise and support students through 13 hands-on lab practicums in Harvey Mudd's E79 Systems Engineering course, \n      where underwater robotics serves as the teaching vehicle for modeling, constructing, and controlling mechanical, thermal, \n      and electrical systems. Will guide student pairs through 2.5-hour sessions spanning circuit work, soldering, and \n      field experiences, providing real-time debugging assistance and ensuring adherence to lab safety protocols. \n      Responsible for fostering a collaborative and inclusive lab environment while helping students develop practical \n      engineering intuition across all five course modules.\n    \n    E79 Practicum Website →"
+  },
+  {
+    "objectID": "experience.html#makerspace-repair-steward",
+    "href": "experience.html#makerspace-repair-steward",
+    "title": "Industry & Research Experience",
+    "section": "",
+    "text": "Overview:\n      Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects, supporting student innovation while ensuring responsible and equitable use of resources.\n    \n    Makerspace Website →"
+  },
+  {
+    "objectID": "labs/lab1/lab1.html",
+    "href": "labs/lab1/lab1.html",
+    "title": "Lab 1: FPGA and MCU Setup and Testing",
+    "section": "",
+    "text": "In this lab, a development board was assembled by soldering SMT and THT components, and a SystemVerilog design was implemented on the UPduino v3.1 FPGA to demonstrate the functionality of that board. Code was written to utilize the high-speed oscillator to control three on-board LEDS and a 7-Segment Display using 4 DIP switch inputs on the board."
+  },
+  {
+    "objectID": "labs/lab1/lab1.html#introduction",
+    "href": "labs/lab1/lab1.html#introduction",
+    "title": "Lab 1: FPGA and MCU Setup and Testing",
+    "section": "",
+    "text": "In this lab, a development board was assembled by soldering SMT and THT components, and a SystemVerilog design was implemented on the UPduino v3.1 FPGA to demonstrate the functionality of that board. Code was written to utilize the high-speed oscillator to control three on-board LEDS and a 7-Segment Display using 4 DIP switch inputs on the board."
+  },
+  {
+    "objectID": "labs/lab1/lab1.html#design-and-testing-methodology",
+    "href": "labs/lab1/lab1.html#design-and-testing-methodology",
+    "title": "Lab 1: FPGA and MCU Setup and Testing",
     "section": "Design and Testing Methodology",
-    "text": "Design and Testing Methodology\n\nFPGA Implementation\n\n\n\nTable 1: Digital Inputs and Outputs for Lab 2\n\n\n\n\n\n\n\n\n\n\n\n\nSignal Name\nSignal Type\nDescription\n\n\n\n\n\n\nint_osc\ninternal\n48 MHz clock\n\n\n\n\ns1[3:0]\ninput\nFirst 7-segment\n\n\n\n\ns2[3:0]\ninput\nSecond 7-segment\n\n\n\n\nreset\ninput\nHold to turn off Display\n\n\n\n\nactive\noutput\nCurrently Active Anode\n\n\n\n\ninactive\noutput\nCurrently Inactive Anode\n\n\n\n\nled[4:0]\noutput\n5-bit sum of s1 and s2\n\n\n\n\nseg[6:0]\noutput\nResulting displayed output (switches between s1 and s2)\n\n\n\n\n\n\n\n\nThe top-level module lab2_jg uses the same 24 MHz internal high-speed oscillator (HSOSC) divider from Lab 1. A 20-bit counter is incremented by 10 on every rising clock edge, producing an approximately 229 Hz toggle. This toggle signal called state, is the input to the multiplexer that selects between s1 and s2, the two numbers to be displayed. At the same time, it controls the active and inactive signals to the PNP transistors, which control the COM ports. Each digit is therefore illuminated at roughly 114 Hz, which is above the flicker threshold of the human eye.\nThe selected 4-bit value (between s1 and s2) s is fed into the sevenSegment decoder, which works as previously in Lab 1 mapping hex numbers 0 to F on the display. Five LEDs on a breadboard directly implement the 5-bit sum s1 + s2.\n\n\nMultiplexing Frequency Calculation\nThe counter increments by 10 each cycle at 24 MHz, and state = counter[19]:\n\\[\n\\begin{aligned}\nf_{\\text{switching}} &= \\frac{24{,}000{,}000 \\times 10}{2^{20}} \\approx 228.9 \\text{ Hz} \\\\\nf_{\\text{display}} &= \\frac{f_{\\text{switching}}}{2} \\approx 114.4 \\text{ Hz per display}\n\\end{aligned}\n\\]"
+    "text": "Design and Testing Methodology\n\nDevelopment Board Interface\nTo start, the development board system consisted of Surface-Mount (SMT) and Through-Hole (THT) components that were hand-soldered onto the board. Two development boards are integrated into this PCB using female header pins: The UPduino v3.1 FPGA and the Nucleo-L432KC MCU. The resulting development board is shown in Figure 1:\n\n\n\n\n\n\nFigure 1: Finished Development Board with FPGA & MCU\n\n\n\n\n\nFPGA Implementation\n\n\n\nTable 1: Digital Inputs and Outputs for Lab 1\n\n\n\n\n\n\n\n\n\n\n\n\nSignal Name\nSignal Type\nDescription\n\n\n\n\n\n\nint_osc\ninput\n48 MHz clock on FPGA\n\n\n\n\ns[3:0]\ninput\nFour DIP switches (SW6)\n\n\n\n\nled[2:0]\noutput\n3 On-Board LEDS\n\n\n\n\nseg[6:0]\noutput\nCommon-Anode 7-segment display segments\n\n\n\n\n\n\n\n\nThe on-board high-speed oscillator (HSOSC) from the iCE40 UltraPlus primitive library was used to generate a clock signal at 24 MHz. Then, a counter was used to divide the high frequency clock signal down so that the blinking frequency could be easily visualized using one of the on-board LEDs.\nThe design was developed using a simple clock divider module which drives the external LED."
   },
   {
-    "objectID": "labs/lab2/lab2.html#technical-documentation",
-    "href": "labs/lab2/lab2.html#technical-documentation",
-    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "objectID": "labs/lab1/lab1.html#technical-documentation",
+    "href": "labs/lab1/lab1.html#technical-documentation",
+    "title": "Lab 1: FPGA and MCU Setup and Testing",
     "section": "Technical Documentation:",
-    "text": "Technical Documentation:\n\n\n\n\n\n\nNoteSource Code\n\n\n\nThe source code for the project can be found in the associated Github Repo.\n\n\n\nBlock Diagram\nLab 2 Block Diagram // Joaquin Gonzalez-Salgado // September x 2026\n\n\n\n\n\n\nFigure 1: Top-Level Block Diagram of’Lab2_jg’ and ‘sevenSegment’.\n\n\n\nThe top-level module lab2_jg contains four submodules: the HSOSC clock, a sequential 20-bit counter acting as a clock divider and display controller, a mux selecting between s1 and s2, and the sevenSegment decoder from previous labs. The active and inactive anode control signals are connected to the bases of two 2N3906 PNP transistors.\n\n\nSchematic\nLab 2 Wiring Schematic // Joaquin Gonzalez-Salgado // September x 2026\n\n\n\n\n\n\nFigure 2: Schematic of FPGA, DIP switches, and 7-segment wiring.\n\n\n\nFigure 2 Shows the wiring schematic for this lab. 270 Ohm resistors were used for the LEDS and Display, and 510 Ohm resistors were used for the Base of the PNPs. The calculations for these resistors are described below:\nThe 7-segment display and Green LEDS have a forward voltage of roughly 2.0 V, and we do not want to exceed the FPGA GPIO current of 8 mA. So, we can use Ohm’s kaw to find the desired resistor (using a current of 5 mA) This is shown in Equation 1:\n\\[\nV = IR \\implies R = \\frac{V}{I} = \\frac{3.3\\,\\text{V} - 2\\,\\text{V}}{0.005\\,\\text{A}} = 260\\,\\Omega \\approx 270\\,\\Omega\n\\tag{1}\\]\nThe 2N3906 PNP transistor has a forward voltage drop from the Base to the Emitter of about 0.7 V. With the same current constraint of 8 mA, we can find a desired resistor for the circuit. (Once again choosing a current of 5 mA.) This is shown in Equation 2:\n\\[\nV = IR \\implies R = \\frac{V}{I} = \\frac{3.3\\,\\text{V} - 0.7\\,\\text{V}}{0.005\\,\\text{A}} = 520\\,\\Omega \\approx 510\\,\\Omega\n\\tag{2}\\]\n*Note, the two resistor approximations were made as those were the resistor values available."
+    "text": "Technical Documentation:\n\n\n\n\n\n\nNoteSource Code\n\n\n\nThe source code for the project can be found in the associated Github Repo.\n\n\n\nBlock Diagram\nLab 1 Block Diagram // Joaquin Gonzalez-Salgado // September x 2025\n\n\n\n\n\n\nFigure 2: Top-Level Block Diagram of’Lab1_jg’ and ‘sevenSegment’.\n\n\n\nThe block diagram in Figure 2 demonstrates the overall architecture of the design. The top-level module lab1_jg includes three submodules: a high-speed oscillator block (HSOSC), a sequential logic counter which acts as a clock divider, and the combinational logic for the 7-Segment display (sevenSegment).\n\n\nSchematic\nLab 1 Wiring Schematic // Joaquin Gonzalez-Salgado // May 22 2026\n\n\n\n\n\n\nFigure 3: Schematic of FPGA, DIP switches, and 7-segment wiring.\n\n\n\nFigure 3 Shows the wiring approach for this lab. Each on-board LED is connected to an SMT 1 k\\(\\Omega\\) resistor via the development board.\nAs for the 7-Segment display, 5 to 20 mA of current was advised in the lab manual. Since the FPGA GPIO pins output 3.3V, Ohm’s law can be used to find an effective resistor for this current. (For this calculation, I chose 13 mA of current). This is shown in Equation 1:\n\\[\nV = IR \\implies R = \\frac{V}{I} = \\frac{3.3\\,\\text{V} - 2.0\\,\\text{V}}{0.013\\,\\text{A}} = 100\\,\\Omega\n\\tag{1}\\]"
   },
   {
-    "objectID": "labs/lab2/lab2.html#results-and-discussion",
-    "href": "labs/lab2/lab2.html#results-and-discussion",
-    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "objectID": "labs/lab1/lab1.html#results-and-discussion",
+    "href": "labs/lab1/lab1.html#results-and-discussion",
+    "title": "Lab 1: FPGA and MCU Setup and Testing",
     "section": "Results and Discussion",
-    "text": "Results and Discussion\n\n\n\n\n\n\nNoteResults and Discussion\n\n\n\nThe Design was a Success!\n\n\nThe design successfully met all lab requirements. Both display digits independently show the correct hexadecimal representation of s1 and s2, with all 16 digits (0–F) rendering correctly with unique, distinguishable shapes. The multiplexed display shows no visible flicker at the ~114 Hz per digit switching rate. The five LEDs correctly display the binary sum s1 + s2, including the carry bit on led[4]. The QuestaSim testbench verified correct decoder outputs for all 16 input combinations, and asserts in the tesetbenched all passed.\n\nTestbench Simulation\n\n\n\n\n\n\nFigure 3: Questa Simulation of the Lab2 testbench, with expected waveforms.\n\n\n\nThe simulation confirmed the correct behavior for toggling between s1 and s2. Asserts showed that the 7-segment decoder remained accurate, and the summing logic for the 5 leds was proved accurate with this as well. (These were also verified visually on the breadboard)"
+    "text": "Results and Discussion\n\n\n\n\n\n\nNoteResults and Discussion\n\n\n\nThe Design was a Success!\n\n\nThe design successfully met all objectives. The LED truth table was verified both in Questa and the on-board LEDs. led[0] correctly implements XOR of S1 and S0, and led[1] correctly illuminates only when both S2 and S3 are high (AND). led[2] blinks at approximately 2.4 Hz, verified by observing the counter period in simulation. All 16 hexadecimal digits (0–F) were confirmed to display correctly on the 7-segment display, with distinguishable representations for visually similar digits such as b vs 8.\n\nTestbench Simulation\n\n\n\n\n\n\nFigure 4: A screenshot of a QuestaSim simulation demonstrating the blinking output signal. Note that the timescale for the clock divider was modified to divide by 4.\n\n\n\nFigure 4 shows a screenshot of the QuestaSim simulation. Asserts were also used to verify all 8 LED truth table cases, and all decoder outputs."
   },
   {
-    "objectID": "labs/lab2/lab2.html#conclusion",
-    "href": "labs/lab2/lab2.html#conclusion",
-    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "objectID": "labs/lab1/lab1.html#conclusion",
+    "href": "labs/lab1/lab1.html#conclusion",
+    "title": "Lab 1: FPGA and MCU Setup and Testing",
     "section": "Conclusion",
-    "text": "Conclusion\nThis lab successfully demonstrated time-multiplexing to share a single 7-segment decoder and a single set of I/O pins to display two separate digits. The design reused the sevenSegment decoder from Lab 1 without any changes.\n\n\n\n\n\n\nNoteHours Spent on Lab\n\n\n\nThis lab took 9 hours. Setting up the breadboard was slightly difficult, due to the number of components necessary for the lab."
+    "text": "Conclusion\n\n\n\n\n\n\nNoteHours Spent on Lab\n\n\n\nThis lab took 20 hours. Soldering on the components to the developoment board required a lot of time, and setting up the Lattice Radiant and Programmer Environments took a bit to get used to. A huge chunk of time was dedicated to debugging USB Serial Driver issues!"
   },
   {
-    "objectID": "labs/lab2/lab2.html#ai-prototype",
-    "href": "labs/lab2/lab2.html#ai-prototype",
-    "title": "Lab 2: Multiplexed 7-Segment Display",
-    "section": "AI Prototype",
-    "text": "AI Prototype\nPrompt 1: Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits.\nThen, starting a new AI conversation and attaching my lab 1 files as context, I entered this prompt:\n\n\n\n\n\n\nTipAI Prototype (Gemini)\n\n\n\nPrompt 2: Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits.\n\n\n\n\n\n\n\n\nNoteFirst Round of Generated Code (No Context):\n\n\n\nmodule top_seven_seg_mux (\n    input  logic        clk,\n    input  logic        rst_n,\n    input  logic [3:0]  in_data0,\n    input  logic [3:0]  in_data1,\n    output logic [6:0]  seg,\n    output logic [1:0]  anode\n);\n\n    logic [15:0] refresh_counter;\n    logic        mux_sel;\n    logic [3:0]  current_nibble;\n\n    always_ff @(posedge clk or negedge rst_n) begin\n        if (!rst_n) refresh_counter &lt;= '0;\n        else        refresh_counter &lt;= refresh_counter + 1'b1;\n    end\n\n    assign mux_sel = refresh_counter[15];\n\n    always_comb begin\n        if (mux_sel == 1'b0) begin\n            current_nibble = in_data0;\n            anode          = 2'b10;\n        end else begin\n            current_nibble = in_data1;\n            anode          = 2'b01;\n        end\n    end\n\n    always_comb begin\n        case (current_nibble)\n            4'h0: seg = 7'b100_0000;\n            4'h1: seg = 7'b111_1001;\n            4'h2: seg = 7'b010_0100;\n            4'h3: seg = 7'b011_0000;\n            4'h4: seg = 7'b001_1001;\n            4'h5: seg = 7'b001_0010;\n            4'h6: seg = 7'b000_0010;\n            4'h7: seg = 7'b111_1000;\n            4'h8: seg = 7'b000_0000;\n            4'h9: seg = 7'b001_0000;\n            4'hA: seg = 7'b000_1000;\n            4'hB: seg = 7'b000_0011;\n            4'hC: seg = 7'b100_0110;\n            4'hD: seg = 7'b010_0001;\n            4'hE: seg = 7'b000_0110;\n            4'hF: seg = 7'b000_1110;\n            default: seg = 7'b111_1111;\n        endcase\n    end\n\nendmodule\n\n\n\n\n\n\n\n\nNoteSecond Round of Generated Code (With Lab 1 Files):\n\n\n\nmodule top_multiplex (\n    input  logic       reset,\n    input  logic [3:0] s1,\n    input  logic [3:0] s2,\n    output logic [6:0] seg,\n    output logic [1:0] anode\n);\n\n    logic int_osc;\n    logic [31:0] counter = 0;\n    logic [3:0] mux_digit;\n    logic mux_clk;\n\n    HSOSC #(.CLKHF_DIV(2'b01)) \n         hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(int_osc)); \n\n    always_ff @(posedge int_osc) begin\n        if (reset == 0) counter &lt;= 0;\n        else            counter &lt;= counter + 1;\n    end\n\n    assign mux_clk = counter[15];\n\n    always_comb begin\n        if (mux_clk) begin\n            mux_digit = s1;\n            anode     = 2'b10;\n        end else begin\n            mux_digit = s2;\n            anode     = 2'b01;\n        end\n    end\n\nendmodule\n\n\n\nReflection:\nNew week new AI model! This week is Gemini-3.5 Flash. Gemini-3.5 Flash was able to create code off the first prompt that was synthesizable in Lattice Radiant, and produced a file that seemed very reasonable. The only concern was that the file had an external clk, and did not use the oscillator on the FPGA board.\nFor the second prompt, after uploading the files to show Gemini-3.5 Flash context for the problem, Gemini-3.5 Flash could not get the code to synthesize. This shocked me, because I would have assumed the context would have been more helpful, but that was not the case. Although Gemini-3.5 Flash incorporated the oscillator in the design, it ultimately failed in writing code that could be synthesized.\nThe next time I utilize an LLM in my workflow, I think I will ask it to produce code on its own first, then provide context in the same AI chat, allowing for it to incorporate those aspects into its already written design."
-  },
-  {
-    "objectID": "labs/lab4/lab4.html",
-    "href": "labs/lab4/lab4.html",
-    "title": "Lab 4: Digital Audio",
-    "section": "",
-    "text": "Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | May 31, 2026"
-  },
-  {
-    "objectID": "labs/lab4/lab4.html#introduction",
-    "href": "labs/lab4/lab4.html#introduction",
-    "title": "Lab 4: Digital Audio",
-    "section": "Introduction",
-    "text": "Introduction\nIn this lab, an hardware timer of the STM32L432KC MCU was used to drive an 8-ohm speaker to play music. The timer was configured to toggle a GPIO pin at a specified frequency, generating a square wave corresponding to each musical note, and also to produce millisecond delays for note durations. The system was tested by playing Für Elise, and as an optional piece, Fallen Down was also implemented."
-  },
-  {
-    "objectID": "labs/lab4/lab4.html#design-and-testing-methodology",
-    "href": "labs/lab4/lab4.html#design-and-testing-methodology",
-    "title": "Lab 4: Digital Audio",
-    "section": "Design and Testing Methodology",
-    "text": "Design and Testing Methodology\n\nLab Overview\nA single timer, TIM2, was used for both frequency generation and duration control. The ARR register is reloaded each note to set the correct half-period, and the GPIO pin is flipped on every update event, producing a square wave. For rests, the GPIO pin is held low and ARR is set for a 1 ms tick, looping for the required number of milliseconds.\nAll peripheral registers of RCC, GPIO, and TIM2 were manually defined via #define using base addresses and offsets from the STM32L432KC Reference Manual. No CMSIS headers were used!\n\n\nClock and Timer Configuration\nThe MCU runs on the default 4 MHz clock. TIM2 is clocked from APB1ENR1 and is configured with a prescaler (PSC) of 3, dividing the 4 MHz clock by 4 to produce a 1 MHz timer clock!:\n\\[\nf_{\\text{timer}} = \\frac{4\\,\\text{MHz}}{PSC + 1} = \\frac{4\\,\\text{MHz}}{4} = 1\\,\\text{MHz}\n\\]\n\n\nFrequency Generation\nFor a note at frequency f, the GPIO pin must be toggled twice per period (once high, once low), the timer update event must occur at 2f, so the GPIO toggles at 2f and the resulting square wave has frequency f. Then, we can write an expression for the Auto-Reload Register ARR:\n\\[\nf_{\\text{out}} = \\frac{f_{\\text{clock}}}{\\text{ARR}+1}\n= \\frac{1{,}000{,}000}{\\text{ARR}+1}\n\\]\nSolving for ARR, we get:\n\\[\n\\text{ARR} = \\frac{f_{\\text{timer}}}{2f} - 1 = \\frac{1{,}000{,}000}{2f} - 1\n\\]\n\n\nDuration Control (Rests)\nFor rests (freq == 0), the delay function sets ARR to produce a 1 ms tick:\n\\[\n\\text{ARR}_{\\text{delay}} = \\frac{1{,}000{,}000}{1{,}000} - 1 = 999\n\\]"
-  },
-  {
-    "objectID": "labs/lab4/lab4.html#calculations",
-    "href": "labs/lab4/lab4.html#calculations",
-    "title": "Lab 4: Digital Audio",
-    "section": "Calculations",
-    "text": "Calculations\nFirst, we need to calculate the possible range of frequencies given the TIM2 and PSC setup. Plugging in the maximum and minimum ARR can help us find the frequency range. Note that because TIM2 is a 32-bit timer, ARR_max = \\(2^{32} - 1\\) = 4,294,967,295. ARR_min is simply 0. Frequency range (TIM2, PSC = 3, timer clock = 1 MHz):\n\\[\nf_{\\text{min}} = \\frac{f_{\\text{timer}}}{2 \\times (\\text{ARR}_{\\text{max}} + 1)} = \\frac{1{,}000{,}000}{2 \\times 2^{32}} \\approx 0.000116\\,\\text{Hz}\n\\]\n\\[\nf_{\\text{max}} = \\frac{f_{\\text{timer}}}{2 \\times (\\text{ARR}_{\\text{min}} + 1)} = \\frac{1{,}000{,}000}{2 \\times 1} = 500{,}000\\,\\text{Hz}\n\\]\nBoth values comfortably cover the required 220–1000 Hz range.\nDuration range (1 ms tick loop):\nThe minimum supported duration is 1 ms (one loop iteration). The maximum is bounded by the uint32_t loop counter in the delay function:\n\\[\nt_{\\text{max}} = (2^{32} - 1)\\,\\text{ms} \\approx 4.3 \\times 10^6\\,\\text{s} \\approx 49.7\\,\\text{days}\n\\]\nThis is far more than sufficient for any musical duration.\nFrequency accuracy (220–1000 Hz):\nBecause ARR is an integer, rounding introduces a small error. Here are some calculatiions checking the error between desired and actual frequencies\nAt 220 Hz: \\[\n\\text{ARR} = \\left\\lfloor\\frac{1{,}000{,}000}{2 \\times 220}\\right\\rfloor - 1 = 2271\\] \\[f_{\\text{actual}} = \\frac{1{,}000{,}000}{2 \\times 2272} \\approx 220.07\\,\\text{Hz} \\qquad (0.03\\%\\,\\text{error})\n\\]\nAt 1000 Hz: \\[\n\\text{ARR} = \\frac{1{,}000{,}000}{2 \\times 1000} - 1 = 499\\] \\[f_{\\text{actual}} = \\frac{1{,}000{,}000}{2 \\times 500} = 1000.00\\,\\text{Hz} \\qquad (0.00\\%\\,\\text{error})\n\\]\nAll frequencies in the 220–1000 Hz range are within 0.10% of their target, well within the 1% requirement."
-  },
-  {
-    "objectID": "labs/lab4/lab4.html#technical-documentation",
-    "href": "labs/lab4/lab4.html#technical-documentation",
-    "title": "Lab 4: Digital Audio",
-    "section": "Technical Documentation",
-    "text": "Technical Documentation\nPA1 was configured as a general-purpose output by enabling GPIOA via RCC-&gt;AHB2ENR. TIM2 was enabled via RCC-&gt;APB1ENR1. All register access were manually defined struct typedefs, meaning no CMSIS headers! Very baremetal C code.\nLab 4 Wiring Schematic // Joaquin Gonzalez-Salgado // June 3rd 2026\n\n\n\n\n\n\nFigure 1: Schematic of MCU, LM386 amplifier, potentiometer, and 8-ohm speaker.\n\n\n\nThe PA1 output was connected to the non-inverting input of the LM386 amplifier. The LM386 was powered from the 3.3 V MCU supply, and its output drove the 8-ohm speaker directly. A 10 kΩ potentiometer between PA1 and the LM386 input provided adjustable volume!\nThe code for this project can be accessed on GitHub."
-  },
-  {
-    "objectID": "labs/lab4/lab4.html#conclusion",
-    "href": "labs/lab4/lab4.html#conclusion",
-    "title": "Lab 4: Digital Audio",
-    "section": "Conclusion",
-    "text": "Conclusion\nThe design successfully met all lab requirements. Für Elise played at the correct tempo with all pitches accurate to well within 1% across the full 220–1000 Hz range, as verified by the ARR calculations above. All rests were rendered as silence for the correct durations. The optional composition Fallen Down also played correctly! And the Potentiometer did vary the volume as intended.\nThe lab took approximately 15 hours to complete. The most time-consuming parts were navigating the reference manual to find the correct register offsets, and understanding C code in a more thorough way."
-  },
-  {
-    "objectID": "labs/lab4/lab4.html#ai-prototype-summary",
-    "href": "labs/lab4/lab4.html#ai-prototype-summary",
-    "title": "Lab 4: Digital Audio",
+    "objectID": "labs/lab1/lab1.html#ai-prototype-summary",
+    "href": "labs/lab1/lab1.html#ai-prototype-summary",
+    "title": "Lab 1: FPGA and MCU Setup and Testing",
     "section": "AI Prototype Summary",
-    "text": "AI Prototype Summary\nThe purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:\n\n\n\n\n\n\nTipAI Prototype (Claude Sonnet)\n\n\n\nPrompt: What timers should I use on the STM32L432KC to generate frequencies ranging from 220Hz to 1kHz? What’s the best choice of timer if I want to easily connect it to a GPIO pin? What formulae are relevant, and what registers need to be set to configure them properly?\n\n\n\nReflection:\nThis week is Claude Sonnet. Claude Sonnet claimed that the following timers would work for generating 220 Hz to 1kHz frequencies: TIM1, TIM2, TIM15, and TIM16. This makes sense, as I had used TIM2. It chose TIM2 as the best option due to its resolution, # of channels, and ease of accessibility.\nIt also gave the following formula:\n\\[\nf_{output} = \\frac{f_{TIMx\\_CLK}}{(PSC + 1) \\times (ARR + 1)}\n\\]\nwith an example for 440 Hz (A4) with PWM. It also provided the maximum and minimum ARR, which it stated were 4544 and 999 for a given PSC of 79. Not sure how accurate that is, as I did not use that PSC value.\nClaude Sonnet also provided the correct register configuration, and how to enable the clocks with RCC, and even configure the GPIO pin! Overall the LLM returned mostly the correct information, however it was too much information than I asked for."
+    "text": "AI Prototype Summary\nThe purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:\n\n\n\n\n\n\nTipAI Prototype (ChatGPT)\n\n\n\nPrompt: Write SystemVerilog HDL to leverage the internal high speed oscillator in the Lattice UP5K FPGA and blink an LED at 2 Hz. Take full advantage of SystemVerilog syntax, for example, using logic instead of wire and reg.\n\n\n\n\n\n\n\n\nNoteGenerated Code:\n\n\n\nmodule top ( output logic LED );\nlogic clk_hf;\nlogic clk_enable;\n\nassign clk_enable = 1'b1;\n\nHSOSC #(\n    .CLKHF_DIV(\"0b00\")\n) hf_oscillator (\n    .CLKHFPU (1'b1),\n    .CLKHFEN (clk_enable),\n    .CLKHF   (clk_hf)\n);\n\nlocalparam int unsigned TOGGLE_COUNT = 12_000_000 - 1;\n\nlogic [$clog2(TOGGLE_COUNT + 1)-1:0] counter = '0;\n\nalways_ff @(posedge clk_hf) begin\n    if (counter == TOGGLE_COUNT) begin\n        counter &lt;= '0;\n        LED     &lt;= ~LED;\n    end\n    else begin\n        counter &lt;= counter + 1'b1;\n    end\nend\nendmodule\n\n\n\nReflection:\nEvery week I will try a different AI model, just to get a scope of the variety of LLMs. This week is ChatGPT-5.5. ChatGPT-5.5 was able to create code that was synthesizable in Lattice Radiant, and produced a succesful verilog file that allowed for an LED to pulse at 2.01 Hz (verified via Oscilloscope), completely on the first try. The only work I had to do was route the resulting led output to the pin on the FPGA.\nAs for the quality of the output, ChatGPT-5.5 did exactly what I told it to do, with no errors from Radiant at all. The LLM generated some syntax that I was unfamiliar with, as I have never used $clog2 before. It also used a different method than what I had used (stating an unsigned integer for the count) so that was new.\nThe next time I utilize an LLM in my workflow, I would most likely ask it to use terms/methods that I am familiar with, or explain what the different parts of the SystemVerilog file do. ChatGPT-5.5 did not explain the workflow at all, and just gave me the code with not context."
   },
   {
-    "objectID": "labs/lab6/lab6.html",
-    "href": "labs/lab6/lab6.html",
+    "objectID": "labs/lab3/lab3.html",
+    "href": "labs/lab3/lab3.html",
     "title": "Portfolio",
     "section": "",
     "text": "Overview:Coming Soon!"
   },
   {
-    "objectID": "pcb.html",
-    "href": "pcb.html",
-    "title": "PCB Designs",
+    "objectID": "labs/lab5/lab5.html",
+    "href": "labs/lab5/lab5.html",
+    "title": "Lab 5: Interrupts",
     "section": "",
-    "text": "Overview:\n  (My first PCB!) A single-cell LiPo battery charger and power management board featuring USB-C input, a dedicated charge IC, 5V and 3.7V regulated outputs, fuel gauge IC with I²C interface, and status indicator LEDs. Designed for use as a standalone supply module in embedded systems projects.\n\n\n  Key Features:\n  USB-C charging input, dual regulated outputs (5V / 3.7V), I²C fuel gauge, charge/power-good status LEDs, onboard enable/alert header."
+    "text": "Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | June 13, 2026"
   },
   {
-    "objectID": "pcb.html#lipo-battery-charger-monitor",
-    "href": "pcb.html#lipo-battery-charger-monitor",
-    "title": "PCB Designs",
+    "objectID": "labs/lab5/lab5.html#introduction",
+    "href": "labs/lab5/lab5.html#introduction",
+    "title": "Lab 5: Interrupts",
+    "section": "Introduction",
+    "text": "Introduction\nIn this lab, a quadrature encoder mounted on a 25GA-370 brushed DC motor was used to measure motor speed and direction with the STM32L432KC MCU. Rather than polling the encoder channels, GPIO external interrupts (EXTI) were used to catch every edge on both encoder channels as they occurred, so no pulses are lost regardless of motor speed. A hardware timer (TIM2) was used to periodically compute and report the measured speed in revolutions per second (RPS) at a 1 Hz update rate, along with the direction of rotation."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#design-and-testing-methodology",
+    "href": "labs/lab5/lab5.html#design-and-testing-methodology",
+    "title": "Lab 5: Interrupts",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\n\nMCU\nTwo GPIO pins, PA1 and PA2, were configured as inputs and connected to the two channels of the quadrature encoder (ENCODER1 and ENCODER2 in code). Because the encoder outputs 5V logic and PA1/PA2 are 5V-tolerant (FT) pins on the STM32L432KC (per the datasheet’s pin tables), the encoder signals were wired directly into the MCU with no level-shifting circuitry required.\nEXTI1 and EXTI2 were configured to trigger on both the rising and falling edges of their respective channels, via EXTI-&gt;RTSR1 and EXTI-&gt;FTSR1. This means all four edges of a single quadrature cycle (two channels x two edges each) generate an interrupt, giving the maximum possible angular resolution from the encoder.\nInside each EXTI ISR, the previous state of the other channel (lastPin) is compared against which channel just triggered to determine whether the motor moved forward or backward, updating a dir flag and incrementing/decrementing a running edge Count accordingly. A switchdir flag is used to lock the direction once the motor is confirmed to be spinning (|RPS| &gt; 2.0): while the motor is at low speed or stopped, direction is continuously re-evaluated, but once it’s clearly spinning, dir is frozen so that electrical noise or transient bounce cannot flip the reported direction.\nTIM2 was configured as a free-running periodic timer that generates an update interrupt once per second. On every TIM2 update event, the main loop’s print flag is set, which triggers the RPS calculation, prints it, and resets Count for the next 1-second sampling window — satisfying the lab’s 1 Hz minimum update-rate requirement.\n\n\nCalculations\nTIM2 runs from the MCU’s default 4 MHz clock. With a prescaler PSC = 3999, the timer clock is divided down to a 1 kHz tick:\n\\[\nf_{\\text{timer}} = \\frac{4\\,\\text{MHz}}{PSC + 1} = \\frac{4{,}000{,}000}{4000} = 1\\,\\text{kHz}\n\\]\nWith ARR = 999, the timer counts 1000 ticks (0 through 999) before generating an update interrupt, giving exactly a 1-second sampling window:\n\\[\nT_{\\text{update}} = \\frac{ARR + 1}{f_{\\text{timer}}} = \\frac{1000}{1000\\,\\text{Hz}} = 1\\,\\text{s}\n\\]\nThe 25GA-370 motor’s encoder outputs 120 pulses per revolution (PPR) per the datasheet. Because both edges of both channels are decoded (x4 decoding), the effective counts per revolution is:\n\\[\n\\text{MOTORCPR} = 120\\,\\text{PPR} \\times 4\\,\\text{edges} = 480\\,\\text{counts/rev}\n\\]\nThe code computes speed as RPS = Count / (MOTORCPR * (ARR + 1) / 1000). Since (ARR + 1)/1000 = 1 (the sampling window is exactly 1 second), this simplifies to:\n\\[\n\\text{RPS} = \\frac{\\text{Count}}{\\text{MOTORCPR}} = \\frac{\\text{Count}}{480}\n\\]\nwhich is simply the number of encoder counts accumulated over the most recent 1-second window, divided by the number of counts per revolution — directly yielding revolutions per second."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#technical-documentation",
+    "href": "labs/lab5/lab5.html#technical-documentation",
+    "title": "Lab 5: Interrupts",
+    "section": "Technical Documentation:",
+    "text": "Technical Documentation:\n\n\n\n\n\n\nNoteSource Code\n\n\n\nThe source code for the project can be found in the associated Github Repo.\n\n\n\nSchematic\nLab 5 Wiring Schematic // Joaquin Gonzalez-Salgado // June 9 2026\n\n\n\n\n\n\nFigure 1: Schematic.\n\n\n\nFigure 1 shows the wiring approach for this lab. The quadrature encoder’s two output channels connect directly to PA1 and PA2 on the STM32L432KC Nucleo board, sharing a common ground with the MCU. Since PA1/PA2 are 5V-tolerant pins, the encoder’s 5V output channels were wired in directly with no voltage divider or level shifter needed. The 25GA-370 DC motor was powered from a separate bench supply.\n\n\nFlowchart\nLab 5 Program Flowchart // Joaquin Gonzalez-Salgado // TBD\n\n\n\n\n\n\nFigure 2: Flowchart of the main loop and ISR execution.\n\n\n\n\nTBD: Flowchart image not yet added — Figure 2 will show the function call hierarchy between main()’s polling loop and the EXTI1_IRQHandler, EXTI2_IRQHandler, and TIM2_IRQHandler interrupt service routines."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#results-and-discussion",
+    "href": "labs/lab5/lab5.html#results-and-discussion",
+    "title": "Lab 5: Interrupts",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\n\n\n\n\n\n\nNoteResults and Discussion\n\n\n\nThe Design was a Success!\n\n\nThe design met all proficiency-level requirements. Speed was measured and displayed in RPS with a 1 Hz update rate, matching the actual motor speed and direction as observed by hand-turning the motor shaft and ramping the bench supply. Because edge detection is fully interrupt-driven (EXTI1/EXTI2, no polling), no pulses were lost at either low or high motor speeds. When the motor was stationary, Count stayed at zero between TIM2 update events, correctly reporting 0.0 RPS.\nFor the excellence level, the design already decodes all four edges of the quadrature cycle (both channels, both rising and falling edges) for maximum resolution, and readings remained stable at both low and high speeds thanks to the switchdir direction lock described above. Two excellence items are still TBD: a quantitative comparison of this interrupt-driven approach against an equivalent polling implementation, and the program flowchart referenced in Figure 2."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#conclusion",
+    "href": "labs/lab5/lab5.html#conclusion",
+    "title": "Lab 5: Interrupts",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis lab’s interrupt-driven quadrature decoding correctly measured motor speed and direction in real time, with no missed pulses across the tested speed range. The remaining open items are the interrupt-vs-polling comparison and the flowchart figure, both to be added.\n\n\n\n\n\n\nNoteHours Spent on Lab\n\n\n\nThis lab took ___ hours."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#ai-prototype-summary",
+    "href": "labs/lab5/lab5.html#ai-prototype-summary",
+    "title": "Lab 5: Interrupts",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nThe purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:\n\n\n\n\n\n\nTipAI Prototype (Claude)\n\n\n\nPrompt: Write me interrupt handlers to interface with a quadrature encoder. I’m using the STM32L432KC, what pins should I connect the encoder to in order to allow it to easily trigger the interrupts?\n\n\n\n\n\n\n\n\nNoteGenerated Code:\n\n\n\n#include “stm32l4xx_hal.h”\nvolatile int32_t encoder_count = 0;\nvoid Encoder_GPIO_Init(void) { __HAL_RCC_GPIOA_CLK_ENABLE();\nGPIO_InitTypeDef gpio = {0};\ngpio.Pin  = GPIO_PIN_0 | GPIO_PIN_1;\ngpio.Mode = GPIO_MODE_IT_RISING_FALLING; // Trigger on both edges\ngpio.Pull = GPIO_PULLUP;\nHAL_GPIO_Init(GPIOA, &gpio);\n\nHAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);\nHAL_NVIC_EnableIRQ(EXTI0_IRQn);\nHAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);\nHAL_NVIC_EnableIRQ(EXTI1_IRQn);\n}\n// Read current state of both channels static inline uint8_t read_A(void) { return HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0); } static inline uint8_t read_B(void) { return HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1); }\n// Standard quadrature decode table // Index: [prev_A][prev_B][curr_A][curr_B] static const int8_t QEM[16] = { 0, -1, 1, 0, 1, 0, 0, -1, -1, 0, 0, 1, 0, 1, -1, 0 };\nstatic uint8_t last_state = 0;\nstatic void update_encoder(void) { uint8_t curr_state = (read_A() &lt;&lt; 1) | read_B(); encoder_count += QEM[(last_state &lt;&lt; 2) | curr_state]; last_state = curr_state; }\nvoid EXTI0_IRQHandler(void) { update_encoder(); HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0); }\nvoid EXTI1_IRQHandler(void) { update_encoder(); HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1); }\n\n\n\nReflection:\nThis week is Claude Sonnet again! Rather than helping me with the specific question I asked, it gave me two options: Using the Interrupt approach I asked for, or using the “Hardware Timer Encoder Mode”. It provided me with code for both options, and stated that for Encoder A I should use PA0 with EXTI Line EXTI0 and for Encoder B I should use PA1 with EXTI Line EXTI1."
+  },
+  {
+    "objectID": "labs/lab7/lab7.html",
+    "href": "labs/lab7/lab7.html",
+    "title": "Portfolio",
     "section": "",
-    "text": "Overview:\n  (My first PCB!) A single-cell LiPo battery charger and power management board featuring USB-C input, a dedicated charge IC, 5V and 3.7V regulated outputs, fuel gauge IC with I²C interface, and status indicator LEDs. Designed for use as a standalone supply module in embedded systems projects.\n\n\n  Key Features:\n  USB-C charging input, dual regulated outputs (5V / 3.7V), I²C fuel gauge, charge/power-good status LEDs, onboard enable/alert header."
+    "text": "Overview:Coming Soon!"
   },
   {
-    "objectID": "posts/post1.html",
-    "href": "posts/post1.html",
-    "title": "Visit to Harbinger Motors",
+    "objectID": "personal.html",
+    "href": "personal.html",
+    "title": "Personal Projects",
     "section": "",
-    "text": "Yesterday, I had the incredible opportunity to visit and job shadow at Harbinger Motors Inc.! Harbinger is a company leading the way in EV commercial vehicle innovation for trucks, RVs, and much more. It was super exciting to see the intricacies of trucks that we see everyday, and how we as engineers can continue to innovate and improve them for the future.\nI would also like to give a HUGE thank you to Zane Bodenbender (Harvey Mudd alum!) for hosting us and generously sharing insights about his work and journey — your passion and expertise made this experience especially impactful, and have truly shown me what it means to be an Engineer!"
+    "text": "Overview:\n      Built a fully functional 34-range digital multimeter from scratch that measures AC/DC voltage and current, resistance, capacitance, transistor hFE, diode junctions, and has a continuity buzzer. \n    \n    Skills:Soldering, Circuit Calibration, Analog/Digital Electronics, Component Identification\n    \n      \n        Show More\n      \n    \n  \n\n\n\n  \n    \n      Calibration\n      \n      \n        - Calibrated DC/AC voltage and current circuits against a reference meter across all ranges (200μA – 20A).\n        - Separately calibrated the capacitance circuit using known capacitor values from 2nF to 200μF.\n      \n    \n    \n      Cool Features\n      \n      \n        - Has a real continuity buzzer — short the leads and it beeps!\n        - Built-in hFE socket can test NPN and PNP transistors and read their DC current gain.\n        - Runs on a custom ICL7106 A/D converter chip for a 3Hz reading frequency.\n      \n    \n    \n      It Works!\n      \n      \n        - Verified measurement voltage, current, resistance, capacitance, and many other features of the multimeter using a power supply and another multimeter as reference.\n        - An LCD display includes a zebra connector and housing which was all assembled by hand, and a Fuse and other safety measures were incoporated as well."
   },
   {
-    "objectID": "posts/post3.html",
-    "href": "posts/post3.html",
-    "title": "Starting Microprocesor Labs!",
+    "objectID": "personal.html#wood-shop-french-cleat-wall",
+    "href": "personal.html#wood-shop-french-cleat-wall",
+    "title": "Personal Projects",
+    "section": "Wood Shop French Cleat Wall",
+    "text": "Wood Shop French Cleat Wall\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and built a modular french cleat wall system for the HMC Wood Shop to organize tools and keep the workspace clean and efficient.\n      French cleats use interlocking 45° angled cuts to create a flexible, reconfigurable mounting system — any holder or shelf can be moved or swapped without any hardware.\n      Cut and assembled custom holders for screwdrivers, wrenches, pliers, drill bits, sandpaper belts, and more.\n    \n    \n      Skills:\n      Table Saw, Woodworking, Shop Organization, Fabrication"
+  },
+  {
+    "objectID": "personal.html#rockler-wooden-speaker",
+    "href": "personal.html#rockler-wooden-speaker",
+    "title": "Personal Projects",
+    "section": "Rockler Wooden Speaker",
+    "text": "Rockler Wooden Speaker\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a bluetooth speaker by cutting 8 triangular pieces of plywood, and wood glueing them together in a box orientation!\n      Utilized the Rockler's Speaker Set to design and assemble the speaker kit, which connects via AUX and Bluetooth! It's also portable, as it runs on a lithium ion charged battery.\n      This project involved a lot of wood shop tools, including a Table Saw, Miter Saw, Planar, and much more!\n      This little project has now become a speaker I use day to day!\n    \n    \n      Skills:\n      Table Saw, Miter Saw, Planar, Wood Glue, Soldering, Bluetooth Electronics"
+  },
+  {
+    "objectID": "personal.html#red-ish-skateboard",
+    "href": "personal.html#red-ish-skateboard",
+    "title": "Personal Projects",
+    "section": "Red-ish Skateboard",
+    "text": "Red-ish Skateboard\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a skateboard completely from scratch under the HMC Makerspace Grant!\n      The materials for this assembly were a sheet of plywood, bearings and tires, grip tape, and red paint, assembled over the course of 3 weeks.\n      Used the ShopBot (CNC Router Table) to cut out the skateboard frame. This board is now used to travel around the Harvey Mudd campus!\n    \n    \n      Skills:\n      ShopBot CNC, CAD, Woodworking, Finishing"
+  },
+  {
+    "objectID": "posts/post2.html",
+    "href": "posts/post2.html",
+    "title": "Visit to NVIDIA Voyager",
     "section": "",
-    "text": "This fall semester (2026), I will be taking an upper division course called Microprocessors Systems: Design & Application which focuses on microcontrollers and embedded system design, and how to apply HDL and logic to the real world. My goal this semester is to focus on having a thorough engineering workflow. I want to not only understand and create embedded and physical systems, but also document these processes thoroughly."
+    "text": "This week, I had the incredible opportunity to job shadow at NVIDIA’s NVIDIA’s headquarters in Santa Clara with Mudd alumni Alisha Chulani! It was really cool to see what the workplace looks like day-to-day at such a large company, and it was fascinating watch teams collaborate on some exciting projects. So grateful for the experience!"
   },
   {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Class Projects",
+    "objectID": "posts/post4.html",
+    "href": "posts/post4.html",
+    "title": "Dana Point Harbor Deployment",
     "section": "",
-    "text": "Overview:\n      Team project to build an electric vehicle. Principles of EV design, battery technology, vehicle dynamics, fabrication, wiring, and embedded software development.\n    \n    \n      Skills:\n      EV Design, Battery Technology, Vehicle Dynamics, Fabrication, Embedded Software\n    \n    \n      \n        Show More\n      \n      \n        ▶ Video\n      \n    \n  \n\n\n\n  \n    \n      CAD & Design\n      \n       - Developed a CAD assembly of the EV components, from the battery to the display. Implemented high-voltage motor controllers and safety circuitry (relays, fuses, and breakers) with low-voltage Raspberry Pi logic. Integrated software to connect motors to a PS4 controller, and for a Raspberry Pi Display. \n    \n    \n      Assembly\n      \n       \n        - Utilized crimped ring connectors for secure battery-to-controller links and automotive male/female connectors for quick-disconnect capability across the control interface. \n      \n        - Joined wire extensions with butt splices and applied heat shrink to all terminals to ensure vibration-resistant, short-proof connections.\n    \n    \n      Result\n      \n      \n        - The cart is fully operational, steady at a safe speed of 15 mph. A custom UI displays real-time speed and direction data, while the PS4 controller integration provides smooth, intuitive steering and throttle control. The result is a fast, stable build that handles reliably at peak performance."
+    "text": "Today my team and I plunged our robot into the depths of Dana Point Harbor! Our goal was to take temperature, pressure, and ocean depth measurements (via SONAR) utilizing surface and dive control. We got to ride kayaks and it was super fun!"
   },
   {
-    "objectID": "projects.html#electric-vehicle-design-lab-e49c",
-    "href": "projects.html#electric-vehicle-design-lab-e49c",
-    "title": "Class Projects",
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications & Reports",
     "section": "",
-    "text": "Overview:\n      Team project to build an electric vehicle. Principles of EV design, battery technology, vehicle dynamics, fabrication, wiring, and embedded software development.\n    \n    \n      Skills:\n      EV Design, Battery Technology, Vehicle Dynamics, Fabrication, Embedded Software\n    \n    \n      \n        Show More\n      \n      \n        ▶ Video\n      \n    \n  \n\n\n\n  \n    \n      CAD & Design\n      \n       - Developed a CAD assembly of the EV components, from the battery to the display. Implemented high-voltage motor controllers and safety circuitry (relays, fuses, and breakers) with low-voltage Raspberry Pi logic. Integrated software to connect motors to a PS4 controller, and for a Raspberry Pi Display. \n    \n    \n      Assembly\n      \n       \n        - Utilized crimped ring connectors for secure battery-to-controller links and automotive male/female connectors for quick-disconnect capability across the control interface. \n      \n        - Joined wire extensions with butt splices and applied heat shrink to all terminals to ensure vibration-resistant, short-proof connections.\n    \n    \n      Result\n      \n      \n        - The cart is fully operational, steady at a safe speed of 15 mph. A custom UI displays real-time speed and direction data, while the PS4 controller integration provides smooth, intuitive steering and throttle control. The result is a fast, stable build that handles reliably at peak performance."
-  },
-  {
-    "objectID": "projects.html#experimental-engineering-e80",
-    "href": "projects.html#experimental-engineering-e80",
-    "title": "Class Projects",
-    "section": "Experimental Engineering (E80)",
-    "text": "Experimental Engineering (E80)\n\nAUV Ocean Floor SONAR Mapping\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and built an AUV to topographically map the floor of Dana Point Harbor using SONAR time-of-flight measurements. Personally designed analog circuits for temperature, pressure, and SONAR signal processing — all from scratch. Featured a Teensy 4.0, Adafruit GPS, and a custom motor driver motherboard.\n    \n    Skills:Arduino, MATLAB, SONAR, Embedded Systems, PCB Assembly, Op-Amp Circuit Design, Sensor Calibration\n    \n      \n        Show More\n      \n      \n        See Report Page\n      \n    \n  \n\n\n\n  \n    \n      Custom Sensor Circuits\n      \n      \n        - Designed a thermistor interface circuit with a unity gain buffer and non-inverting offset amplifier to expand the output voltage range for better Teensy resolution.\n        - Built a pressure sensor circuit with the same offset amplifier approach to enable precise P-control during dives.\n        - For SONAR, designed both a TX chain (555 timer + LM384 audio amplifier driving a waterproof exciter at 3kHz) and a full RX chain with 10,000x gain across four op-amp stages, a Sallen-Key bandpass filter, and a max detector circuit.\n      \n    \n    \n      Deployment at Dana Point\n      \n      \n        - Deployed the AUV at Dana Point Harbor, following alongside in kayaks to monitor and recover it.\n        - GPS module handled surface navigation while the pressure sensor controlled dive depth autonomously via P-control.\n        - All sensor data was logged to an onboard SD card and post-processed in MATLAB to generate the topography map.\n      \n    \n    \n      Results & Presentation\n      \n      \n        - Successfully mapped the ocean floor depth along the AUV's path, with results consistent with nautical chart ground truth data for Dana Point Harbor.\n        - Also measured water temperature at depth and confirmed a temperature decrease with depth during dives.\n        - Presented findings at the end-of-semester showcase — our team took first place!"
-  },
-  {
-    "objectID": "projects.html#digital-electronics-computer-architecture-e85",
-    "href": "projects.html#digital-electronics-computer-architecture-e85",
-    "title": "Class Projects",
-    "section": "Digital Electronics / Computer Architecture (E85)",
-    "text": "Digital Electronics / Computer Architecture (E85)\n\nDigital Level\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Developed an embedded C application to implement a 2D digital level, interfacing a triple-axis accelerometer with a microcontroller to measure tilt along the x and y axes.\n      Designed and wired a complete hardware system on a breadboard, integrating a RED-V development board, LIS3DH accelerometer, and an 8x8 LED matrix.\n    \n    Skills:C/C++, SPI Communication, Calibration, Soldering, Embedded Systems\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Created a digital level mapping tilt angles to an 8x8 LED matrix bubble display.\n        - Bubble motion indicated surface tilt in X and Y axes.\n      \n    \n    \n      Methods\n      \n      \n        - Programmed RED-V ThingPlus in C using SPI to interface with LIS3DH accelerometer.\n        - Implemented real-time signal processing and calibration for smooth bubble motion.\n      \n    \n    \n      Result\n      \n      \n        - Achieved accurate, smooth, reliable bubble display validating full embedded system integration.\n        - Designed a sensitive and practical 2D digital tool with real-world use.\n      \n    \n  \n\n\n\nMulticycle Processor\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed a multicycle RISC-V processor in SystemVerilog, creating a hierarchical architecture with a finite-state machine, datapath, ALU, register file, and unified memory adapted from a single-cycle design.\n      Validated processor functionality through simulation and waveform analysis.\n    \n    Skills:SystemVerilog, HDL, Assembly, RISC-V, Quartus FPGA, Questa\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Built a multicycle RISC-V CPU capable of executing arithmetic instructions and managing memory.\n        - Leveraged single-cycle components to construct a modular multicycle architecture.\n      \n    \n    \n      Methods\n      \n      \n        - Wrote SystemVerilog datapath connecting controller, memory, and register file modules.\n        - Debugged by comparing assembly testbenches against waveforms and consulted Quartus RTL schematic.\n      \n    \n    \n      Result\n      \n      \n        - Processor matched waveform expectations confirming correct values at correct addresses.\n        - Deepened understanding of RISC-V architecture and processor design principles."
-  },
-  {
-    "objectID": "projects.html#systems-engineering-e79",
-    "href": "projects.html#systems-engineering-e79",
-    "title": "Class Projects",
-    "section": "Systems Engineering (E79)",
-    "text": "Systems Engineering (E79)\n\nSubmersible Robot with Kp Control\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Constructed an underwater remotely operated vehicle (ROV) to retrieve temperature, pressure, and other signals in lake environments via the MCP9701 thermistor and MPX5700ASX pressure gauge.\n      Assembled a PCB containing the MCP6002 OpAmp to return output voltages modeled and analyzed in LabVIEW.\n    \n    Skills:LabVIEW, Soldering, PCB Assembly, Oscilloscope, DMM, Breadboarding\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Created a fully waterproof ROV to measure temperature and pressure across varying depths.\n        - Implemented proportional (Kp) control for motor operation.\n      \n    \n    \n      Methods\n      \n      \n        - Modeled ROV vertical motion by changing motor PWM duty cycle in LabVIEW.\n        - Soldered pressure sensor and thermistor circuits to the project PCB.\n      \n    \n    \n      Result\n      \n      \n        - Deployed ROV in a real-world environment and collected valid environmental data.\n        - Gained hands-on experience in PCB assembly, soldering, and oscilloscope use."
-  },
-  {
-    "objectID": "projects.html#engineering-design-manufacturing-e4",
-    "href": "projects.html#engineering-design-manufacturing-e4",
-    "title": "Class Projects",
-    "section": "Engineering Design & Manufacturing (E4)",
-    "text": "Engineering Design & Manufacturing (E4)\n\nDigital Logic Demonstration Board\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and assembled a logic-gate demonstration board using 74HC Series integrated circuits, a 555 timer, and a potentiometer-based clock input.\n      Engineered intuitive controls with input switches, banana cables, and LEDs to clearly display output states.\n      Delivered a durable teaching tool now used by Professor Stone for the Digital Logic and Computer Architecture course.\n    \n    Skills:Digital Logic, PCB Design, 74HC ICs, 555 Timer, Soldering\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Built a logic-gate demonstration board using 74HC Series ICs and a 555 timer.\n        - Incorporated input switches, banana cable ports, and LEDs for clear output visualization.\n      \n    \n    \n      Methods\n      \n      \n        - Designed board layout for intuitive student interaction and clear signal flow.\n        - Wired and soldered 74HC gates, 555 timer clock, and potentiometer for adjustable frequency.\n      \n    \n    \n      Result\n      \n      \n        - Delivered a durable teaching tool now actively used by Professor Stone in E85 lectures.\n        - Reinforced understanding of combinational logic design and hands-on fabrication.\n      \n    \n  \n\n\n\nE4 Machinist Hammer\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Manufactured a precision machinist hammer from clear oak, AISI 1015 steel, AISI 4340 steel, and nylon, adhering to detailed engineering drawings, dimensional tolerances, and safety requirements.\n      Applied turning, facing, milling, tapping, and heat treatment processes to achieve specified mechanical properties.\n    \n    Skills:GD&T, Lathe, Mill, Bandsaw, Taps, Digital Micrometers, HRC Hardness Tester, Heat Treatment\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Manufactured a functional machinist hammer from oak, steel, and nylon to precise GD&T specs.\n        - Contributed to the Harvey Mudd College tradition of student-made hammers.\n      \n    \n    \n      Methods\n      \n      \n        - Machined head stock using lathe and milling operations, verified with digital micrometers.\n        - Heat treated hard face, verified HRC hardness, and sandblasted for smooth finish.\n      \n    \n    \n      Result\n      \n      \n        - Delivered a high-quality hammer that scored near perfect in quality of manufacturing.\n        - Now serve as a Machine Shop Proctor, training new students in shop safety."
-  },
-  {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Resources",
-    "section": "",
-    "text": "The labs for the E155 Microprocessors course are sourced from the E155 course website:\nE155 Course Website\nThis is where all lab assignments and related materials originate."
-  },
-  {
-    "objectID": "resources.html#microprocessors-e155",
-    "href": "resources.html#microprocessors-e155",
-    "title": "Resources",
-    "section": "",
-    "text": "The labs for the E155 Microprocessors course are sourced from the E155 course website:\nE155 Course Website\nThis is where all lab assignments and related materials originate."
+    "text": "Submitted to IEEE\n  Stress, Cognitive Load, and Specifications Grading in an Engineering Laboratory Course\n  \n    Cleo McHenry, Sara Morishige, Jasmine Sampat, Joaquin Gonzalez-Salgado, Leah Uriarte, Matthew Spencer\n  \n  IEEE Transactions on Education, 2025\n  \n    This paper presents a controlled two-year experiment at Harvey Mudd College studying how two evidence-based\n    interventions — simplified lab manuals and specifications grading — affected student stress and cognitive load\n    in a required sophomore engineering lab course (E80). Weekly validated surveys showed that stress was\n    significantly reduced in six of seven labs, and cognitive load dropped significantly in three. Students in\n    the treatment cohort also posted meaningfully higher scores on a summative technical memo, suggesting the\n    interventions did not harm learning. I contributed as a co-author on the study design, data collection,\n    and analysis.\n  \n  \n    *Currently being published*\n  \n\n\n\n\n  Report\n  Autonomous Surface & Dive Robot for Underwater Depth Mapping\n  \n    Joaquin Gonzalez-Salgado, Esteban Gonzalez, Ayla Greenstein, Kathy Guo\n  \n  E80: Experimental Engineering, Harvey Mudd College — Spring 2026\n  \n    This report documents the design, construction, and field deployment of an autonomous underwater vehicle\n    (AUV) built to map the seafloor topography of Dana Point Harbor. The vehicle integrated a SONAR depth\n    sensor (CME1538-100LB microphone + daex25W-8 speaker), an MPX5700ASX pressure sensor for dive depth,\n    and a thermistor for temperature profiling across depth. The AUV featured four horizontal and two vertical\n    thrusters, a low center of gravity for surface stability, and a winch-based recovery system. Deployment\n    at Dana Point produced a topographic depth map of the harbor floor, with real-time data logging to an\n    onboard SD card. Sensor drift from ocean currents affected positional accuracy, motivating future work\n    on closed-loop horizontal control.\n  \n  \n    Read Paper (PDF)\n    View Poster (PDF)\n    See Project Page"
   }
 ]

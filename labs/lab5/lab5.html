@@ -354,10 +354,12 @@ window.Quarto = {
   <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a>
   <ul class="collapse">
   <li><a href="#mcu" id="toc-mcu" class="nav-link" data-scroll-target="#mcu">MCU</a></li>
+  <li><a href="#calculations" id="toc-calculations" class="nav-link" data-scroll-target="#calculations">Calculations</a></li>
   </ul></li>
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation:</a>
   <ul class="collapse">
   <li><a href="#schematic" id="toc-schematic" class="nav-link" data-scroll-target="#schematic">Schematic</a></li>
+  <li><a href="#flowchart" id="toc-flowchart" class="nav-link" data-scroll-target="#flowchart">Flowchart</a></li>
   </ul></li>
   <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
@@ -391,14 +393,39 @@ window.Quarto = {
 </header>
 
 
+<p>Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | June 13, 2026</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In this lab,</p>
+<p>In this lab, a quadrature encoder mounted on a <code>25GA-370</code> brushed DC motor was used to measure motor speed and direction with the <a href="https://os.mbed.com/platforms/ST-Nucleo-L432KC/"><code>STM32L432KC MCU</code></a>. Rather than polling the encoder channels, GPIO external interrupts (<code>EXTI</code>) were used to catch every edge on both encoder channels as they occurred, so no pulses are lost regardless of motor speed. A hardware timer (<code>TIM2</code>) was used to periodically compute and report the measured speed in revolutions per second (RPS) at a 1 Hz update rate, along with the direction of rotation.</p>
 </section>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
 <section id="mcu" class="level3">
 <h3 class="anchored" data-anchor-id="mcu">MCU</h3>
+<p>Two GPIO pins, <code>PA1</code> and <code>PA2</code>, were configured as inputs and connected to the two channels of the quadrature encoder (<code>ENCODER1</code> and <code>ENCODER2</code> in code). Because the encoder outputs 5V logic and <code>PA1</code>/<code>PA2</code> are 5V-tolerant (<code>FT</code>) pins on the <code>STM32L432KC</code> (per the datasheet’s pin tables), the encoder signals were wired directly into the MCU with no level-shifting circuitry required.</p>
+<p><code>EXTI1</code> and <code>EXTI2</code> were configured to trigger on <strong>both</strong> the rising and falling edges of their respective channels, via <code>EXTI-&gt;RTSR1</code> and <code>EXTI-&gt;FTSR1</code>. This means all four edges of a single quadrature cycle (two channels x two edges each) generate an interrupt, giving the maximum possible angular resolution from the encoder.</p>
+<p>Inside each <code>EXTI</code> ISR, the previous state of the <em>other</em> channel (<code>lastPin</code>) is compared against which channel just triggered to determine whether the motor moved forward or backward, updating a <code>dir</code> flag and incrementing/decrementing a running edge <code>Count</code> accordingly. A <code>switchdir</code> flag is used to <em>lock</em> the direction once the motor is confirmed to be spinning (<code>|RPS| &gt; 2.0</code>): while the motor is at low speed or stopped, direction is continuously re-evaluated, but once it’s clearly spinning, <code>dir</code> is frozen so that electrical noise or transient bounce cannot flip the reported direction.</p>
+<p><code>TIM2</code> was configured as a free-running periodic timer that generates an update interrupt once per second. On every <code>TIM2</code> update event, the main loop’s <code>print</code> flag is set, which triggers the RPS calculation, prints it, and resets <code>Count</code> for the next 1-second sampling window — satisfying the lab’s 1 Hz minimum update-rate requirement.</p>
+</section>
+<section id="calculations" class="level3">
+<h3 class="anchored" data-anchor-id="calculations">Calculations</h3>
+<p><code>TIM2</code> runs from the MCU’s default 4 MHz clock. With a prescaler <code>PSC = 3999</code>, the timer clock is divided down to a 1 kHz tick:</p>
+<p><span class="math display">\[
+f_{\text{timer}} = \frac{4\,\text{MHz}}{PSC + 1} = \frac{4{,}000{,}000}{4000} = 1\,\text{kHz}
+\]</span></p>
+<p>With <code>ARR = 999</code>, the timer counts 1000 ticks (0 through 999) before generating an update interrupt, giving exactly a 1-second sampling window:</p>
+<p><span class="math display">\[
+T_{\text{update}} = \frac{ARR + 1}{f_{\text{timer}}} = \frac{1000}{1000\,\text{Hz}} = 1\,\text{s}
+\]</span></p>
+<p>The <code>25GA-370</code> motor’s encoder outputs 120 pulses per revolution (PPR) per the datasheet. Because both edges of both channels are decoded (x4 decoding), the effective counts per revolution is:</p>
+<p><span class="math display">\[
+\text{MOTORCPR} = 120\,\text{PPR} \times 4\,\text{edges} = 480\,\text{counts/rev}
+\]</span></p>
+<p>The code computes speed as <code>RPS = Count / (MOTORCPR * (ARR + 1) / 1000)</code>. Since <code>(ARR + 1)/1000 = 1</code> (the sampling window is exactly 1 second), this simplifies to:</p>
+<p><span class="math display">\[
+\text{RPS} = \frac{\text{Count}}{\text{MOTORCPR}} = \frac{\text{Count}}{480}
+\]</span></p>
+<p>which is simply the number of encoder counts accumulated over the most recent 1-second window, divided by the number of counts per revolution — directly yielding revolutions per second.</p>
 </section>
 </section>
 <section id="technical-documentation" class="level2">
@@ -413,7 +440,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The source code for the project can be found in the associated <a href="https://github.com/jgonzalezsalgado/e155-Lab1">Github Repo</a>.</p>
+<p>The source code for the project can be found in the associated <a href="https://github.com/jgonzalezsalgado/e155-Lab5">Github Repo</a>.</p>
 </div>
 </div>
 <section id="schematic" class="level3">
@@ -429,11 +456,24 @@ Figure&nbsp;1: Schematic.
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;1</a> Shows the wiring approach for this lab. Each on-board LED is connected to an SMT 1 k<span class="math inline">\(\Omega\)</span> resistor via the development board.</p>
-<p>As for the 7-Segment display, 5 to 20 mA of current was advised in the lab manual. Since the FPGA GPIO pins output 3.3V, Ohm’s law can be used to find an effective resistor for this current. (For this calculation, I chose 13 mA of current). This is shown in <a href="#eq-resistor" class="quarto-xref">Equation&nbsp;1</a>:</p>
-<p><span id="eq-resistor"><span class="math display">\[
-V = IR \implies R = \frac{V}{I} = \frac{3.3\,\text{V} - 2.0\,\text{V}}{0.013\,\text{A}} = 100\,\Omega
-\tag{1}\]</span></span></p>
+<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;1</a> shows the wiring approach for this lab. The quadrature encoder’s two output channels connect directly to <code>PA1</code> and <code>PA2</code> on the <code>STM32L432KC</code> Nucleo board, sharing a common ground with the MCU. Since <code>PA1</code>/<code>PA2</code> are 5V-tolerant pins, the encoder’s 5V output channels were wired in directly with no voltage divider or level shifter needed. The <code>25GA-370</code> DC motor was powered from a separate bench supply.</p>
+</section>
+<section id="flowchart" class="level3">
+<h3 class="anchored" data-anchor-id="flowchart">Flowchart</h3>
+<p><em>Lab 5 Program Flowchart // Joaquin Gonzalez-Salgado // TBD</em></p>
+<div id="fig-flowchart" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/flowchart.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Flowchart of the main loop and ISR execution.
+</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>TBD:</strong> Flowchart image not yet added — <a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;2</a> will show the function call hierarchy between <code>main()</code>’s polling loop and the <code>EXTI1_IRQHandler</code>, <code>EXTI2_IRQHandler</code>, and <code>TIM2_IRQHandler</code> interrupt service routines.</p>
+</blockquote>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
@@ -451,10 +491,12 @@ V = IR \implies R = \frac{V}{I} = \frac{3.3\,\text{V} - 2.0\,\text{V}}{0.013\,\t
 <p>The Design was a Success!</p>
 </div>
 </div>
-<p>The design successfully met all objectives.</p>
+<p>The design met all proficiency-level requirements. Speed was measured and displayed in RPS with a 1 Hz update rate, matching the actual motor speed and direction as observed by hand-turning the motor shaft and ramping the bench supply. Because edge detection is fully interrupt-driven (<code>EXTI1</code>/<code>EXTI2</code>, no polling), no pulses were lost at either low or high motor speeds. When the motor was stationary, <code>Count</code> stayed at zero between <code>TIM2</code> update events, correctly reporting <code>0.0</code> RPS.</p>
+<p>For the excellence level, the design already decodes all four edges of the quadrature cycle (both channels, both rising and falling edges) for maximum resolution, and readings remained stable at both low and high speeds thanks to the <code>switchdir</code> direction lock described above. Two excellence items are still <strong>TBD</strong>: a quantitative comparison of this interrupt-driven approach against an equivalent polling implementation, and the program flowchart referenced in <a href="#fig-flowchart" class="quarto-xref">Figure&nbsp;2</a>.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This lab’s interrupt-driven quadrature decoding correctly measured motor speed and direction in real time, with no missed pulses across the tested speed range. The remaining open items are the interrupt-vs-polling comparison and the flowchart figure, both to be added.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
