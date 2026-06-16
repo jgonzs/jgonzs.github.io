@@ -43,7 +43,7 @@ The block diagram in @fig-block-diagram demonstrates the overall architecture of
 
 ### Schematic
 
-*Lab 1 Wiring Schematic // Joaquin Gonzalez-Salgado // September x 2025*
+*Lab 1 Wiring Schematic // Joaquin Gonzalez-Salgado // May 22 2026*
 
 ![Schematic of FPGA, DIP switches, and 7-segment wiring.](images/schematic.jpeg){#fig-schematic}
 

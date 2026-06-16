@@ -3,7 +3,7 @@ title: "Lab 2: Multiplexed 7-Segment Display"
 ---
 
 ## Introduction
-In this lab, a time-multiplexed dual 7-segment display was implemented using the `UPduino v3.1 FPGA`. Two independent 4-bit hexadecimal values are provided via DIP switches: one from the on-board switch bank and one from a breadboard DIP switch. These two values are displayed simultaneously on a dual 7-segment display by rapidly alternating between the two digits. A single shared sevenSegment decoder module drives the cathodes for both digits. The sum of the two input values is displayed across five on-board LEDs. A 2N3906 PNP transistor circuit was built to source the large anode current required by each display digit.
+In this lab, a time-multiplexed dual 7-segment display was implemented using the [`UPduino v3.1 FPGA`](https://upduino.readthedocs.io/en/latest/features/specs.html#upduino-pinout). Two independent 4-bit hexadecimal values are provided via DIP switches: one from the on-board switch bank and one from a breadboard DIP switch. These two values are displayed simultaneously on a dual 7-segment display by rapidly alternating between the two digits. A single shared `sevenSegment` decoder module drives the cathodes for both digits. The sum of the two input values is displayed across five on-board LEDs. A `2N3906` PNP transistor circuit was built to source the large anode current required by each display digit.
 
 ## Design and Testing Methodology
 ### FPGA Implementation
@@ -21,12 +21,12 @@ In this lab, a time-multiplexed dual 7-segment display was implemented using the
 : Digital Inputs and Outputs for Lab 2 {#tbl-letters}
 
 
-The top-level module `lab2_jg` uses the same 24 MHz internal high-speed oscillator (`HSOSC`) divider from Lab 1. A 20-bit counter is incremented by 10 on every rising clock edge, producing an approximately `229 Hz` toggle. This toggle signal called `state`, is the input to the multiplexer that selects between `s1` and `s2`, the two numbers to be displayed. At the same time, it controls the `active` and `inactive` signals to the PNP transistors, which control the COM ports. Each digit is therefore illuminated at roughly **114 Hz**, which is above the flicker threshold of the human eye.
+The top-level module `lab2_jg` uses the same 24 MHz internal high-speed oscillator (`HSOSC`) divider from Lab 1. A 20-bit counter is incremented by 10 on every rising clock edge, producing an approximately `229 Hz` toggle. This toggle signal called `state`, is the input to the multiplexer that selects between `s1` and `s2`, the two numbers to be displayed. At the same time, it controls the `active` and `inactive` signals to the PNP transistors, which control the COM ports. Each digit is therefore illuminated at roughly `114 Hz`, which is above the flicker threshold of the human eye.
 
-The selected 4-bit value (between s1 and s2) `s` is fed into the `sevenSegment` decoder, which works as previously in Lab 1 mapping hex numbers 0 to F on the display. Five LEDs on a breadboard directly implement the 5-bit sum `s1 + s2`.
+The selected 4-bit value (between `s1` and `s2`) `s` is fed into the `sevenSegment` decoder, which works as previously in Lab 1 mapping hex numbers 0 to F on the display. Five LEDs on a breadboard directly implement the 5-bit sum `s1 + s2`.
 
 ### Multiplexing Frequency Calculation
-The counter increments by 10 each cycle at 24 MHz, and state = counter[19]:
+The counter increments by 10 each cycle at 24 MHz, and `state` = `counter[19]`:
 
 $$
 \begin{aligned}
@@ -44,22 +44,22 @@ The source code for the project can be found in the associated [Github Repo](htt
 :::
 
 ### Block Diagram
-*Lab 2 Block Diagram // Joaquin Gonzalez-Salgado // September x 2026*
+*Lab 2 Block Diagram // Joaquin Gonzalez-Salgado // May 29th 2026*
 
 ![Top-Level Block Diagram of'Lab2_jg' and 'sevenSegment'.](images/blockDiagram.jpeg){#fig-block-diagram}
 
-The top-level module `lab2_jg` contains four submodules: the HSOSC clock, a sequential 20-bit counter acting as a clock divider and display controller, a mux selecting between `s1` and `s2`, and the sevenSegment decoder from previous labs. The active and inactive anode control signals are connected to the bases of two `2N3906` PNP transistors.
+The top-level module `lab2_jg` contains four submodules: the `HSOSC` clock, a sequential 20-bit counter acting as a clock divider and display controller, a mux selecting between `s1` and `s2`, and the `sevenSegment` decoder from previous labs. The active and inactive anode control signals are connected to the bases of two `2N3906` PNP transistors.
 
 ### Schematic
 
-*Lab 2 Wiring Schematic // Joaquin Gonzalez-Salgado // September x 2026*
+*Lab 2 Wiring Schematic // Joaquin Gonzalez-Salgado // May 29th 2026*
 
 ![Schematic of FPGA, DIP switches, and 7-segment wiring.](images/schematic.jpeg){#fig-schematic}
 
 @fig-schematic Shows the wiring schematic for this lab. 270 Ohm resistors were used for the LEDS and Display, and 510 Ohm resistors were used for the Base of the PNPs. The calculations for these resistors are described below:
 
 
-The 7-segment display and Green LEDS have a forward voltage of roughly 2.0 V, and we do not want to exceed the FPGA GPIO current of 8 mA. So, we can use Ohm's kaw to find the desired resistor (using a current of 5 mA) This is shown in @eq-leds:
+The 7-segment display and Green LEDS have a forward voltage of roughly 2.0 V, and we do not want to exceed the FPGA GPIO current of 8 mA. So, we can use Ohm's law to find the desired resistor (using a current of 5 mA) This is shown in @eq-leds:
 
 
 $$
@@ -92,7 +92,7 @@ The design successfully met all lab requirements. Both display digits independen
 The simulation confirmed the correct behavior for toggling between `s1` and `s2`. Asserts showed that the 7-segment decoder remained accurate, and the summing logic for the 5 leds was proved accurate with this as well. (These were also verified visually on the breadboard)
 
 ## Conclusion
-This lab successfully demonstrated time-multiplexing to share a single 7-segment decoder and a single set of I/O pins to display two separate digits. The design reused the sevenSegment decoder from Lab 1 without any changes.
+This lab successfully demonstrated time-multiplexing to share a single 7-segment decoder and a single set of I/O pins to display two separate digits. The design reused the `sevenSegment` decoder from Lab 1 without any changes.
 
 ::: {.callout-note}
 ## Hours Spent on Lab
@@ -102,12 +102,15 @@ This lab took 9 hours. Setting up the breadboard was slightly difficult, due to 
 
 ## AI Prototype
 
+::: {.callout-tip}
+## AI Prototype (Gemini)
 **Prompt 1:** Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits.
+:::
 
 Then, starting a new AI conversation and attaching my lab 1 files as context, I entered this prompt:
 
 ::: {.callout-tip}
-## AI Prototype (Gemini)
+## AI Prototype (Gemini) — With Context
 **Prompt 2:** Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits.
 :::
 
