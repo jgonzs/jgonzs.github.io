@@ -100,7 +100,7 @@ format: html
       <strong>Summary:</strong><br>
       Designed an interrupt-driven system on the STM32L432KC to measure the angular velocity and direction of a brushed DC motor using a quadrature encoder. Configured GPIO interrupts on 5V-tolerant pins to process encoder pulses at both high and low speeds, computing revolutions per second and displaying velocity with an update rate of at least 1 Hz.
     </p>
-    <a href="labs/lab5/lab5.qmd" style="display: inline-block; border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer; font-weight: 500; text-decoration: none; color: inherit;">
+    <a href="labs/lab7/lab7.qmd" style="display: inline-block; border-radius: 6px; padding: 8px 14px; background-color: #f5f5f5; border: 1px solid #aaa; cursor: pointer; font-weight: 500; text-decoration: none; color: inherit;">
       See Lab Report
     </a>
   </div>
