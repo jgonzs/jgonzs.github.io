@@ -134,9 +134,9 @@ format: html
   <p class="pub-type" style="color: #b07800;">Work in Progress</p>
   <p class="pub-title">Low-Noise Analog Amplifier for Electropenetrography and R/EMF Signal Acquisition</p>
   <p class="pub-authors">
-    <strong>Joaquin Gonzalez-Salgado</strong>, Matthew Spencer — ACE Lab, Harvey Mudd College
+    Matthew Spencer, Elaine Backus, <strong>Joaquin Gonzalez-Salgado</strong> — ACE Lab, Harvey Mudd College
   </p>
-  <p class="pub-venue">In preparation — Analog Circuitry Engineering (ACE) Lab, USDA Collaboration</p>
+  <p class="pub-venue">Computers and Agriculture — In preparation</p>
   <p class="pub-description">
     Ongoing manuscript documenting the design and characterization of a low-noise analog amplifier
     for monitoring insect feeding behavior via electropenetrography (EPG) and resistive/emf (R/EMF)
