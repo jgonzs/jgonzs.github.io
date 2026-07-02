@@ -106,7 +106,7 @@ part of the
   </a>
 
   <a href="pcb.html" class="proj-card">
-  <img class="proj-img" src="images/pcb/batt1.png" alt="LiPo Charger PCB">
+  <img class="proj-img" src="images/pcb/SR2.png" alt="SR2 Electropenetrograph PCB">
   <div class="proj-label">
     <p class="proj-course">PCB</p>
     <p class="proj-name">PCB Designs</p>
