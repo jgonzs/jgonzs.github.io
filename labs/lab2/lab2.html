@@ -389,12 +389,12 @@ window.Quarto = {
   <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a>
   <ul class="collapse">
   <li><a href="#fpga-implementation" id="toc-fpga-implementation" class="nav-link" data-scroll-target="#fpga-implementation">FPGA Implementation</a></li>
-  <li><a href="#multiplexing-frequency-calculation" id="toc-multiplexing-frequency-calculation" class="nav-link" data-scroll-target="#multiplexing-frequency-calculation">Multiplexing Frequency Calculation</a></li>
   </ul></li>
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation:</a>
   <ul class="collapse">
   <li><a href="#block-diagram" id="toc-block-diagram" class="nav-link" data-scroll-target="#block-diagram">Block Diagram</a></li>
   <li><a href="#schematic" id="toc-schematic" class="nav-link" data-scroll-target="#schematic">Schematic</a></li>
+  <li><a href="#calculations" id="toc-calculations" class="nav-link" data-scroll-target="#calculations">Calculations</a></li>
   </ul></li>
   <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a>
   <ul class="collapse">
@@ -433,7 +433,7 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In this lab, a time-multiplexed dual 7-segment display was implemented using the <a href="https://upduino.readthedocs.io/en/latest/features/specs.html#upduino-pinout"><code>UPduino v3.1 FPGA</code></a>. Two independent 4-bit hexadecimal values are provided via DIP switches: one from the on-board switch bank and one from a breadboard DIP switch. These two values are displayed simultaneously on a dual 7-segment display by rapidly alternating between the two digits. A single shared <code>sevenSegment</code> decoder module drives the cathodes for both digits. The sum of the two input values is displayed across five on-board LEDs. A <code>2N3906</code> PNP transistor circuit was built to source the large anode current required by each display digit.</p>
+<p>In this lab, a time-multiplexed dual 7-segment display and a keypad scanning circuit were implemented using the <a href="https://upduino.readthedocs.io/en/latest/features/specs.html#upduino-pinout"><code>UPduino v3.1 FPGA</code></a>. Two independent 4-bit hexadecimal values are provided via DIP switches: one from the on-board switch and one from a breadboard DIP switch. These two values are displayed simultaneously on a dual 7-segment display by rapidly alternating between the two digits, so that a single shared <code>sevenSegment</code> decoder module and a single set of cathode pins drive both digits. A <code>2N3906</code> PNP transistor circuit sources the large anode current required by each digit. A scanning circuit drives the four rows of a matrix keypad through <code>2N3904</code> NPN transistors wired as open-collector outputs, and the four keypad columns are read back into the FPGA and driven out onto LEDs, so that pressing a key lights the LED for its column.</p>
 </section>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
@@ -466,56 +466,70 @@ Table&nbsp;1: Digital Inputs and Outputs for Lab 2
 <tr class="odd">
 <td style="text-align: center;">int_osc</td>
 <td style="text-align: center;">internal</td>
-<td style="text-align: center;">48 MHz clock</td>
+<td style="text-align: center;">24 MHz internal oscillator (<code>HSOSC</code>)</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">s1[3:0]</td>
 <td style="text-align: center;">input</td>
-<td style="text-align: center;">First 7-segment</td>
+<td style="text-align: center;">Hex value for the first digit (on-board DIP switches)</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">s2[3:0]</td>
 <td style="text-align: center;">input</td>
-<td style="text-align: center;">Second 7-segment</td>
+<td style="text-align: center;">Hex value for the second digit (breadboard DIP switches)</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">reset</td>
 <td style="text-align: center;">input</td>
-<td style="text-align: center;">Hold to turn off Display</td>
+<td style="text-align: center;">Holds the multiplexing and scanning counters at reset</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">active</td>
-<td style="text-align: center;">output</td>
-<td style="text-align: center;">Currently Active Anode</td>
+<td style="text-align: center;">cols[3:0]</td>
+<td style="text-align: center;">input</td>
+<td style="text-align: center;">Keypad columns, externally pulled up</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">inactive</td>
+<td style="text-align: center;">rows[3:0]</td>
 <td style="text-align: center;">output</td>
-<td style="text-align: center;">Currently Inactive Anode</td>
+<td style="text-align: center;">Scan pattern to rows</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">led[4:0]</td>
+<td style="text-align: center;">led[3:0]</td>
 <td style="text-align: center;">output</td>
-<td style="text-align: center;">5-bit sum of s1 and s2</td>
+<td style="text-align: center;">Column readback</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">active</td>
+<td style="text-align: center;">output</td>
+<td style="text-align: center;">Digit 1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">inactive</td>
+<td style="text-align: center;">output</td>
+<td style="text-align: center;">Digit 2</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">seg[6:0]</td>
 <td style="text-align: center;">output</td>
-<td style="text-align: center;">Resulting displayed output (switches between s1 and s2)</td>
+<td style="text-align: center;">Shared 7-segment decoder</td>
 <td></td>
 <td></td>
 </tr>
@@ -524,73 +538,113 @@ Table&nbsp;1: Digital Inputs and Outputs for Lab 2
 </div>
 </figure>
 </div>
-<p>The top-level module <code>lab2_jg</code> uses the same 24 MHz internal high-speed oscillator (<code>HSOSC</code>) divider from Lab 1. A 20-bit counter is incremented by 10 on every rising clock edge, producing an approximately <code>229 Hz</code> toggle. This toggle signal called <code>state</code>, is the input to the multiplexer that selects between <code>s1</code> and <code>s2</code>, the two numbers to be displayed. At the same time, it controls the <code>active</code> and <code>inactive</code> signals to the PNP transistors, which control the COM ports. Each digit is therefore illuminated at roughly <code>114 Hz</code>, which is above the flicker threshold of the human eye.</p>
-<p>The selected 4-bit value (between <code>s1</code> and <code>s2</code>) <code>s</code> is fed into the <code>sevenSegment</code> decoder, which works as previously in Lab 1 mapping hex numbers 0 to F on the display. Five LEDs on a breadboard directly implement the 5-bit sum <code>s1 + s2</code>.</p>
-</section>
-<section id="multiplexing-frequency-calculation" class="level3">
-<h3 class="anchored" data-anchor-id="multiplexing-frequency-calculation">Multiplexing Frequency Calculation</h3>
-<p>The counter increments by 10 each cycle at 24 MHz, and <code>state</code> = <code>counter[19]</code>:</p>
-<p><span class="math display">\[
-\begin{aligned}
-f_{\text{switching}} &amp;= \frac{24{,}000{,}000 \times 10}{2^{20}} \approx 228.9 \text{ Hz} \\
-f_{\text{display}} &amp;= \frac{f_{\text{switching}}}{2} \approx 114.4 \text{ Hz per display}
-\end{aligned}
-\]</span></p>
 </section>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation:</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 <span class="screen-reader-only">Note</span>Source Code
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The source code for the project can be found in the associated <a href="https://github.com/jgonzalezsalgado/e155-Lab2">Github Repo</a>.</p>
+<p>The source code for the project can be found in the associated <a href="https://github.com/jgonzs/Microprocessor-Projects">Github Repo</a>.</p>
+</div>
 </div>
 </div>
 <section id="block-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
-<p><em>Lab 2 Block Diagram // Joaquin Gonzalez-Salgado // May 29th 2026</em></p>
+<p><em>Lab 2 Block Diagram // Joaquin Gonzalez-Salgado // September 14th 2026</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Expand to see Block Diagram
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div id="fig-block-diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/blockDiagram.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-block-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Top-Level Block Diagram of’Lab2_jg’ and ‘sevenSegment’.
+Figure&nbsp;1: Top-Level Block Diagram of ‘lab2_jg’, showing the multiplexer, scanning counter, and sevenSegment decoder.
 </figcaption>
 </figure>
 </div>
-<p>The top-level module <code>lab2_jg</code> contains four submodules: the <code>HSOSC</code> clock, a sequential 20-bit counter acting as a clock divider and display controller, a mux selecting between <code>s1</code> and <code>s2</code>, and the <code>sevenSegment</code> decoder from previous labs. The active and inactive anode control signals are connected to the bases of two <code>2N3906</code> PNP transistors.</p>
+</div>
+</div>
+</div>
+<p>The block diagram in <a href="#fig-block-diagram" class="quarto-xref">Figure&nbsp;1</a> shows the top-level architecture of <code>lab2_jg</code>. Internally, <code>HSOSC</code> provides the clock to two counter instances: a sequential counter that produces <code>state</code>, and a separate scanning counter that produces the one-hot <code>rows[3:0]</code> pattern for the keypad. <code>state</code> selects between <code>s1</code> and <code>s2</code> at the 2:1 multiplexer feeding the <code>sevenSegment</code> decoder, and also drives <code>active</code> directly and <code>inactive</code> through an inverter, so the two PNP anode controls are always complementary. The four keypad columns, <code>cols[3:0]</code>, are inverted and driven straight out onto <code>led[3:0]</code>.</p>
 </section>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
-<p><em>Lab 2 Wiring Schematic // Joaquin Gonzalez-Salgado // May 29th 2026</em></p>
+<p><em>Lab 2 Wiring Schematic // Joaquin Gonzalez-Salgado // September 14th 2026</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Expand to see Schematic
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div id="fig-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/schematic.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Schematic of FPGA, DIP switches, and 7-segment wiring.
+Figure&nbsp;2: Schematic of FPGA, DIP switches, keypad, transistor drivers, and 7-segment wiring.
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;2</a> Shows the wiring schematic for this lab. 270 Ohm resistors were used for the LEDS and Display, and 510 Ohm resistors were used for the Base of the PNPs. The calculations for these resistors are described below:</p>
-<p>The 7-segment display and Green LEDS have a forward voltage of roughly 2.0 V, and we do not want to exceed the FPGA GPIO current of 8 mA. So, we can use Ohm’s law to find the desired resistor (using a current of 5 mA) This is shown in <a href="#eq-leds" class="quarto-xref">Equation&nbsp;1</a>:</p>
-<p><span id="eq-leds"><span class="math display">\[
-V = IR \implies R = \frac{V}{I} = \frac{3.3\,\text{V} - 2\,\text{V}}{0.005\,\text{A}} = 260\,\Omega \approx 270\,\Omega
-\tag{1}\]</span></span></p>
-<p>The 2N3906 PNP transistor has a forward voltage drop from the Base to the Emitter of about 0.7 V. With the same current constraint of 8 mA, we can find a desired resistor for the circuit. (Once again choosing a current of 5 mA.) This is shown in <a href="#eq-transistor" class="quarto-xref">Equation&nbsp;2</a>:</p>
-<p><span id="eq-transistor"><span class="math display">\[
-V = IR \implies R = \frac{V}{I} = \frac{3.3\,\text{V} - 0.7\,\text{V}}{0.005\,\text{A}} = 520\,\Omega \approx 510\,\Omega
-\tag{2}\]</span></span></p>
-<p>*Note, the two resistor approximations were made as those were the resistor values available.</p>
+</div>
+</div>
+</div>
+<p><a href="#fig-schematic" class="quarto-xref">Figure&nbsp;2</a> shows the wiring for the FPGA, the DIP switches, the 4x4 matrix keypad, the <code>2N3906</code> PNP anode drivers, the <code>2N3904</code> NPN row drivers, and the dual seven-segment display. A resistor is placed in series with every FPGA pin that sources or sinks current: 470 <span class="math inline">\(\Omega\)</span> pull-up resistors on the four keypad columns, 390 <span class="math inline">\(\Omega\)</span> and 300 <span class="math inline">\(\Omega\)</span> resistors on the NPN and PNP transistor bases respectively, and 220 <span class="math inline">\(\Omega\)</span> resistors on the seven-segment display segments. Every one of these values keeps the corresponding pin below the 8 mA maximum LVCMOS33 output current given in Section 4.17 of the iCE40 UltraPlus datasheet. The derivations for these resistors are shown in <a href="#fig-calculations" class="quarto-xref">Figure&nbsp;3</a>.</p>
+</section>
+<section id="calculations" class="level3">
+<h3 class="anchored" data-anchor-id="calculations">Calculations</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Expand to see Calculations
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="fig-calculations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-calculations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/calculations.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-calculations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Hand-derived resistor calculations for the column pull-ups, NPN and PNP transistor bases, and the dual seven-segment display.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
@@ -608,25 +662,50 @@ V = IR \implies R = \frac{V}{I} = \frac{3.3\,\text{V} - 0.7\,\text{V}}{0.005\,\t
 <p>The Design was a Success!</p>
 </div>
 </div>
-<p>The design successfully met all lab requirements. Both display digits independently show the correct hexadecimal representation of <code>s1</code> and <code>s2</code>, with all 16 digits (<code>0</code>–<code>F</code>) rendering correctly with unique, distinguishable shapes. The multiplexed display shows no visible flicker at the <code>~114 Hz</code> per digit switching rate. The five LEDs correctly display the binary sum <code>s1 + s2</code>, including the carry bit on <code>led[4]</code>. The QuestaSim testbench verified correct decoder outputs for all 16 input combinations, and asserts in the tesetbenched all passed.</p>
+<p>The design meets all of the lab’s requirements, with no known shortcomings. Both digits correctly display <code>s1</code> and <code>s2</code>, with consistent brightness regardless of how many segments are lit. The display shows no visible flicker or bleeding between digits. The keypad scanning signal is correctly displayed under all keypress conditions, including multiple simultaneous presses.</p>
 <section id="testbench-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="testbench-simulation">Testbench Simulation</h3>
+<p>As specified, the Lab 1 <code>sevenSegment</code> decoder simulation was not repeated, since that module was already verified there. Two new automatic testbenches were written instead, one for the <code>scanning</code> module and one for the top-level <code>lab2_jg</code> module.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Expand to see Simulation Results
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div id="fig-testbench" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-testbench-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/waveforms.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-testbench-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Questa Simulation of the Lab2 testbench, with expected waveforms.
+Figure&nbsp;4: Questa Simulation of the Lab2 top-level testbench, showing <code>s1</code>/<code>s2</code> being multiplexed onto <code>seg</code> with <code>active</code>/<code>inactive</code> alternating, and all asserts passing.
 </figcaption>
 </figure>
 </div>
-<p>The simulation confirmed the correct behavior for toggling between <code>s1</code> and <code>s2</code>. Asserts showed that the 7-segment decoder remained accurate, and the summing logic for the 5 leds was proved accurate with this as well. (These were also verified visually on the breadboard)</p>
+<div id="fig-testbench-scanning" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-testbench-scanning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/waveforms_scanning.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-testbench-scanning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Questa Simulation of the keypad scanning testbench, showing the one-hot row outputs rotating and the LED outputs tracking simulated column presses.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This lab successfully demonstrated time-multiplexing to share a single 7-segment decoder and a single set of I/O pins to display two separate digits. The design reused the <code>sevenSegment</code> decoder from Lab 1 without any changes.</p>
+<p>This lab successfully demonstrated time-multiplexing to share a single 7-segment decoder and a single set of I/O pins between two digits, and showed how transistors can move current-driving work off the FPGA pins: PNPs to source the anode current the FPGA cannot supply, and NPNs to convert ordinary push-pull outputs into open-collector row drivers for the keypad. The design reused the <code>sevenSegment</code> decoder from Lab 1 without any changes.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -637,7 +716,7 @@ Figure&nbsp;3: Questa Simulation of the Lab2 testbench, with expected waveforms.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This lab took 9 hours. Setting up the breadboard was slightly difficult, due to the number of components necessary for the lab.</p>
+<p>This lab took 13 hours. Setting up the breadboard was slightly difficult, due to the number of components necessary for the lab.</p>
 </div>
 </div>
 </section>
@@ -671,14 +750,16 @@ Figure&nbsp;3: Questa Simulation of the Lab2 testbench, with expected waveforms.
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>First Round of Generated Code (No Context):
+<span class="screen-reader-only">Note</span>Expand to see First Round of Generated Code (No Context)
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode systemverilog code-with-copy"><code class="sourceCode systemverilog"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> top_seven_seg_mux (</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">input</span>  <span class="kw">logic</span>        clk,</span>
@@ -735,15 +816,18 @@ Figure&nbsp;3: Questa Simulation of the Lab2 testbench, with expected waveforms.
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="kw">endmodule</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Second Round of Generated Code (With Lab 1 Files):
+<span class="screen-reader-only">Note</span>Expand to see Second Round of Generated Code (With Lab 1 Files)
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode systemverilog code-with-copy"><code class="sourceCode systemverilog"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> top_multiplex (</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">input</span>  <span class="kw">logic</span>       reset,</span>
@@ -758,8 +842,8 @@ Figure&nbsp;3: Questa Simulation of the Lab2 testbench, with expected waveforms.
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">logic</span> [<span class="dv">3</span>:<span class="dv">0</span>] mux_digit;</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">logic</span> mux_clk;</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    HSOSC #<span class="dt">(.CLKHF_DIV</span>(<span class="bn">2'b01</span>)) </span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>         hf_osc <span class="dt">(.CLKHFPU</span>(<span class="bn">1'b1</span>),<span class="dt"> .CLKHFEN</span>(<span class="bn">1'b1</span>),<span class="dt"> .CLKHF</span>(int_osc)); </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    HSOSC #<span class="dt">(.CLKHF_DIV</span>(<span class="bn">2'b01</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>         hf_osc <span class="dt">(.CLKHFPU</span>(<span class="bn">1'b1</span>),<span class="dt"> .CLKHFEN</span>(<span class="bn">1'b1</span>),<span class="dt"> .CLKHF</span>(int_osc));</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">always_ff</span> @(<span class="kw">posedge</span> int_osc) <span class="kw">begin</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">if</span> (reset == <span class="dv">0</span>) counter &lt;= <span class="dv">0</span>;</span>
@@ -779,6 +863,7 @@ Figure&nbsp;3: Questa Simulation of the Lab2 testbench, with expected waveforms.
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">endmodule</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div>
 </div>
 <section id="reflection" class="level3">
