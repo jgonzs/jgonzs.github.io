@@ -6,7 +6,7 @@ Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | September 28, 2026
 
 ## Introduction
 
-In this lab, a hardware timer of the [`STM32L432KC MCU`](https://os.mbed.com/platforms/ST-Nucleo-L432KC/) was used to drive an 8-ohm speaker to play music. The timer was used to toggle a GPIO pin at a specified frequency, generating a square wave for each musical note, and also to produce millisecond delays for rests. The system was tested by playing *Für Elise*, and as an optional piece, *Fallen Down* was also implemented.
+In this lab, a hardware timer of the [`STM32L432KC MCU`](https://os.mbed.com/platforms/ST-Nucleo-L432KC/) was used to drive an 8-ohm speaker to play music. The timer was used to toggle a GPIO pin at a specified frequency, generating a square wave for each musical note, and also to produce millisecond delays for rests. The system was tested by playing *Fur Elise*, and as an optional piece, *Fallen Down* was also implemented.
 
 ## Design and Testing Methodology
 ### Lab Overview
@@ -81,35 +81,22 @@ These are the hardware limits. In practice, frequencies are stored as integers a
 
 ### Duration Range
 
-| | Duration | Explanation |
-|---|---|---|
-| Minimum | 1 ms | Durations are integer milliseconds |
-| Maximum (rests) | $2^{31}-1$ ms ≈ 24.8 days | The duration is passed as a signed 32-bit `int` |
-| Maximum (notes) | $\lfloor (2^{31}-1)/2f \rfloor$ ms ≈ 13.6 min at 1319 Hz | `2 * freq * delay` overflows a signed 32-bit `int` |
-
-**Minimum:**
+**Minimum:** durations are integer milliseconds, so
 $$
 d_{\text{min}} = 1\,\text{ms}
 $$
 
-**Maximum (rests):**
+**Maximum (rests):** the duration is passed as a signed 32-bit `int`, so
 $$
 d_{\text{max,rest}} = 2^{31}-1 = 2{,}147{,}483{,}647\,\text{ms} = \frac{2{,}147{,}483{,}647}{86{,}400{,}000\,\text{ms/day}} \approx 24.8\,\text{days}
 $$
 
-**Maximum (notes)**, at the highest note in *Für Elise* (1319 Hz):
+**Maximum (notes):** `2 * freq * delay` is computed as a signed 32-bit `int` and overflows past $2^{31}-1$. At the highest note in *Fur Elise* (1319 Hz):
 $$
 d_{\text{max,note}} = \left\lfloor \frac{2^{31}-1}{2 \times 1319} \right\rfloor = \left\lfloor \frac{2{,}147{,}483{,}647}{2638} \right\rfloor = 814{,}057\,\text{ms} \approx 13.6\,\text{min}
 $$
 
 ### Frequency Accuracy (220 Hz and 1000 Hz)
-
-| Target (Hz) | ARR | Actual (Hz) | Error |
-|---|---|---|---|
-| 220 | 2271 | 220.07 | 0.03% |
-| 1000 | 499 | 1000.00 | 0.00% |
-
-`ARR` must be an integer, so rounding it down gives a slightly higher frequency than the target. Both are well within 1% error.
 
 **220 Hz:**
 $$
@@ -127,9 +114,16 @@ $$
 f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times (499 + 1)} = 1000.00\,\text{Hz}, \qquad \text{error} = 0.00\%
 $$
 
-### Für Elise Accuracy
+### Fur Elise Accuracy
 
-The table below applies the formulas above to every distinct note in *Für Elise*. Error is measured against the frequency stored in the `notes` array.
+The table below applies the formulas above to every distinct note in *Fur Elise*. Error is measured against the frequency stored in the `notes` array. For example, for E5 (659 Hz):
+
+$$
+\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 659}\right\rfloor - 1 = \lfloor 758.73 \rfloor - 1 = 757
+$$
+$$
+f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times (757 + 1)} = 659.631\,\text{Hz}, \qquad \text{error} = \frac{659.631 - 659}{659} = 0.096\%
+$$
 
 | Note | Frequency (Hz) | Actual Frequency (Hz) | Error |
 |---|---|---|---|
@@ -147,13 +141,13 @@ The table below applies the formulas above to every distinct note in *Für Elise
 | F5 | 699 | 699.301 | 0.043% |
 | E6 | 1319 | 1319.261 | 0.020% |
 
-Every note in *Für Elise* is within 1% error.
+Every note in *Fur Elise* is within 1% error.
 
-**Is checking 220 Hz and 1000 Hz sufficient?** No. Checking only those two frequencies doesn't give any information about the frequencies between them, and *Für Elise* goes above 1000 Hz anyway (E6 at 1319 Hz).
+**Is checking 220 Hz and 1000 Hz sufficient?** No. Checking only those two frequencies doesn't give any information about the frequencies between them, and *Fur Elise* goes above 1000 Hz anyway (E6 at 1319 Hz).
 
 ## Technical Documentation
 
-::: {.callout-note}
+::: {.callout-note collapse="true"}
 ## Source Code
 The source code for the project can be found in the associated [GitHub Repo](https://github.com/jgonzs/Microprocessor-Projects).
 :::
@@ -162,13 +156,18 @@ The source code for the project can be found in the associated [GitHub Repo](htt
 
 *Lab 4 Wiring Schematic // Joaquin Gonzalez-Salgado // September 28, 2026*
 
-![Schematic of MCU, LM386 amplifier, potentiometer, and 8-ohm speaker.](images/schematic.jpeg){#fig-schematic}
+::: {.callout-note collapse="true"}
+## Expand to see Schematic
+![Schematic of the Nucleo STM32L432KC MCU, LM386 amplifier, 10 kΩ potentiometer, and 8-ohm A0202C speaker.](images/schematic.jpeg){#fig-schematic}
+:::
 
-The `PA1` output was connected through a `10 kΩ` potentiometer, wired as a voltage divider with its wiper feeding the non-inverting input of the `LM386 amplifier`, which provided adjustable volume. The `LM386` was powered from the `3.3 V` MCU supply, and its output drove the 8-ohm speaker.
+The `PA1` output was connected through a `10 kΩ` potentiometer, wired as a voltage divider with its wiper feeding the non-inverting input of the `LM386 amplifier`, which provided adjustable volume. The `LM386` was powered from the `5 V` MCU supply, and its output drove the 8-ohm speaker.
+
+No components on the development board were used in this lab. Every component shown in @fig-schematic is off-board, on the breadboard.
 
 ## Conclusion
 
-The design successfully met all lab requirements. *Für Elise* played at the correct tempo, with every pitch, including the 1319 Hz E6, within `1%` error, as verified by the `ARR` calculations above. All rests were rendered as silence for the correct durations. The optional composition *Fallen Down* also played correctly! And the potentiometer varied the volume as intended.
+The design successfully met all lab requirements. *Fur Elise* played at the correct tempo, with every pitch, including the 1319 Hz E6, within `1%` error, as verified by the `ARR` calculations above. All rests were rendered as silence for the correct durations. The optional composition *Fallen Down* also played correctly! And the potentiometer varied the volume as intended.
 
 ::: {.callout-note}
 ## Hours Spent on Lab
