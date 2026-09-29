@@ -87,6 +87,21 @@ These are the hardware limits. In practice, frequencies are stored as integers a
 | Maximum (rests) | $2^{31}-1$ ms ≈ 24.8 days | The duration is passed as a signed 32-bit `int` |
 | Maximum (notes) | $\lfloor (2^{31}-1)/2f \rfloor$ ms ≈ 13.6 min at 1319 Hz | `2 * freq * delay` overflows a signed 32-bit `int` |
 
+**Minimum:**
+$$
+d_{\text{min}} = 1\,\text{ms}
+$$
+
+**Maximum (rests):**
+$$
+d_{\text{max,rest}} = 2^{31}-1 = 2{,}147{,}483{,}647\,\text{ms} = \frac{2{,}147{,}483{,}647}{86{,}400{,}000\,\text{ms/day}} \approx 24.8\,\text{days}
+$$
+
+**Maximum (notes)**, at the highest note in *Für Elise* (1319 Hz):
+$$
+d_{\text{max,note}} = \left\lfloor \frac{2^{31}-1}{2 \times 1319} \right\rfloor = \left\lfloor \frac{2{,}147{,}483{,}647}{2638} \right\rfloor = 814{,}057\,\text{ms} \approx 13.6\,\text{min}
+$$
+
 ### Frequency Accuracy (220 Hz and 1000 Hz)
 
 | Target (Hz) | ARR | Actual (Hz) | Error |
@@ -95,6 +110,22 @@ These are the hardware limits. In practice, frequencies are stored as integers a
 | 1000 | 499 | 1000.00 | 0.00% |
 
 `ARR` must be an integer, so rounding it down gives a slightly higher frequency than the target. Both are well within 1% error.
+
+**220 Hz:**
+$$
+\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 220}\right\rfloor - 1 = \lfloor 2272.73 \rfloor - 1 = 2271
+$$
+$$
+f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times (2271 + 1)} = 220.07\,\text{Hz}, \qquad \text{error} = \frac{220.07 - 220}{220} = 0.03\%
+$$
+
+**1000 Hz:**
+$$
+\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 1000}\right\rfloor - 1 = 500 - 1 = 499
+$$
+$$
+f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times (499 + 1)} = 1000.00\,\text{Hz}, \qquad \text{error} = 0.00\%
+$$
 
 ### Für Elise Accuracy
 
