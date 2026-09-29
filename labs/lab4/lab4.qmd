@@ -51,8 +51,6 @@ $$
 d_{\text{actual}} = N \cdot (\text{ARR}+1)\ \mu\text{s}
 $$
 
-Because $N$ is rounded down, a note can end up to one half-period short. For example, a 125 ms E5 (659 Hz) gives $N = 164$ and $d_{\text{actual}} = 164 \times 758\ \mu\text{s} = 124.3$ ms.
-
 ### Duration Control (Rests)
 
 For rests (`freq == 0`), the delay function sets `ARR` to produce a 1 ms tick:
@@ -79,49 +77,24 @@ $$
 f_{\text{max}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{min}} + 1)} = \frac{1{,}000{,}000}{2 \times 2} = 250{,}000\,\text{Hz}
 $$
 
-These are the hardware limits. In practice the range is narrower:
-
-- **Firmware minimum:** frequencies are stored as integers and `0` means a rest, so the lowest note that can be requested is **1 Hz**.
-- **CPU ceiling:** the polling loop (check `UIF`, clear it, toggle `ODR`) takes several instructions at 4 MHz. If the half-period is shorter than one loop pass, update events are missed and the pitch comes out low, so the usable maximum is well below 250 kHz.
-- **Accuracy limit:** rounding `ARR` down shortens the half-period by less than one tick, so the relative error is below $1/\lfloor 10^6/2f \rfloor$. Keeping this under 1% requires $\lfloor 10^6/2f \rfloor \ge 101$, i.e. $f \le 10^6/202 \approx$ **4950 Hz**. This is the supported maximum.
-
-All of these comfortably cover the required 220–1000 Hz range.
+These are the hardware limits. In practice, frequencies are stored as integers and `0` means a rest, so the lowest note that can be requested is **1 Hz**. This comfortably covers the required 220–1000 Hz range.
 
 ### Duration Range
 
-**Minimum:** durations are integer milliseconds, so the minimum is **1 ms**. A 1 ms rest is exact. A 1 ms note only produces a toggle if $N = \lfloor 2f/1000 \rfloor \ge 1$, which requires $f \ge 500$ Hz. In general, the shortest sound a note can make is one half-period, $10^6/2f$ µs.
-
-**Maximum (rests):** `delayf` takes a `uint32_t`, but the duration is passed in from an `int`, so the limit is
-
-$$
-t_{\text{max,rest}} = (2^{31} - 1)\,\text{ms} \approx 2.1 \times 10^6\,\text{s} \approx 24.8\,\text{days}
-$$
-
-**Maximum (notes):** the product `2 * freq * delay` is computed as a signed 32-bit `int`, which overflows past $2^{31}-1$. So
-
-$$
-d_{\text{max}}(f) = \left\lfloor \frac{2^{31}-1}{2f} \right\rfloor \text{ms}
-$$
-
-For the highest note in *Für Elise* (1319 Hz), $d_{\text{max}} = 814{,}057$ ms ≈ 13.6 minutes. At the 4950 Hz accuracy limit it is 216,917 ms ≈ 3.6 minutes. Both are far more than any musical note needs.
+| | Duration | Explanation |
+|---|---|---|
+| Minimum | 1 ms | Durations are integer milliseconds |
+| Maximum (rests) | $2^{31}-1$ ms ≈ 24.8 days | The duration is passed as a signed 32-bit `int` |
+| Maximum (notes) | $\lfloor (2^{31}-1)/2f \rfloor$ ms ≈ 13.6 min at 1319 Hz | `2 * freq * delay` overflows a signed 32-bit `int` |
 
 ### Frequency Accuracy (220 Hz and 1000 Hz)
 
-Because `ARR` is an integer, rounding introduces a small error. Here are the calculations checking the error between desired and actual frequencies.
+| Target (Hz) | ARR | Actual (Hz) | Error |
+|---|---|---|---|
+| 220 | 2271 | 220.07 | 0.03% |
+| 1000 | 499 | 1000.00 | 0.00% |
 
-At 220 Hz:
-$$
-\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 220}\right\rfloor - 1 = \lfloor 2272.73 \rfloor - 1 = 2271$$
-$$f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 2272} \approx 220.07\,\text{Hz} \qquad (0.03\%\,\text{error})
-$$
-
-At 1000 Hz:
-$$
-\text{ARR} = \frac{1{,}000{,}000}{2 \times 1000} - 1 = 499$$
-$$f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 500} = 1000.00\,\text{Hz} \qquad (0.00\%\,\text{error})
-$$
-
-Every frequency in the 220–1000 Hz range is within 1% error.
+`ARR` must be an integer, so rounding it down gives a slightly higher frequency than the target. Both are well within 1% error.
 
 ### Für Elise Accuracy
 
@@ -145,13 +118,13 @@ The table below applies the formulas above to every distinct note in *Für Elise
 
 Every note in *Für Elise* is within 1% error.
 
-**Is checking 220 Hz and 1000 Hz sufficient?** No, for two reasons. First, the error is not monotonic: it depends on the fractional part of $10^6/2f$, so it rises and falls between neighboring frequencies. 1000 Hz happens to divide evenly and has 0% error, but 969 Hz has 0.19%, so two spot checks say nothing about the frequencies between them. Second, *Für Elise* contains E6 at 1319 Hz, which is outside the tested range entirely. What does prove every note is within 1% is the error bound: it grows with frequency, so checking it at the highest note, $1/379 = 0.26\% < 1\%$, covers every lower note as well.
+**Is checking 220 Hz and 1000 Hz sufficient?** No. Checking only those two frequencies doesn't give any information about the frequencies between them, and *Für Elise* goes above 1000 Hz anyway (E6 at 1319 Hz).
 
 ## Technical Documentation
 
 ::: {.callout-note}
 ## Source Code
-The source code for the project can be found in the associated [GitHub Repo](https://github.com/jgonzalezsalgado/e155-Lab4).
+The source code for the project can be found in the associated [GitHub Repo](https://github.com/jgonzs/Microprocessor-Projects).
 :::
 
 `PA1` was configured as a general-purpose output by enabling the GPIOA clock via `RCC->AHB2ENR` and setting its `MODER` field to `01`. `TIM2` was enabled via `RCC->APB1ENR1`. All registers were accessed through hand-written struct typedefs, meaning no CMSIS headers! Very bare-metal C code.
@@ -164,7 +137,7 @@ The `PA1` output was connected through a `10 kΩ` potentiometer, wired as a volt
 
 ## Conclusion
 
-The design successfully met all lab requirements. *Für Elise* played at the correct tempo, with every pitch, including the 1319 Hz E6, within `1%` error, as verified by the `ARR` calculations above. The error bound also shows that any frequency up to about 4950 Hz can be produced within `1%`. All rests were rendered as silence for the correct durations. The optional composition *Fallen Down* also played correctly! And the potentiometer varied the volume as intended.
+The design successfully met all lab requirements. *Für Elise* played at the correct tempo, with every pitch, including the 1319 Hz E6, within `1%` error, as verified by the `ARR` calculations above. All rests were rendered as silence for the correct durations. The optional composition *Fallen Down* also played correctly! And the potentiometer varied the volume as intended.
 
 ::: {.callout-note}
 ## Hours Spent on Lab
