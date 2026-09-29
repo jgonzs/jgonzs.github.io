@@ -364,7 +364,7 @@ window.Quarto = {
   <li><a href="#frequency-range" id="toc-frequency-range" class="nav-link" data-scroll-target="#frequency-range">Frequency Range</a></li>
   <li><a href="#duration-range" id="toc-duration-range" class="nav-link" data-scroll-target="#duration-range">Duration Range</a></li>
   <li><a href="#frequency-accuracy-220-hz-and-1000-hz" id="toc-frequency-accuracy-220-hz-and-1000-hz" class="nav-link" data-scroll-target="#frequency-accuracy-220-hz-and-1000-hz">Frequency Accuracy (220 Hz and 1000 Hz)</a></li>
-  <li><a href="#für-elise-accuracy" id="toc-für-elise-accuracy" class="nav-link" data-scroll-target="#für-elise-accuracy">Für Elise Accuracy</a></li>
+  <li><a href="#fur-elise-accuracy" id="toc-fur-elise-accuracy" class="nav-link" data-scroll-target="#fur-elise-accuracy">Fur Elise Accuracy</a></li>
   </ul></li>
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
@@ -401,7 +401,7 @@ window.Quarto = {
 <p>Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | September 28, 2026</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In this lab, a hardware timer of the <a href="https://os.mbed.com/platforms/ST-Nucleo-L432KC/"><code>STM32L432KC MCU</code></a> was used to drive an 8-ohm speaker to play music. The timer was used to toggle a GPIO pin at a specified frequency, generating a square wave for each musical note, and also to produce millisecond delays for rests. The system was tested by playing <em>Für Elise</em>, and as an optional piece, <em>Fallen Down</em> was also implemented.</p>
+<p>In this lab, a hardware timer of the <a href="https://os.mbed.com/platforms/ST-Nucleo-L432KC/"><code>STM32L432KC MCU</code></a> was used to drive an 8-ohm speaker to play music. The timer was used to toggle a GPIO pin at a specified frequency, generating a square wave for each musical note, and also to produce millisecond delays for rests. The system was tested by playing <em>Fur Elise</em>, and as an optional piece, <em>Fallen Down</em> was also implemented.</p>
 </section>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
@@ -465,69 +465,37 @@ f_{\text{max}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{min}} + 1)}
 </section>
 <section id="duration-range" class="level3">
 <h3 class="anchored" data-anchor-id="duration-range">Duration Range</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>Duration</th>
-<th>Explanation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Minimum</td>
-<td>1 ms</td>
-<td>Durations are integer milliseconds</td>
-</tr>
-<tr class="even">
-<td>Maximum (rests)</td>
-<td><span class="math inline">\(2^{31}-1\)</span> ms ≈ 24.8 days</td>
-<td>The duration is passed as a signed 32-bit <code>int</code></td>
-</tr>
-<tr class="odd">
-<td>Maximum (notes)</td>
-<td><span class="math inline">\(\lfloor (2^{31}-1)/2f \rfloor\)</span> ms ≈ 13.6 min at 1319 Hz</td>
-<td><code>2 * freq * delay</code> overflows a signed 32-bit <code>int</code></td>
-</tr>
-</tbody>
-</table>
+<p><strong>Minimum:</strong> durations are integer milliseconds, so <span class="math display">\[
+d_{\text{min}} = 1\,\text{ms}
+\]</span></p>
+<p><strong>Maximum (rests):</strong> the duration is passed as a signed 32-bit <code>int</code>, so <span class="math display">\[
+d_{\text{max,rest}} = 2^{31}-1 = 2{,}147{,}483{,}647\,\text{ms} = \frac{2{,}147{,}483{,}647}{86{,}400{,}000\,\text{ms/day}} \approx 24.8\,\text{days}
+\]</span></p>
+<p><strong>Maximum (notes):</strong> <code>2 * freq * delay</code> is computed as a signed 32-bit <code>int</code> and overflows past <span class="math inline">\(2^{31}-1\)</span>. At the highest note in <em>Fur Elise</em> (1319 Hz): <span class="math display">\[
+d_{\text{max,note}} = \left\lfloor \frac{2^{31}-1}{2 \times 1319} \right\rfloor = \left\lfloor \frac{2{,}147{,}483{,}647}{2638} \right\rfloor = 814{,}057\,\text{ms} \approx 13.6\,\text{min}
+\]</span></p>
 </section>
 <section id="frequency-accuracy-220-hz-and-1000-hz" class="level3">
 <h3 class="anchored" data-anchor-id="frequency-accuracy-220-hz-and-1000-hz">Frequency Accuracy (220 Hz and 1000 Hz)</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Target (Hz)</th>
-<th>ARR</th>
-<th>Actual (Hz)</th>
-<th>Error</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>220</td>
-<td>2271</td>
-<td>220.07</td>
-<td>0.03%</td>
-</tr>
-<tr class="even">
-<td>1000</td>
-<td>499</td>
-<td>1000.00</td>
-<td>0.00%</td>
-</tr>
-</tbody>
-</table>
-<p><code>ARR</code> must be an integer, so rounding it down gives a slightly higher frequency than the target. Both are well within 1% error.</p>
+<p><strong>220 Hz:</strong> <span class="math display">\[
+\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 220}\right\rfloor - 1 = \lfloor 2272.73 \rfloor - 1 = 2271
+\]</span> <span class="math display">\[
+f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times (2271 + 1)} = 220.07\,\text{Hz}, \qquad \text{error} = \frac{220.07 - 220}{220} = 0.03\%
+\]</span></p>
+<p><strong>1000 Hz:</strong> <span class="math display">\[
+\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 1000}\right\rfloor - 1 = 500 - 1 = 499
+\]</span> <span class="math display">\[
+f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times (499 + 1)} = 1000.00\,\text{Hz}, \qquad \text{error} = 0.00\%
+\]</span></p>
 </section>
-<section id="für-elise-accuracy" class="level3">
-<h3 class="anchored" data-anchor-id="für-elise-accuracy">Für Elise Accuracy</h3>
-<p>The table below applies the formulas above to every distinct note in <em>Für Elise</em>. Error is measured against the frequency stored in the <code>notes</code> array.</p>
+<section id="fur-elise-accuracy" class="level3">
+<h3 class="anchored" data-anchor-id="fur-elise-accuracy">Fur Elise Accuracy</h3>
+<p>The table below applies the formulas above to every distinct note in <em>Fur Elise</em>. Error is measured against the frequency stored in the <code>notes</code> array. For example, for E5 (659 Hz):</p>
+<p><span class="math display">\[
+\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 659}\right\rfloor - 1 = \lfloor 758.73 \rfloor - 1 = 757
+\]</span> <span class="math display">\[
+f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times (757 + 1)} = 659.631\,\text{Hz}, \qquad \text{error} = \frac{659.631 - 659}{659} = 0.096\%
+\]</span></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -618,42 +586,61 @@ f_{\text{max}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{min}} + 1)}
 </tr>
 </tbody>
 </table>
-<p>Every note in <em>Für Elise</em> is within 1% error.</p>
-<p><strong>Is checking 220 Hz and 1000 Hz sufficient?</strong> No.&nbsp;Checking only those two frequencies doesn’t give any information about the frequencies between them, and <em>Für Elise</em> goes above 1000 Hz anyway (E6 at 1319 Hz).</p>
+<p>Every note in <em>Fur Elise</em> is within 1% error.</p>
+<p><strong>Is checking 220 Hz and 1000 Hz sufficient?</strong> No.&nbsp;Checking only those two frequencies doesn’t give any information about the frequencies between them, and <em>Fur Elise</em> goes above 1000 Hz anyway (E6 at 1319 Hz).</p>
 </section>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 <span class="screen-reader-only">Note</span>Source Code
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The source code for the project can be found in the associated <a href="https://github.com/jgonzs/Microprocessor-Projects">GitHub Repo</a>.</p>
 </div>
 </div>
+</div>
 <p><code>PA1</code> was configured as a general-purpose output by enabling the GPIOA clock via <code>RCC-&gt;AHB2ENR</code> and setting its <code>MODER</code> field to <code>01</code>. <code>TIM2</code> was enabled via <code>RCC-&gt;APB1ENR1</code>. All registers were accessed through hand-written struct typedefs, meaning no CMSIS headers! Very bare-metal C code.</p>
 <p><em>Lab 4 Wiring Schematic // Joaquin Gonzalez-Salgado // September 28, 2026</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Expand to see Schematic
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div id="fig-schematic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/schematic.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Schematic of MCU, LM386 amplifier, potentiometer, and 8-ohm speaker.
+Figure&nbsp;1: Schematic of the Nucleo STM32L432KC MCU, LM386 amplifier, 10 kΩ potentiometer, and 8-ohm A0202C speaker.
 </figcaption>
 </figure>
 </div>
-<p>The <code>PA1</code> output was connected through a <code>10 kΩ</code> potentiometer, wired as a voltage divider with its wiper feeding the non-inverting input of the <code>LM386 amplifier</code>, which provided adjustable volume. The <code>LM386</code> was powered from the <code>3.3 V</code> MCU supply, and its output drove the 8-ohm speaker.</p>
+</div>
+</div>
+</div>
+<p>The <code>PA1</code> output was connected through a <code>10 kΩ</code> potentiometer, wired as a voltage divider with its wiper feeding the non-inverting input of the <code>LM386 amplifier</code>, which provided adjustable volume. The <code>LM386</code> was powered from the <code>5 V</code> MCU supply, and its output drove the 8-ohm speaker.</p>
+<p>No components on the development board were used in this lab. Every component shown in <a href="#fig-schematic" class="quarto-xref">Figure&nbsp;1</a> is off-board, on the breadboard.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>The design successfully met all lab requirements. <em>Für Elise</em> played at the correct tempo, with every pitch, including the 1319 Hz E6, within <code>1%</code> error, as verified by the <code>ARR</code> calculations above. All rests were rendered as silence for the correct durations. The optional composition <em>Fallen Down</em> also played correctly! And the potentiometer varied the volume as intended.</p>
+<p>The design successfully met all lab requirements. <em>Fur Elise</em> played at the correct tempo, with every pitch, including the 1319 Hz E6, within <code>1%</code> error, as verified by the <code>ARR</code> calculations above. All rests were rendered as silence for the correct durations. The optional composition <em>Fallen Down</em> also played correctly! And the potentiometer varied the volume as intended.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
