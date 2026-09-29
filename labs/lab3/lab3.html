@@ -360,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a>
   <ul class="collapse">
   <li><a href="#fpga-implementation" id="toc-fpga-implementation" class="nav-link" data-scroll-target="#fpga-implementation">FPGA Implementation</a></li>
-  <li><a href="#fsm-partitioning" id="toc-fsm-partitioning" class="nav-link" data-scroll-target="#fsm-partitioning">FSM Partitioning</a></li>
+  <li><a href="#fsm-communication" id="toc-fsm-communication" class="nav-link" data-scroll-target="#fsm-communication">FSM Communication</a></li>
   <li><a href="#switch-debouncing-strategy" id="toc-switch-debouncing-strategy" class="nav-link" data-scroll-target="#switch-debouncing-strategy">Switch Debouncing Strategy</a></li>
   </ul></li>
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation:</a>
@@ -493,92 +493,20 @@ Table&nbsp;1: Digital Inputs and Outputs for Lab 3
 </figure>
 </div>
 </section>
-<section id="fsm-partitioning" class="level3">
-<h3 class="anchored" data-anchor-id="fsm-partitioning">FSM Partitioning</h3>
-<p>The design is split into a single, small control FSM (<code>keypadFSM</code>) and a set of datapath blocks that it coordinates. The FSM decides <em>when</em> things happen, and the datapath blocks do the counting, decoding, and storing:</p>
-<div id="tbl-fsm-signals" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fsm-signals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Signals passed between the keypad FSM and the datapath
-</figcaption>
-<div aria-describedby="tbl-fsm-signals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 52%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Signal</th>
-<th>From</th>
-<th>To</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>anyKey</code>, <code>oneKey</code></td>
-<td><code>keyDecoder</code></td>
-<td><code>keypadFSM</code></td>
-<td>At least one / exactly one column is low on the active row</td>
-</tr>
-<tr class="even">
-<td><code>sameKey</code></td>
-<td>comparator (<code>sNew == s2</code>)</td>
-<td><code>keypadFSM</code></td>
-<td>The decoded key matches the most recently stored digit</td>
-</tr>
-<tr class="odd">
-<td><code>scanEn</code></td>
-<td><code>keypadFSM</code></td>
-<td><code>scanning</code></td>
-<td>Lets the row scanner advance; freezes it on the active row while a key is down</td>
-</tr>
-<tr class="even">
-<td><code>dbClear</code></td>
-<td><code>keypadFSM</code></td>
-<td><code>debounceTimer</code></td>
-<td>Holds the timer at zero outside of DEBOUNCE</td>
-</tr>
-<tr class="odd">
-<td><code>dbDone</code></td>
-<td><code>debounceTimer</code></td>
-<td><code>keypadFSM</code></td>
-<td>The key has been stable for the full debounce period</td>
-</tr>
-<tr class="even">
-<td><code>newKey</code></td>
-<td><code>keypadFSM</code></td>
-<td><code>digitRegister</code></td>
-<td>One-cycle enable that shifts the new digit in</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>The scanner, debounce timer, and display multiplexer are all instances of the same parameterized <code>counter</code>, so the only custom sequential control logic is the three-state FSM. The display multiplexer runs freely and does not talk to the FSM at all, so the display keeps refreshing no matter what the keypad is doing.</p>
-<p>The alternative would be a single monolithic FSM that also encodes the row being scanned and the debounce count in its state, e.g.&nbsp;separate IDLE/DEBOUNCE/HOLD states for each of the four rows. That removes the handshake signals between modules, but it multiplies the number of states and transitions, making the state transition diagram much harder to specify completely and verify. Another option is to split scanning and debouncing into two communicating FSMs. That is more modular, but it adds a handshake between two state machines and more ways for them to fall out of sync. Keeping one small FSM with counter-based helpers made each piece easy to test on its own (see the testbench results below). The cost is a few extra inter-module signals and a Mealy output (<code>newKey</code>) that depends combinationally on <code>dbDone</code>. Every consumer of that output is synchronous, so combinational glitches never get registered.</p>
+<section id="fsm-communication" class="level3">
+<h3 class="anchored" data-anchor-id="fsm-communication">FSM Communication</h3>
+<p>The design is made up of five communicating FSMs:</p>
+<ul>
+<li><strong>Keypad FSM (<code>keypadFSM</code>):</strong> the main controller, which decides when to scan, debounce, and register a key.</li>
+<li><strong>Scanning sequence (<code>scanning</code>):</strong> cycles through the keypad rows. The keypad FSM stops it on the active row with <code>scanEn</code> when a key is pressed.</li>
+<li><strong>Debounce timer (<code>debounceTimer</code>):</strong> counts while the keypad FSM is in DEBOUNCE, and sends <code>dbDone</code> when the time is up.</li>
+<li><strong>Digit register (<code>digitRegister</code>):</strong> stores the last two keys pressed, and shifts in a new digit when the keypad FSM pulses <code>newKey</code>.</li>
+<li><strong>Display multiplexing:</strong> alternates between the two digits stored in the digit register on the dual seven-segment display.</li>
+</ul>
 </section>
 <section id="switch-debouncing-strategy" class="level3">
 <h3 class="anchored" data-anchor-id="switch-debouncing-strategy">Switch Debouncing Strategy</h3>
-<p>The keypad columns are first passed through a two-flop <code>synchronizer</code> to resolve metastability, since key presses are asynchronous to the 24 MHz clock. Debouncing is then done with a <em>stable-for-a-period</em> strategy:</p>
-<ol type="1">
-<li>When exactly one key is detected in IDLE, the FSM freezes the scanner on that row (<code>scanEn = 0</code>) and moves to DEBOUNCE, releasing <code>dbClear</code> so the <code>debounceTimer</code> starts counting.</li>
-<li>The key must stay continuously pressed (<code>oneKey</code>) for 480,000 clock cycles (20 ms at 24 MHz). If it bounces open at any point, the FSM returns to IDLE and the timer is cleared, so the next contact restarts the full 20 ms count.</li>
-<li>Only when <code>dbDone</code> arrives while the key is still pressed does the FSM pulse <code>newKey</code> and move to HOLD, where it waits for the key to be released. A held key is therefore registered exactly once.</li>
-</ol>
-<p>Release bounce is handled implicitly: the FSM drops from HOLD to IDLE as soon as the key opens, but any bounce that looks like a new press has to survive another full 20 ms in DEBOUNCE before it counts, which bounce never does.</p>
-<p>Other approaches considered:</p>
-<ul>
-<li><strong>Register immediately, then ignore input for a lockout period.</strong> This has almost no latency, but a single noise glitch registers as a keypress. The chosen method only accepts a key after it has been proven stable.</li>
-<li><strong>Slow sampling</strong> (e.g.&nbsp;only sampling the keypad every 20 ms). This is simple and cheap, but a press can be sampled mid-bounce, and response time varies by up to a full sample period.</li>
-<li><strong>Shift-register or saturating up/down integrator per column.</strong> This is robust to noise, but needs per-column state and more logic. The FSM approach shares one timer across the whole keypad because only one key is being debounced at a time.</li>
-<li><strong>Analog RC filter with a Schmitt trigger.</strong> This takes no FPGA logic, but it needs extra components on every column and the time constant is fixed in hardware.</li>
-</ul>
-<p>The tradeoff of the chosen approach is a fixed 20 ms latency before a press is registered, which is imperceptible to a user, plus a 19-bit counter.</p>
+<p>When a key is pressed, the keypad FSM waits for the duration of a typical button bounce (20 ms, or 480,000 clock cycles at 24 MHz). Once that time has passed, the debounce timer sends <code>dbDone</code> to tell the FSM to continue and register the key.</p>
 </section>
 </section>
 <section id="technical-documentation" class="level2">
@@ -648,7 +576,7 @@ Figure&nbsp;1: Top-level block diagram of <code>lab3_jg</code>, showing the sync
 <img src="images/fsm.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fsm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: State transition diagram of the keypad FSM (a Mealy machine) with IDLE, DEBOUNCE, and HOLD states.
+Figure&nbsp;2: State transition diagram of the keypad FSM, a Mealy machine with IDLE (<code>00</code>), DEBOUNCE (<code>01</code>), and HOLD (<code>10</code>) states, showing the <code>dbClear</code> output of each state and the Mealy outputs <code>scanEn</code> and <code>newKey</code>.
 </figcaption>
 </figure>
 </div>
@@ -658,45 +586,10 @@ Figure&nbsp;2: State transition diagram of the keypad FSM (a Mealy machine) with
 </section>
 <section id="state-transition-table" class="level3">
 <h3 class="anchored" data-anchor-id="state-transition-table">State Transition Table</h3>
-<div id="tbl-state-encoding" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-state-encoding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: Keypad FSM state encoding
-</figcaption>
-<div aria-describedby="tbl-state-encoding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>State</th>
-<th>Encoding</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>IDLE</td>
-<td><code>00</code></td>
-</tr>
-<tr class="even">
-<td>DEBOUNCE</td>
-<td><code>01</code></td>
-</tr>
-<tr class="odd">
-<td>HOLD</td>
-<td><code>10</code></td>
-</tr>
-<tr class="even">
-<td><em>unused</em></td>
-<td><code>11</code> → IDLE</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
 <div id="tbl-state-transition" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-state-transition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4: Keypad FSM next-state and output table
+Table&nbsp;2: Keypad FSM next-state and output table
 </figcaption>
 <div aria-describedby="tbl-state-transition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -791,26 +684,11 @@ Table&nbsp;4: Keypad FSM next-state and output table
 <td>1</td>
 <td>0</td>
 </tr>
-<tr class="even">
-<td><code>11</code></td>
-<td>—</td>
-<td>IDLE</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>The outputs are:</p>
-<ul>
-<li><code>scanEn = (state == IDLE) &amp; !anyKey</code></li>
-<li><code>dbClear = (state != DEBOUNCE)</code></li>
-<li><code>newKey = (state == DEBOUNCE) &amp; oneKey &amp; dbDone</code></li>
-</ul>
-<p><code>scanEn</code> and <code>newKey</code> depend on the inputs, which makes this a Mealy machine. The HOLD → DEBOUNCE transition handles key rollover: if a second key is held and the first is released, the new key is debounced and registered without all keys having to be released first.</p>
 </section>
 <section id="synthesis-results" class="level3">
 <h3 class="anchored" data-anchor-id="synthesis-results">Synthesis Results</h3>
