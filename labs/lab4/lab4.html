@@ -439,7 +439,6 @@ N = \left\lfloor \frac{2 f d}{1000} \right\rfloor
 <p><span class="math display">\[
 d_{\text{actual}} = N \cdot (\text{ARR}+1)\ \mu\text{s}
 \]</span></p>
-<p>Because <span class="math inline">\(N\)</span> is rounded down, a note can end up to one half-period short. For example, a 125 ms E5 (659 Hz) gives <span class="math inline">\(N = 164\)</span> and <span class="math inline">\(d_{\text{actual}} = 164 \times 758\ \mu\text{s} = 124.3\)</span> ms.</p>
 </section>
 <section id="duration-control-rests" class="level3">
 <h3 class="anchored" data-anchor-id="duration-control-rests">Duration Control (Rests)</h3>
@@ -462,37 +461,69 @@ f_{\text{min}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{max}} + 1)}
 <p><span class="math display">\[
 f_{\text{max}} = \frac{f_{\text{timer}}}{2 \times (\text{ARR}_{\text{min}} + 1)} = \frac{1{,}000{,}000}{2 \times 2} = 250{,}000\,\text{Hz}
 \]</span></p>
-<p>These are the hardware limits. In practice the range is narrower:</p>
-<ul>
-<li><strong>Firmware minimum:</strong> frequencies are stored as integers and <code>0</code> means a rest, so the lowest note that can be requested is <strong>1 Hz</strong>.</li>
-<li><strong>CPU ceiling:</strong> the polling loop (check <code>UIF</code>, clear it, toggle <code>ODR</code>) takes several instructions at 4 MHz. If the half-period is shorter than one loop pass, update events are missed and the pitch comes out low, so the usable maximum is well below 250 kHz.</li>
-<li><strong>Accuracy limit:</strong> rounding <code>ARR</code> down shortens the half-period by less than one tick, so the relative error is below <span class="math inline">\(1/\lfloor 10^6/2f \rfloor\)</span>. Keeping this under 1% requires <span class="math inline">\(\lfloor 10^6/2f \rfloor \ge 101\)</span>, i.e.&nbsp;<span class="math inline">\(f \le 10^6/202 \approx\)</span> <strong>4950 Hz</strong>. This is the supported maximum.</li>
-</ul>
-<p>All of these comfortably cover the required 220–1000 Hz range.</p>
+<p>These are the hardware limits. In practice, frequencies are stored as integers and <code>0</code> means a rest, so the lowest note that can be requested is <strong>1 Hz</strong>. This comfortably covers the required 220–1000 Hz range.</p>
 </section>
 <section id="duration-range" class="level3">
 <h3 class="anchored" data-anchor-id="duration-range">Duration Range</h3>
-<p><strong>Minimum:</strong> durations are integer milliseconds, so the minimum is <strong>1 ms</strong>. A 1 ms rest is exact. A 1 ms note only produces a toggle if <span class="math inline">\(N = \lfloor 2f/1000 \rfloor \ge 1\)</span>, which requires <span class="math inline">\(f \ge 500\)</span> Hz. In general, the shortest sound a note can make is one half-period, <span class="math inline">\(10^6/2f\)</span> µs.</p>
-<p><strong>Maximum (rests):</strong> <code>delayf</code> takes a <code>uint32_t</code>, but the duration is passed in from an <code>int</code>, so the limit is</p>
-<p><span class="math display">\[
-t_{\text{max,rest}} = (2^{31} - 1)\,\text{ms} \approx 2.1 \times 10^6\,\text{s} \approx 24.8\,\text{days}
-\]</span></p>
-<p><strong>Maximum (notes):</strong> the product <code>2 * freq * delay</code> is computed as a signed 32-bit <code>int</code>, which overflows past <span class="math inline">\(2^{31}-1\)</span>. So</p>
-<p><span class="math display">\[
-d_{\text{max}}(f) = \left\lfloor \frac{2^{31}-1}{2f} \right\rfloor \text{ms}
-\]</span></p>
-<p>For the highest note in <em>Für Elise</em> (1319 Hz), <span class="math inline">\(d_{\text{max}} = 814{,}057\)</span> ms ≈ 13.6 minutes. At the 4950 Hz accuracy limit it is 216,917 ms ≈ 3.6 minutes. Both are far more than any musical note needs.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Duration</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Minimum</td>
+<td>1 ms</td>
+<td>Durations are integer milliseconds</td>
+</tr>
+<tr class="even">
+<td>Maximum (rests)</td>
+<td><span class="math inline">\(2^{31}-1\)</span> ms ≈ 24.8 days</td>
+<td>The duration is passed as a signed 32-bit <code>int</code></td>
+</tr>
+<tr class="odd">
+<td>Maximum (notes)</td>
+<td><span class="math inline">\(\lfloor (2^{31}-1)/2f \rfloor\)</span> ms ≈ 13.6 min at 1319 Hz</td>
+<td><code>2 * freq * delay</code> overflows a signed 32-bit <code>int</code></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="frequency-accuracy-220-hz-and-1000-hz" class="level3">
 <h3 class="anchored" data-anchor-id="frequency-accuracy-220-hz-and-1000-hz">Frequency Accuracy (220 Hz and 1000 Hz)</h3>
-<p>Because <code>ARR</code> is an integer, rounding introduces a small error. Here are the calculations checking the error between desired and actual frequencies.</p>
-<p>At 220 Hz: <span class="math display">\[
-\text{ARR} = \left\lfloor\frac{1{,}000{,}000}{2 \times 220}\right\rfloor - 1 = \lfloor 2272.73 \rfloor - 1 = 2271\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 2272} \approx 220.07\,\text{Hz} \qquad (0.03\%\,\text{error})
-\]</span></p>
-<p>At 1000 Hz: <span class="math display">\[
-\text{ARR} = \frac{1{,}000{,}000}{2 \times 1000} - 1 = 499\]</span> <span class="math display">\[f_{\text{actual}} = \frac{1{,}000{,}000}{2 \times 500} = 1000.00\,\text{Hz} \qquad (0.00\%\,\text{error})
-\]</span></p>
-<p>Every frequency in the 220–1000 Hz range is within 1% error.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Target (Hz)</th>
+<th>ARR</th>
+<th>Actual (Hz)</th>
+<th>Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>220</td>
+<td>2271</td>
+<td>220.07</td>
+<td>0.03%</td>
+</tr>
+<tr class="even">
+<td>1000</td>
+<td>499</td>
+<td>1000.00</td>
+<td>0.00%</td>
+</tr>
+</tbody>
+</table>
+<p><code>ARR</code> must be an integer, so rounding it down gives a slightly higher frequency than the target. Both are well within 1% error.</p>
 </section>
 <section id="für-elise-accuracy" class="level3">
 <h3 class="anchored" data-anchor-id="für-elise-accuracy">Für Elise Accuracy</h3>
@@ -588,7 +619,7 @@ d_{\text{max}}(f) = \left\lfloor \frac{2^{31}-1}{2f} \right\rfloor \text{ms}
 </tbody>
 </table>
 <p>Every note in <em>Für Elise</em> is within 1% error.</p>
-<p><strong>Is checking 220 Hz and 1000 Hz sufficient?</strong> No, for two reasons. First, the error is not monotonic: it depends on the fractional part of <span class="math inline">\(10^6/2f\)</span>, so it rises and falls between neighboring frequencies. 1000 Hz happens to divide evenly and has 0% error, but 969 Hz has 0.19%, so two spot checks say nothing about the frequencies between them. Second, <em>Für Elise</em> contains E6 at 1319 Hz, which is outside the tested range entirely. What does prove every note is within 1% is the error bound: it grows with frequency, so checking it at the highest note, <span class="math inline">\(1/379 = 0.26\% &lt; 1\%\)</span>, covers every lower note as well.</p>
+<p><strong>Is checking 220 Hz and 1000 Hz sufficient?</strong> No.&nbsp;Checking only those two frequencies doesn’t give any information about the frequencies between them, and <em>Für Elise</em> goes above 1000 Hz anyway (E6 at 1319 Hz).</p>
 </section>
 </section>
 <section id="technical-documentation" class="level2">
@@ -603,7 +634,7 @@ d_{\text{max}}(f) = \left\lfloor \frac{2^{31}-1}{2f} \right\rfloor \text{ms}
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The source code for the project can be found in the associated <a href="https://github.com/jgonzalezsalgado/e155-Lab4">GitHub Repo</a>.</p>
+<p>The source code for the project can be found in the associated <a href="https://github.com/jgonzs/Microprocessor-Projects">GitHub Repo</a>.</p>
 </div>
 </div>
 <p><code>PA1</code> was configured as a general-purpose output by enabling the GPIOA clock via <code>RCC-&gt;AHB2ENR</code> and setting its <code>MODER</code> field to <code>01</code>. <code>TIM2</code> was enabled via <code>RCC-&gt;APB1ENR1</code>. All registers were accessed through hand-written struct typedefs, meaning no CMSIS headers! Very bare-metal C code.</p>
@@ -622,7 +653,7 @@ Figure&nbsp;1: Schematic of MCU, LM386 amplifier, potentiometer, and 8-ohm speak
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>The design successfully met all lab requirements. <em>Für Elise</em> played at the correct tempo, with every pitch, including the 1319 Hz E6, within <code>1%</code> error, as verified by the <code>ARR</code> calculations above. The error bound also shows that any frequency up to about 4950 Hz can be produced within <code>1%</code>. All rests were rendered as silence for the correct durations. The optional composition <em>Fallen Down</em> also played correctly! And the potentiometer varied the volume as intended.</p>
+<p>The design successfully met all lab requirements. <em>Für Elise</em> played at the correct tempo, with every pitch, including the 1319 Hz E6, within <code>1%</code> error, as verified by the <code>ARR</code> calculations above. All rests were rendered as silence for the correct durations. The optional composition <em>Fallen Down</em> also played correctly! And the potentiometer varied the volume as intended.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
