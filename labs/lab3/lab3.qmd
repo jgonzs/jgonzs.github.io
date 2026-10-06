@@ -19,43 +19,17 @@ In this lab, a debounced, single-registration keypad reader was implemented on t
 
 : Digital Inputs and Outputs for Lab 3 {#tbl-letters}
 
-### FSM Partitioning
-The design is split into a single, small control FSM (`keypadFSM`) and a set of datapath blocks that it coordinates. The FSM decides *when* things happen, and the datapath blocks do the counting, decoding, and storing:
+### FSM Communication
+The design is made up of five communicating FSMs:
 
-| Signal | From | To | Purpose |
-|-------------|----------------|----------------|--------------------------------------------------|
-| `anyKey`, `oneKey` | `keyDecoder` | `keypadFSM` | At least one / exactly one column is low on the active row |
-| `sameKey` | comparator (`sNew == s2`) | `keypadFSM` | The decoded key matches the most recently stored digit |
-| `scanEn` | `keypadFSM` | `scanning` | Lets the row scanner advance; freezes it on the active row while a key is down |
-| `dbClear` | `keypadFSM` | `debounceTimer` | Holds the timer at zero outside of DEBOUNCE |
-| `dbDone` | `debounceTimer` | `keypadFSM` | The key has been stable for the full debounce period |
-| `newKey` | `keypadFSM` | `digitRegister` | One-cycle enable that shifts the new digit in |
-
-: Signals passed between the keypad FSM and the datapath {#tbl-fsm-signals}
-
-The scanner, debounce timer, and display multiplexer are all instances of the same parameterized `counter`, so the only custom sequential control logic is the three-state FSM. The display multiplexer runs freely and does not talk to the FSM at all, so the display keeps refreshing no matter what the keypad is doing.
-
-The alternative would be a single monolithic FSM that also encodes the row being scanned and the debounce count in its state, e.g. separate IDLE/DEBOUNCE/HOLD states for each of the four rows. That removes the handshake signals between modules, but it multiplies the number of states and transitions, making the state transition diagram much harder to specify completely and verify. Another option is to split scanning and debouncing into two communicating FSMs. That is more modular, but it adds a handshake between two state machines and more ways for them to fall out of sync. Keeping one small FSM with counter-based helpers made each piece easy to test on its own (see the testbench results below). The cost is a few extra inter-module signals and a Mealy output (`newKey`) that depends combinationally on `dbDone`. Every consumer of that output is synchronous, so combinational glitches never get registered.
+- **Keypad FSM (`keypadFSM`):** the main controller, which decides when to scan, debounce, and register a key.
+- **Scanning sequence (`scanning`):** cycles through the keypad rows. The keypad FSM stops it on the active row with `scanEn` when a key is pressed.
+- **Debounce timer (`debounceTimer`):** counts while the keypad FSM is in DEBOUNCE, and sends `dbDone` when the time is up.
+- **Digit register (`digitRegister`):** stores the last two keys pressed, and shifts in a new digit when the keypad FSM pulses `newKey`.
+- **Display multiplexing:** alternates between the two digits stored in the digit register on the dual seven-segment display.
 
 ### Switch Debouncing Strategy
-The keypad columns are first passed through a two-flop `synchronizer` to resolve metastability, since key presses are asynchronous to the 24 MHz clock. Debouncing is then done with a *stable-for-a-period* strategy:
-
-1. When exactly one key is detected in IDLE, the FSM freezes the scanner on that row (`scanEn = 0`) and moves to DEBOUNCE, releasing `dbClear` so the `debounceTimer` starts counting.
-2. The key must stay continuously pressed (`oneKey`) for 480,000 clock cycles (20 ms at 24 MHz). If it bounces open at any point, the FSM returns to IDLE and the timer is cleared, so the next contact restarts the full 20 ms count.
-3. Only when `dbDone` arrives while the key is still pressed does the FSM pulse `newKey` and move to HOLD, where it waits for the key to be released. A held key is therefore registered exactly once.
-
-Release bounce is handled implicitly: the FSM drops from HOLD to IDLE as soon as the key opens, but any bounce that looks like a new press has to survive another full 20 ms in DEBOUNCE before it counts, which bounce never does.
-
-Other approaches considered:
-
-- **Register immediately, then ignore input for a lockout period.** This has almost no latency, but a single noise glitch registers as a keypress. The chosen method only accepts a key after it has been proven stable.
-- **Slow sampling** (e.g. only sampling the keypad every 20 ms). This is simple and cheap, but a press can be sampled mid-bounce, and response time varies by up to a full sample period.
-- **Shift-register or saturating up/down integrator per column.** This is robust to noise, but needs per-column state and more logic. The FSM approach shares one timer across the whole keypad because only one key is being debounced at a time.
-- **Analog RC filter with a Schmitt trigger.** This takes no FPGA logic, but it needs extra components on every column and the time constant is fixed in hardware.
-
-The tradeoff of the chosen approach is a fixed 20 ms latency before a press is registered, which is imperceptible to a user, plus a 19-bit counter.
-
-
+When a key is pressed, the keypad FSM waits for the duration of a typical button bounce (20 ms, or 480,000 clock cycles at 24 MHz). Once that time has passed, the debounce timer sends `dbDone` to tell the FSM to continue and register the key.
 
 ## Technical Documentation:
 
@@ -77,19 +51,10 @@ The source code for the project can be found in the associated [Github Repo](htt
 
 ::: {.callout-note collapse="true"}
 ## Expand to see State Transition Diagram
-![State transition diagram of the keypad FSM (a Mealy machine) with IDLE, DEBOUNCE, and HOLD states.](images/fsm.jpeg){#fig-fsm}
+![State transition diagram of the keypad FSM, a Mealy machine with IDLE (`00`), DEBOUNCE (`01`), and HOLD (`10`) states, showing the `dbClear` output of each state and the Mealy outputs `scanEn` and `newKey`.](images/fsm.jpeg){#fig-fsm}
 :::
 
 ### State Transition Table
-
-| State | Encoding |
-|----------|------|
-| IDLE     | `00` |
-| DEBOUNCE | `01` |
-| HOLD     | `10` |
-| *unused* | `11` → IDLE |
-
-: Keypad FSM state encoding {#tbl-state-encoding}
 
 | Current State | Inputs | Next State | `scanEn` | `dbClear` | `newKey` |
 |----------|--------------------------------------------|----------|---|---|---|
@@ -102,17 +67,8 @@ The source code for the project can be found in the associated [Github Repo](htt
 | HOLD     | `!anyKey`                                  | IDLE     | 0 | 1 | 0 |
 | HOLD     | `oneKey & !sameKey`                        | DEBOUNCE | 0 | 1 | 0 |
 | HOLD     | `anyKey & !(oneKey & !sameKey)`            | HOLD     | 0 | 1 | 0 |
-| `11`     | —                                          | IDLE     | 0 | 1 | 0 |
 
 : Keypad FSM next-state and output table {#tbl-state-transition}
-
-The outputs are:
-
-- `scanEn = (state == IDLE) & !anyKey`
-- `dbClear = (state != DEBOUNCE)`
-- `newKey = (state == DEBOUNCE) & oneKey & dbDone`
-
-`scanEn` and `newKey` depend on the inputs, which makes this a Mealy machine. The HOLD → DEBOUNCE transition handles key rollover: if a second key is held and the first is released, the new key is debounced and registered without all keys having to be released first.
 
 ### Synthesis Results
 ::: {.callout-note collapse="true"}
