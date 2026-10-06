@@ -1,5 +1,9 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "**/*.qmd"
+    - "!labs/lab6/"  # hidden until Lab 6 is ready
 
 website:
   search:
@@ -13,14 +17,16 @@ website:
         text: Home
       - href: experience.qmd
         text: Industry & Research Experience
-      - href: projects.qmd
-        text: Class Projects
-      - href: e155.qmd
-        text: Microprocessors Projects 
-      - href: personal.qmd
-        text: Personal Projects
-      - href: pcb.qmd
-        text: PCB Designs
+      - text: Projects
+        menu:
+          - href: projects.qmd
+            text: Class Projects
+          - href: e155.qmd
+            text: Microprocessors Projects
+          - href: personal.qmd
+            text: Personal Projects
+          - href: pcb.qmd
+            text: PCB Designs
       - href: publications.qmd
         text: Publications & Reports
       - href: resources.qmd

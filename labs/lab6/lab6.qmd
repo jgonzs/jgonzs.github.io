@@ -54,7 +54,7 @@ $$
 
 ::: {.callout-note}
 ## Source Code
-The source code for the project can be found in the associated [GitHub Repo](https://github.com/jgonzalezsalgado/e155-Lab6).
+The source code for the project can be found in the associated [GitHub Repo](https://github.com/jgonzs/Microprocessor-Projects/tree/main/Lab6).
 :::
 
 ### Hardware Setup

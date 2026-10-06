@@ -9,7 +9,7 @@ about:
       href: mailto:jgsengineer@gmail.com    
     - icon: telephone-fill    
       text: Phone    
-      href: tel:+9099047494     
+      href: tel:+19099047494     
     - icon: linkedin     
       text: LinkedIn     
       href: https://www.linkedin.com/in/joaquin-e-gs/     
@@ -18,11 +18,12 @@ about:
       href: https://github.com/jgonzs     
 
 ---
-Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at
-[Harvey Mudd College](https://hmc.edu) interested in electrical engineering. I'm currently doing research alongside the USDA as a hardware/firmware engineer focused on
-creating low-noise analog amplifiers for monitoring insect feeding behavior as
-part of the
-[Analog Circuitry Engineering (ACE) Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/). Check out my projects below!
+Welcome to my Engineering Portfolio! I am a Junior Engineering major at
+[Harvey Mudd College](https://hmc.edu) focused on electrical and computer engineering. I'm currently an electrical
+engineer on a Blue Origin-sponsored engineering project, developing a sensor system for autonomous mating of
+launch-vehicle umbilical panels, and a hardware/firmware researcher in the
+[Analog Circuitry Engineering (ACE) Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/),
+designing low-noise analog front ends and embedded systems. Check out my projects below!
 
 ---
 
@@ -176,7 +177,7 @@ part of the
   </a>
 </div>
 
-<div style="text-align: center;">
+<div class="resume-embed" style="text-align: center;">
   <iframe
     src="images/Resume.pdf"
     style="

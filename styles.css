@@ -91,26 +91,19 @@ img {
     height: auto;
 }
 
-/* === MOBILE TEXT SIZE OVERRIDE === */
+/* === MOBILE LAYOUT === */
 @media screen and (max-width: 768px) {
-    html, body, * {
-        font-size: 0.75rem !important;
+    /* stack side-by-side columns instead of squeezing them */
+    .row {
+        flex-direction: column;
     }
-    
-    /* Specific overrides for headings */
-    h1, .h1 { font-size: 1rem !important; }
-    h2, .h2 { font-size: 0.9rem !important; }
-    h3, .h3 { font-size: 0.85rem !important; }
-    
-    /* Target common Quarto classes */
-    .quarto-title, .title, .subtitle, 
-    .quarto-section-identifier,
-    .panel-tabset, .tab-content,
-    .callout, .callout-body,
-    .sidebar, .sidebar *,
-    .content, .content *,
-    p, li, td, th, span, div, a {
-        font-size: 0.75rem !important;
+    .column {
+        margin: 0 0 10px 0;
+        padding: 0;
+    }
+    /* embedded PDFs don't scroll reliably on phones; the "Open Full Resume" button is shown instead */
+    .resume-embed {
+        display: none;
     }
 }
 
