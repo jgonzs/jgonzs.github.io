@@ -90,6 +90,30 @@ designing low-noise analog front ends and embedded systems. Check out my project
 </style>
 
 <div class="proj-grid">
+  <a href="pcb.html#nfc-business-card" class="proj-card">
+  <img class="proj-img" src="images/pcb/nfc_card.jpg" alt="NFC Business Card">
+  <div class="proj-label">
+    <p class="proj-course">PCB &middot; RF</p>
+    <p class="proj-name">NFC Business Card</p>
+  </div>
+</a>
+
+  <a href="pcb.html#muddsub-boards" class="proj-card">
+  <img class="proj-img" src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board">
+  <div class="proj-label">
+    <p class="proj-course">MuddSub</p>
+    <p class="proj-name">AUV Power &amp; Signal Boards</p>
+  </div>
+</a>
+
+  <a href="experience.html#fsae" class="proj-card">
+  <img class="proj-img" src="images/teams/fsae_lv_block.png" alt="FSAE Low-Voltage Block Diagram" style="object-fit: contain; background: white;">
+  <div class="proj-label">
+    <p class="proj-course">Formula SAE</p>
+    <p class="proj-name">Low-Voltage Harness</p>
+  </div>
+</a>
+
   <a href="projects.html#ev-design-team-project" class="proj-card">
     <img class="proj-img" src="images/ev/evcart.jpeg" alt="EV Cart">
     <div class="proj-label">

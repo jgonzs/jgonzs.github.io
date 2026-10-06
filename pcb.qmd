@@ -4,6 +4,59 @@ toc: false
 format: html
 ---
 
+## NFC Business Card {#nfc-business-card}
+
+```{=html}
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 1; min-width: 250px; max-width: 520px;">
+    <img src="images/pcb/nfc_card.jpg" alt="NFC Business Card PCB" style="width:100%; border-radius: 15px;">
+  </div>
+</div>
+
+<p>
+  <strong>Overview:</strong><br>
+  A business-card PCB that opens my portfolio when tapped with a phone. Built around the NXP NT3H2111 NFC tag IC
+  with a custom loop antenna drawn as a PCB trace, impedance-matched to the 13.56&nbsp;MHz NFC carrier using a
+  vector network analyzer (VNA).
+</p>
+<p>
+  <strong>Key Features:</strong><br>
+  2-layer KiCad design, PCB-trace NFC loop antenna, NT3H2111 tag IC, indicator LED, test points, silkscreen
+  ruler and contact info, fab-ready Gerbers, BOM, and pick-and-place files.
+  <a href="https://github.com/jgonzs/NFCBusinessCard" target="_blank">GitHub Repo &rarr;</a>
+</p>
+```
+
+---
+
+## MuddSub Power & Signal Boards {#muddsub-boards}
+
+```{=html}
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 1; min-width: 200px;">
+    <img src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board Rev. 1 3D Render" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 1; min-width: 200px;">
+    <img src="images/pcb/muddsub_signal.jpg" alt="MuddSub Signal Board Rev. 1 3D Render" style="width:100%; border-radius: 15px;">
+  </div>
+</div>
+
+<p>
+  <strong>Overview:</strong><br>
+  Power and signal boards for <a href="https://muddsub.org/" target="_blank">MuddSub</a>'s autonomous underwater
+  vehicle, designed in KiCad. The power board takes separate thruster and electronics batteries and uses switching
+  regulators to supply 12V, 5V, and 3.3V rails to the Jetson computer, DVL, tether board, and signal board. The signal
+  board centers on a Teensy 4.1 and drives PWM for all 8 thrusters.
+</p>
+<p>
+  <strong>Key Features:</strong><br>
+  Dual battery inputs, switching regulators, 12V/5V/3.3V rails with status LEDs, Teensy 4.1, 8-channel thruster PWM,
+  I&sup2;C, SPI, and UART breakouts, relay and hardware-kill switching, board-to-board power/signal connector.
+</p>
+```
+
+---
+
 ## FI1 (Fully Integrated 1)
 
 ```{=html}
@@ -26,6 +79,26 @@ format: html
   Onboard nRF5340 module with integrated antenna, SWD programming header, onboard flash memory,
   I&sup2;C &amp; SPI control interfaces.
 </p>
+```
+
+---
+
+## Integrated-Micro Boards (IM1 & IM2), ACE Lab Team {#im-boards}
+
+```{=html}
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 1; min-width: 250px; max-width: 420px;">
+    <img src="images/pcb/im_boards.jpg" alt="IM2, IM1, and the nRF5340 DK" style="width:100%; border-radius: 15px;">
+  </div>
+  <div style="flex: 1; min-width: 250px;">
+    <p>
+      <strong>Overview:</strong><br>
+      From top to bottom: IM2, IM1, and the off-the-shelf Nordic nRF5340 DK they replace. IM1 recreates the DK with only
+      the components the project needs. IM2 shrinks it further around an nRF5340 module, making it cheaper and faster to
+      manufacture. I helped bring up and verify both boards during a 10-week summer sprint with the ACE Lab team.
+    </p>
+  </div>
+</div>
 ```
 
 ---

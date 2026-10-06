@@ -10,7 +10,7 @@
   <div style="flex: 2; min-width: 300px;">
     <p class="justify-text">
       <strong>Overview:</strong><br>
-      Lead the electrical sub-team developing a full-scale sensor package for autonomous mating of ground- and vehicle-side
+      Develop a full-scale sensor package for autonomous mating of ground- and vehicle-side
       launch umbilical panels carrying propellant, pneumatic, hydraulic, data, and power connections.
       Conduct systems trades across candidate sensing technologies against operational requirements, weighing cost,
       availability, reliability in harsh launch environments, and EMI risk to vehicle avionics.
@@ -42,6 +42,46 @@
     </p>
   </div>
 </div>
+```
+
+---
+
+## MuddSub: PCB Designer, Electrical Team {#muddsub}
+
+```{=html}
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 1; min-width: 200px; max-width: 300px;">
+    <img src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board Render" style="width:100%; border-radius: 15px; border: 3px solid #000000;">
+  </div>
+  <div style="flex: 2; min-width: 300px;">
+    <p class="justify-text">
+      <strong>Overview:</strong><br>
+      Design the power and signal boards in KiCad for MuddSub's 8-thruster autonomous underwater vehicle, competing in RoboSub.
+      The power board converts separate thruster and electronics batteries into 12V, 5V, and 3.3V rails for the Jetson, DVL,
+      tether, and signal boards. The Teensy 4.1 signal board drives thruster PWM and breaks out I&sup2;C, SPI, and UART.
+      Also designing a hydrophone amplification front end using impedance matching and AC coupling for acoustic localization.
+    </p>
+    <a href="pcb.html#muddsub-boards" class="learn-btn">See the Boards &rarr;</a>
+  </div>
+</div>
+```
+
+---
+
+## Harvey Mudd Racing (Formula SAE): Electrical & Engine Team {#fsae}
+
+```{=html}
+<div style="margin-bottom: 1em;">
+  <img src="images/teams/fsae_lv_block.png" alt="FSAE Low-Voltage System Block Diagram" style="width:100%; max-width: 900px; border-radius: 15px; border: 3px solid #000000; background: white;">
+</div>
+<p class="justify-text">
+  <strong>Overview:</strong><br>
+  Designing the low-voltage electrical system for Harvey Mudd Racing's first Formula SAE car. A 12V battery feeds the
+  shutdown circuit and master power, which supplies a MoTeC PDM30 power distribution module and a MoTeC M130 ECU linked
+  over CAN bus with CAN sensors. Relays switch the fuel pump, ignition coils, and fuel injectors. The custom harness is
+  split into six subharnesses (engine sensors, injectors, ignition coils, rear, cockpit, and shutdown circuit) for easier
+  maintenance and future upgrades, within a $5.5k electrical budget.
+</p>
 ```
 
 ---
