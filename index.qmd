@@ -15,7 +15,7 @@ about:
       href: https://www.linkedin.com/in/joaquin-e-gs/     
     - icon: github     
       text: Github      
-      href: https://github.com/jgonzalezsalgado     
+      href: https://github.com/jgonzs     
 
 ---
 Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at
