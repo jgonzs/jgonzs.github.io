@@ -263,22 +263,29 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./experience.html"> 
 <span class="menu-text">Industry &amp; Research Experience</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./projects.html"> 
-<span class="menu-text">Class Projects</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Projects</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
+        <li>
+    <a class="dropdown-item" href="./projects.html">
+ <span class="dropdown-text">Class Projects</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./e155.html"> 
-<span class="menu-text">Microprocessors Projects</span></a>
+        <li>
+    <a class="dropdown-item" href="./e155.html">
+ <span class="dropdown-text">Microprocessors Projects</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./personal.html"> 
-<span class="menu-text">Personal Projects</span></a>
+        <li>
+    <a class="dropdown-item" href="./personal.html">
+ <span class="dropdown-text">Personal Projects</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./pcb.html"> 
-<span class="menu-text">PCB Designs</span></a>
+        <li>
+    <a class="dropdown-item" href="./pcb.html">
+ <span class="dropdown-text">PCB Designs</span></a>
   </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./publications.html"> 
 <span class="menu-text">Publications &amp; Reports</span></a>
@@ -328,7 +335,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </header><main class="content" id="quarto-document-content">
 
-<p>Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at <a href="https://hmc.edu">Harvey Mudd College</a> interested in electrical engineering. I’m currently doing research alongside the USDA as a hardware/firmware engineer focused on creating low-noise analog amplifiers for monitoring insect feeding behavior as part of the <a href="https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/">Analog Circuitry Engineering (ACE) Lab</a>. Check out my projects below!</p>
+<p>Welcome to my Engineering Portfolio! I am a Junior Engineering major at <a href="https://hmc.edu">Harvey Mudd College</a> focused on electrical and computer engineering. I’m currently an electrical engineer on a Blue Origin-sponsored engineering project, developing a sensor system for autonomous mating of launch-vehicle umbilical panels, and a hardware/firmware researcher in the <a href="https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/">Analog Circuitry Engineering (ACE) Lab</a>, designing low-noise analog front ends and embedded systems. Check out my projects below!</p>
 <hr>
 <style>
 .proj-grid {
@@ -391,6 +398,27 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 <div class="proj-grid">
+  <a href="pcb.html#nfc-business-card" class="proj-card">
+  <img class="proj-img" src="images/pcb/nfc_card.jpg" alt="NFC Business Card">
+  <div class="proj-label">
+    <p class="proj-course">PCB · RF</p>
+    <p class="proj-name">NFC Business Card</p>
+  </div>
+</a>
+  <a href="pcb.html#muddsub-boards" class="proj-card">
+  <img class="proj-img" src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board">
+  <div class="proj-label">
+    <p class="proj-course">MuddSub</p>
+    <p class="proj-name">AUV Power &amp; Signal Boards</p>
+  </div>
+</a>
+  <a href="experience.html#fsae" class="proj-card">
+  <img class="proj-img" src="images/teams/fsae_lv_block.png" alt="FSAE Low-Voltage Block Diagram" style="object-fit: contain; background: white;">
+  <div class="proj-label">
+    <p class="proj-course">Formula SAE</p>
+    <p class="proj-name">Low-Voltage Harness</p>
+  </div>
+</a>
   <a href="projects.html#ev-design-team-project" class="proj-card">
     <img class="proj-img" src="images/ev/evcart.jpeg" alt="EV Cart">
     <div class="proj-label">
@@ -466,7 +494,7 @@ ul.task-list li input[type="checkbox"] {
     Open Full Resume in New Tab
   </a>
 </div>
-<div style="text-align: center;">
+<div class="resume-embed" style="text-align: center;">
   <iframe src="images/Resume.pdf" style="
       width: 100%;
       max-width: 1000px;
@@ -486,7 +514,7 @@ ul.task-list li input[type="checkbox"] {
     <i class="bi bi-envelope-fill"></i>
      <span class="about-link-text">Email</span>
   </a>
-  <a href="tel:+9099047494" class="about-link" rel="" target="">
+  <a href="tel:+19099047494" class="about-link" rel="" target="">
     <i class="bi bi-telephone-fill"></i>
      <span class="about-link-text">Phone</span>
   </a>
