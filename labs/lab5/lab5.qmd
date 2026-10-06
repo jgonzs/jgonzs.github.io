@@ -2,70 +2,72 @@
 title: "Lab 5: Interrupts"
 ---
 
-Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | June 13, 2026
+Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | October 4, 2026
 
 ## Introduction
-In this lab, a quadrature encoder mounted on a `25GA-370` brushed DC motor was used to measure motor speed and direction with the [`STM32L432KC MCU`](https://os.mbed.com/platforms/ST-Nucleo-L432KC/). Rather than polling the encoder channels, GPIO external interrupts (`EXTI`) were used to catch every edge on both encoder channels as they occurred, so no pulses are lost regardless of motor speed. A hardware timer (`TIM2`) was used to periodically compute and report the measured speed in revolutions per second (RPS) at a 1 Hz update rate, along with the direction of rotation.
+In this lab, a quadrature encoder on a 25GA-370 brushed DC motor was used to measure motor speed and direction with the [STM32L432KC MCU](https://os.mbed.com/platforms/ST-Nucleo-L432KC/). GPIO external interrupts (EXTI) on both edges of both encoder channels detect every encoder pulse, and the speed in rev/s and direction are printed at a 2 Hz update rate.
 
 ## Design and Testing Methodology
 ### MCU
-Two GPIO pins, `PA1` and `PA2`, were configured as inputs and connected to the two channels of the quadrature encoder (`ENCODER1` and `ENCODER2` in code). Because the encoder outputs 5V logic and `PA1`/`PA2` are 5V-tolerant (`FT`) pins on the `STM32L432KC` (per the datasheet's pin tables), the encoder signals were wired directly into the MCU with no level-shifting circuitry required.
+The two encoder channels are connected to PA6 and PA8, which are 5V-tolerant (FT) pins on the STM32L432KC per the datasheet's pin table, so no level-shifting circuit is needed. Both pins are configured as inputs with the internal pull-ups enabled.
 
-`EXTI1` and `EXTI2` were configured to trigger on **both** the rising and falling edges of their respective channels, via `EXTI->RTSR1` and `EXTI->FTSR1`. This means all four edges of a single quadrature cycle (two channels x two edges each) generate an interrupt, giving the maximum possible angular resolution from the encoder.
+PA6 and PA8 share the `EXTI9_5_IRQHandler` interrupt, and both are set to trigger on the rising **and** falling edge. Every edge of both channels therefore generates an interrupt, giving the highest possible resolution. The ISR is kept short: it clears the pending bit, reads both channels, and adds or subtracts one from `enc_count` depending on direction (on an A edge, A != B is forward; on a B edge, A == B is forward).
 
-Inside each `EXTI` ISR, the previous state of the *other* channel (`lastPin`) is compared against which channel just triggered to determine whether the motor moved forward or backward, updating a `dir` flag and incrementing/decrementing a running edge `Count` accordingly. A `switchdir` flag is used to *lock* the direction once the motor is confirmed to be spinning (`|RPS| > 2.0`): while the motor is at low speed or stopped, direction is continuously re-evaluated, but once it's clearly spinning, `dir` is frozen so that electrical noise or transient bounce cannot flip the reported direction.
-
-`TIM2` was configured as a free-running periodic timer that generates an update interrupt once per second. On every `TIM2` update event, the main loop's `print` flag is set, which triggers the RPS calculation, prints it, and resets `Count` for the next 1-second sampling window — satisfying the lab's 1 Hz minimum update-rate requirement.
+The main loop uses TIM2 to wait out a 500 ms sampling window. It then briefly disables interrupts to copy and reset `enc_count`, converts the count to rev/s, and prints the speed and direction (forward, reverse, or stopped) based on the sign of the count. If the motor is not spinning, no interrupts occur and the speed is reported as zero.
 
 ### Calculations
-`TIM2` runs from the MCU's default 4 MHz clock. With a prescaler `PSC = 3999`, the timer clock is divided down to a 1 kHz tick:
+TIM2 runs from the default 4 MHz clock with `PSC = 3999`, giving a 1 ms tick. With `ARR = 500`, each sampling window lasts:
 
 $$
-f_{\text{timer}} = \frac{4\,\text{MHz}}{PSC + 1} = \frac{4{,}000{,}000}{4000} = 1\,\text{kHz}
+T_{\text{window}} = \frac{500}{1\,\text{kHz}} = 0.5\,\text{s} \quad \Rightarrow \quad f_{\text{update}} = 2\,\text{Hz} \geq 1\,\text{Hz}
 $$
 
-With `ARR = 999`, the timer counts 1000 ticks (0 through 999) before generating an update interrupt, giving exactly a 1-second sampling window:
+The encoder outputs 408 pulses per output shaft revolution on each channel. Since both edges of both channels are counted, the counts per revolution is:
 
 $$
-T_{\text{update}} = \frac{ARR + 1}{f_{\text{timer}}} = \frac{1000}{1000\,\text{Hz}} = 1\,\text{s}
+\text{CPR} = 408 \times 4 = 1632\,\text{counts/rev}
 $$
 
-The `25GA-370` motor's encoder outputs 120 pulses per revolution (PPR) per the datasheet. Because both edges of both channels are decoded (x4 decoding), the effective counts per revolution is:
+The speed is the number of counts in the window divided by the counts per revolution and the window length:
 
 $$
-\text{MOTORCPR} = 120\,\text{PPR} \times 4\,\text{edges} = 480\,\text{counts/rev}
+\text{rev/s} = \frac{\text{counts}}{\text{CPR} \times T_{\text{window}}} = \frac{\text{counts}}{1632 \times 0.5\,\text{s}}
 $$
 
-The code computes speed as `RPS = Count / (MOTORCPR * (ARR + 1) / 1000)`. Since `(ARR + 1)/1000 = 1` (the sampling window is exactly 1 second), this simplifies to:
+A single count corresponds to $1/1632 = 0.22^\circ$ of shaft rotation, so the smallest non-zero speed the system can measure (one count per window) is:
 
 $$
-\text{RPS} = \frac{\text{Count}}{\text{MOTORCPR}} = \frac{\text{Count}}{480}
+\text{Resolution} = \frac{1}{1632 \times 0.5\,\text{s}} \approx 0.0012\,\text{rev/s}
 $$
-
-which is simply the number of encoder counts accumulated over the most recent 1-second window, divided by the number of counts per revolution — directly yielding revolutions per second.
 
 ## Technical Documentation:
 
-::: {.callout-note}
+::: {.callout-note collapse="true"}
 ## Source Code
-The source code for the project can be found in the associated [Github Repo](https://github.com/jgonzalezsalgado/e155-Lab5).
+The source code for the project can be found in the associated [Github Repo](https://github.com/jgonzs/Microprocessor-Projects/tree/main/Lab5).
 :::
 
 ### Schematic
 
-*Lab 5 Wiring Schematic // Joaquin Gonzalez-Salgado // June 9 2026*
+*Lab 5 Wiring Schematic // Joaquin Gonzalez-Salgado // October 4, 2026*
 
-![Schematic.](images/schematic.jpeg){#fig-schematic}
+::: {.callout-note collapse="true"}
+## Expand to see Schematic
+![Schematic of the encoder and motor wiring.](images/schematic.jpeg){#fig-schematic}
+:::
 
-@fig-schematic shows the wiring approach for this lab. The quadrature encoder's two output channels connect directly to `PA1` and `PA2` on the `STM32L432KC` Nucleo board, sharing a common ground with the MCU. Since `PA1`/`PA2` are 5V-tolerant pins, the encoder's 5V output channels were wired in directly with no voltage divider or level shifter needed. The `25GA-370` DC motor was powered from a separate bench supply.
+@fig-schematic shows the off-board wiring for this lab. The encoder's A and B channels connect directly to the 5V-tolerant pins PA6 and PA8 on the Nucleo-L432KC, with the internal pull-ups enabled, and share a common ground with the MCU. The motor is powered from a separate bench supply. On-board components are shown in the [E155 development board schematic](https://hmc-e155.github.io/).
 
 ### Flowchart
 
-*Lab 5 Program Flowchart // Joaquin Gonzalez-Salgado // TBD*
+*Lab 5 Program Flowchart // Joaquin Gonzalez-Salgado // October 4, 2026*
 
-![Flowchart of the main loop and ISR execution.](images/flowchart.jpeg){#fig-flowchart}
+::: {.callout-note collapse="true"}
+## Expand to see Flowchart
+![Flowchart of the main loop and the EXTI9_5 interrupt handler.](images/flowchart.jpeg){#fig-flowchart}
+:::
 
-> **TBD:** Flowchart image not yet added — @fig-flowchart will show the function call hierarchy between `main()`'s polling loop and the `EXTI1_IRQHandler`, `EXTI2_IRQHandler`, and `TIM2_IRQHandler` interrupt service routines.
+@fig-flowchart shows the main loop and the `EXTI9_5_IRQHandler` interrupt handler, which communicate through the shared `enc_count` variable.
 
 ## Results and Discussion
 
@@ -74,16 +76,17 @@ The source code for the project can be found in the associated [Github Repo](htt
 The Design was a Success!
 :::
 
-The design met all proficiency-level requirements. Speed was measured and displayed in RPS with a 1 Hz update rate, matching the actual motor speed and direction as observed by hand-turning the motor shaft and ramping the bench supply. Because edge detection is fully interrupt-driven (`EXTI1`/`EXTI2`, no polling), no pulses were lost at either low or high motor speeds. When the motor was stationary, `Count` stayed at zero between `TIM2` update events, correctly reporting `0.0` RPS.
+The design meets all proficiency requirements. Speed and direction are displayed in rev/s at 2 Hz and match the true motor speed and direction, and the speed is reported as zero when the motor is not spinning. Because every edge is caught by an interrupt, no pulses were missed at high speeds, and slow hand-turning of the shaft still gave a non-zero speed.
 
-For the excellence level, the design already decodes all four edges of the quadrature cycle (both channels, both rising and falling edges) for maximum resolution, and readings remained stable at both low and high speeds thanks to the `switchdir` direction lock described above. Two excellence items are still **TBD**: a quantitative comparison of this interrupt-driven approach against an equivalent polling implementation, and the program flowchart referenced in @fig-flowchart.
+### Interrupts vs. Polling
+**TBD:** quantitative comparison of the interrupt-based code with the polling version (`encoder_polling.c`) at high speeds.
 
 ## Conclusion
-This lab's interrupt-driven quadrature decoding correctly measured motor speed and direction in real time, with no missed pulses across the tested speed range. The remaining open items are the interrupt-vs-polling comparison and the flowchart figure, both to be added.
+The interrupt-driven design correctly measured motor speed and direction with no missed pulses at both high and low speeds. The remaining shortcomings are the flowchart and the interrupt vs. polling comparison, which still need to be added.
 
 ::: {.callout-note}
 ## Hours Spent on Lab
-This lab took ___ hours.
+This lab took 9 hours.
 :::
 
 
@@ -95,8 +98,9 @@ The purpose of the AI Prototype is to experiment with utilizing AI as a coding a
 **Prompt:** Write me interrupt handlers to interface with a quadrature encoder. I’m using the STM32L432KC, what pins should I connect the encoder to in order to allow it to easily trigger the interrupts?
 :::
 
-::: {.callout-note}
+::: {.callout-note collapse="true"}
 ## Generated Code:
+```c
 #include "stm32l4xx_hal.h"
 
 volatile int32_t encoder_count = 0;
@@ -146,9 +150,8 @@ void EXTI1_IRQHandler(void) {
     update_encoder();
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
 }
+```
 :::
 
 ### Reflection:
-This week is `Claude Sonnet` again! Rather than helping me with the specific question I asked, it gave me two options: Using the Interrupt approach I asked for, or using the "Hardware Timer Encoder Mode". It provided me with code for both options, and stated that for `Encoder A` I should use `PA0` with EXTI Line `EXTI0` and for `Encoder B` I should use `PA1` with EXTI Line `EXTI1`. 
-
-
+This week is Claude Sonnet again! Rather than helping me with the specific question I asked, it gave me two options: Using the Interrupt approach I asked for, or using the "Hardware Timer Encoder Mode". It provided me with code for both options, and stated that for Encoder A I should use PA0 with EXTI Line 0 and for Encoder B I should use PA1 with EXTI Line 1.
