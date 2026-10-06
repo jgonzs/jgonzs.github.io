@@ -1,6 +1,6 @@
 # Industry & Research Experience
 
-## Blue Origin: Electrical Engineering Clinic
+## Blue Origin: Sponsored Engineering Project {#blue-origin}
 
 ```{=html}
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
@@ -9,15 +9,25 @@
   </div>
   <div style="flex: 2; min-width: 300px;">
     <p class="justify-text">
-      <strong>Overview:</strong><br>
-      Develop a full-scale sensor package for autonomous mating of ground- and vehicle-side
-      launch umbilical panels carrying propellant, pneumatic, hydraulic, data, and power connections.
-      Conduct systems trades across candidate sensing technologies against operational requirements, weighing cost,
-      availability, reliability in harsh launch environments, and EMI risk to vehicle avionics.
-      Own component selection, sensor installation and packaging design, and hardware procurement, working cross-functionally
-      with Blue Origin engineers on prototype build-up and testing of a full-scale working model.
+      <strong>Automated Umbilical Panel Validation System</strong><br>
+      Before launch, ground-side umbilical panels must mate with the vehicle to carry propellant, power, and electrical
+      signals, a process that is still largely manual at extreme heights. Our team is selecting and validating a redundant
+      multi-sensor suite (radar, LiDAR, proximity sensors, IMU, and computer vision) that feeds control logic with Kalman
+      filtering to align the panels in all six degrees of freedom to about 0.1&nbsp;mm, while tolerating rain, fog,
+      cryogenic temperatures, purge gas, and EMI. I own component selection, sensor installation and packaging design,
+      and hardware procurement, working with Blue Origin engineers on prototype build-up and testing.
     </p>
   </div>
+</div>
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <figure style="flex: 1; min-width: 200px; max-width: 320px; margin: 0;">
+    <img src="images/blueorigin/umbilical_closeup_esa.jpg" alt="Umbilical lines connected to a launch vehicle" style="width:100%; border-radius: 15px;">
+    <figcaption style="font-size: 0.8rem; color: #6c757d;">Umbilical lines connected to a launch vehicle</figcaption>
+  </figure>
+  <figure style="flex: 1; min-width: 200px; max-width: 320px; margin: 0;">
+    <img src="images/blueorigin/umbilical_sls_nasa.jpg" alt="Launch tower umbilical arms connected to NASA's SLS" style="width:100%; border-radius: 15px;">
+    <figcaption style="font-size: 0.8rem; color: #6c757d;">Launch-tower umbilical arms connecting to the vehicle</figcaption>
+  </figure>
 </div>
 ```
 
@@ -56,10 +66,11 @@
   <div style="flex: 2; min-width: 300px;">
     <p class="justify-text">
       <strong>Overview:</strong><br>
-      Design the power and signal boards in KiCad for MuddSub's 8-thruster autonomous underwater vehicle, competing in RoboSub.
+      Contribute to the electrical team's KiCad design of the power and signal boards for MuddSub's 8-thruster autonomous
+      underwater vehicle, competing in RoboSub. The Rev. 1 boards are now entering fabrication and verification.
       The power board converts separate thruster and electronics batteries into 12V, 5V, and 3.3V rails for the Jetson, DVL,
       tether, and signal boards. The Teensy 4.1 signal board drives thruster PWM and breaks out I&sup2;C, SPI, and UART.
-      Also designing a hydrophone amplification front end using impedance matching and AC coupling for acoustic localization.
+      I am also working on a hydrophone amplification front end using impedance matching and AC coupling for acoustic localization.
     </p>
     <a href="pcb.html#muddsub-boards" class="learn-btn">See the Boards &rarr;</a>
   </div>

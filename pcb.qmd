@@ -29,7 +29,7 @@ format: html
 
 ---
 
-## MuddSub Power & Signal Boards {#muddsub-boards}
+## MuddSub Power & Signal Boards (Team Design) {#muddsub-boards}
 
 ```{=html}
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
@@ -44,7 +44,8 @@ format: html
 <p>
   <strong>Overview:</strong><br>
   Power and signal boards for <a href="https://muddsub.org/" target="_blank">MuddSub</a>'s autonomous underwater
-  vehicle, designed in KiCad. The power board takes separate thruster and electronics batteries and uses switching
+  vehicle, designed in KiCad as a team effort by the electrical team, which I am part of. Rev. 1 is entering fabrication
+  and verification. The power board takes separate thruster and electronics batteries and uses switching
   regulators to supply 12V, 5V, and 3.3V rails to the Jetson computer, DVL, tether board, and signal board. The signal
   board centers on a Teensy 4.1 and drives PWM for all 8 thrusters.
 </p>
