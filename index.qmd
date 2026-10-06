@@ -9,20 +9,21 @@ about:
       href: mailto:jgsengineer@gmail.com    
     - icon: telephone-fill    
       text: Phone    
-      href: tel:+9099047494     
+      href: tel:+19099047494     
     - icon: linkedin     
       text: LinkedIn     
       href: https://www.linkedin.com/in/joaquin-e-gs/     
     - icon: github     
       text: Github      
-      href: https://github.com/jgonzalezsalgado     
+      href: https://github.com/jgonzs     
 
 ---
-Welcome to my Engineering Portfolio! I am a rising Junior Engineering major at
-[Harvey Mudd College](https://hmc.edu) interested in electrical engineering. I'm currently doing research alongside the USDA as a hardware/firmware engineer focused on
-creating low-noise analog amplifiers for monitoring insect feeding behavior as
-part of the
-[Analog Circuitry Engineering (ACE) Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/). Check out my projects below!
+Welcome to my Engineering Portfolio! I am a Junior Engineering major at
+[Harvey Mudd College](https://hmc.edu) focused on electrical and computer engineering. I'm currently an electrical
+engineer on a Blue Origin-sponsored engineering project, developing a sensor system for autonomous mating of
+launch-vehicle umbilical panels, and a hardware/firmware researcher in the
+[Analog Circuitry Engineering (ACE) Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/),
+designing low-noise analog front ends and embedded systems. Check out my projects below!
 
 ---
 
@@ -89,6 +90,30 @@ part of the
 </style>
 
 <div class="proj-grid">
+  <a href="pcb.html#nfc-business-card" class="proj-card">
+  <img class="proj-img" src="images/pcb/nfc_card.jpg" alt="NFC Business Card">
+  <div class="proj-label">
+    <p class="proj-course">PCB &middot; RF</p>
+    <p class="proj-name">NFC Business Card</p>
+  </div>
+</a>
+
+  <a href="pcb.html#muddsub-boards" class="proj-card">
+  <img class="proj-img" src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board">
+  <div class="proj-label">
+    <p class="proj-course">MuddSub</p>
+    <p class="proj-name">AUV Power &amp; Signal Boards</p>
+  </div>
+</a>
+
+  <a href="experience.html#fsae" class="proj-card">
+  <img class="proj-img" src="images/teams/fsae_lv_block.png" alt="FSAE Low-Voltage Block Diagram" style="object-fit: contain; background: white;">
+  <div class="proj-label">
+    <p class="proj-course">Formula SAE</p>
+    <p class="proj-name">Low-Voltage Harness</p>
+  </div>
+</a>
+
   <a href="projects.html#ev-design-team-project" class="proj-card">
     <img class="proj-img" src="images/ev/evcart.jpeg" alt="EV Cart">
     <div class="proj-label">
@@ -176,7 +201,7 @@ part of the
   </a>
 </div>
 
-<div style="text-align: center;">
+<div class="resume-embed" style="text-align: center;">
   <iframe
     src="images/Resume.pdf"
     style="
