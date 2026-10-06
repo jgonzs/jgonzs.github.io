@@ -9,18 +9,14 @@ In this lab, a quadrature encoder on a 25GA-370 brushed DC motor was used to mea
 
 ## Design and Testing Methodology
 ### MCU
-The two encoder channels are connected to PA6 and PA8, which are 5V-tolerant (FT) pins on the STM32L432KC per the datasheet's pin table, so no level-shifting circuit is needed. Both pins are configured as inputs with the internal pull-ups enabled.
+The two encoder channels are connected to PA6 and PA8, which are 5V-tolerant pins on the STM32L432KC per the datasheet's pin table. Both pins are configured as inputs with the internal pull-ups enabled.
 
-PA6 and PA8 share the `EXTI9_5_IRQHandler` interrupt, and both are set to trigger on the rising **and** falling edge. Every edge of both channels therefore generates an interrupt, giving the highest possible resolution. The ISR is kept short: it clears the pending bit, reads both channels, and adds or subtracts one from `enc_count` depending on direction (on an A edge, A != B is forward; on a B edge, A == B is forward).
+PA6 and PA8 share the EXTI9_5_IRQHandler interrupt, and both are set to trigger on the rising **and** falling edge. Every edge of both channels therefore generates an interrupt, giving the best resolution from the encoder. 
 
-The main loop uses TIM2 to wait out a 500 ms sampling window. It then briefly disables interrupts to copy and reset `enc_count`, converts the count to rev/s, and prints the speed and direction (forward, reverse, or stopped) based on the sign of the count. If the motor is not spinning, no interrupts occur and the speed is reported as zero.
+The main loop uses TIM2 to wait out a 500 ms sampling window. It then copies and reset enc_count, and converts the count rev/s, and prints the speed and direction (negative for CCW) based on the sign of the count. If the motor is not spinning, no interrupts occur and the speed is reported as zero.
 
 ### Calculations
-TIM2 runs from the default 4 MHz clock with `PSC = 3999`, giving a 1 ms tick. With `ARR = 500`, each sampling window lasts:
-
-$$
-T_{\text{window}} = \frac{500}{1\,\text{kHz}} = 0.5\,\text{s} \quad \Rightarrow \quad f_{\text{update}} = 2\,\text{Hz} \geq 1\,\text{Hz}
-$$
+TIM2 runs from the default 4 MHz clock, and the timer counts to 500ms for each sampling window, meeting the 1Hz spec, as the updating frequency would be 2 Hz.
 
 The encoder outputs 408 pulses per output shaft revolution on each channel. Since both edges of both channels are counted, the counts per revolution is:
 
@@ -31,10 +27,10 @@ $$
 The speed is the number of counts in the window divided by the counts per revolution and the window length:
 
 $$
-\text{rev/s} = \frac{\text{counts}}{\text{CPR} \times T_{\text{window}}} = \frac{\text{counts}}{1632 \times 0.5\,\text{s}}
+\text{rev/s} = \frac{\text{counts}}{\text{CPR} \times T} = \frac{\text{counts}}{1632 \times 0.5\,\text{s}}
 $$
 
-A single count corresponds to $1/1632 = 0.22^\circ$ of shaft rotation, so the smallest non-zero speed the system can measure (one count per window) is:
+A single count corresponds to $1/1632$ of a shaft rotation, so the smallest non-zero speed the system can measure (one count per window) is:
 
 $$
 \text{Resolution} = \frac{1}{1632 \times 0.5\,\text{s}} \approx 0.0012\,\text{rev/s}
@@ -56,7 +52,7 @@ The source code for the project can be found in the associated [Github Repo](htt
 ![Schematic of the encoder and motor wiring.](images/schematic.jpeg){#fig-schematic}
 :::
 
-@fig-schematic shows the off-board wiring for this lab. The encoder's A and B channels connect directly to the 5V-tolerant pins PA6 and PA8 on the Nucleo-L432KC, with the internal pull-ups enabled, and share a common ground with the MCU. The motor is powered from a separate bench supply. On-board components are shown in the [E155 development board schematic](https://hmc-e155.github.io/).
+@fig-schematic shows the off-board wiring for this lab. The encoder's A and B channels connect directly to the 5V-tolerant pins PA8 and PA6 (respectively) on the Nucleo-L432KC, with the internal pull-ups enabled, and share a common ground with the MCU. The motor is powered from a power supply.
 
 ### Flowchart
 
@@ -67,7 +63,7 @@ The source code for the project can be found in the associated [Github Repo](htt
 ![Flowchart of the main loop and the EXTI9_5 interrupt handler.](images/flowchart.jpeg){#fig-flowchart}
 :::
 
-@fig-flowchart shows the main loop and the `EXTI9_5_IRQHandler` interrupt handler, which communicate through the shared `enc_count` variable.
+@fig-flowchart shows the main loop and the EXTI9_5_IRQHandler interrupt handler, which communicate through the shared enc_count variable.
 
 ## Results and Discussion
 
@@ -76,13 +72,27 @@ The source code for the project can be found in the associated [Github Repo](htt
 The Design was a Success!
 :::
 
-The design meets all proficiency requirements. Speed and direction are displayed in rev/s at 2 Hz and match the true motor speed and direction, and the speed is reported as zero when the motor is not spinning. Because every edge is caught by an interrupt, no pulses were missed at high speeds, and slow hand-turning of the shaft still gave a non-zero speed.
+The design meets all requirements. Speed and direction are displayed in rev/s at 2 Hz and match the true motor speed and direction, and the speed is reported as zero when the motor is not spinning. Because every edge is caught by an interrupt, no pulses were missed at high speeds.
 
 ### Interrupts vs. Polling
-**TBD:** quantitative comparison of the interrupt-based code with the polling version (`encoder_polling.c`) at high speeds.
+To compare the two approaches, a polling version of the code called encoder_polling.c was written that reads both encoder channels in the main loop and checks for changes, instead of using interrupts. With the motor running at 12V, the interrupt-based version measured 2.9 rev/s, while the polling version reported only 0.2 rev/s. 
+
+Speed wise, at 2.9 rev/s the time between encoder edges is:
+
+$$
+T_\text{edge} = \frac{1}{2.9\,\text{rev/s} \times 1632\,\text{counts/rev}} \approx 211\,\mu\text{s}
+$$
+
+So the encoder produces about one edge every 211 µs. This is way too fast for the polling, which happens only once every 1 ms because of the delay_millis(DELAY_TIM, 1) call in the main loop. Most edges are missed, so the polling version reports a much lower speed.
+
+The tradeoff between the two approaches:
+
+- **Polling** is simple and needs no interrupt setup. However, it requires a lot of time, and means that the system must be polling faster than the motor is running. This has a lot of power considerations for the MCU, and for power optimization, this would be wasting battery power for instance.
+
+- **Interrupts** Doesn't miss edges, as the ISR finishes before the next edge arrives, and only calls the MCU when it receives an edge. As a result, if the motor isn't turnning at all, the MCU isn't using as much power as it would polling and continually updating the same result. However, the setup is a bit more difficult.
 
 ## Conclusion
-The interrupt-driven design correctly measured motor speed and direction with no missed pulses at both high and low speeds. The remaining shortcomings are the flowchart and the interrupt vs. polling comparison, which still need to be added.
+The interrupt-driven design correctly measured motor speed and direction with no missed pulses at high speeds. Compared to polling, the interrupt-based design was far more accurate at high speeds, since the polling version missed most encoder edges and reported only 0.2 rev/s at 12V compared to 2.9 rev/s with interrupts.
 
 ::: {.callout-note}
 ## Hours Spent on Lab
