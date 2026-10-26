@@ -377,3 +377,6 @@ iframe { margin-top: 1rem; background: white; border: 1px solid var(--line); bor
     .navbar .navbar-nav .nav-link { padding-left: 0.38rem; padding-right: 0.38rem; font-size: 0.9rem; }
     .navbar .nav-link::after { left: 0.38rem; right: 0.38rem; }
 }
+
+/* keep anchor targets clear of the fixed navbar when scrolling to them */
+main section[id], main h2[id] { scroll-margin-top: 80px; }
