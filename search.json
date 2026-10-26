@@ -14,109 +14,60 @@
     "text": "The labs for the E155 Microprocessors course are sourced from the E155 course website:\nE155 Course Website\nThis is where all lab assignments and related materials originate."
   },
   {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Class Projects",
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications & Reports",
     "section": "",
-    "text": "Overview:\n      Team project to build an electric vehicle. Principles of EV design, battery technology, vehicle dynamics, fabrication, wiring, and embedded software development.\n    \n    \n      Skills:\n      EV Design, Battery Technology, Vehicle Dynamics, Fabrication, Embedded Software\n    \n    \n      \n        Show More\n      \n      \n        ▶ Video\n      \n    \n  \n\n\n\n  \n    \n      CAD & Design\n      \n       - Developed a CAD assembly of the EV components, from the battery to the display. Implemented high-voltage motor controllers and safety circuitry (relays, fuses, and breakers) with low-voltage Raspberry Pi logic. Integrated software to connect motors to a PS4 controller, and for a Raspberry Pi Display. \n    \n    \n      Assembly\n      \n       \n        - Utilized crimped ring connectors for secure battery-to-controller links and automotive male/female connectors for quick-disconnect capability across the control interface. \n      \n        - Joined wire extensions with butt splices and applied heat shrink to all terminals to ensure vibration-resistant, short-proof connections.\n    \n    \n      Result\n      \n      \n        - The cart is fully operational, steady at a safe speed of 15 mph. A custom UI displays real-time speed and direction data, while the PS4 controller integration provides smooth, intuitive steering and throttle control. The result is a fast, stable build that handles reliably at peak performance."
+    "text": "Submitted to IEEE\n  Stress, Cognitive Load, and Specifications Grading in an Engineering Laboratory Course\n  \n    Cleo McHenry, Sara Morishige, Jasmine Sampat, Joaquin Gonzalez-Salgado, Leah Uriarte, Matthew Spencer\n  \n  IEEE Transactions on Education, 2025\n  \n    This paper presents a controlled two-year experiment at Harvey Mudd College studying how two evidence-based\n    interventions — simplified lab manuals and specifications grading — affected student stress and cognitive load\n    in a required sophomore engineering lab course (E80). Weekly validated surveys showed that stress was\n    significantly reduced in six of seven labs, and cognitive load dropped significantly in three. Students in\n    the treatment cohort also posted meaningfully higher scores on a summative technical memo, suggesting the\n    interventions did not harm learning. I contributed as a co-author on the study design, data collection,\n    and analysis.\n  \n  \n    *Currently being published*\n  \n\n\n\n\n  Report\n  Autonomous Surface & Dive Robot for Underwater Depth Mapping\n  \n    Joaquin Gonzalez-Salgado, Esteban Gonzalez, Ayla Greenstein, Kathy Guo\n  \n  E80: Experimental Engineering, Harvey Mudd College — Spring 2026\n  \n    This report documents the design, construction, and field deployment of an autonomous underwater vehicle\n    (AUV) built to map the seafloor topography of Dana Point Harbor. The vehicle integrated a SONAR depth\n    sensor (CME1538-100LB microphone + daex25W-8 speaker), an MPX5700ASX pressure sensor for dive depth,\n    and a thermistor for temperature profiling across depth. The AUV featured four horizontal and two vertical\n    thrusters, a low center of gravity for surface stability, and a winch-based recovery system. Deployment\n    at Dana Point produced a topographic depth map of the harbor floor, with real-time data logging to an\n    onboard SD card. Sensor drift from ocean currents affected positional accuracy, motivating future work\n    on closed-loop horizontal control.\n  \n  \n    Read Paper (PDF)\n    View Poster (PDF)\n    See Project Page\n  \n\n\n\n\n  Work in Progress\n  Low-Noise Analog Amplifier for Electropenetrography and R/EMF Signal Acquisition\n  \n    Matthew Spencer, Elaine Backus, Joaquin Gonzalez-Salgado — ACE Lab, Harvey Mudd College\n  \n  Computers and Agriculture — In preparation\n  \n    Ongoing manuscript documenting the design and characterization of a low-noise analog amplifier\n    for monitoring insect feeding behavior via electropenetrography (EPG) and resistive/emf (R/EMF)\n    signal acquisition.\n  \n  \n    \n      Manuscript in preparation"
   },
   {
-    "objectID": "projects.html#electric-vehicle-design-lab-e49c",
-    "href": "projects.html#electric-vehicle-design-lab-e49c",
-    "title": "Class Projects",
+    "objectID": "posts/post4.html",
+    "href": "posts/post4.html",
+    "title": "Dana Point Harbor Deployment",
     "section": "",
-    "text": "Overview:\n      Team project to build an electric vehicle. Principles of EV design, battery technology, vehicle dynamics, fabrication, wiring, and embedded software development.\n    \n    \n      Skills:\n      EV Design, Battery Technology, Vehicle Dynamics, Fabrication, Embedded Software\n    \n    \n      \n        Show More\n      \n      \n        ▶ Video\n      \n    \n  \n\n\n\n  \n    \n      CAD & Design\n      \n       - Developed a CAD assembly of the EV components, from the battery to the display. Implemented high-voltage motor controllers and safety circuitry (relays, fuses, and breakers) with low-voltage Raspberry Pi logic. Integrated software to connect motors to a PS4 controller, and for a Raspberry Pi Display. \n    \n    \n      Assembly\n      \n       \n        - Utilized crimped ring connectors for secure battery-to-controller links and automotive male/female connectors for quick-disconnect capability across the control interface. \n      \n        - Joined wire extensions with butt splices and applied heat shrink to all terminals to ensure vibration-resistant, short-proof connections.\n    \n    \n      Result\n      \n      \n        - The cart is fully operational, steady at a safe speed of 15 mph. A custom UI displays real-time speed and direction data, while the PS4 controller integration provides smooth, intuitive steering and throttle control. The result is a fast, stable build that handles reliably at peak performance."
+    "text": "Today my team and I plunged our robot into the depths of Dana Point Harbor! Our goal was to take temperature, pressure, and ocean depth measurements (via SONAR) utilizing surface and dive control. We got to ride kayaks and it was super fun!"
   },
   {
-    "objectID": "projects.html#experimental-engineering-e80",
-    "href": "projects.html#experimental-engineering-e80",
-    "title": "Class Projects",
-    "section": "Experimental Engineering (E80)",
-    "text": "Experimental Engineering (E80)\n\nAUV Ocean Floor SONAR Mapping\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and built an AUV to topographically map the floor of Dana Point Harbor using SONAR time-of-flight measurements. Personally designed analog circuits for temperature, pressure, and SONAR signal processing — all from scratch. Featured a Teensy 4.0, Adafruit GPS, and a custom motor driver motherboard.\n    \n    Skills:Arduino, MATLAB, SONAR, Embedded Systems, PCB Assembly, Op-Amp Circuit Design, Sensor Calibration\n    \n      \n        Show More\n      \n      \n        See Report Page\n      \n    \n  \n\n\n\n  \n    \n      Custom Sensor Circuits\n      \n      \n        - Designed a thermistor interface circuit with a unity gain buffer and non-inverting offset amplifier to expand the output voltage range for better Teensy resolution.\n        - Built a pressure sensor circuit with the same offset amplifier approach to enable precise P-control during dives.\n        - For SONAR, designed both a TX chain (555 timer + LM384 audio amplifier driving a waterproof exciter at 3kHz) and a full RX chain with 10,000x gain across four op-amp stages, a Sallen-Key bandpass filter, and a max detector circuit.\n      \n    \n    \n      Deployment at Dana Point\n      \n      \n        - Deployed the AUV at Dana Point Harbor, following alongside in kayaks to monitor and recover it.\n        - GPS module handled surface navigation while the pressure sensor controlled dive depth autonomously via P-control.\n        - All sensor data was logged to an onboard SD card and post-processed in MATLAB to generate the topography map.\n      \n    \n    \n      Results & Presentation\n      \n      \n        - Successfully mapped the ocean floor depth along the AUV's path, with results consistent with nautical chart ground truth data for Dana Point Harbor.\n        - Also measured water temperature at depth and confirmed a temperature decrease with depth during dives.\n        - Presented findings at the end-of-semester showcase — our team took first place!"
-  },
-  {
-    "objectID": "projects.html#digital-electronics-computer-architecture-e85",
-    "href": "projects.html#digital-electronics-computer-architecture-e85",
-    "title": "Class Projects",
-    "section": "Digital Electronics / Computer Architecture (E85)",
-    "text": "Digital Electronics / Computer Architecture (E85)\n\nDigital Level\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Developed an embedded C application to implement a 2D digital level, interfacing a triple-axis accelerometer with a microcontroller to measure tilt along the x and y axes.\n      Designed and wired a complete hardware system on a breadboard, integrating a RED-V development board, LIS3DH accelerometer, and an 8x8 LED matrix.\n    \n    Skills:C/C++, SPI Communication, Calibration, Soldering, Embedded Systems\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Created a digital level mapping tilt angles to an 8x8 LED matrix bubble display.\n        - Bubble motion indicated surface tilt in X and Y axes.\n      \n    \n    \n      Methods\n      \n      \n        - Programmed RED-V ThingPlus in C using SPI to interface with LIS3DH accelerometer.\n        - Implemented real-time signal processing and calibration for smooth bubble motion.\n      \n    \n    \n      Result\n      \n      \n        - Achieved accurate, smooth, reliable bubble display validating full embedded system integration.\n        - Designed a sensitive and practical 2D digital tool with real-world use.\n      \n    \n  \n\n\n\nMulticycle Processor\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed a multicycle RISC-V processor in SystemVerilog, creating a hierarchical architecture with a finite-state machine, datapath, ALU, register file, and unified memory adapted from a single-cycle design.\n      Validated processor functionality through simulation and waveform analysis.\n    \n    Skills:SystemVerilog, HDL, Assembly, RISC-V, Quartus FPGA, Questa\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Built a multicycle RISC-V CPU capable of executing arithmetic instructions and managing memory.\n        - Leveraged single-cycle components to construct a modular multicycle architecture.\n      \n    \n    \n      Methods\n      \n      \n        - Wrote SystemVerilog datapath connecting controller, memory, and register file modules.\n        - Debugged by comparing assembly testbenches against waveforms and consulted Quartus RTL schematic.\n      \n    \n    \n      Result\n      \n      \n        - Processor matched waveform expectations confirming correct values at correct addresses.\n        - Deepened understanding of RISC-V architecture and processor design principles."
-  },
-  {
-    "objectID": "projects.html#systems-engineering-e79",
-    "href": "projects.html#systems-engineering-e79",
-    "title": "Class Projects",
-    "section": "Systems Engineering (E79)",
-    "text": "Systems Engineering (E79)\n\nSubmersible Robot with Kp Control\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Constructed an underwater remotely operated vehicle (ROV) to retrieve temperature, pressure, and other signals in lake environments via the MCP9701 thermistor and MPX5700ASX pressure gauge.\n      Assembled a PCB containing the MCP6002 OpAmp to return output voltages modeled and analyzed in LabVIEW.\n    \n    Skills:LabVIEW, Soldering, PCB Assembly, Oscilloscope, DMM, Breadboarding\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Created a fully waterproof ROV to measure temperature and pressure across varying depths.\n        - Implemented proportional (Kp) control for motor operation.\n      \n    \n    \n      Methods\n      \n      \n        - Modeled ROV vertical motion by changing motor PWM duty cycle in LabVIEW.\n        - Soldered pressure sensor and thermistor circuits to the project PCB.\n      \n    \n    \n      Result\n      \n      \n        - Deployed ROV in a real-world environment and collected valid environmental data.\n        - Gained hands-on experience in PCB assembly, soldering, and oscilloscope use."
-  },
-  {
-    "objectID": "projects.html#engineering-design-manufacturing-e4",
-    "href": "projects.html#engineering-design-manufacturing-e4",
-    "title": "Class Projects",
-    "section": "Engineering Design & Manufacturing (E4)",
-    "text": "Engineering Design & Manufacturing (E4)\n\nDigital Logic Demonstration Board\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and assembled a logic-gate demonstration board using 74HC Series integrated circuits, a 555 timer, and a potentiometer-based clock input.\n      Engineered intuitive controls with input switches, banana cables, and LEDs to clearly display output states.\n      Delivered a durable teaching tool now used by Professor Stone for the Digital Logic and Computer Architecture course.\n    \n    Skills:Digital Logic, PCB Design, 74HC ICs, 555 Timer, Soldering\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Built a logic-gate demonstration board using 74HC Series ICs and a 555 timer.\n        - Incorporated input switches, banana cable ports, and LEDs for clear output visualization.\n      \n    \n    \n      Methods\n      \n      \n        - Designed board layout for intuitive student interaction and clear signal flow.\n        - Wired and soldered 74HC gates, 555 timer clock, and potentiometer for adjustable frequency.\n      \n    \n    \n      Result\n      \n      \n        - Delivered a durable teaching tool now actively used by Professor Stone in E85 lectures.\n        - Reinforced understanding of combinational logic design and hands-on fabrication.\n      \n    \n  \n\n\n\nE4 Machinist Hammer\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Manufactured a precision machinist hammer from clear oak, AISI 1015 steel, AISI 4340 steel, and nylon, adhering to detailed engineering drawings, dimensional tolerances, and safety requirements.\n      Applied turning, facing, milling, tapping, and heat treatment processes to achieve specified mechanical properties.\n    \n    Skills:GD&T, Lathe, Mill, Bandsaw, Taps, Digital Micrometers, HRC Hardness Tester, Heat Treatment\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Manufactured a functional machinist hammer from oak, steel, and nylon to precise GD&T specs.\n        - Contributed to the Harvey Mudd College tradition of student-made hammers.\n      \n    \n    \n      Methods\n      \n      \n        - Machined head stock using lathe and milling operations, verified with digital micrometers.\n        - Heat treated hard face, verified HRC hardness, and sandblasted for smooth finish.\n      \n    \n    \n      Result\n      \n      \n        - Delivered a high-quality hammer that scored near perfect in quality of manufacturing.\n        - Now serve as a Machine Shop Proctor, training new students in shop safety."
-  },
-  {
-    "objectID": "posts/post3.html",
-    "href": "posts/post3.html",
-    "title": "Starting Microprocesor Labs!",
+    "objectID": "posts/post2.html",
+    "href": "posts/post2.html",
+    "title": "Visit to NVIDIA Voyager",
     "section": "",
-    "text": "This fall semester (2026), I will be taking an upper division course called Microprocessors Systems: Design & Application which focuses on microcontrollers and embedded system design, and how to apply HDL and logic to the real world. My goal this fall is to focus on having a thorough engineering workflow. I want to not only understand and create embedded and physical systems, but also document these processes thoroughly."
+    "text": "This week, I had the incredible opportunity to job shadow at NVIDIA’s NVIDIA’s headquarters in Santa Clara with Mudd alumni Alisha Chulani! It was really cool to see what the workplace looks like day-to-day at such a large company, and it was fascinating watch teams collaborate on some exciting projects. So grateful for the experience!"
   },
   {
-    "objectID": "posts/post1.html",
-    "href": "posts/post1.html",
-    "title": "Visit to Harbinger Motors",
+    "objectID": "personal.html",
+    "href": "personal.html",
+    "title": "Personal Projects",
     "section": "",
-    "text": "Yesterday, I had the incredible opportunity to visit and job shadow at Harbinger Motors Inc.! Harbinger is a company leading the way in EV commercial vehicle innovation for trucks, RVs, and much more. It was super exciting to see the intricacies of trucks that we see everyday, and how we as engineers can continue to innovate and improve them for the future.\nI would also like to give a HUGE thank you to Zane Bodenbender (Harvey Mudd alum!) for hosting us and generously sharing insights about his work and journey — your passion and expertise made this experience especially impactful, and have truly shown me what it means to be an Engineer!"
+    "text": "Overview:\n      Built a fully functional 34-range digital multimeter from scratch that measures AC/DC voltage and current, resistance, capacitance, transistor hFE, diode junctions, and has a continuity buzzer. \n    \n    Skills:Soldering, Circuit Calibration, Analog/Digital Electronics, Component Identification\n    \n      \n        Show More\n      \n    \n  \n\n\n\n  \n    \n      Calibration\n      \n      \n        - Calibrated DC/AC voltage and current circuits against a reference meter across all ranges (200μA – 20A).\n        - Separately calibrated the capacitance circuit using known capacitor values from 2nF to 200μF.\n      \n    \n    \n      Cool Features\n      \n      \n        - Has a real continuity buzzer — short the leads and it beeps!\n        - Built-in hFE socket can test NPN and PNP transistors and read their DC current gain.\n        - Runs on a custom ICL7106 A/D converter chip for a 3Hz reading frequency.\n      \n    \n    \n      It Works!\n      \n      \n        - Verified measurement voltage, current, resistance, capacitance, and many other features of the multimeter using a power supply and another multimeter as reference.\n        - An LCD display includes a zebra connector and housing which was all assembled by hand, and a Fuse and other safety measures were incoporated as well."
   },
   {
-    "objectID": "pcb.html",
-    "href": "pcb.html",
-    "title": "PCB Designs",
+    "objectID": "personal.html#wood-shop-french-cleat-wall",
+    "href": "personal.html#wood-shop-french-cleat-wall",
+    "title": "Personal Projects",
+    "section": "Wood Shop French Cleat Wall",
+    "text": "Wood Shop French Cleat Wall\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and built a modular french cleat wall system for the HMC Wood Shop to organize tools and keep the workspace clean and efficient.\n      French cleats use interlocking 45° angled cuts to create a flexible, reconfigurable mounting system — any holder or shelf can be moved or swapped without any hardware.\n      Cut and assembled custom holders for screwdrivers, wrenches, pliers, drill bits, sandpaper belts, and more.\n    \n    \n      Skills:\n      Table Saw, Woodworking, Shop Organization, Fabrication"
+  },
+  {
+    "objectID": "personal.html#rockler-wooden-speaker",
+    "href": "personal.html#rockler-wooden-speaker",
+    "title": "Personal Projects",
+    "section": "Rockler Wooden Speaker",
+    "text": "Rockler Wooden Speaker\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a bluetooth speaker by cutting 8 triangular pieces of plywood, and wood glueing them together in a box orientation!\n      Utilized the Rockler's Speaker Set to design and assemble the speaker kit, which connects via AUX and Bluetooth! It's also portable, as it runs on a lithium ion charged battery.\n      This project involved a lot of wood shop tools, including a Table Saw, Miter Saw, Planar, and much more!\n      This little project has now become a speaker I use day to day!\n    \n    \n      Skills:\n      Table Saw, Miter Saw, Planar, Wood Glue, Soldering, Bluetooth Electronics"
+  },
+  {
+    "objectID": "personal.html#red-ish-skateboard",
+    "href": "personal.html#red-ish-skateboard",
+    "title": "Personal Projects",
+    "section": "Red-ish Skateboard",
+    "text": "Red-ish Skateboard\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a skateboard completely from scratch under the HMC Makerspace Grant!\n      The materials for this assembly were a sheet of plywood, bearings and tires, grip tape, and red paint, assembled over the course of 3 weeks.\n      Used the ShopBot (CNC Router Table) to cut out the skateboard frame. This board is now used to travel around the Harvey Mudd campus!\n    \n    \n      Skills:\n      ShopBot CNC, CAD, Woodworking, Finishing"
+  },
+  {
+    "objectID": "labs/lab7/lab7.html",
+    "href": "labs/lab7/lab7.html",
+    "title": "Joaquin Gonzalez-Salgado",
     "section": "",
-    "text": "Overview:\n  A business-card PCB that opens my portfolio when tapped with a phone. Built around the NXP NT3H2111 NFC tag IC\n  with a custom loop antenna drawn as a PCB trace, impedance-matched to the 13.56 MHz NFC carrier using a\n  vector network analyzer (VNA).\n\n\n  Key Features:\n  2-layer KiCad design, PCB-trace NFC loop antenna, NT3H2111 tag IC, indicator LED, test points, silkscreen\n  ruler and contact info, fab-ready Gerbers, BOM, and pick-and-place files.\n  GitHub Repo →"
-  },
-  {
-    "objectID": "pcb.html#nfc-business-card",
-    "href": "pcb.html#nfc-business-card",
-    "title": "PCB Designs",
-    "section": "",
-    "text": "Overview:\n  A business-card PCB that opens my portfolio when tapped with a phone. Built around the NXP NT3H2111 NFC tag IC\n  with a custom loop antenna drawn as a PCB trace, impedance-matched to the 13.56 MHz NFC carrier using a\n  vector network analyzer (VNA).\n\n\n  Key Features:\n  2-layer KiCad design, PCB-trace NFC loop antenna, NT3H2111 tag IC, indicator LED, test points, silkscreen\n  ruler and contact info, fab-ready Gerbers, BOM, and pick-and-place files.\n  GitHub Repo →"
-  },
-  {
-    "objectID": "pcb.html#muddsub-boards",
-    "href": "pcb.html#muddsub-boards",
-    "title": "PCB Designs",
-    "section": "MuddSub Power & Signal Boards (Team Design)",
-    "text": "MuddSub Power & Signal Boards (Team Design)\n\n  \n    \n  \n  \n    \n  \n\n\n\n  Overview:\n  Power and signal boards for MuddSub's autonomous underwater\n  vehicle, designed in KiCad as a team effort by the electrical team, which I am part of. Rev. 1 is entering fabrication\n  and verification. The power board takes separate thruster and electronics batteries and uses switching\n  regulators to supply 12V, 5V, and 3.3V rails to the Jetson computer, DVL, tether board, and signal board. The signal\n  board centers on a Teensy 4.1 and drives PWM for all 8 thrusters.\n\n\n  Key Features:\n  Dual battery inputs, switching regulators, 12V/5V/3.3V rails with status LEDs, Teensy 4.1, 8-channel thruster PWM,\n  I²C, SPI, and UART breakouts, relay and hardware-kill switching, board-to-board power/signal connector."
-  },
-  {
-    "objectID": "pcb.html#fi1-fully-integrated-1",
-    "href": "pcb.html#fi1-fully-integrated-1",
-    "title": "PCB Designs",
-    "section": "FI1 (Fully Integrated 1)",
-    "text": "FI1 (Fully Integrated 1)\n\n  \n    \n  \n  \n    \n  \n\n\n\n  Overview:\n  A fully integrated revision of the electropenetrograph platform, bringing the previously\n  external nRF5340 DK onboard. Currently in manufacturing and assembly.\n\n\n  Key Features:\n  Onboard nRF5340 module with integrated antenna, SWD programming header, onboard flash memory,\n  I²C & SPI control interfaces."
-  },
-  {
-    "objectID": "pcb.html#im-boards",
-    "href": "pcb.html#im-boards",
-    "title": "PCB Designs",
-    "section": "Integrated-Micro Boards (IM1 & IM2), ACE Lab Team",
-    "text": "Integrated-Micro Boards (IM1 & IM2), ACE Lab Team\n\n  \n    \n  \n  \n    \n      Overview:\n      From top to bottom: IM2, IM1, and the off-the-shelf Nordic nRF5340 DK they replace. IM1 recreates the DK with only\n      the components the project needs. IM2 shrinks it further around an nRF5340 module, making it cheaper and faster to\n      manufacture. I helped bring up and verify both boards during a 10-week summer sprint with the ACE Lab team."
-  },
-  {
-    "objectID": "pcb.html#electropenetrograph",
-    "href": "pcb.html#electropenetrograph",
-    "title": "PCB Designs",
-    "section": "Electropenetrograph",
-    "text": "Electropenetrograph\n\n  \n    \n  \n  \n    \n  \n\n\n\n  Overview:\n  A mixed-signal electropenetrograph\n  board designed to interface with the\n  Nordic nRF5340 DK.\n  The board combines a signal generation chain with a synchronized acquisition chain, using onboard control logic to\n  configure gain, switching, and calibration on the fly.\n\n\n  Key Features:\n  Onboard battery charger & monitor ICs, DDS-based signal generation, analog & digital multiplexing,\n  DAC output stage, digitally controlled rheostats, I²C & SPI control interfaces, nRF5340 DK integration."
-  },
-  {
-    "objectID": "pcb.html#lipo-battery-charger-monitor",
-    "href": "pcb.html#lipo-battery-charger-monitor",
-    "title": "PCB Designs",
-    "section": "LiPo Battery Charger & Monitor",
-    "text": "LiPo Battery Charger & Monitor\n\n  \n    \n  \n  \n    \n  \n\n\n\n  Overview:\n  (My first PCB!) A single-cell LiPo battery charger and power management board featuring USB-C input, a dedicated charge IC, 5V and 3.7V regulated outputs, fuel gauge IC with I²C interface, and status indicator LEDs. Designed for use as a standalone supply module in embedded systems projects.\n\n\n  Key Features:\n  USB-C charging input, dual regulated outputs (5V / 3.7V), I²C fuel gauge, charge/power-good status LEDs, onboard enable/alert header."
+    "text": "Overview:Coming Soon!"
   },
   {
     "objectID": "labs/lab5/lab5.html",
@@ -270,7 +221,14 @@
     "href": "experience.html",
     "title": "Industry & Research Experience",
     "section": "",
-    "text": "Automated Umbilical Panel Validation System\n      Before launch, ground-side umbilical panels must mate with the vehicle to carry propellant, power, and electrical\n      signals, a process that is still largely manual at extreme heights. Our team is selecting and validating a redundant\n      multi-sensor suite (radar, LiDAR, proximity sensors, IMU, and computer vision) that feeds control logic with Kalman\n      filtering to align the panels in all six degrees of freedom to about 0.1 mm, while tolerating rain, fog,\n      cryogenic temperatures, purge gas, and EMI. I own component selection, sensor installation and packaging design,\n      and hardware procurement, working with Blue Origin engineers on prototype build-up and testing.\n    \n  \n\n\n  \n    \n    Umbilical lines connected to a launch vehicle\n  \n  \n    \n    Launch-tower umbilical arms connecting to the vehicle\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding\n      behavior of disease-vector insects, supporting agricultural and ecological research.\n      Developed microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog\n      signals from insect feeding experiments.\n      Applied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits,\n      optimize signal quality, and improve reliability for field deployment.\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Contribute to the electrical team's KiCad design of the power and signal boards for MuddSub's 8-thruster autonomous\n      underwater vehicle, competing in RoboSub. The Rev. 1 boards are now entering fabrication and verification.\n      The power board converts separate thruster and electronics batteries into 12V, 5V, and 3.3V rails for the Jetson, DVL,\n      tether, and signal boards. The Teensy 4.1 signal board drives thruster PWM and breaks out I²C, SPI, and UART.\n      I am also working on a hydrophone amplification front end using impedance matching and AC coupling for acoustic localization.\n    \n    See the Boards →\n  \n\n\n\n\n\n\n  \n\n\n  Overview:\n  Designing the low-voltage electrical system for Harvey Mudd Racing's first Formula SAE car. A 12V battery feeds the\n  shutdown circuit and master power, which supplies a MoTeC PDM30 power distribution module and a MoTeC M130 ECU linked\n  over CAN bus with CAN sensors. Relays switch the fuel pump, ignition coils, and fuel injectors. The custom harness is\n  split into six subharnesses (engine sensors, injectors, ignition coils, rear, cockpit, and shutdown circuit) for easier\n  maintenance and future upgrades, within a $5.5k electrical budget.\n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\n      Developed FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\n      Configured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python-based data analysis/visualization.\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.\n    \n    Machine Shop Website →\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Will supervise and support students through 13 hands-on lab practicums in Harvey Mudd's E79 Systems Engineering course, \n      where underwater robotics serves as the teaching vehicle for modeling, constructing, and controlling mechanical, thermal, \n      and electrical systems. Will guide student pairs through 2.5-hour sessions spanning circuit work, soldering, and \n      field experiences, providing real-time debugging assistance and ensuring adherence to lab safety protocols. \n      Responsible for fostering a collaborative and inclusive lab environment while helping students develop practical \n      engineering intuition across all five course modules.\n    \n    E79 Practicum Website →\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects, supporting student innovation while ensuring responsible and equitable use of resources.\n    \n    Makerspace Website →"
+    "text": "Jan. 2027 – May 2027 · Sunnyvale, CA\n  Will support V1 electrical bring-up of an outdoor construction robot: debugging power-electronics and mixed-signal\n  boards and STM32 firmware networked with an NVIDIA Jetson Orin.\n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Automated Umbilical Panel Validation System\n      Before launch, ground-side umbilical panels must mate with the vehicle to carry propellant, power, and electrical\n      signals, a process that is still largely manual at extreme heights. Our team is selecting and validating a redundant\n      multi-sensor suite (radar, LiDAR, proximity sensors, IMU, and computer vision) that feeds control logic with Kalman\n      filtering to align the panels in all six degrees of freedom to about 0.1 mm, while tolerating rain, fog,\n      cryogenic temperatures, purge gas, and EMI. I own component selection, sensor installation and packaging design,\n      and hardware procurement, working with Blue Origin engineers on prototype build-up and testing.\n    \n  \n\n\n  \n    \n    Umbilical lines connected to a launch vehicle\n  \n  \n    \n    Launch-tower umbilical arms connecting to the vehicle\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designing low-noise analog front ends for USDA electropenetrographs, with impedance matching, instrumentation\n      amplifiers, and up to 7,000x gain, and moving a dual-battery instrument to a single-supply design with integrated\n      battery management. Developing nRF5340 firmware on the Zephyr RTOS with SPI, I²C, and ADC drivers, plus\n      Bluetooth firmware that streams data to client software in real time.\n    \n    Full Research Page →\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Contribute to the electrical team's KiCad design of the power and signal boards for MuddSub's 8-thruster autonomous\n      underwater vehicle, competing in RoboSub. The Rev. 1 boards are now entering fabrication and verification.\n      The power board converts separate thruster and electronics batteries into 12V, 5V, and 3.3V rails for the Jetson, DVL,\n      tether, and signal boards. The Teensy 4.1 signal board drives thruster PWM and breaks out I²C, SPI, and UART.\n      I am also working on a hydrophone amplification front end using impedance matching and AC coupling for acoustic localization.\n    \n    See the Boards →\n  \n\n\n\n\n\n\n  \n\n\n  Overview:\n  Setting up the CAN bus between the ECU, power distribution module, and lambda sensor, and configuring ECU firmware\n  and tuning to start the engine under electrical power.\n  I also designed the low-voltage electrical system for Harvey Mudd Racing's first Formula SAE car. A 12V battery feeds the\n  shutdown circuit and master power, which supplies a MoTeC PDM30 power distribution module and a MoTeC M130 ECU linked\n  over CAN bus with CAN sensors. Relays switch the fuel pump, ignition coils, and fuel injectors. The custom harness is\n  split into six subharnesses (engine sensors, injectors, ignition coils, rear, cockpit, and shutdown circuit) for easier\n  maintenance and future upgrades, within a $5.5k electrical budget.\n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Operated and programmed a large hexacopter drone carrying a custom (Xilinx FPGA) RF transmitter to calibrate and map a clear beam pattern of a ground-based radio telescope, modeling a software defined radio.\n      Developed FPGA-based software-defined radio system with Verilog and Python, transmitting and receiving GHz-wideband signals for DSP analysis via Fast Fourier Transforms (FFTs).\n      Configured hardware and software systems include drone flight control (PX4/Ardupilot) GPS synchronization, RF amplification, and Python-based data analysis/visualization.\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Supervised safe operation of machining equipment (mills, lathes, bandsaw) by student users, ensuring adherence to shop safety protocols and best practices. Trained peers in proper tool usage, machining techniques, as well as fabrication and tolerancing. As a future improvement proctor: Learn how to use the Big Brother CNC Mill, spot welder, and other advanced machinery.\n    \n    Machine Shop Website →\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Will supervise and support students through 13 hands-on lab practicums in Harvey Mudd's E79 Systems Engineering course, \n      where underwater robotics serves as the teaching vehicle for modeling, constructing, and controlling mechanical, thermal, \n      and electrical systems. Will guide student pairs through 2.5-hour sessions spanning circuit work, soldering, and \n      field experiences, providing real-time debugging assistance and ensuring adherence to lab safety protocols. \n      Responsible for fostering a collaborative and inclusive lab environment while helping students develop practical \n      engineering intuition across all five course modules.\n    \n    E79 Practicum Website →\n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Guided makerspace users in safely operating fabrication tools including laser cutters, 3D printers, and welding equipment, fostering an inclusive and collaborative environment. Oversaw project grants and budget distribution for student projects, supporting student innovation while ensuring responsible and equitable use of resources.\n    \n    Makerspace Website →"
+  },
+  {
+    "objectID": "experience.html#strata",
+    "href": "experience.html#strata",
+    "title": "Industry & Research Experience",
+    "section": "",
+    "text": "Jan. 2027 – May 2027 · Sunnyvale, CA\n  Will support V1 electrical bring-up of an outdoor construction robot: debugging power-electronics and mixed-signal\n  boards and STM32 firmware networked with an NVIDIA Jetson Orin."
   },
   {
     "objectID": "experience.html#blue-origin",
@@ -280,11 +238,11 @@
     "text": "Automated Umbilical Panel Validation System\n      Before launch, ground-side umbilical panels must mate with the vehicle to carry propellant, power, and electrical\n      signals, a process that is still largely manual at extreme heights. Our team is selecting and validating a redundant\n      multi-sensor suite (radar, LiDAR, proximity sensors, IMU, and computer vision) that feeds control logic with Kalman\n      filtering to align the panels in all six degrees of freedom to about 0.1 mm, while tolerating rain, fog,\n      cryogenic temperatures, purge gas, and EMI. I own component selection, sensor installation and packaging design,\n      and hardware procurement, working with Blue Origin engineers on prototype build-up and testing.\n    \n  \n\n\n  \n    \n    Umbilical lines connected to a launch vehicle\n  \n  \n    \n    Launch-tower umbilical arms connecting to the vehicle"
   },
   {
-    "objectID": "experience.html#usda-electropenetography-hardwarefirmware",
-    "href": "experience.html#usda-electropenetography-hardwarefirmware",
+    "objectID": "experience.html#ace-lab",
+    "href": "experience.html#ace-lab",
     "title": "Industry & Research Experience",
     "section": "",
-    "text": "Overview:\n      Designed and tested low-noise, field-deployable analog amplifiers for electropenetrography (EPG) to monitor feeding\n      behavior of disease-vector insects, supporting agricultural and ecological research.\n      Developed microcontroller firmware and Python-based software to acquire, process, and visualize high-sensitivity analog\n      signals from insect feeding experiments.\n      Applied benchtop electronics skills including oscilloscopes, function generators, and power supplies to prototype circuits,\n      optimize signal quality, and improve reliability for field deployment."
+    "text": "Overview:\n      Designing low-noise analog front ends for USDA electropenetrographs, with impedance matching, instrumentation\n      amplifiers, and up to 7,000x gain, and moving a dual-battery instrument to a single-supply design with integrated\n      battery management. Developing nRF5340 firmware on the Zephyr RTOS with SPI, I²C, and ADC drivers, plus\n      Bluetooth firmware that streams data to client software in real time.\n    \n    Full Research Page →"
   },
   {
     "objectID": "experience.html#muddsub",
@@ -298,7 +256,7 @@
     "href": "experience.html#fsae",
     "title": "Industry & Research Experience",
     "section": "",
-    "text": "Overview:\n  Designing the low-voltage electrical system for Harvey Mudd Racing's first Formula SAE car. A 12V battery feeds the\n  shutdown circuit and master power, which supplies a MoTeC PDM30 power distribution module and a MoTeC M130 ECU linked\n  over CAN bus with CAN sensors. Relays switch the fuel pump, ignition coils, and fuel injectors. The custom harness is\n  split into six subharnesses (engine sensors, injectors, ignition coils, rear, cockpit, and shutdown circuit) for easier\n  maintenance and future upgrades, within a $5.5k electrical budget."
+    "text": "Overview:\n  Setting up the CAN bus between the ECU, power distribution module, and lambda sensor, and configuring ECU firmware\n  and tuning to start the engine under electrical power.\n  I also designed the low-voltage electrical system for Harvey Mudd Racing's first Formula SAE car. A 12V battery feeds the\n  shutdown circuit and master power, which supplies a MoTeC PDM30 power distribution module and a MoTeC M130 ECU linked\n  over CAN bus with CAN sensors. Relays switch the fuel pump, ignition coils, and fuel injectors. The custom harness is\n  split into six subharnesses (engine sensors, injectors, ignition coils, rear, cockpit, and shutdown circuit) for easier\n  maintenance and future upgrades, within a $5.5k electrical budget."
   },
   {
     "objectID": "experience.html#drone-fpga-radio-telescope-beam-mapping",
@@ -340,7 +298,14 @@
     "href": "e155.html",
     "title": "Microprocessors (E155) Projects",
     "section": "",
-    "text": "This Fall 2026, I will be taking an upper division  engineering elective, \n  E155: Microprocessor Systems at Harvey Mudd College. In this course I will build a variety of systems with FPGAs, microcontrollers, and custom digital logic. Along the way, I will gain experience with RTL design, simulation and verification in Questa, and FPGA development using Lattice Radiant. Check out my work below!\n    \n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Assembled a development board by hand-soldering SMT and THT components, integrating the UPduino v3.1 FPGA and Nucleo-L432KC MCU via female header pins. Implemented a SystemVerilog design leveraging the on-board high-speed oscillator to blink an LED at 2.4 Hz, drive three on-board LEDs using combinational logic from DIP switch inputs, and display all 16 hexadecimal digits on a 7-segment display.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      A time-multiplexed dual 7-segment display was implemented on the UPduino v3.1 FPGA, simultaneously showing two independent 4-bit hexadecimal values provided via DIP switches. A 2N3906 PNP transistor circuit was constructed to drive the display anodes, and five on-board LEDs display the binary sum of the two inputs.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n      Summary:\n      Built a debounced 4x4 keypad reader on the UPduino v3.1 FPGA that registers each keypress exactly once, no matter how long the key is held. Keypad inputs pass through a two-flop synchronizer, and a three-state Mealy FSM (IDLE, DEBOUNCE, HOLD) requires a key to stay pressed for 20 ms before accepting it. The last two hexadecimal digits pressed are shown on the multiplexed dual 7-segment display from Lab 2, and every module was verified with QuestaSim testbenches.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Configured TIM2 on the STM32L432KC, using hand-written register definitions instead of CMSIS, to drive an 8-ohm speaker through an LM386 amplifier. Square waves are generated by toggling a GPIO pin on each timer update, and a 1 MHz timer clock (4 MHz system clock, PSC = 3) keeps every note within 1% frequency error. Played Fur Elise and the optional piece Fallen Down, with a potentiometer for adjustable volume.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Designed an interrupt-driven system on the STM32L432KC to measure the speed and direction of a brushed DC motor using a quadrature encoder. GPIO external interrupts on both edges of both encoder channels (5V-tolerant pins PA6 and PA8) catch every pulse for x4 decoding, and TIM2 times a 500 ms sampling window to report speed in revolutions per second along with direction at a 2 Hz update rate.\n    \n    \n      See Lab Report"
+    "text": "This Fall 2026, I will be taking an upper division  engineering elective, \n  E155: Microprocessor Systems at Harvey Mudd College. In this course I will build a variety of systems with FPGAs, microcontrollers, and custom digital logic. Along the way, I will gain experience with RTL design, simulation and verification in Questa, and FPGA development using Lattice Radiant. Check out my work below!\n    \n\n\n\n  Oct. 2026 – Present · iCE40 FPGA, STM32, ESP8266\n  Building a two-player IR laser tag system on a Lattice iCE40 FPGA and an STM32 microcontroller. FPGA logic encodes\n  38 kHz IR packets for each shot and decodes incoming hits into SPI interrupts to the MCU. Check back for updates!\n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Assembled a development board by hand-soldering SMT and THT components, integrating the UPduino v3.1 FPGA and Nucleo-L432KC MCU via female header pins. Implemented a SystemVerilog design leveraging the on-board high-speed oscillator to blink an LED at 2.4 Hz, drive three on-board LEDs using combinational logic from DIP switch inputs, and display all 16 hexadecimal digits on a 7-segment display.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      A time-multiplexed dual 7-segment display was implemented on the UPduino v3.1 FPGA, simultaneously showing two independent 4-bit hexadecimal values provided via DIP switches. A 2N3906 PNP transistor circuit was constructed to drive the display anodes, and five on-board LEDs display the binary sum of the two inputs.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n      Summary:\n      Built a debounced 4x4 keypad reader on the UPduino v3.1 FPGA that registers each keypress exactly once, no matter how long the key is held. Keypad inputs pass through a two-flop synchronizer, and a three-state Mealy FSM (IDLE, DEBOUNCE, HOLD) requires a key to stay pressed for 20 ms before accepting it. The last two hexadecimal digits pressed are shown on the multiplexed dual 7-segment display from Lab 2, and every module was verified with QuestaSim testbenches.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Configured TIM2 on the STM32L432KC, using hand-written register definitions instead of CMSIS, to drive an 8-ohm speaker through an LM386 amplifier. Square waves are generated by toggling a GPIO pin on each timer update, and a 1 MHz timer clock (4 MHz system clock, PSC = 3) keeps every note within 1% frequency error. Played Fur Elise and the optional piece Fallen Down, with a potentiometer for adjustable volume.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Designed an interrupt-driven system on the STM32L432KC to measure the speed and direction of a brushed DC motor using a quadrature encoder. GPIO external interrupts on both edges of both encoder channels (5V-tolerant pins PA6 and PA8) catch every pulse for x4 decoding, and TIM2 times a 500 ms sampling window to report speed in revolutions per second along with direction at a 2 Hz update rate.\n    \n    \n      See Lab Report\n    \n  \n\n\n\n\n\n\n  \n    \n  \n  \n    \n      Summary:\n      Built an internet-accessible IoT device using an STM32L432KC MCU, DS1722 SPI temperature sensor, and ESP8266 WiFi module. Developed custom C SPI drivers using CMSIS device templates to read ambient temperature data, and implemented UART communication at 125,000 baud to serve a dynamically generated HTML webpage allowing remote LED control, real-time temperature monitoring, and selection of the sensor's resolution from 8 to 12 bits.\n    \n    \n      See Lab Report"
+  },
+  {
+    "objectID": "e155.html#ir-laser-tag",
+    "href": "e155.html#ir-laser-tag",
+    "title": "Microprocessors (E155) Projects",
+    "section": "",
+    "text": "Oct. 2026 – Present · iCE40 FPGA, STM32, ESP8266\n  Building a two-player IR laser tag system on a Lattice iCE40 FPGA and an STM32 microcontroller. FPGA logic encodes\n  38 kHz IR packets for each shot and decodes incoming hits into SPI interrupts to the MCU. Check back for updates!"
   },
   {
     "objectID": "e155.html#fpga-and-mcu-setup-and-testing-lab-1",
@@ -378,11 +343,39 @@
     "text": "Summary:\n      Designed an interrupt-driven system on the STM32L432KC to measure the speed and direction of a brushed DC motor using a quadrature encoder. GPIO external interrupts on both edges of both encoder channels (5V-tolerant pins PA6 and PA8) catch every pulse for x4 decoding, and TIM2 times a 500 ms sampling window to report speed in revolutions per second along with direction at a 2 Hz update rate.\n    \n    \n      See Lab Report"
   },
   {
+    "objectID": "e155.html#spi-and-iot-lab-6",
+    "href": "e155.html#spi-and-iot-lab-6",
+    "title": "Microprocessors (E155) Projects",
+    "section": "",
+    "text": "Summary:\n      Built an internet-accessible IoT device using an STM32L432KC MCU, DS1722 SPI temperature sensor, and ESP8266 WiFi module. Developed custom C SPI drivers using CMSIS device templates to read ambient temperature data, and implemented UART communication at 125,000 baud to serve a dynamically generated HTML webpage allowing remote LED control, real-time temperature monitoring, and selection of the sensor's resolution from 8 to 12 bits.\n    \n    \n      See Lab Report"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Joaquin Gonzalez-Salgado",
     "section": "",
-    "text": "Welcome to my Engineering Portfolio! I am a Junior Engineering major at Harvey Mudd College focused on electrical and computer engineering. I’m currently an electrical engineer on a Blue Origin-sponsored engineering project, developing a sensor system for autonomous mating of launch-vehicle umbilical panels, and a hardware/firmware researcher in the Analog Circuitry Engineering (ACE) Lab, designing low-noise analog front ends and embedded systems. Check out my projects below!\n\n\n\n  \n  \n  \n    PCB · RF\n    NFC Business Card\n  \n\n  \n  \n  \n    MuddSub\n    AUV Power & Signal Boards\n  \n\n  \n  \n  \n    Formula SAE\n    Low-Voltage Harness\n  \n\n  \n    \n    \n      E49C\n      EV Design Team\n    \n  \n  \n    \n    \n      E155\n      Microproccesor Projects\n    \n  \n  \n  \n  \n    PCB\n    PCB Designs\n  \n\n  \n    \n    \n      E80\n      AUV Ocean Floor SONAR\n    \n  \n  \n  \n  \n    DIY Multimeter\n  \n  \n  \n    \n    \n      E85\n      Digital Level\n    \n  \n  \n    \n    \n      E85\n      Multicycle Processor\n    \n  \n  \n    \n    \n      E79\n      Submersible ROV\n    \n  \n  \n    \n    \n      E4\n      Logic Demo Board\n    \n  \n  \n    \n    \n      E4\n      Machinist Hammer\n    \n  \n\n\n  \n    Open Full Resume in New Tab"
+    "text": "Harvey Mudd College / B.S. Electrical & Computer Engineering / 2028\n    \n    \n      Analog Design\n      PCB Layout & Bring-Up\n      RF Circuits\n      FPGA / MCU\n    \n    \n      View Resume\n      See Projects"
+  },
+  {
+    "objectID": "index.html#current-work",
+    "href": "index.html#current-work",
+    "title": "Joaquin Gonzalez-Salgado",
+    "section": "Current Work",
+    "text": "Current Work\n\n  \n    Incoming · Jan. 2027\n    Strata Robotics: electrical & firmware intern on V1 bring-up of an outdoor construction robot.\n  \n  \n    Industry\n    Blue Origin: validating a multi-sensor suite for automated umbilical-panel mating.\n  \n  \n    Research\n    Analog Circuit Lab: low-noise analog front ends and Zephyr firmware for USDA instruments.\n  \n  \n    Building\n    IR laser tag: iCE40 FPGA encodes 38 kHz IR packets and signals hits to an STM32 over SPI."
+  },
+  {
+    "objectID": "index.html#featured-work",
+    "href": "index.html#featured-work",
+    "title": "Joaquin Gonzalez-Salgado",
+    "section": "Featured Work",
+    "text": "Featured Work\n\n  \n    \n    \n      Industry · Blue Origin\n      Umbilical Panel Validation\n      Redundant radar, LiDAR, IMU, and vision sensors with Kalman filtering to align umbilical panels in 6 DOF to about 0.1 mm.\n    \n  \n  \n    \n    \n      Research · Analog Circuit Lab\n      USDA Electropenetrograph\n      Analog front ends with up to 7,000x gain, single-supply battery management, and nRF5340 Bluetooth firmware on Zephyr.\n    \n  \n  \n    \n    \n      PCB · RF\n      NFC Business Card\n      Tap-to-open portfolio card with a PCB-trace loop antenna matched to 13.56 MHz using a VNA.\n    \n  \n  \n    \n    \n      E155 · FPGA + MCU\n      Microprocessor Projects\n      iCE40 FPGA and STM32 labs: 7-segment multiplexing, keypad scanning, digital audio, interrupts, and SPI/IoT, plus an IR laser tag final project in progress.\n    \n  \n  \n    \n    \n      E49C · Team Lead\n      36V Electric Vehicle\n      Led the team and designed power distribution and protection for an EV that holds a steady 15 mph.\n    \n  \n  \n    \n    \n      PCB\n      PCB Designs\n      Mixed-signal electropenetrograph, LiPo charger and monitor, Analog Circuit Lab integrated-micro boards, and more.\n    \n  \n  \n    \n    \n      E80 · 1st Place\n      AUV SONAR Mapping\n      Teensy firmware for GPS navigation, P-control dives, and 7.1 kHz burst sampling, with from-scratch analog sensor circuits.\n    \n  \n  \n    \n    \n      MuddSub · RoboSub\n      AUV Power & Signal Boards\n      Rev. 1 KiCad power and Teensy 4.1 signal boards for an 8-thruster AUV, now entering fabrication.\n    \n  \n  \n    \n    \n      Formula SAE\n      CAN Bus & Low-Voltage System\n      CAN bus between the ECU, PDM, and lambda sensor, plus ECU firmware and tuning to start the engine.\n    \n  \n  \n    \n    \n      Personal\n      DIY Multimeter\n      A 34-range digital multimeter built from scratch: voltage, current, resistance, capacitance, and hFE.\n    \n  \n  \n    \n    \n      E85\n      Digital Level\n      Embedded C 2D level using a LIS3DH accelerometer and an 8x8 LED matrix on a RED-V board.\n    \n  \n  \n    \n    \n      E85\n      Multicycle Processor\n      RISC-V multicycle processor in SystemVerilog, validated in simulation.\n    \n  \n  \n    \n    \n      E79\n      Submersible ROV\n      Underwater ROV logging temperature and pressure, with an op-amp PCB analyzed in LabVIEW.\n    \n  \n  \n    \n    \n      E4\n      Logic Demo Board\n      74HC-series logic-gate teaching board now used in the Digital Logic course.\n    \n  \n  \n    \n    \n      E4\n      Machinist Hammer\n      Turned, milled, tapped, and heat-treated from oak, 1015 and 4340 steel, and nylon."
+  },
+  {
+    "objectID": "index.html#resume",
+    "href": "index.html#resume",
+    "title": "Joaquin Gonzalez-Salgado",
+    "section": "Resume",
+    "text": "Resume\n\n  Open Full Resume in New Tab"
   },
   {
     "objectID": "labs/lab2/lab2.html",
@@ -483,59 +476,192 @@
     "text": "AI Prototype Summary\nThe purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision with which an LLM can generate code. The prompt for this week is shown below:\n\n\n\n\n\n\nTipAI Prototype (Claude Sonnet)\n\n\n\nPrompt: What timers should I use on the STM32L432KC to generate frequencies ranging from 220Hz to 1kHz? What’s the best choice of timer if I want to easily connect it to a GPIO pin? What formulae are relevant, and what registers need to be set to configure them properly?\n\n\n\nReflection:\nThis week is Claude Sonnet. Claude Sonnet claimed that the following timers would work for generating 220 Hz to 1 kHz frequencies: TIM1, TIM2, TIM15, and TIM16. This makes sense, as I had used TIM2. It chose TIM2 as the best option due to its resolution, number of channels, and ease of access.\nIt also gave the following formula:\n\\[\nf_{output} = \\frac{f_{TIMx\\_CLK}}{(PSC + 1) \\times (ARR + 1)}\n\\]\nwith an example for 440 Hz (A4) with PWM. This formula has no factor of 2 because in PWM mode the timer hardware produces one full output period per update, whereas my code toggles the pin in software on each update, so it needs two updates per period.\nIt also gave the maximum and minimum ARR as 4544 and 999 for a PSC of 79. These check out if the MCU is run at 80 MHz: \\(80\\,\\text{MHz}/(79+1) = 1\\,\\text{MHz}\\), so 220 Hz needs \\(\\text{ARR} = 10^6/220 - 1 \\approx 4544\\) and 1000 Hz needs \\(\\text{ARR} = 10^6/1000 - 1 = 999\\). My design runs at the default 4 MHz, so I used PSC = 3 to get the same 1 MHz timer clock.\nClaude Sonnet also provided the correct register configuration, and how to enable the clocks with RCC, and even configure the GPIO pin! Overall the LLM returned mostly correct information, but it gave more information than I asked for."
   },
   {
-    "objectID": "labs/lab7/lab7.html",
-    "href": "labs/lab7/lab7.html",
-    "title": "Portfolio",
+    "objectID": "labs/lab6/lab6.html",
+    "href": "labs/lab6/lab6.html",
+    "title": "Lab 6: SPI and the Internet of Things",
     "section": "",
-    "text": "Overview:Coming Soon!"
+    "text": "Joaquin Gonzalez-Salgado | jgonzalezsalgado@hmc.edu | October 12, 2026"
   },
   {
-    "objectID": "personal.html",
-    "href": "personal.html",
-    "title": "Personal Projects",
+    "objectID": "labs/lab6/lab6.html#introduction",
+    "href": "labs/lab6/lab6.html#introduction",
+    "title": "Lab 6: SPI and the Internet of Things",
+    "section": "Introduction",
+    "text": "Introduction\nIn this lab, an internet-accessible IoT device was built around the STM32L432KC MCU, a DS1722 digital temperature sensor, and an ESP8266 WiFi module. The MCU communicates with the DS1722 over a custom SPI driver written directly against the CMSIS device templates (no third-party drivers), and with the ESP8266 over UART to host a webpage. The page lets a user view the current ambient temperature, toggle an external LED, and, for the excellence requirement, select the DS1722’s conversion resolution (8 through 12 bits) directly from the browser."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#design-and-testing-methodology",
+    "href": "labs/lab6/lab6.html#design-and-testing-methodology",
+    "title": "Lab 6: SPI and the Internet of Things",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\n\nESP8266 UART Protocol and Web Server\nThe ESP8266 is connected to the MCU over USART1 at 125,000 baud. Each time a browser loads the page, the ESP8266 sends the MCU a short request that names what the user clicked, ending in a newline. The main loop reads the request one character at a time until that newline arrives, then checks it for a known tag: ledon or ledoff sets the LED, and res8 through res12 changes the DS1722’s resolution. Once the request has been handled, the temperature is read from the DS1722 over SPI and the webpage is sent back to the ESP8266 over the same UART."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#technical-documentation",
+    "href": "labs/lab6/lab6.html#technical-documentation",
+    "title": "Lab 6: SPI and the Internet of Things",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\n\n\n\n\n\n\nNoteSource Code\n\n\n\n\n\nThe source code for the project can be found in the associated GitHub Repo.\n\n\n\n\nSchematic\nLab 6 Wiring Schematic // Joaquin Gonzalez-Salgado // October 12, 2026\n\n\n\n\n\n\nNoteExpand to see Schematic\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Schematic of the DS1722 temperature sensor wiring.\n\n\n\n\n\n\nFigure 1 shows the wiring between the Nucleo-L432KC and the DS1722. The SPI clock is on PA5, PB4 is the MCU’s data input (MISO) and PB5 is the MCU’s data output (MOSI), and the chip enable is on PB0. The DS1722 is powered from the Nucleo’s +5V pin on both VDDD and VDDA and shares a common ground with the MCU. SERMODE is tied to +5V, which selects the SPI interface instead of the 3-wire interface. The ESP8266 WiFi click module is not shown, as it was connected on the motherboard.\n\n\nOscilloscope Trace\nLab 6 SPI Oscilloscope Trace // Joaquin Gonzalez-Salgado // October 12, 2026\n\n\n\n\n\n\nNoteExpand to see Oscilloscope Trace\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Oscilloscope trace of an SPI read from the DS1722.\n\n\n\n\n\n\nFigure 2 shows a full SPI read transaction captured on an oscilloscope, since no logic analyzer was available. Channel 4 (pink) is CE, which goes high at the start of the transaction and low at the end, as expected for the DS1722’s active-high chip enable. Channel 3 (blue) is SCLK, which idles low and produces 16 clock pulses: 8 for the address byte and 8 for the data byte. Channel 1 (yellow) is the data from the MCU to the sensor, which carries the register address during the first byte, and channel 2 (green) is the data from the sensor back to the MCU, which carries the temperature reading during the second byte. The 16 clock pulses span about 12.8 µs, matching the 1.25 MHz SPI clock."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#results-and-discussion",
+    "href": "labs/lab6/lab6.html#results-and-discussion",
+    "title": "Lab 6: SPI and the Internet of Things",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\n\n\n\n\n\n\nNoteResults and Discussion\n\n\n\nThe design was a success!\n\n\nThe design met all specifications. The webpage displays the current temperature read from the DS1722 and updates it when refreshed, shows the LED state and can toggle it, and lets the user select the sensor’s resolution from 8 to 12 bits."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#conclusion",
+    "href": "labs/lab6/lab6.html#conclusion",
+    "title": "Lab 6: SPI and the Internet of Things",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis lab combined a from-scratch SPI driver for the DS1722 temperature sensor with a UART-based request/response protocol to the ESP8266, producing a webpage that reads live temperature, controls an LED, and changes the sensor’s resolution over WiFi. The active-high CE of the DS1722, formatting the temperature without floating-point printf, and handling the stale reading after a resolution change were the main departures from a “textbook” SPI/UART implementation.\n\n\n\n\n\n\nNoteHours Spent on Lab\n\n\n\nThis lab took 12 hours."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#ai-prototype-summary",
+    "href": "labs/lab6/lab6.html#ai-prototype-summary",
+    "title": "Lab 6: SPI and the Internet of Things",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nThe purpose of the AI Prototype is to experiment with utilizing AI as a coding assistant, and analyze the quality, speed, and precision that an LLM can generate code. The prompt for this week is shown below:\n\n\n\n\n\n\nTipAI Prototype (Claude Sonnet)\n\n\n\nPrompt: I’m writing a bare-metal SPI driver for a DS1722 temperature sensor on the STM32L432KC using CMSIS, no HAL. The DS1722’s chip-enable line is active HIGH instead of the usual active-low chip select. How should that change my SPI transaction code compared to a normal active-low peripheral?\n\n\n\n\n\n\n\n\nNoteGenerated Code:\n\n\n\n\n\n// Active-HIGH CE: assert CE HIGH to start, LOW to end — opposite of\n// a normal active-low SPI chip select.\n\n#define DS1722_WRITE_BIT 0x80\n\nvoid ds1722_write_reg(uint8_t reg, uint8_t data) {\n    digitalWrite(SPI_CE, PIO_HIGH);   // assert (opposite of CS-low parts)\n    spiSendReceive(reg | DS1722_WRITE_BIT);\n    spiSendReceive(data);\n    digitalWrite(SPI_CE, PIO_LOW);    // deassert\n}\n\nuint16_t ds1722_read_temp_raw(void) {\n    digitalWrite(SPI_CE, PIO_HIGH);\n    spiSendReceive(0x01);             // LSB register address, read\n    uint8_t lsb = spiSendReceive(0x00);\n    uint8_t msb = spiSendReceive(0x00); // auto-increments to MSB reg\n    digitalWrite(SPI_CE, PIO_LOW);\n    return (msb &lt;&lt; 8) | lsb;\n}\n\n\n\n\nReflection:\nThis week is Claude Sonnet again. Its core advice was correct: since CE is active-high, every transaction simply swaps which level means “asserted,” so the GPIO write at the start of a transaction drives CE high instead of low, and the one at the end drives it low instead of high. Everything else about clocking bytes out over SPI stays the same. It also suggested reading the LSB and MSB registers back-to-back in one CE-asserted burst to take advantage of the DS1722’s register auto-increment, rather than doing two separate transactions.\nWhere it fell short was the temperature decode itself: it returned the raw register pair as a plain uint16_t and left interpreting the sign and fractional bits as an exercise, without mentioning that the MSB is signed two’s-complement or that the LSB’s upper nibble holds the fractional bits, worth 1/2 down to 1/16 of a degree. That part, including the negative-temperature edge case (-10.5 °C is stored as MSB = 0xF5 and LSB = 0x80), had to be worked out by hand from the datasheet."
+  },
+  {
+    "objectID": "pcb.html",
+    "href": "pcb.html",
+    "title": "PCB Designs",
     "section": "",
-    "text": "Overview:\n      Built a fully functional 34-range digital multimeter from scratch that measures AC/DC voltage and current, resistance, capacitance, transistor hFE, diode junctions, and has a continuity buzzer. \n    \n    Skills:Soldering, Circuit Calibration, Analog/Digital Electronics, Component Identification\n    \n      \n        Show More\n      \n    \n  \n\n\n\n  \n    \n      Calibration\n      \n      \n        - Calibrated DC/AC voltage and current circuits against a reference meter across all ranges (200μA – 20A).\n        - Separately calibrated the capacitance circuit using known capacitor values from 2nF to 200μF.\n      \n    \n    \n      Cool Features\n      \n      \n        - Has a real continuity buzzer — short the leads and it beeps!\n        - Built-in hFE socket can test NPN and PNP transistors and read their DC current gain.\n        - Runs on a custom ICL7106 A/D converter chip for a 3Hz reading frequency.\n      \n    \n    \n      It Works!\n      \n      \n        - Verified measurement voltage, current, resistance, capacitance, and many other features of the multimeter using a power supply and another multimeter as reference.\n        - An LCD display includes a zebra connector and housing which was all assembled by hand, and a Fuse and other safety measures were incoporated as well."
+    "text": "Overview:\n  A business-card PCB that opens my portfolio when tapped with a phone. Built around the NXP NT3H2111 NFC tag IC\n  with a custom loop antenna drawn as a PCB trace, impedance-matched to the 13.56 MHz NFC carrier using a\n  vector network analyzer (VNA).\n\n\n  Key Features:\n  2-layer KiCad design, PCB-trace NFC loop antenna, NT3H2111 tag IC, indicator LED, test points, silkscreen\n  ruler and contact info, fab-ready Gerbers, BOM, and pick-and-place files.\n  GitHub Repo →"
   },
   {
-    "objectID": "personal.html#wood-shop-french-cleat-wall",
-    "href": "personal.html#wood-shop-french-cleat-wall",
-    "title": "Personal Projects",
-    "section": "Wood Shop French Cleat Wall",
-    "text": "Wood Shop French Cleat Wall\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and built a modular french cleat wall system for the HMC Wood Shop to organize tools and keep the workspace clean and efficient.\n      French cleats use interlocking 45° angled cuts to create a flexible, reconfigurable mounting system — any holder or shelf can be moved or swapped without any hardware.\n      Cut and assembled custom holders for screwdrivers, wrenches, pliers, drill bits, sandpaper belts, and more.\n    \n    \n      Skills:\n      Table Saw, Woodworking, Shop Organization, Fabrication"
-  },
-  {
-    "objectID": "personal.html#rockler-wooden-speaker",
-    "href": "personal.html#rockler-wooden-speaker",
-    "title": "Personal Projects",
-    "section": "Rockler Wooden Speaker",
-    "text": "Rockler Wooden Speaker\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a bluetooth speaker by cutting 8 triangular pieces of plywood, and wood glueing them together in a box orientation!\n      Utilized the Rockler's Speaker Set to design and assemble the speaker kit, which connects via AUX and Bluetooth! It's also portable, as it runs on a lithium ion charged battery.\n      This project involved a lot of wood shop tools, including a Table Saw, Miter Saw, Planar, and much more!\n      This little project has now become a speaker I use day to day!\n    \n    \n      Skills:\n      Table Saw, Miter Saw, Planar, Wood Glue, Soldering, Bluetooth Electronics"
-  },
-  {
-    "objectID": "personal.html#red-ish-skateboard",
-    "href": "personal.html#red-ish-skateboard",
-    "title": "Personal Projects",
-    "section": "Red-ish Skateboard",
-    "text": "Red-ish Skateboard\n\n  \n    \n  \n  \n    \n      Overview:\n      Created a skateboard completely from scratch under the HMC Makerspace Grant!\n      The materials for this assembly were a sheet of plywood, bearings and tires, grip tape, and red paint, assembled over the course of 3 weeks.\n      Used the ShopBot (CNC Router Table) to cut out the skateboard frame. This board is now used to travel around the Harvey Mudd campus!\n    \n    \n      Skills:\n      ShopBot CNC, CAD, Woodworking, Finishing"
-  },
-  {
-    "objectID": "posts/post2.html",
-    "href": "posts/post2.html",
-    "title": "Visit to NVIDIA Voyager",
+    "objectID": "pcb.html#nfc-business-card",
+    "href": "pcb.html#nfc-business-card",
+    "title": "PCB Designs",
     "section": "",
-    "text": "This week, I had the incredible opportunity to job shadow at NVIDIA’s NVIDIA’s headquarters in Santa Clara with Mudd alumni Alisha Chulani! It was really cool to see what the workplace looks like day-to-day at such a large company, and it was fascinating watch teams collaborate on some exciting projects. So grateful for the experience!"
+    "text": "Overview:\n  A business-card PCB that opens my portfolio when tapped with a phone. Built around the NXP NT3H2111 NFC tag IC\n  with a custom loop antenna drawn as a PCB trace, impedance-matched to the 13.56 MHz NFC carrier using a\n  vector network analyzer (VNA).\n\n\n  Key Features:\n  2-layer KiCad design, PCB-trace NFC loop antenna, NT3H2111 tag IC, indicator LED, test points, silkscreen\n  ruler and contact info, fab-ready Gerbers, BOM, and pick-and-place files.\n  GitHub Repo →"
   },
   {
-    "objectID": "posts/post4.html",
-    "href": "posts/post4.html",
-    "title": "Dana Point Harbor Deployment",
-    "section": "",
-    "text": "Today my team and I plunged our robot into the depths of Dana Point Harbor! Our goal was to take temperature, pressure, and ocean depth measurements (via SONAR) utilizing surface and dive control. We got to ride kayaks and it was super fun!"
+    "objectID": "pcb.html#muddsub-boards",
+    "href": "pcb.html#muddsub-boards",
+    "title": "PCB Designs",
+    "section": "MuddSub Power & Signal Boards (Team Design)",
+    "text": "MuddSub Power & Signal Boards (Team Design)\n\n  \n    \n  \n  \n    \n  \n\n\n\n  Overview:\n  Power and signal boards for MuddSub's autonomous underwater\n  vehicle, designed in KiCad as a team effort by the electrical team, which I am part of. Rev. 1 is entering fabrication\n  and verification. The power board takes separate thruster and electronics batteries and uses switching\n  regulators to supply 12V, 5V, and 3.3V rails to the Jetson computer, DVL, tether board, and signal board. The signal\n  board centers on a Teensy 4.1 and drives PWM for all 8 thrusters.\n\n\n  Key Features:\n  Dual battery inputs, switching regulators, 12V/5V/3.3V rails with status LEDs, Teensy 4.1, 8-channel thruster PWM,\n  I²C, SPI, and UART breakouts, relay and hardware-kill switching, board-to-board power/signal connector."
   },
   {
-    "objectID": "publications.html",
-    "href": "publications.html",
-    "title": "Publications & Reports",
+    "objectID": "pcb.html#fi1-fully-integrated-1",
+    "href": "pcb.html#fi1-fully-integrated-1",
+    "title": "PCB Designs",
+    "section": "FI1 (Fully Integrated 1)",
+    "text": "FI1 (Fully Integrated 1)\n\n  \n    \n  \n  \n    \n  \n\n\n\n  Overview:\n  A fully integrated revision of the electropenetrograph platform, bringing the previously\n  external nRF5340 DK onboard. Currently in manufacturing and assembly.\n\n\n  Key Features:\n  Onboard nRF5340 module with integrated antenna, SWD programming header, onboard flash memory,\n  I²C & SPI control interfaces."
+  },
+  {
+    "objectID": "pcb.html#im-boards",
+    "href": "pcb.html#im-boards",
+    "title": "PCB Designs",
+    "section": "Integrated-Micro Boards (IM1 & IM2), Analog Circuit Lab Team",
+    "text": "Integrated-Micro Boards (IM1 & IM2), Analog Circuit Lab Team\n\n  \n    \n  \n  \n    \n      Overview:\n      From top to bottom: IM2, IM1, and the off-the-shelf Nordic nRF5340 DK they replace. IM1 recreates the DK with only\n      the components the project needs. IM2 shrinks it further around an nRF5340 module, making it cheaper and faster to\n      manufacture. I helped bring up and verify both boards during a 10-week summer sprint with the Analog Circuit Lab team."
+  },
+  {
+    "objectID": "pcb.html#electropenetrograph",
+    "href": "pcb.html#electropenetrograph",
+    "title": "PCB Designs",
+    "section": "Electropenetrograph",
+    "text": "Electropenetrograph\n\n  \n    \n  \n  \n    \n  \n\n\n\n  Overview:\n  A mixed-signal electropenetrograph\n  board designed to interface with the\n  Nordic nRF5340 DK.\n  The board combines a signal generation chain with a synchronized acquisition chain, using onboard control logic to\n  configure gain, switching, and calibration on the fly.\n\n\n  Key Features:\n  Onboard battery charger & monitor ICs, DDS-based signal generation, analog & digital multiplexing,\n  DAC output stage, digitally controlled rheostats, I²C & SPI control interfaces, nRF5340 DK integration."
+  },
+  {
+    "objectID": "pcb.html#lipo-battery-charger-monitor",
+    "href": "pcb.html#lipo-battery-charger-monitor",
+    "title": "PCB Designs",
+    "section": "LiPo Battery Charger & Monitor",
+    "text": "LiPo Battery Charger & Monitor\n\n  \n    \n  \n  \n    \n  \n\n\n\n  Overview:\n  (My first PCB!) A single-cell LiPo battery charger and power management board featuring USB-C input, a dedicated charge IC, 5V and 3.7V regulated outputs, fuel gauge IC with I²C interface, and status indicator LEDs. Designed for use as a standalone supply module in embedded systems projects.\n\n\n  Key Features:\n  USB-C charging input, dual regulated outputs (5V / 3.7V), I²C fuel gauge, charge/power-good status LEDs, onboard enable/alert header."
+  },
+  {
+    "objectID": "posts/post1.html",
+    "href": "posts/post1.html",
+    "title": "Visit to Harbinger Motors",
     "section": "",
-    "text": "Submitted to IEEE\n  Stress, Cognitive Load, and Specifications Grading in an Engineering Laboratory Course\n  \n    Cleo McHenry, Sara Morishige, Jasmine Sampat, Joaquin Gonzalez-Salgado, Leah Uriarte, Matthew Spencer\n  \n  IEEE Transactions on Education, 2025\n  \n    This paper presents a controlled two-year experiment at Harvey Mudd College studying how two evidence-based\n    interventions — simplified lab manuals and specifications grading — affected student stress and cognitive load\n    in a required sophomore engineering lab course (E80). Weekly validated surveys showed that stress was\n    significantly reduced in six of seven labs, and cognitive load dropped significantly in three. Students in\n    the treatment cohort also posted meaningfully higher scores on a summative technical memo, suggesting the\n    interventions did not harm learning. I contributed as a co-author on the study design, data collection,\n    and analysis.\n  \n  \n    *Currently being published*\n  \n\n\n\n\n  Report\n  Autonomous Surface & Dive Robot for Underwater Depth Mapping\n  \n    Joaquin Gonzalez-Salgado, Esteban Gonzalez, Ayla Greenstein, Kathy Guo\n  \n  E80: Experimental Engineering, Harvey Mudd College — Spring 2026\n  \n    This report documents the design, construction, and field deployment of an autonomous underwater vehicle\n    (AUV) built to map the seafloor topography of Dana Point Harbor. The vehicle integrated a SONAR depth\n    sensor (CME1538-100LB microphone + daex25W-8 speaker), an MPX5700ASX pressure sensor for dive depth,\n    and a thermistor for temperature profiling across depth. The AUV featured four horizontal and two vertical\n    thrusters, a low center of gravity for surface stability, and a winch-based recovery system. Deployment\n    at Dana Point produced a topographic depth map of the harbor floor, with real-time data logging to an\n    onboard SD card. Sensor drift from ocean currents affected positional accuracy, motivating future work\n    on closed-loop horizontal control.\n  \n  \n    Read Paper (PDF)\n    View Poster (PDF)\n    See Project Page\n  \n\n\n\n\n  Work in Progress\n  Low-Noise Analog Amplifier for Electropenetrography and R/EMF Signal Acquisition\n  \n    Matthew Spencer, Elaine Backus, Joaquin Gonzalez-Salgado — ACE Lab, Harvey Mudd College\n  \n  Computers and Agriculture — In preparation\n  \n    Ongoing manuscript documenting the design and characterization of a low-noise analog amplifier\n    for monitoring insect feeding behavior via electropenetrography (EPG) and resistive/emf (R/EMF)\n    signal acquisition.\n  \n  \n    \n      Manuscript in preparation"
+    "text": "Yesterday, I had the incredible opportunity to visit and job shadow at Harbinger Motors Inc.! Harbinger is a company leading the way in EV commercial vehicle innovation for trucks, RVs, and much more. It was super exciting to see the intricacies of trucks that we see everyday, and how we as engineers can continue to innovate and improve them for the future.\nI would also like to give a HUGE thank you to Zane Bodenbender (Harvey Mudd alum!) for hosting us and generously sharing insights about his work and journey — your passion and expertise made this experience especially impactful, and have truly shown me what it means to be an Engineer!"
+  },
+  {
+    "objectID": "posts/post3.html",
+    "href": "posts/post3.html",
+    "title": "Starting Microprocesor Labs!",
+    "section": "",
+    "text": "This fall semester (2026), I will be taking an upper division course called Microprocessors Systems: Design & Application which focuses on microcontrollers and embedded system design, and how to apply HDL and logic to the real world. My goal this fall is to focus on having a thorough engineering workflow. I want to not only understand and create embedded and physical systems, but also document these processes thoroughly."
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Class Projects",
+    "section": "",
+    "text": "Overview:\n      Led a team building a 36V electric vehicle that holds a steady 15 mph. Designed its power distribution and protection system (motor controllers, relays, fuses, and breakers) alongside Raspberry Pi control logic.\n    \n    \n      Skills:\n      EV Design, Battery Technology, Vehicle Dynamics, Fabrication, Embedded Software\n    \n    \n      \n        Show More\n      \n      \n        ▶ Video\n      \n    \n  \n\n\n\n  \n    \n      CAD & Design\n      \n       - Developed a CAD assembly of the EV components, from the battery to the display. Implemented high-voltage motor controllers and safety circuitry (relays, fuses, and breakers) with low-voltage Raspberry Pi logic. Integrated software to connect motors to a PS4 controller, and for a Raspberry Pi Display. \n    \n    \n      Assembly\n      \n       \n        - Utilized crimped ring connectors for secure battery-to-controller links and automotive male/female connectors for quick-disconnect capability across the control interface. \n      \n        - Joined wire extensions with butt splices and applied heat shrink to all terminals to ensure vibration-resistant, short-proof connections.\n    \n    \n      Result\n      \n      \n        - The cart is fully operational, steady at a safe speed of 15 mph. A custom UI displays real-time speed and direction data, while the PS4 controller integration provides smooth, intuitive steering and throttle control. The result is a fast, stable build that handles reliably at peak performance."
+  },
+  {
+    "objectID": "projects.html#electric-vehicle-design-lab-e49c",
+    "href": "projects.html#electric-vehicle-design-lab-e49c",
+    "title": "Class Projects",
+    "section": "",
+    "text": "Overview:\n      Led a team building a 36V electric vehicle that holds a steady 15 mph. Designed its power distribution and protection system (motor controllers, relays, fuses, and breakers) alongside Raspberry Pi control logic.\n    \n    \n      Skills:\n      EV Design, Battery Technology, Vehicle Dynamics, Fabrication, Embedded Software\n    \n    \n      \n        Show More\n      \n      \n        ▶ Video\n      \n    \n  \n\n\n\n  \n    \n      CAD & Design\n      \n       - Developed a CAD assembly of the EV components, from the battery to the display. Implemented high-voltage motor controllers and safety circuitry (relays, fuses, and breakers) with low-voltage Raspberry Pi logic. Integrated software to connect motors to a PS4 controller, and for a Raspberry Pi Display. \n    \n    \n      Assembly\n      \n       \n        - Utilized crimped ring connectors for secure battery-to-controller links and automotive male/female connectors for quick-disconnect capability across the control interface. \n      \n        - Joined wire extensions with butt splices and applied heat shrink to all terminals to ensure vibration-resistant, short-proof connections.\n    \n    \n      Result\n      \n      \n        - The cart is fully operational, steady at a safe speed of 15 mph. A custom UI displays real-time speed and direction data, while the PS4 controller integration provides smooth, intuitive steering and throttle control. The result is a fast, stable build that handles reliably at peak performance."
+  },
+  {
+    "objectID": "projects.html#experimental-engineering-e80",
+    "href": "projects.html#experimental-engineering-e80",
+    "title": "Class Projects",
+    "section": "Experimental Engineering (E80)",
+    "text": "Experimental Engineering (E80)\n\nAUV Ocean Floor SONAR Mapping\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and built an AUV to topographically map the floor of Dana Point Harbor using SONAR time-of-flight measurements. Programmed Teensy 4.0 firmware for GPS surface navigation, pressure-based P-control dives, and 7.1 kHz burst ADC sampling with SD logging. Personally designed analog circuits for temperature, pressure, and SONAR signal processing, all from scratch, on a custom motor driver motherboard. Our team won 1st place at the course showcase.\n    \n    Skills:Arduino, MATLAB, SONAR, Embedded Systems, PCB Assembly, Op-Amp Circuit Design, Sensor Calibration\n    \n      \n        Show More\n      \n      \n        See Report Page\n      \n    \n  \n\n\n\n  \n    \n      Custom Sensor Circuits\n      \n      \n        - Designed a thermistor interface circuit with a unity gain buffer and non-inverting offset amplifier to expand the output voltage range for better Teensy resolution.\n        - Built a pressure sensor circuit with the same offset amplifier approach to enable precise P-control during dives.\n        - For SONAR, designed both a TX chain (555 timer + LM384 audio amplifier driving a waterproof exciter at 3kHz) and a full RX chain with 10,000x gain across four op-amp stages, a Sallen-Key bandpass filter, and a max detector circuit.\n      \n    \n    \n      Deployment at Dana Point\n      \n      \n        - Deployed the AUV at Dana Point Harbor, following alongside in kayaks to monitor and recover it.\n        - GPS module handled surface navigation while the pressure sensor controlled dive depth autonomously via P-control.\n        - All sensor data was logged to an onboard SD card and post-processed in MATLAB to generate the topography map.\n      \n    \n    \n      Results & Presentation\n      \n      \n        - Successfully mapped the ocean floor depth along the AUV's path, with results consistent with nautical chart ground truth data for Dana Point Harbor.\n        - Also measured water temperature at depth and confirmed a temperature decrease with depth during dives.\n        - Presented findings at the end-of-semester showcase — our team took first place!"
+  },
+  {
+    "objectID": "projects.html#digital-electronics-computer-architecture-e85",
+    "href": "projects.html#digital-electronics-computer-architecture-e85",
+    "title": "Class Projects",
+    "section": "Digital Electronics / Computer Architecture (E85)",
+    "text": "Digital Electronics / Computer Architecture (E85)\n\nDigital Level\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Developed an embedded C application to implement a 2D digital level, interfacing a triple-axis accelerometer with a microcontroller to measure tilt along the x and y axes.\n      Designed and wired a complete hardware system on a breadboard, integrating a RED-V development board, LIS3DH accelerometer, and an 8x8 LED matrix.\n    \n    Skills:C/C++, SPI Communication, Calibration, Soldering, Embedded Systems\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Created a digital level mapping tilt angles to an 8x8 LED matrix bubble display.\n        - Bubble motion indicated surface tilt in X and Y axes.\n      \n    \n    \n      Methods\n      \n      \n        - Programmed RED-V ThingPlus in C using SPI to interface with LIS3DH accelerometer.\n        - Implemented real-time signal processing and calibration for smooth bubble motion.\n      \n    \n    \n      Result\n      \n      \n        - Achieved accurate, smooth, reliable bubble display validating full embedded system integration.\n        - Designed a sensitive and practical 2D digital tool with real-world use.\n      \n    \n  \n\n\n\nMulticycle Processor\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed a multicycle RISC-V processor in SystemVerilog, creating a hierarchical architecture with a finite-state machine, datapath, ALU, register file, and unified memory adapted from a single-cycle design.\n      Validated processor functionality through simulation and waveform analysis.\n    \n    Skills:SystemVerilog, HDL, Assembly, RISC-V, Quartus FPGA, Questa\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Built a multicycle RISC-V CPU capable of executing arithmetic instructions and managing memory.\n        - Leveraged single-cycle components to construct a modular multicycle architecture.\n      \n    \n    \n      Methods\n      \n      \n        - Wrote SystemVerilog datapath connecting controller, memory, and register file modules.\n        - Debugged by comparing assembly testbenches against waveforms and consulted Quartus RTL schematic.\n      \n    \n    \n      Result\n      \n      \n        - Processor matched waveform expectations confirming correct values at correct addresses.\n        - Deepened understanding of RISC-V architecture and processor design principles."
+  },
+  {
+    "objectID": "projects.html#systems-engineering-e79",
+    "href": "projects.html#systems-engineering-e79",
+    "title": "Class Projects",
+    "section": "Systems Engineering (E79)",
+    "text": "Systems Engineering (E79)\n\nSubmersible Robot with Kp Control\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Constructed an underwater remotely operated vehicle (ROV) to retrieve temperature, pressure, and other signals in lake environments via the MCP9701 thermistor and MPX5700ASX pressure gauge.\n      Assembled a PCB containing the MCP6002 OpAmp to return output voltages modeled and analyzed in LabVIEW.\n    \n    Skills:LabVIEW, Soldering, PCB Assembly, Oscilloscope, DMM, Breadboarding\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Created a fully waterproof ROV to measure temperature and pressure across varying depths.\n        - Implemented proportional (Kp) control for motor operation.\n      \n    \n    \n      Methods\n      \n      \n        - Modeled ROV vertical motion by changing motor PWM duty cycle in LabVIEW.\n        - Soldered pressure sensor and thermistor circuits to the project PCB.\n      \n    \n    \n      Result\n      \n      \n        - Deployed ROV in a real-world environment and collected valid environmental data.\n        - Gained hands-on experience in PCB assembly, soldering, and oscilloscope use."
+  },
+  {
+    "objectID": "projects.html#engineering-design-manufacturing-e4",
+    "href": "projects.html#engineering-design-manufacturing-e4",
+    "title": "Class Projects",
+    "section": "Engineering Design & Manufacturing (E4)",
+    "text": "Engineering Design & Manufacturing (E4)\n\nDigital Logic Demonstration Board\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Designed and assembled a logic-gate demonstration board using 74HC Series integrated circuits, a 555 timer, and a potentiometer-based clock input.\n      Engineered intuitive controls with input switches, banana cables, and LEDs to clearly display output states.\n      Delivered a durable teaching tool now used by Professor Stone for the Digital Logic and Computer Architecture course.\n    \n    Skills:Digital Logic, PCB Design, 74HC ICs, 555 Timer, Soldering\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Built a logic-gate demonstration board using 74HC Series ICs and a 555 timer.\n        - Incorporated input switches, banana cable ports, and LEDs for clear output visualization.\n      \n    \n    \n      Methods\n      \n      \n        - Designed board layout for intuitive student interaction and clear signal flow.\n        - Wired and soldered 74HC gates, 555 timer clock, and potentiometer for adjustable frequency.\n      \n    \n    \n      Result\n      \n      \n        - Delivered a durable teaching tool now actively used by Professor Stone in E85 lectures.\n        - Reinforced understanding of combinational logic design and hands-on fabrication.\n      \n    \n  \n\n\n\nE4 Machinist Hammer\n\n\n\n  \n    \n  \n  \n    \n      Overview:\n      Manufactured a precision machinist hammer from clear oak, AISI 1015 steel, AISI 4340 steel, and nylon, adhering to detailed engineering drawings, dimensional tolerances, and safety requirements.\n      Applied turning, facing, milling, tapping, and heat treatment processes to achieve specified mechanical properties.\n    \n    Skills:GD&T, Lathe, Mill, Bandsaw, Taps, Digital Micrometers, HRC Hardness Tester, Heat Treatment\n    \n      Show More\n    \n  \n\n\n\n  \n    \n      Background\n      \n      \n        - Manufactured a functional machinist hammer from oak, steel, and nylon to precise GD&T specs.\n        - Contributed to the Harvey Mudd College tradition of student-made hammers.\n      \n    \n    \n      Methods\n      \n      \n        - Machined head stock using lathe and milling operations, verified with digital micrometers.\n        - Heat treated hard face, verified HRC hardness, and sandblasted for smooth finish.\n      \n    \n    \n      Result\n      \n      \n        - Delivered a high-quality hammer that scored near perfect in quality of manufacturing.\n        - Now serve as a Machine Shop Proctor, training new students in shop safety."
+  },
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Analog Circuit Lab Research",
+    "section": "",
+    "text": "Analog Front Ends\n  Instrumentation Amps\n  nRF5340\n  Zephyr RTOS\n  Bluetooth LE\n  Battery Management"
+  },
+  {
+    "objectID": "research.html#overview",
+    "href": "research.html#overview",
+    "title": "Analog Circuit Lab Research",
+    "section": "Overview",
+    "text": "Overview\nI’m a hardware and firmware researcher in the Analog Circuit Lab at Harvey Mudd, working on instrumentation for the USDA. The lab builds electropenetrographs (EPGs): instruments that wire a live insect and its host plant into a circuit to record the tiny electrical signals produced as the insect feeds. Agricultural researchers use these recordings to study the feeding behavior of disease-vector insects.\nMy work spans the whole signal chain: the low-noise analog front end that picks up the signal, the power system that runs it in the field, and the firmware that configures the board and streams data to a computer.\n\n  \n    \n    Electropenetrograph board\n  \n  \n    \n    Board assembly"
+  },
+  {
+    "objectID": "research.html#analog-front-end",
+    "href": "research.html#analog-front-end",
+    "title": "Analog Circuit Lab Research",
+    "section": "Analog Front End",
+    "text": "Analog Front End\n\nDesigned low-noise analog front ends with impedance matching, instrumentation amplifiers, and up to 7,000x gain to resolve the small signals produced during insect feeding.\nMoved a dual-battery instrument to a single-supply design with integrated battery management, simplifying field deployment.\nPrototyped and tuned circuits on the bench with oscilloscopes, function generators, and power supplies to improve signal quality and reliability.\n\nThe current electropenetrograph board pairs a DDS-based signal-generation chain with a synchronized acquisition chain. Onboard control logic sets gain, switching, and calibration on the fly through analog and digital multiplexers, a DAC output stage, and digitally controlled rheostats, with onboard battery charger and monitor ICs."
+  },
+  {
+    "objectID": "research.html#firmware",
+    "href": "research.html#firmware",
+    "title": "Analog Circuit Lab Research",
+    "section": "Firmware",
+    "text": "Firmware\n\nDeveloped nRF5340 firmware on the Zephyr RTOS, with SPI, I²C, and ADC drivers that configure gain, offset, and excitation on the analog board.\nWrote Bluetooth firmware that streams measurements to client software in real time.\nBuilt Python tools to acquire, process, and visualize recordings from feeding experiments."
+  },
+  {
+    "objectID": "research.html#integrated-micro-boards-im1-im2",
+    "href": "research.html#integrated-micro-boards-im1-im2",
+    "title": "Analog Circuit Lab Research",
+    "section": "Integrated-Micro Boards (IM1 & IM2)",
+    "text": "Integrated-Micro Boards (IM1 & IM2)\n\n  \n    \n  \n  \n    \n      From top to bottom: IM2, IM1, and the off-the-shelf Nordic nRF5340 DK they replace. IM1 recreates the DK with\n      only the components the instrument needs. IM2 shrinks it further around an nRF5340 module, making it cheaper and\n      faster to manufacture. I helped bring up and verify both boards during a 10-week summer sprint with the Analog Circuit Lab team.\n    \n    More PCB designs →"
   }
 ]

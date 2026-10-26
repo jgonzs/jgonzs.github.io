@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Harvey Mudd electrical and computer engineering student designing analog front ends, PCBs, and embedded firmware.">
 
-<title>Joaquin Gonzalez-Salgado – Portfolio</title>
+<title>Joaquin Gonzalez-Salgado</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,38 +26,20 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
 <link href="./images/Joaquin.jpeg" rel="icon" type="image/jpeg">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fbef6396341c587443b8d0b68ee0f583.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -76,180 +59,21 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-xl " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/Joaquin.jpeg" alt="Joaquin Gonzalez-Salgado headshot" class="navbar-logo light-content">
+    <img src="./images/Joaquin.jpeg" alt="Joaquin Gonzalez-Salgado headshot" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Portfolio</span>
+    <span class="navbar-title">Joaquin Gonzalez-Salgado</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -262,6 +86,10 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="./experience.html"> 
 <span class="menu-text">Industry &amp; Research Experience</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./research.html"> 
+<span class="menu-text">Analog Circuit Lab</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -310,240 +138,285 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:jgonzalezsalgado@hmc.edu"> <i class="bi bi-envelope-fill" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="images/Joaquin.jpeg" class="about-image
-  round " style="height: 15em; width: 15em;">
- <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Joaquin Gonzalez-Salgado</h1>
-</div>
-<div class="quarto-title-meta">
-  </div>
-</header><main class="content" id="quarto-document-content">
-
-<p>Welcome to my Engineering Portfolio! I am a Junior Engineering major at <a href="https://hmc.edu">Harvey Mudd College</a> focused on electrical and computer engineering. I’m currently an electrical engineer on a Blue Origin-sponsored engineering project, developing a sensor system for autonomous mating of launch-vehicle umbilical panels, and a hardware/firmware researcher in the <a href="https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/">Analog Circuitry Engineering (ACE) Lab</a>, designing low-noise analog front ends and embedded systems. Check out my projects below!</p>
-<hr>
-<style>
-.proj-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  padding: 1rem 0;
-}
-.proj-card {
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-.proj-card:hover {
-  transform: scale(1.045);
-  border-color: #aaa;
-  background: #f9f9f9;
-}
-.proj-img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  display: block;
-}
-.proj-label {
-  padding: 10px 12px;
-  border-top: 1px solid #e0e0e0;
-}
-.proj-course {
-  font-size: 11px;
-  color: #999;
-  margin: 0 0 2px;
-}
-.proj-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: #222;
-  margin: 0;
-  line-height: 1.3;
-}
-.resume-btn {
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  text-decoration: none;
-  font-weight: 600;
-  color: inherit;
-  background: transparent;
-  display: inline-block;
-  transition: background 0.2s ease;
-}
-.resume-btn:hover {
-  background: #f5f5f5;
-}
-</style>
-<div class="proj-grid">
-  <a href="pcb.html#nfc-business-card" class="proj-card">
-  <img class="proj-img" src="images/pcb/nfc_card.jpg" alt="NFC Business Card">
-  <div class="proj-label">
-    <p class="proj-course">PCB · RF</p>
-    <p class="proj-name">NFC Business Card</p>
-  </div>
-</a>
-  <a href="pcb.html#muddsub-boards" class="proj-card">
-  <img class="proj-img" src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board">
-  <div class="proj-label">
-    <p class="proj-course">MuddSub</p>
-    <p class="proj-name">AUV Power &amp; Signal Boards</p>
-  </div>
-</a>
-  <a href="experience.html#fsae" class="proj-card">
-  <img class="proj-img" src="images/teams/fsae_lv_block.png" alt="FSAE Low-Voltage Block Diagram" style="object-fit: contain; background: white;">
-  <div class="proj-label">
-    <p class="proj-course">Formula SAE</p>
-    <p class="proj-name">Low-Voltage Harness</p>
-  </div>
-</a>
-  <a href="projects.html#ev-design-team-project" class="proj-card">
-    <img class="proj-img" src="images/ev/evcart.jpeg" alt="EV Cart">
-    <div class="proj-label">
-      <p class="proj-course">E49C</p>
-      <p class="proj-name">EV Design Team</p>
-    </div>
-  </a>
-  <a href="e155.html" class="proj-card">
-    <img class="proj-img" src="labs/lab1/images/uPBoard.jpeg" alt="uP Board">
-    <div class="proj-label">
-      <p class="proj-course">E155</p>
-      <p class="proj-name">Microproccesor Projects</p>
-    </div>
-  </a>
-  <a href="pcb.html" class="proj-card">
-  <img class="proj-img" src="images/pcb/epg1.jpeg" alt="Electropenetrograph PCB">
-  <div class="proj-label">
-    <p class="proj-course">PCB</p>
-    <p class="proj-name">PCB Designs</p>
-  </div>
-</a>
-  <a href="projects.html#auv-ocean-floor-sonar-mapping" class="proj-card">
-    <img class="proj-img" src="images/e80/e80a.jpeg" alt="AUV Robot">
-    <div class="proj-label">
-      <p class="proj-course">E80</p>
-      <p class="proj-name">AUV Ocean Floor SONAR</p>
-    </div>
-  </a>
-  <a href="personal.html#built-a-multimeter" class="proj-card">
-  <img class="proj-img" src="images/personal/multimeter/multimeter1.jpeg" alt="Multimeter">
-  <div class="proj-label">
-    <p class="proj-name">DIY Multimeter</p>
-  </div>
-  </a>
-  <a href="projects.html#digital-level" class="proj-card">
-    <img class="proj-img" src="images/Digitallevel.png" alt="Digital Level">
-    <div class="proj-label">
-      <p class="proj-course">E85</p>
-      <p class="proj-name">Digital Level</p>
-    </div>
-  </a>
-  <a href="projects.html#multicycle-processor" class="proj-card">
-    <img class="proj-img" src="images/Multicycleprocessor.png" alt="Multicycle Processor">
-    <div class="proj-label">
-      <p class="proj-course">E85</p>
-      <p class="proj-name">Multicycle Processor</p>
-    </div>
-  </a>
-  <a href="projects.html#submersible-robot-with-kp-control" class="proj-card">
-    <img class="proj-img" src="images/E79robot.jpg" alt="E79 ROV">
-    <div class="proj-label">
-      <p class="proj-course">E79</p>
-      <p class="proj-name">Submersible ROV</p>
-    </div>
-  </a>
-  <a href="projects.html#digital-logic-demonstration-board" class="proj-card">
-    <img class="proj-img" src="images/Logicboard.jpeg" alt="Logic Board">
-    <div class="proj-label">
-      <p class="proj-course">E4</p>
-      <p class="proj-name">Logic Demo Board</p>
-    </div>
-  </a>
-  <a href="projects.html#e4-machinist-hammer" class="proj-card">
-    <img class="proj-img" src="images/hammer.jpg" alt="Machinist Hammer">
-    <div class="proj-label">
-      <p class="proj-course">E4</p>
-      <p class="proj-name">Machinist Hammer</p>
-    </div>
-  </a>
-</div>
-<div style="text-align:center; margin: 1.5rem 0 1rem;">
-  <a href="images/Resume.pdf" target="_blank" class="resume-btn">
-    Open Full Resume in New Tab
-  </a>
-</div>
-<div class="resume-embed" style="text-align: center;">
-  <iframe src="images/Resume.pdf" style="
-      width: 100%;
-      max-width: 1000px;
-      height: 600px;
-      border: 1px solid lightgrey;
-      border-radius: 15px;
-      display: inline-block;
-    ">
-  </iframe>
-</div>
+<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
-  <a href="mailto:jgsengineer@gmail.com" class="about-link" rel="" target="">
-    <i class="bi bi-envelope-fill"></i>
-     <span class="about-link-text">Email</span>
+
+
+<section class="hero">
+  <div class="hero-text">
+    <span class="eyebrow"><a href="https://www.hmc.edu/" target="_blank">Harvey Mudd College</a> / B.S. Electrical &amp; Computer Engineering / 2028</span>
+    <h1 class="hero-name">Joaquin Gonzalez-Salgado</h1>
+    <div class="chip-row">
+      <span class="chip">Analog Design</span>
+      <span class="chip">PCB Layout &amp; Bring-Up</span>
+      <span class="chip">RF Circuits</span>
+      <span class="chip">FPGA / MCU</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="images/Resume.pdf" target="_blank">View Resume</a>
+      <a class="btn btn-outline" href="#featured-work">See Projects</a>
+      <span class="icon-links">
+        <a class="btn btn-outline btn-icon" href="mailto:jgonzalezsalgado@hmc.edu" title="Email" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+        <a class="btn btn-outline btn-icon" href="tel:+19099047494" title="Phone" aria-label="Phone"><i class="bi bi-telephone-fill"></i></a>
+        <a class="btn btn-outline btn-icon" href="https://www.linkedin.com/in/joaquin-e-gs/" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a class="btn btn-outline btn-icon" href="https://github.com/jgonzs" target="_blank" title="GitHub" aria-label="GitHub"><i class="bi bi-github"></i></a>
+      </span>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="images/Joaquin.jpeg" alt="Headshot of Joaquin Gonzalez-Salgado">
+  </div>
+</section>
+<section id="current-work" class="level2">
+<h2 class="anchored" data-anchor-id="current-work">Current Work</h2>
+<div class="now-grid">
+  <div class="now-item">
+    <div class="now-label">Incoming · Jan. 2027</div>
+    <p><strong>Strata Robotics</strong>: electrical &amp; firmware intern on V1 bring-up of an outdoor construction robot.</p>
+  </div>
+  <div class="now-item">
+    <div class="now-label">Industry</div>
+    <p><a href="experience.html#blue-origin"><strong>Blue Origin</strong></a>: validating a multi-sensor suite for automated umbilical-panel mating.</p>
+  </div>
+  <div class="now-item">
+    <div class="now-label">Research</div>
+    <p><a href="research.html"><strong>Analog Circuit Lab</strong></a>: low-noise analog front ends and Zephyr firmware for USDA instruments.</p>
+  </div>
+  <div class="now-item">
+    <div class="now-label">Building</div>
+    <p><a href="e155.html#ir-laser-tag"><strong>IR laser tag</strong></a>: iCE40 FPGA encodes 38&nbsp;kHz IR packets and signals hits to an STM32 over SPI.</p>
+  </div>
+</div>
+</section>
+<section id="featured-work" class="level2">
+<h2 class="anchored" data-anchor-id="featured-work">Featured Work</h2>
+<div class="card-grid">
+  <a class="work-card" href="experience.html#blue-origin">
+    <div class="thumb"><img src="images/blueorigin/umbilical_sls_nasa.jpg" alt="Launch-tower umbilical arms connected to a launch vehicle"></div>
+    <div class="body">
+      <span class="tag">Industry · Blue Origin</span>
+      <h3 class="anchored">Umbilical Panel Validation</h3>
+      <p>Redundant radar, LiDAR, IMU, and vision sensors with Kalman filtering to align umbilical panels in 6 DOF to about 0.1&nbsp;mm.</p>
+    </div>
   </a>
-  <a href="tel:+19099047494" class="about-link" rel="" target="">
-    <i class="bi bi-telephone-fill"></i>
-     <span class="about-link-text">Phone</span>
+  <a class="work-card" href="research.html">
+    <div class="thumb"><img src="images/pcb/im_boards.jpg" alt="IM2, IM1, and the nRF5340 DK"></div>
+    <div class="body">
+      <span class="tag">Research · Analog Circuit Lab</span>
+      <h3 class="anchored">USDA Electropenetrograph</h3>
+      <p>Analog front ends with up to 7,000x gain, single-supply battery management, and nRF5340 Bluetooth firmware on Zephyr.</p>
+    </div>
   </a>
-  <a href="https://www.linkedin.com/in/joaquin-e-gs/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
+  <a class="work-card" href="pcb.html#nfc-business-card">
+    <div class="thumb"><img src="images/pcb/nfc_card.jpg" alt="NFC Business Card"></div>
+    <div class="body">
+      <span class="tag">PCB · RF</span>
+      <h3 class="anchored">NFC Business Card</h3>
+      <p>Tap-to-open portfolio card with a PCB-trace loop antenna matched to 13.56&nbsp;MHz using a VNA.</p>
+    </div>
   </a>
-  <a href="https://github.com/jgonzs" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
+  <a class="work-card" href="e155.html">
+    <div class="thumb"><img src="labs/lab1/images/uPBoard.jpeg" alt="uP Board"></div>
+    <div class="body">
+      <span class="tag">E155 · FPGA + MCU</span>
+      <h3 class="anchored">Microprocessor Projects</h3>
+      <p>iCE40 FPGA and STM32 labs: 7-segment multiplexing, keypad scanning, digital audio, interrupts, and SPI/IoT, plus an IR laser tag final project in progress.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#ev-design-team-project">
+    <div class="thumb"><img src="images/ev/evcart.jpeg" alt="EV Cart"></div>
+    <div class="body">
+      <span class="tag">E49C · Team Lead</span>
+      <h3 class="anchored">36V Electric Vehicle</h3>
+      <p>Led the team and designed power distribution and protection for an EV that holds a steady 15&nbsp;mph.</p>
+    </div>
+  </a>
+  <a class="work-card" href="pcb.html">
+    <div class="thumb"><img src="images/pcb/epg1.jpeg" alt="Electropenetrograph PCB"></div>
+    <div class="body">
+      <span class="tag">PCB</span>
+      <h3 class="anchored">PCB Designs</h3>
+      <p>Mixed-signal electropenetrograph, LiPo charger and monitor, Analog Circuit Lab integrated-micro boards, and more.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#auv-ocean-floor-sonar-mapping">
+    <div class="thumb"><img src="images/e80/e80a.jpeg" alt="AUV Robot"></div>
+    <div class="body">
+      <span class="tag">E80 · 1st Place</span>
+      <h3 class="anchored">AUV SONAR Mapping</h3>
+      <p>Teensy firmware for GPS navigation, P-control dives, and 7.1&nbsp;kHz burst sampling, with from-scratch analog sensor circuits.</p>
+    </div>
+  </a>
+  <a class="work-card" href="pcb.html#muddsub-boards">
+    <div class="thumb"><img src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board"></div>
+    <div class="body">
+      <span class="tag">MuddSub · RoboSub</span>
+      <h3 class="anchored">AUV Power &amp; Signal Boards</h3>
+      <p>Rev. 1 KiCad power and Teensy 4.1 signal boards for an 8-thruster AUV, now entering fabrication.</p>
+    </div>
+  </a>
+  <a class="work-card" href="experience.html#fsae">
+    <div class="thumb thumb-contain"><img src="images/teams/fsae_lv_block.png" alt="FSAE Low-Voltage Block Diagram"></div>
+    <div class="body">
+      <span class="tag">Formula SAE</span>
+      <h3 class="anchored">CAN Bus &amp; Low-Voltage System</h3>
+      <p>CAN bus between the ECU, PDM, and lambda sensor, plus ECU firmware and tuning to start the engine.</p>
+    </div>
+  </a>
+  <a class="work-card" href="personal.html#built-a-multimeter">
+    <div class="thumb"><img src="images/personal/multimeter/multimeter1.jpeg" alt="Multimeter"></div>
+    <div class="body">
+      <span class="tag">Personal</span>
+      <h3 class="anchored">DIY Multimeter</h3>
+      <p>A 34-range digital multimeter built from scratch: voltage, current, resistance, capacitance, and h<sub>FE</sub>.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#digital-level">
+    <div class="thumb"><img src="images/Digitallevel.png" alt="Digital Level"></div>
+    <div class="body">
+      <span class="tag">E85</span>
+      <h3 class="anchored">Digital Level</h3>
+      <p>Embedded C 2D level using a LIS3DH accelerometer and an 8x8 LED matrix on a RED-V board.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#multicycle-processor">
+    <div class="thumb"><img src="images/Multicycleprocessor.png" alt="Multicycle Processor"></div>
+    <div class="body">
+      <span class="tag">E85</span>
+      <h3 class="anchored">Multicycle Processor</h3>
+      <p>RISC-V multicycle processor in SystemVerilog, validated in simulation.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#submersible-robot-with-kp-control">
+    <div class="thumb"><img src="images/E79robot.jpg" alt="E79 ROV"></div>
+    <div class="body">
+      <span class="tag">E79</span>
+      <h3 class="anchored">Submersible ROV</h3>
+      <p>Underwater ROV logging temperature and pressure, with an op-amp PCB analyzed in LabVIEW.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#digital-logic-demonstration-board">
+    <div class="thumb"><img src="images/Logicboard.jpeg" alt="Logic Board"></div>
+    <div class="body">
+      <span class="tag">E4</span>
+      <h3 class="anchored">Logic Demo Board</h3>
+      <p>74HC-series logic-gate teaching board now used in the Digital Logic course.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#e4-machinist-hammer">
+    <div class="thumb"><img src="images/hammer.jpg" alt="Machinist Hammer"></div>
+    <div class="body">
+      <span class="tag">E4</span>
+      <h3 class="anchored">Machinist Hammer</h3>
+      <p>Turned, milled, tapped, and heat-treated from oak, 1015 and 4340 steel, and nylon.</p>
+    </div>
   </a>
 </div>
+</section>
+<section id="resume" class="level2">
+<h2 class="anchored" data-anchor-id="resume">Resume</h2>
+<div class="hero-actions" style="margin: 0.5rem 0 0;">
+  <a class="btn btn-outline" href="images/Resume.pdf" target="_blank">Open Full Resume in New Tab</a>
 </div>
- <!-- /main -->
+
+<div class="resume-embed">
+  <iframe src="images/Resume.pdf" style="width: 100%; height: 800px;"></iframe>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+
+// Scroll-reveal + navbar shadow. Content stays visible if this script never runs.
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  var nav = document.querySelector(".navbar");
+
+  var onScroll = function () { if (nav) nav.classList.toggle("scrolled", window.scrollY > 10); };
+
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+
+
+
+  var targets = document.querySelectorAll(
+
+    "main .work-card, main .now-item, main h2, main h3:not(.work-card h3), main p:not(.work-card p):not(.now-item p), main figure, main iframe"
+
+  );
+
+  document.documentElement.classList.add("reveal-ready");
+
+  var io = new IntersectionObserver(function (entries) {
+
+    entries.forEach(function (e) {
+
+      if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+
+    });
+
+  }, { rootMargin: "0px 0px 20% 0px", threshold: 0 });
+
+
+
+  targets.forEach(function (el) {
+
+    if (el.closest(".hero")) return;            // hero has its own entrance animation
+
+    el.classList.add("reveal");
+
+    // stagger cards in the same grid
+
+    if (el.classList.contains("work-card") || el.classList.contains("now-item")) {
+
+      var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+
+      el.style.transitionDelay = ((idx % 3) * 0.05) + "s";
+
+    }
+
+    io.observe(el);
+
+  });
+
+});
+
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
