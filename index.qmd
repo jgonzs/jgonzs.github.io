@@ -1,217 +1,197 @@
 ---
-title: "Joaquin Gonzalez-Salgado"
+pagetitle: "Joaquin Gonzalez-Salgado"
+description: "Harvey Mudd electrical and computer engineering student designing analog front ends, PCBs, and embedded firmware."
+page-layout: full
+toc: false
 image: images/Joaquin.jpeg
-about:
-  template: jolla
-  links:
-    - icon: envelope-fill   
-      text: Email   
-      href: mailto:jgsengineer@gmail.com    
-    - icon: telephone-fill    
-      text: Phone    
-      href: tel:+19099047494     
-    - icon: linkedin     
-      text: LinkedIn     
-      href: https://www.linkedin.com/in/joaquin-e-gs/     
-    - icon: github     
-      text: Github      
-      href: https://github.com/jgonzs     
-
----
-Welcome to my Engineering Portfolio! I am a Junior Engineering major at
-[Harvey Mudd College](https://hmc.edu) focused on electrical and computer engineering. I'm currently an electrical
-engineer on a Blue Origin-sponsored engineering project, developing a sensor system for autonomous mating of
-launch-vehicle umbilical panels, and a hardware/firmware researcher in the
-[Analog Circuitry Engineering (ACE) Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/),
-designing low-noise analog front ends and embedded systems. Check out my projects below!
-
 ---
 
 ```{=html}
-<style>
-.proj-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  padding: 1rem 0;
-}
-.proj-card {
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-.proj-card:hover {
-  transform: scale(1.045);
-  border-color: #aaa;
-  background: #f9f9f9;
-}
-.proj-img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  display: block;
-}
-.proj-label {
-  padding: 10px 12px;
-  border-top: 1px solid #e0e0e0;
-}
-.proj-course {
-  font-size: 11px;
-  color: #999;
-  margin: 0 0 2px;
-}
-.proj-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: #222;
-  margin: 0;
-  line-height: 1.3;
-}
-.resume-btn {
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  text-decoration: none;
-  font-weight: 600;
-  color: inherit;
-  background: transparent;
-  display: inline-block;
-  transition: background 0.2s ease;
-}
-.resume-btn:hover {
-  background: #f5f5f5;
-}
-</style>
-
-<div class="proj-grid">
-  <a href="pcb.html#nfc-business-card" class="proj-card">
-  <img class="proj-img" src="images/pcb/nfc_card.jpg" alt="NFC Business Card">
-  <div class="proj-label">
-    <p class="proj-course">PCB &middot; RF</p>
-    <p class="proj-name">NFC Business Card</p>
+<section class="hero">
+  <div class="hero-text">
+    <span class="eyebrow"><a href="https://www.hmc.edu/" target="_blank">Harvey Mudd College</a> / B.S. Electrical &amp; Computer Engineering / 2028</span>
+    <h1 class="hero-name">Joaquin Gonzalez-Salgado</h1>
+    <div class="chip-row">
+      <span class="chip">Analog Design</span>
+      <span class="chip">PCB Layout &amp; Bring-Up</span>
+      <span class="chip">RF Circuits</span>
+      <span class="chip">FPGA / MCU</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="images/Resume.pdf" target="_blank">View Resume</a>
+      <a class="btn btn-outline" href="#featured-work">See Projects</a>
+      <span class="icon-links">
+        <a class="btn btn-outline btn-icon" href="mailto:jgonzalezsalgado@hmc.edu" title="Email" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+        <a class="btn btn-outline btn-icon" href="tel:+19099047494" title="Phone" aria-label="Phone"><i class="bi bi-telephone-fill"></i></a>
+        <a class="btn btn-outline btn-icon" href="https://www.linkedin.com/in/joaquin-e-gs/" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a class="btn btn-outline btn-icon" href="https://github.com/jgonzs" target="_blank" title="GitHub" aria-label="GitHub"><i class="bi bi-github"></i></a>
+      </span>
+    </div>
   </div>
-</a>
-
-  <a href="pcb.html#muddsub-boards" class="proj-card">
-  <img class="proj-img" src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board">
-  <div class="proj-label">
-    <p class="proj-course">MuddSub</p>
-    <p class="proj-name">AUV Power &amp; Signal Boards</p>
+  <div class="hero-photo">
+    <img src="images/Joaquin.jpeg" alt="Headshot of Joaquin Gonzalez-Salgado">
   </div>
-</a>
+</section>
+```
 
-  <a href="experience.html#fsae" class="proj-card">
-  <img class="proj-img" src="images/teams/fsae_lv_block.png" alt="FSAE Low-Voltage Block Diagram" style="object-fit: contain; background: white;">
-  <div class="proj-label">
-    <p class="proj-course">Formula SAE</p>
-    <p class="proj-name">Low-Voltage Harness</p>
+## Current Work
+
+```{=html}
+<div class="now-grid">
+  <div class="now-item">
+    <div class="now-label">Incoming · Jan. 2027</div>
+    <p><a href="https://www.stratarobot.com/careers" target="_blank"><strong>Strata Robotics</strong></a>: electrical &amp; firmware intern on V1 bring-up of an outdoor construction robot.</p>
   </div>
-</a>
-
-  <a href="projects.html#ev-design-team-project" class="proj-card">
-    <img class="proj-img" src="images/ev/evcart.jpeg" alt="EV Cart">
-    <div class="proj-label">
-      <p class="proj-course">E49C</p>
-      <p class="proj-name">EV Design Team</p>
-    </div>
-  </a>
-
-  <a href="e155.html" class="proj-card">
-    <img class="proj-img" src="labs/lab1/images/uPBoard.jpeg" alt="uP Board">
-    <div class="proj-label">
-      <p class="proj-course">E155</p>
-      <p class="proj-name">Microproccesor Projects</p>
-    </div>
-  </a>
-
-  <a href="pcb.html" class="proj-card">
-  <img class="proj-img" src="images/pcb/epg1.jpeg" alt="Electropenetrograph PCB">
-  <div class="proj-label">
-    <p class="proj-course">PCB</p>
-    <p class="proj-name">PCB Designs</p>
+  <div class="now-item">
+    <div class="now-label">Industry</div>
+    <p><a href="experience.html#blue-origin"><strong>Blue Origin</strong></a>: validating a multi-sensor suite for automated umbilical-panel mating.</p>
   </div>
-</a>
-
-  <a href="projects.html#auv-ocean-floor-sonar-mapping" class="proj-card">
-    <img class="proj-img" src="images/e80/e80a.jpeg" alt="AUV Robot">
-    <div class="proj-label">
-      <p class="proj-course">E80</p>
-      <p class="proj-name">AUV Ocean Floor SONAR</p>
-    </div>
-  </a>
-
-  <a href="personal.html#built-a-multimeter" class="proj-card">
-  <img class="proj-img" src="images/personal/multimeter/multimeter1.jpeg" alt="Multimeter">
-  <div class="proj-label">
-    <p class="proj-name">DIY Multimeter</p>
+  <div class="now-item">
+    <div class="now-label">Research</div>
+    <p><a href="research.html"><strong>Analog Circuit Lab</strong></a>: low-noise analog front ends and Zephyr firmware for USDA instruments.</p>
   </div>
-  </a>
+  <div class="now-item">
+    <div class="now-label">Building</div>
+    <p><a href="e155.html#ir-laser-tag"><strong>IR laser tag</strong></a>: iCE40 FPGA encodes 38&nbsp;kHz IR packets and signals hits to an STM32 over SPI.</p>
+  </div>
+</div>
+```
 
-  <a href="projects.html#digital-level" class="proj-card">
-    <img class="proj-img" src="images/Digitallevel.png" alt="Digital Level">
-    <div class="proj-label">
-      <p class="proj-course">E85</p>
-      <p class="proj-name">Digital Level</p>
+## Featured Work
+
+```{=html}
+<div class="card-grid">
+  <a class="work-card" href="experience.html#blue-origin">
+    <div class="thumb"><img src="images/blueorigin/umbilical_sls_nasa.jpg" alt="Launch-tower umbilical arms connected to a launch vehicle"></div>
+    <div class="body">
+      <span class="tag">Industry · Blue Origin</span>
+      <h3>Umbilical Panel Validation</h3>
+      <p>Redundant radar, LiDAR, IMU, and vision sensors with Kalman filtering to align umbilical panels in 6 DOF to about 0.1&nbsp;mm.</p>
     </div>
   </a>
-
-  <a href="projects.html#multicycle-processor" class="proj-card">
-    <img class="proj-img" src="images/Multicycleprocessor.png" alt="Multicycle Processor">
-    <div class="proj-label">
-      <p class="proj-course">E85</p>
-      <p class="proj-name">Multicycle Processor</p>
+  <a class="work-card" href="research.html">
+    <div class="thumb"><img src="images/pcb/im_boards.jpg" alt="IM2, IM1, and the nRF5340 DK"></div>
+    <div class="body">
+      <span class="tag">Research · Analog Circuit Lab</span>
+      <h3>USDA Electropenetrograph</h3>
+      <p>Analog front ends with up to 7,000x gain, single-supply battery management, and nRF5340 Bluetooth firmware on Zephyr.</p>
     </div>
   </a>
-
-  <a href="projects.html#submersible-robot-with-kp-control" class="proj-card">
-    <img class="proj-img" src="images/E79robot.jpg" alt="E79 ROV">
-    <div class="proj-label">
-      <p class="proj-course">E79</p>
-      <p class="proj-name">Submersible ROV</p>
+  <a class="work-card" href="pcb.html#nfc-business-card">
+    <div class="thumb"><img src="images/pcb/nfc_card.jpg" alt="NFC Business Card"></div>
+    <div class="body">
+      <span class="tag">PCB · RF</span>
+      <h3>NFC Business Card</h3>
+      <p>Tap-to-open portfolio card with a PCB-trace loop antenna matched to 13.56&nbsp;MHz using a VNA.</p>
     </div>
   </a>
-
-  <a href="projects.html#digital-logic-demonstration-board" class="proj-card">
-    <img class="proj-img" src="images/Logicboard.jpeg" alt="Logic Board">
-    <div class="proj-label">
-      <p class="proj-course">E4</p>
-      <p class="proj-name">Logic Demo Board</p>
+  <a class="work-card" href="e155.html">
+    <div class="thumb"><img src="labs/lab1/images/uPBoard.jpeg" alt="uP Board"></div>
+    <div class="body">
+      <span class="tag">E155 · FPGA + MCU</span>
+      <h3>Microprocessor Projects</h3>
+      <p>iCE40 FPGA and STM32 labs: 7-segment multiplexing, keypad scanning, digital audio, interrupts, and SPI/IoT, plus an IR laser tag final project in progress.</p>
     </div>
   </a>
-
-  <a href="projects.html#e4-machinist-hammer" class="proj-card">
-    <img class="proj-img" src="images/hammer.jpg" alt="Machinist Hammer">
-    <div class="proj-label">
-      <p class="proj-course">E4</p>
-      <p class="proj-name">Machinist Hammer</p>
+  <a class="work-card" href="projects.html#ev-design-team-project">
+    <div class="thumb"><img src="images/ev/evcart.jpeg" alt="EV Cart"></div>
+    <div class="body">
+      <span class="tag">E49C · Team Lead</span>
+      <h3>36V Electric Vehicle</h3>
+      <p>Led the team and designed power distribution and protection for an EV that holds a steady 15&nbsp;mph.</p>
     </div>
   </a>
+  <a class="work-card" href="pcb.html">
+    <div class="thumb"><img src="images/pcb/epg1.jpeg" alt="Electropenetrograph PCB"></div>
+    <div class="body">
+      <span class="tag">PCB</span>
+      <h3>PCB Designs</h3>
+      <p>Mixed-signal electropenetrograph, LiPo charger and monitor, Analog Circuit Lab integrated-micro boards, and more.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#auv-ocean-floor-sonar-mapping">
+    <div class="thumb"><img src="images/e80/e80a.jpeg" alt="AUV Robot"></div>
+    <div class="body">
+      <span class="tag">E80 · 1st Place</span>
+      <h3>AUV SONAR Mapping</h3>
+      <p>Teensy firmware for GPS navigation, P-control dives, and 7.1&nbsp;kHz burst sampling, with from-scratch analog sensor circuits.</p>
+    </div>
+  </a>
+  <a class="work-card" href="pcb.html#muddsub-boards">
+    <div class="thumb"><img src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board"></div>
+    <div class="body">
+      <span class="tag">MuddSub · RoboSub</span>
+      <h3>AUV Power &amp; Signal Boards</h3>
+      <p>Rev. 1 KiCad power and Teensy 4.1 signal boards for an 8-thruster AUV, now entering fabrication.</p>
+    </div>
+  </a>
+  <a class="work-card" href="experience.html#fsae">
+    <div class="thumb thumb-contain"><img src="images/teams/fsae_lv_block.png" alt="FSAE Low-Voltage Block Diagram"></div>
+    <div class="body">
+      <span class="tag">Formula SAE</span>
+      <h3>CAN Bus &amp; Low-Voltage System</h3>
+      <p>CAN bus between the ECU, PDM, and lambda sensor, plus ECU firmware and tuning to start the engine.</p>
+    </div>
+  </a>
+  <a class="work-card" href="personal.html#built-a-multimeter">
+    <div class="thumb"><img src="images/personal/multimeter/multimeter1.jpeg" alt="Multimeter"></div>
+    <div class="body">
+      <span class="tag">Personal</span>
+      <h3>DIY Multimeter</h3>
+      <p>A 34-range digital multimeter built from scratch: voltage, current, resistance, capacitance, and h<sub>FE</sub>.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#digital-level">
+    <div class="thumb"><img src="images/Digitallevel.png" alt="Digital Level"></div>
+    <div class="body">
+      <span class="tag">E85</span>
+      <h3>Digital Level</h3>
+      <p>Embedded C 2D level using a LIS3DH accelerometer and an 8x8 LED matrix on a RED-V board.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#multicycle-processor">
+    <div class="thumb"><img src="images/Multicycleprocessor.png" alt="Multicycle Processor"></div>
+    <div class="body">
+      <span class="tag">E85</span>
+      <h3>Multicycle Processor</h3>
+      <p>RISC-V multicycle processor in SystemVerilog, validated in simulation.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#submersible-robot-with-kp-control">
+    <div class="thumb"><img src="images/E79robot.jpg" alt="E79 ROV"></div>
+    <div class="body">
+      <span class="tag">E79</span>
+      <h3>Submersible ROV</h3>
+      <p>Underwater ROV logging temperature and pressure, with an op-amp PCB analyzed in LabVIEW.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#digital-logic-demonstration-board">
+    <div class="thumb"><img src="images/Logicboard.jpeg" alt="Logic Board"></div>
+    <div class="body">
+      <span class="tag">E4</span>
+      <h3>Logic Demo Board</h3>
+      <p>74HC-series logic-gate teaching board now used in the Digital Logic course.</p>
+    </div>
+  </a>
+  <a class="work-card" href="projects.html#e4-machinist-hammer">
+    <div class="thumb"><img src="images/hammer.jpg" alt="Machinist Hammer"></div>
+    <div class="body">
+      <span class="tag">E4</span>
+      <h3>Machinist Hammer</h3>
+      <p>Turned, milled, tapped, and heat-treated from oak, 1015 and 4340 steel, and nylon.</p>
+    </div>
+  </a>
+</div>
+```
 
+## Resume
+
+```{=html}
+<div class="hero-actions" style="margin: 0.5rem 0 0;">
+  <a class="btn btn-outline" href="images/Resume.pdf" target="_blank">Open Full Resume in New Tab</a>
 </div>
 
-<div style="text-align:center; margin: 1.5rem 0 1rem;">
-  <a href="images/Resume.pdf" target="_blank" class="resume-btn">
-    Open Full Resume in New Tab
-  </a>
-</div>
-
-<div class="resume-embed" style="text-align: center;">
-  <iframe
-    src="images/Resume.pdf"
-    style="
-      width: 100%;
-      max-width: 1000px;
-      height: 600px;
-      border: 1px solid lightgrey;
-      border-radius: 15px;
-      display: inline-block;
-    ">
-  </iframe>
+<div class="resume-embed">
+  <iframe src="images/Resume.pdf" style="width: 100%; height: 800px;"></iframe>
 </div>
 ```

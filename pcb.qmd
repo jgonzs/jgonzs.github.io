@@ -84,7 +84,7 @@ format: html
 
 ---
 
-## Integrated-Micro Boards (IM1 & IM2), ACE Lab Team {#im-boards}
+## Integrated-Micro Boards (IM1 & IM2), Analog Circuit Lab Team {#im-boards}
 
 ```{=html}
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
@@ -96,7 +96,7 @@ format: html
       <strong>Overview:</strong><br>
       From top to bottom: IM2, IM1, and the off-the-shelf Nordic nRF5340 DK they replace. IM1 recreates the DK with only
       the components the project needs. IM2 shrinks it further around an nRF5340 module, making it cheaper and faster to
-      manufacture. I helped bring up and verify both boards during a 10-week summer sprint with the ACE Lab team.
+      manufacture. I helped bring up and verify both boards during a 10-week summer sprint with the Analog Circuit Lab team.
     </p>
   </div>
 </div>

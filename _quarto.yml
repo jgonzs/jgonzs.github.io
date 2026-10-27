@@ -3,20 +3,24 @@ project:
   render:
     - "*.qmd"
     - "**/*.qmd"
-    - "!labs/lab6/"  # hidden until Lab 6 is ready
 
 website:
-  search:
-    location: navbar
-    type: overlay
+  search: false
   favicon: images/Joaquin.jpeg
-  title: "Portfolio"
+  title: "Joaquin Gonzalez-Salgado"
   navbar:
+    background: "#ffffff"
+    foreground: "#14213d"
+    collapse-below: xl
+    logo: images/Joaquin.jpeg
+    logo-alt: "Joaquin Gonzalez-Salgado headshot"
     left:  
       - href: index.qmd
         text: Home
       - href: experience.qmd
         text: Industry & Research Experience
+      - href: research.qmd
+        text: Analog Circuit Lab
       - text: Projects
         menu:
           - href: projects.qmd
@@ -39,16 +43,18 @@ website:
         target: _blank
       - icon: linkedin
         href: https://www.linkedin.com/in/joaquin-e-gs/
-        target: _blank  
+        target: _blank
+      - icon: envelope-fill
+        href: mailto:jgonzalezsalgado@hmc.edu
 
 
 format:
   html:
     theme:
-      light:
       - cosmo
       - brand
-      dark: darkly
     css: styles.css
     toc: true
+    include-after-body: _reveal.html
+    smooth-scroll: true
     

@@ -30,7 +30,7 @@ format: html
   <div style="flex: 2; min-width: 300px;">
     <p class="justify-text">
       <strong>Overview:</strong><br>
-      Team project to build an electric vehicle. Principles of EV design, battery technology, vehicle dynamics, fabrication, wiring, and embedded software development.
+      Led a team building a 36V electric vehicle that holds a steady 15&nbsp;mph. Designed its power distribution and protection system (motor controllers, relays, fuses, and breakers) alongside Raspberry Pi control logic.
     </p>
     <p>
       <strong>Skills:</strong><br>
@@ -98,7 +98,7 @@ format: html
   <div style="flex: 2; min-width: 300px;">
     <p class="justify-text">
       <strong>Overview:</strong><br>
-      Designed and built an AUV to topographically map the floor of Dana Point Harbor using SONAR time-of-flight measurements. Personally designed analog circuits for temperature, pressure, and SONAR signal processing — all from scratch. Featured a Teensy 4.0, Adafruit GPS, and a custom motor driver motherboard.
+      Designed and built an AUV to topographically map the floor of Dana Point Harbor using SONAR time-of-flight measurements. Programmed Teensy 4.0 firmware for GPS surface navigation, pressure-based P-control dives, and 7.1&nbsp;kHz burst ADC sampling with SD logging. Personally designed analog circuits for temperature, pressure, and SONAR signal processing, all from scratch, on a custom motor driver motherboard. Our team won 1st place at the course showcase.
     </p>
     <p><strong>Skills:</strong><br>Arduino, MATLAB, SONAR, Embedded Systems, PCB Assembly, Op-Amp Circuit Design, Sensor Calibration</p>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">

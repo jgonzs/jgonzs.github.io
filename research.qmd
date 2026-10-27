@@ -1,0 +1,79 @@
+---
+title: "Analog Circuit Lab Research"
+subtitle: "Hardware & Firmware Researcher · Analog Circuit Lab · Aug. 2025 – Present"
+toc: true
+---
+
+```{=html}
+<div class="chip-row" style="justify-content: flex-start; margin: 0 0 1.5rem;">
+  <span class="chip">Analog Front Ends</span>
+  <span class="chip">Instrumentation Amps</span>
+  <span class="chip">nRF5340</span>
+  <span class="chip">Zephyr RTOS</span>
+  <span class="chip">Bluetooth LE</span>
+  <span class="chip">Battery Management</span>
+</div>
+```
+
+## Overview
+
+I'm a hardware and firmware researcher in the
+[Analog Circuit Lab](https://www.hmc.edu/engineering/undergraduate-research-experiences/matthew-spencer-research-group/)
+at Harvey Mudd, working on instrumentation for the USDA. The lab builds
+[electropenetrographs](https://en.wikipedia.org/wiki/Electrical_penetration_graph) (EPGs): instruments that wire a
+live insect and its host plant into a circuit to record the tiny electrical signals produced as the insect feeds.
+Agricultural researchers use these recordings to study the feeding behavior of disease-vector insects.
+
+My work spans the whole signal chain: the low-noise analog front end that picks up the signal, the power system
+that runs it in the field, and the firmware that configures the board and streams data to a computer.
+
+```{=html}
+<div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 1.5rem 0;">
+  <figure style="flex: 1; min-width: 240px; margin: 0;">
+    <img src="images/pcb/epg1.jpeg" alt="Electropenetrograph PCB" style="width:100%; border-radius: 12px;">
+    <figcaption style="font-size: 0.85rem; color: var(--muted);">Electropenetrograph board</figcaption>
+  </figure>
+  <figure style="flex: 1; min-width: 240px; margin: 0;">
+    <img src="images/pcb/epg1f.jpeg" alt="Electropenetrograph board assembly" style="width:100%; border-radius: 12px;">
+    <figcaption style="font-size: 0.85rem; color: var(--muted);">Board assembly</figcaption>
+  </figure>
+</div>
+```
+
+## Analog Front End
+
+- Designed low-noise analog front ends with impedance matching, instrumentation amplifiers, and up to **7,000x gain**
+  to resolve the small signals produced during insect feeding.
+- Moved a dual-battery instrument to a **single-supply design with integrated battery management**, simplifying
+  field deployment.
+- Prototyped and tuned circuits on the bench with oscilloscopes, function generators, and power supplies to improve
+  signal quality and reliability.
+
+The current electropenetrograph board pairs a DDS-based signal-generation chain with a synchronized acquisition
+chain. Onboard control logic sets gain, switching, and calibration on the fly through analog and digital multiplexers,
+a DAC output stage, and digitally controlled rheostats, with onboard battery charger and monitor ICs.
+
+## Firmware
+
+- Developed **nRF5340** firmware on the **Zephyr RTOS**, with SPI, I&sup2;C, and ADC drivers that configure gain,
+  offset, and excitation on the analog board.
+- Wrote **Bluetooth** firmware that streams measurements to client software in real time.
+- Built Python tools to acquire, process, and visualize recordings from feeding experiments.
+
+## Integrated-Micro Boards (IM1 & IM2)
+
+```{=html}
+<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 1em;">
+  <div style="flex: 1; min-width: 250px; max-width: 420px;">
+    <img src="images/pcb/im_boards.jpg" alt="IM2, IM1, and the nRF5340 DK" style="width:100%; border-radius: 12px;">
+  </div>
+  <div style="flex: 1; min-width: 250px;">
+    <p>
+      From top to bottom: IM2, IM1, and the off-the-shelf Nordic nRF5340 DK they replace. IM1 recreates the DK with
+      only the components the instrument needs. IM2 shrinks it further around an nRF5340 module, making it cheaper and
+      faster to manufacture. I helped bring up and verify both boards during a 10-week summer sprint with the Analog Circuit Lab team.
+    </p>
+    <p><a href="pcb.html">More PCB designs &rarr;</a></p>
+  </div>
+</div>
+```
