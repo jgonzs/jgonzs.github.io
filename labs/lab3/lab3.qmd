@@ -150,7 +150,7 @@ This lab took 23 hours.
 
 ## AI Prototype Summary
 
-::: {.callout-tip}
+::: {.callout-tip collapse="true"}
 ## AI Prototype A: Monolithic Prompt
 **Prompt:** Target device: Lattice iCE40 UP5K FPGA with internal high-speed oscillator (~20 MHz).
 
@@ -617,7 +617,7 @@ endmodule
 ```
 :::
 
-::: {.callout-tip}
+::: {.callout-tip collapse="true"}
 ## AI Prototype B: Modular Prompts
 In this variant, the LLM was prompted for the two main FSMs separately: (1) the one‑shot registration (debounce‑by‑design) behavior and (2) the keypad scanning controller. After generating those, a top‑level integration and display logic was requested.
 
@@ -1048,4 +1048,4 @@ endmodule
 :::
 
 ### Reflection:
-
+For thsi weeks reflection, I wanted to note that neither prompts from the LLM were successful in synthesizing on Lattice.Also, the AI (and rightfully so), didn't have enough context as to how the transistor logic worked, or the logic for the keyboard worked, so it made wrong assumptions that would not have functioned on hardware implementation regardless.

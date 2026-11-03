@@ -1,0 +1,142 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.2in}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+\pdfgentounicode=1
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+\begin{center}
+    \textbf{\Huge \scshape Joaquin Gonzalez-Salgado} \\ \vspace{1pt}
+    \small \href{mailto:jgonzalezsalgado@hmc.edu}{jgonzalezsalgado@hmc.edu} $|$
+    \href{https://www.linkedin.com/in/joaquin-e-gs/}{linkedin.com/in/joaquin-e-gs} $|$
+    \href{https://jgonzs.github.io}{jgonzs.github.io} $|$
+    \href{tel:+19099047494}{(909) 904-7494} $|$
+    Claremont, CA
+\end{center}
+
+\section{Education}
+\resumeSubHeadingListStart
+\resumeSubheading
+{Harvey Mudd College}{Claremont, CA}
+{Bachelor of Science in Electrical and Computer Engineering --- GPA: 3.7/4.0}{Expected May 2028}
+\resumeSubHeadingListEnd
+\section{Experience}
+\resumeSubHeadingListStart
+\resumeSubheading
+{Electrical and Firmware Engineer Intern (Incoming)}{Jan. 2027 -- May 2027}
+{Strata Robotics}{Sunnyvale, CA}
+\resumeItemListStart
+\resumeItem{Will support V1 electrical bring-up of an outdoor construction robot: debugging power-electronics and mixed-signal boards and STM32 firmware networked with an NVIDIA Jetson Orin}
+\resumeItemListEnd
+\resumeSubheading
+{Electrical Engineer, Sponsored Engineering Project}{Aug. 2026 -- Present}
+{Blue Origin}{Claremont, CA}
+\resumeItemListStart
+\resumeItem{Selecting and validating a redundant multi-sensor suite (radar, LiDAR, proximity, IMU, computer vision) to track vehicle-side launch umbilical panels, weighing accuracy, cost, harsh-environment reliability, and EMI risk}
+\resumeItem{Integrating sensor data into control logic with Kalman filtering to align ground-side umbilical panels in all 6 degrees of freedom to about 0.1 mm for automated mating of propellant, power, and data lines}
+\resumeItem{Own component selection, sensor installation and packaging design, and hardware procurement for the full-scale model}
+\resumeItem{Work cross-functionally with Blue Origin engineers on prototype build-up, testing, and design verification}
+\resumeItemListEnd
+\resumeSubheading
+{Hardware \& Firmware Researcher}{Aug. 2025 -- Present}
+{Analog Circuitry Engineering Lab}{Claremont, CA}
+\resumeItemListStart
+\resumeItem{Designed low-noise analog front ends with impedance matching, instrumentation amplifiers, and up to 7,000x gain, moving a dual-battery instrument to a single-supply design with integrated battery management}
+\resumeItem{Developed nRF5340 firmware on the Zephyr RTOS with SPI, I2C, and ADC drivers to configure gain, offset, and excitation on the analog board, plus Bluetooth firmware that streams data to client software in real time}
+\resumeItemListEnd
+\resumeSubheading
+{PCB Designer, Electrical Team}{Sep. 2025 -- Present}
+{MuddSub Autonomous Underwater Vehicle Team (RoboSub)}{Claremont, CA}
+\resumeItemListStart
+\resumeItem{Contributing to the electrical team's KiCad design of Rev. 1 power and signal boards for an 8-thruster AUV, now entering fabrication and verification}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\section{Projects}
+\resumeSubHeadingListStart
+\resumeProjectHeading
+{\textbf{36V Electric Vehicle} $|$ \emph{Power Distribution, Circuit Protection, Raspberry Pi}}{Jan. 2026 -- May 2026}
+\resumeItemListStart
+\resumeItem{Led a team building a 36V electric vehicle that holds a steady 15 mph by designing its power distribution and protection system (motor controllers, relays, fuses, breakers)}
+\resumeItemListEnd
+\resumeProjectHeading
+{\textbf{IR Laser Tag System} $|$ \emph{FPGA Design, Embedded Firmware, IR Communication}}{Oct. 2026 -- Present}
+\resumeItemListStart
+\resumeItem{Building a two-player IR laser tag system on a Lattice iCE40 FPGA and STM32, with FPGA logic that encodes 38 kHz IR packets and decodes hits into SPI interrupts to the MCU}
+\resumeItemListEnd
+\resumeProjectHeading
+{\textbf{Autonomous Underwater Vehicle} $|$ \emph{Signal Conditioning, Embedded Firmware, Controls}}{Jan. 2026 -- May 2026}
+\resumeItemListStart
+\resumeItem{Programmed Teensy 4.0 firmware for GPS surface navigation, pressure-based P-control dives, and 7.1 kHz burst ADC sampling with SD logging; team won 1st place at the course showcase}
+\resumeItemListEnd
+\resumeProjectHeading
+{\textbf{NFC Business Card PCB} $|$ \emph{Antenna Design, Impedance Matching, VNA, PCB Design}}{Jul. 2026 -- Aug. 2026}
+\resumeItemListStart
+\resumeItem{Designed and assembled a 2-layer NFC business card around an NXP NT3H2111 tag IC with a custom PCB-trace loop antenna, impedance-matching the antenna to the 13.56 MHz NFC carrier with VNA measurements}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+\small{\item{
+\textbf{Hardware}{: PCB Layout \& Bring-Up, Power Distribution, nRF5340, STM32, ESP32} \\[3pt]
+\textbf{Firmware \& Embedded}{: Zephyr RTOS, I2C, SPI, UART, CAN, Bluetooth, ADC, PWM, IoT} \\[3pt]
+\textbf{Engineering Software}{: Altium, KiCad, LTspice, Lattice Radiant, Questa, Quartus, LabVIEW, Fusion CAD} \\[3pt]
+\textbf{Languages \& Tools}{: Python, C, C++, MATLAB, Verilog, SystemVerilog, VHDL, Git, CMake, Jupyter} \\[3pt]
+\textbf{Lab Instrumentation}{: Oscilloscope, Multimeter, Function Generator, Power Supply, VNA, Data Acquisition}
+}}
+\end{itemize}
+\end{document}
