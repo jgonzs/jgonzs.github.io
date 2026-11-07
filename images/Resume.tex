@@ -78,10 +78,10 @@
 \section{Experience}
 \resumeSubHeadingListStart
 \resumeSubheading
-{Electrical and Firmware Engineer Intern (Incoming)}{Jan. 2027 -- May 2027}
-{Strata Robotics}{Sunnyvale, CA}
+{HV Electrical Engineering Intern (Incoming)}{Spring 2027}
+{Harbinger Motors}{Garden Grove, CA}
 \resumeItemListStart
-\resumeItem{Will support V1 electrical bring-up of an outdoor construction robot: debugging power-electronics and mixed-signal boards and STM32 firmware networked with an NVIDIA Jetson Orin}
+\resumeItem{Will size, bring up, and validate power electronics (inverters, on-board chargers, DC-DC converters) for commercial electric trucks, using LTspice/PLECS simulation and worst-case circuit analysis}
 \resumeItemListEnd
 \resumeSubheading
 {Electrical Engineer, Sponsored Engineering Project}{Aug. 2026 -- Present}
@@ -89,14 +89,14 @@
 \resumeItemListStart
 \resumeItem{Selecting and validating a redundant multi-sensor suite (radar, LiDAR, proximity, IMU, computer vision) to track vehicle-side launch umbilical panels, weighing accuracy, cost, harsh-environment reliability, and EMI risk}
 \resumeItem{Integrating sensor data into control logic with Kalman filtering to align ground-side umbilical panels in all 6 degrees of freedom to about 0.1 mm for automated mating of propellant, power, and data lines}
-\resumeItem{Own component selection, sensor installation and packaging design, and hardware procurement for the full-scale model}
-\resumeItem{Work cross-functionally with Blue Origin engineers on prototype build-up, testing, and design verification}
+\resumeItem{Own component selection, sensor packaging design, and hardware procurement for the full-scale model}
 \resumeItemListEnd
 \resumeSubheading
 {Hardware \& Firmware Researcher}{Aug. 2025 -- Present}
 {Analog Circuitry Engineering Lab}{Claremont, CA}
 \resumeItemListStart
 \resumeItem{Designed low-noise analog front ends with impedance matching, instrumentation amplifiers, and up to 7,000x gain, moving a dual-battery instrument to a single-supply design with integrated battery management}
+\resumeItem{Brought up and verified 4 PCB revisions in a 10-week sprint (2 single-supply analog boards, 2 nRF5340 microcontroller boards), debugging power faults with oscilloscopes, function generators, and bench supplies}
 \resumeItem{Developed nRF5340 firmware on the Zephyr RTOS with SPI, I2C, and ADC drivers to configure gain, offset, and excitation on the analog board, plus Bluetooth firmware that streams data to client software in real time}
 \resumeItemListEnd
 \resumeSubheading
@@ -104,6 +104,7 @@
 {MuddSub Autonomous Underwater Vehicle Team (RoboSub)}{Claremont, CA}
 \resumeItemListStart
 \resumeItem{Contributing to the electrical team's KiCad design of Rev. 1 power and signal boards for an 8-thruster AUV, now entering fabrication and verification}
+\resumeItem{Boards convert separate thruster and electronics batteries into 12V/5V/3.3V rails via switching regulators and route a Teensy 4.1 driving 8 thruster PWM channels with relay and hardware-kill control}
 \resumeItemListEnd
 \resumeSubHeadingListEnd
 \section{Projects}
@@ -132,7 +133,7 @@
 \section{Technical Skills}
 \begin{itemize}[leftmargin=0.15in, label={}]
 \small{\item{
-\textbf{Hardware}{: PCB Layout \& Bring-Up, Power Distribution, nRF5340, STM32, ESP32} \\[3pt]
+\textbf{Hardware}{: Schematic Capture, PCB Layout \& Bring-Up, Power Distribution, nRF5340, STM32, ESP32} \\[3pt]
 \textbf{Firmware \& Embedded}{: Zephyr RTOS, I2C, SPI, UART, CAN, Bluetooth, ADC, PWM, IoT} \\[3pt]
 \textbf{Engineering Software}{: Altium, KiCad, LTspice, Lattice Radiant, Questa, Quartus, LabVIEW, Fusion CAD} \\[3pt]
 \textbf{Languages \& Tools}{: Python, C, C++, MATLAB, Verilog, SystemVerilog, VHDL, Git, CMake, Jupyter} \\[3pt]
