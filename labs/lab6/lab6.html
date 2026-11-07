@@ -209,6 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ai-prototype-summary" id="toc-ai-prototype-summary" class="nav-link" data-scroll-target="#ai-prototype-summary">AI Prototype Summary</a>
   <ul class="collapse">
   <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection:</a></li>
+  <li><a href="#reflection-1" id="toc-reflection-1" class="nav-link" data-scroll-target="#reflection-1">Reflection:</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -415,6 +416,972 @@ Figure&nbsp;2: Oscilloscope trace of an SPI read from the DS1722.
 <h3 class="anchored" data-anchor-id="reflection">Reflection:</h3>
 <p>This week is Claude Sonnet again. Its core advice was correct: since CE is active-high, every transaction simply swaps which level means “asserted,” so the GPIO write at the start of a transaction drives CE high instead of low, and the one at the end drives it low instead of high. Everything else about clocking bytes out over SPI stays the same. It also suggested reading the LSB and MSB registers back-to-back in one CE-asserted burst to take advantage of the DS1722’s register auto-increment, rather than doing two separate transactions.</p>
 <p>Where it fell short was the temperature decode itself: it returned the raw register pair as a plain uint16_t and left interpreting the sign and fractional bits as an exercise, without mentioning that the MSB is signed two’s-complement or that the LSB’s upper nibble holds the fractional bits, worth 1/2 down to 1/16 of a degree. That part, including the negative-temperature edge case (-10.5 °C is stored as MSB = 0xF5 and LSB = 0x80), had to be worked out by hand from the datasheet.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Generated Code: Website
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"en"</span><span class="dt">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">"UTF-8"</span><span class="dt">&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">"viewport"</span><span class="ot"> content</span><span class="op">=</span><span class="st">"width=device-width, initial-scale=1.0"</span><span class="dt">&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Temperature Monitor<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">style</span><span class="dt">&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span> {</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">box-sizing</span><span class="ch">:</span> <span class="dv">border-box</span><span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    body {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-family</span><span class="ch">:</span> <span class="st">'Inter'</span><span class="op">,</span> <span class="st">'Segoe UI'</span><span class="op">,</span> <span class="dv">sans-serif</span><span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#0b1120</span><span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#e5eaf3</span><span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">min-height</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">vh</span><span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="kw">padding</span><span class="ch">:</span> <span class="dv">40</span><span class="dt">px</span> <span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.container</span> {</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="kw">max-width</span><span class="ch">:</span> <span class="dv">1000</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin</span><span class="ch">:</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    header {</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="kw">justify-content</span><span class="ch">:</span> <span class="dv">space-between</span><span class="op">;</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="kw">align-items</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">45</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="kw">flex-wrap</span><span class="ch">:</span> <span class="dv">wrap</span><span class="op">;</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="kw">gap</span><span class="ch">:</span> <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.brand</span> {</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="kw">align-items</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        <span class="kw">gap</span><span class="ch">:</span> <span class="dv">12</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.brand-icon</span> {</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        <span class="kw">width</span><span class="ch">:</span> <span class="dv">44</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="kw">height</span><span class="ch">:</span> <span class="dv">44</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#1d4ed8</span><span class="op">;</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">12</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">grid</span><span class="op">;</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="kw">place-items</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">23</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    h1 {</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">23</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">650</span><span class="op">;</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        <span class="kw">letter-spacing</span><span class="ch">:</span> <span class="dv">-0.5</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.subtitle</span> {</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#8492a9</span><span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">13</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-top</span><span class="ch">:</span> <span class="dv">4</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.connection</span> {</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        <span class="kw">align-items</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>        <span class="kw">gap</span><span class="ch">:</span> <span class="dv">9</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#142033</span><span class="op">;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">#25334a</span><span class="op">;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>        <span class="kw">padding</span><span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span> <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">30</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">13</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#a9b8ce</span><span class="op">;</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.dot</span> {</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>        <span class="kw">width</span><span class="ch">:</span> <span class="dv">9</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>        <span class="kw">height</span><span class="ch">:</span> <span class="dv">9</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">50</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#22c55e</span><span class="op">;</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>        <span class="kw">box-shadow</span><span class="ch">:</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">10</span><span class="dt">px</span> <span class="cn">#22c55e88</span><span class="op">;</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.page-title</span> {</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">22</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.page-title</span> h2 {</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">28</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">8</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.page-title</span> p {</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#8492a9</span><span class="op">;</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">14</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.dashboard</span> {</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">grid</span><span class="op">;</span></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>        <span class="kw">grid-template-columns</span><span class="ch">:</span> <span class="dv">1.5</span><span class="dt">fr</span> <span class="dv">1</span><span class="dt">fr</span><span class="op">;</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>        <span class="kw">gap</span><span class="ch">:</span> <span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.card</span> {</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#131e30</span><span class="op">;</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">#26364e</span><span class="op">;</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">18</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>        <span class="kw">padding</span><span class="ch">:</span> <span class="dv">27</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.card-header</span> {</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>        <span class="kw">justify-content</span><span class="ch">:</span> <span class="dv">space-between</span><span class="op">;</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>        <span class="kw">align-items</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">30</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.card-label</span> {</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#9aaac1</span><span class="op">;</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">13</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">600</span><span class="op">;</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>        <span class="kw">letter-spacing</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>        <span class="kw">text-transform</span><span class="ch">:</span> <span class="dv">uppercase</span><span class="op">;</span></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.tag</span> {</span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#172d4c</span><span class="op">;</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#60a5fa</span><span class="op">;</span></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>        <span class="kw">padding</span><span class="ch">:</span> <span class="dv">6</span><span class="dt">px</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">11</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Temperature display */</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.temperature-card</span> {</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>        <span class="kw">min-height</span><span class="ch">:</span> <span class="dv">310</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.temperature-display</span> {</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>        <span class="kw">align-items</span><span class="ch">:</span> <span class="dv">baseline</span><span class="op">;</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin</span><span class="ch">:</span> <span class="dv">20</span><span class="dt">px</span> <span class="dv">0</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>    <span class="pp">#temperature</span> {</span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="fu">clamp(</span><span class="dv">65</span><span class="dt">px</span><span class="op">,</span> <span class="dv">10</span><span class="dt">vw</span><span class="op">,</span> <span class="dv">105</span><span class="dt">px</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">650</span><span class="op">;</span></span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>        <span class="kw">letter-spacing</span><span class="ch">:</span> <span class="dv">-6</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#f1f5f9</span><span class="op">;</span></span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>        <span class="kw">line-height</span><span class="ch">:</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.unit</span> {</span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">35</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#60a5fa</span><span class="op">;</span></span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-left</span><span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">400</span><span class="op">;</span></span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.temp-description</span> {</span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#8492a9</span><span class="op">;</span></span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">14</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-top</span><span class="ch">:</span> <span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.temp-footer</span> {</span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-top</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">#26364e</span><span class="op">;</span></span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-top</span><span class="ch">:</span> <span class="dv">30</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>        <span class="kw">padding-top</span><span class="ch">:</span> <span class="dv">18</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>        <span class="kw">justify-content</span><span class="ch">:</span> <span class="dv">space-between</span><span class="op">;</span></span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#8492a9</span><span class="op">;</span></span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">12</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* LED card */</span></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.led-card</span> {</span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>        <span class="kw">flex-direction</span><span class="ch">:</span> <span class="dv">column</span><span class="op">;</span></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.led-visual</span> {</span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>        <span class="kw">flex</span><span class="ch">:</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>        <span class="kw">justify-content</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>        <span class="kw">align-items</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>        <span class="kw">min-height</span><span class="ch">:</span> <span class="dv">155</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.led-bulb</span> {</span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>        <span class="kw">width</span><span class="ch">:</span> <span class="dv">90</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>        <span class="kw">height</span><span class="ch">:</span> <span class="dv">90</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">50</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#263449</span><span class="op">;</span></span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border</span><span class="ch">:</span> <span class="dv">7</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">#35445a</span><span class="op">;</span></span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>        <span class="kw">transition</span><span class="ch">:</span> <span class="dv">all</span> <span class="dv">0.3</span><span class="dt">s</span> <span class="dv">ease</span><span class="op">;</span></span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.led-bulb.on</span> {</span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#facc15</span><span class="op">;</span></span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-color</span><span class="ch">:</span> <span class="cn">#fde68a</span><span class="op">;</span></span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>        <span class="kw">box-shadow</span><span class="ch">:</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">25</span><span class="dt">px</span> <span class="cn">#facc1580</span><span class="op">,</span></span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">0</span> <span class="dv">0</span> <span class="dv">60</span><span class="dt">px</span> <span class="cn">#facc1540</span><span class="op">;</span></span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.led-status</span> {</span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a>        <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">22</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">600</span><span class="op">;</span></span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">8</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.led-description</span> {</span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>        <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#8492a9</span><span class="op">;</span></span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">13</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">22</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Toggle switch */</span></span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.toggle-container</span> {</span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>        <span class="kw">justify-content</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a>        <span class="kw">align-items</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>        <span class="kw">gap</span><span class="ch">:</span> <span class="dv">14</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.switch</span> {</span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>        <span class="kw">position</span><span class="ch">:</span> <span class="dv">relative</span><span class="op">;</span></span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>        <span class="kw">width</span><span class="ch">:</span> <span class="dv">58</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a>        <span class="kw">height</span><span class="ch">:</span> <span class="dv">31</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">inline-block</span><span class="op">;</span></span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.switch</span> input {</span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>        <span class="kw">opacity</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a>        <span class="kw">width</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a>        <span class="kw">height</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.slider</span> {</span>
+<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a>        <span class="kw">position</span><span class="ch">:</span> <span class="dv">absolute</span><span class="op">;</span></span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a>        <span class="kw">inset</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#334155</span><span class="op">;</span></span>
+<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">30</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a>        <span class="kw">cursor</span><span class="ch">:</span> <span class="dv">pointer</span><span class="op">;</span></span>
+<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a>        <span class="kw">transition</span><span class="ch">:</span> <span class="dv">0.25</span><span class="dt">s</span><span class="op">;</span></span>
+<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.slider</span><span class="in">:before</span> {</span>
+<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>        <span class="kw">content</span><span class="ch">:</span> <span class="st">""</span><span class="op">;</span></span>
+<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a>        <span class="kw">position</span><span class="ch">:</span> <span class="dv">absolute</span><span class="op">;</span></span>
+<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a>        <span class="kw">width</span><span class="ch">:</span> <span class="dv">23</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a>        <span class="kw">height</span><span class="ch">:</span> <span class="dv">23</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a>        <span class="kw">left</span><span class="ch">:</span> <span class="dv">4</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a>        <span class="kw">top</span><span class="ch">:</span> <span class="dv">4</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">white</span><span class="op">;</span></span>
+<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">50</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a>        <span class="kw">transition</span><span class="ch">:</span> <span class="dv">0.25</span><span class="dt">s</span><span class="op">;</span></span>
+<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>    input<span class="in">:checked</span> <span class="op">+</span> <span class="fu">.slider</span> {</span>
+<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#2563eb</span><span class="op">;</span></span>
+<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a>    input<span class="in">:checked</span> <span class="op">+</span> <span class="fu">.slider</span><span class="in">:before</span> {</span>
+<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a>        <span class="kw">transform</span><span class="ch">:</span> <span class="fu">translateX(</span><span class="dv">27</span><span class="dt">px</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Settings */</span></span>
+<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.settings-card</span> {</span>
+<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a>        <span class="kw">grid-column</span><span class="ch">:</span> <span class="dv">1</span> / <span class="dv">-1</span><span class="op">;</span></span>
+<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.settings-grid</span> {</span>
+<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">grid</span><span class="op">;</span></span>
+<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a>        <span class="kw">grid-template-columns</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">fr</span> <span class="dv">1</span><span class="dt">fr</span><span class="op">;</span></span>
+<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a>        <span class="kw">gap</span><span class="ch">:</span> <span class="dv">25</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.setting-item</span> label {</span>
+<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span><span class="ch">:</span> <span class="dv">block</span><span class="op">;</span></span>
+<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#d4deed</span><span class="op">;</span></span>
+<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">14</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">600</span><span class="op">;</span></span>
+<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">12</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a>    select {</span>
+<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>        <span class="kw">width</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a>        <span class="kw">padding</span><span class="ch">:</span> <span class="dv">13</span><span class="dt">px</span> <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">#35465f</span><span class="op">;</span></span>
+<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">9</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#0e192a</span><span class="op">;</span></span>
+<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#e5eaf3</span><span class="op">;</span></span>
+<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">14</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>        <span class="kw">outline</span><span class="ch">:</span> <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a>        <span class="kw">cursor</span><span class="ch">:</span> <span class="dv">pointer</span><span class="op">;</span></span>
+<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a>    select<span class="in">:focus</span> {</span>
+<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-color</span><span class="ch">:</span> <span class="cn">#3b82f6</span><span class="op">;</span></span>
+<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.setting-description</span> {</span>
+<span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">12</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#8492a9</span><span class="op">;</span></span>
+<span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-top</span><span class="ch">:</span> <span class="dv">9</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.refresh-button</span> {</span>
+<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#1d4ed8</span><span class="op">;</span></span>
+<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border</span><span class="ch">:</span> <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">white</span><span class="op">;</span></span>
+<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a>        <span class="kw">padding</span><span class="ch">:</span> <span class="dv">13</span><span class="dt">px</span> <span class="dv">18</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a>        <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">9</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">13</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">600</span><span class="op">;</span></span>
+<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a>        <span class="kw">cursor</span><span class="ch">:</span> <span class="dv">pointer</span><span class="op">;</span></span>
+<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a>        <span class="kw">transition</span><span class="ch">:</span> <span class="dv">0.2</span><span class="dt">s</span><span class="op">;</span></span>
+<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.refresh-button</span><span class="in">:hover</span> {</span>
+<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a>        <span class="kw">background</span><span class="ch">:</span> <span class="cn">#2563eb</span><span class="op">;</span></span>
+<span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a>    footer {</span>
+<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a>        <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a>        <span class="kw">color</span><span class="ch">:</span> <span class="cn">#52627a</span><span class="op">;</span></span>
+<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a>        <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">12</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a>        <span class="kw">margin-top</span><span class="ch">:</span> <span class="dv">35</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a>    <span class="im">@media</span><span class="fu">(</span><span class="kw">max-width</span><span class="ch">:</span> <span class="dv">700</span><span class="dt">px</span><span class="fu">)</span> {</span>
+<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a>        <span class="fu">.dashboard</span> {</span>
+<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a>            <span class="kw">grid-template-columns</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">fr</span><span class="op">;</span></span>
+<span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a>        <span class="fu">.settings-card</span> {</span>
+<span id="cb2-346"><a href="#cb2-346" aria-hidden="true" tabindex="-1"></a>            <span class="kw">grid-column</span><span class="ch">:</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-348"><a href="#cb2-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a>        <span class="fu">.settings-grid</span> {</span>
+<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a>            <span class="kw">grid-template-columns</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">fr</span><span class="op">;</span></span>
+<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a>        header {</span>
+<span id="cb2-354"><a href="#cb2-354" aria-hidden="true" tabindex="-1"></a>            <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">30</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-355"><a href="#cb2-355" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-356"><a href="#cb2-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-357"><a href="#cb2-357" aria-hidden="true" tabindex="-1"></a>        <span class="fu">.card</span> {</span>
+<span id="cb2-358"><a href="#cb2-358" aria-hidden="true" tabindex="-1"></a>            <span class="kw">padding</span><span class="ch">:</span> <span class="dv">22</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-359"><a href="#cb2-359" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-360"><a href="#cb2-360" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-361"><a href="#cb2-361" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">style</span><span class="dt">&gt;</span></span>
+<span id="cb2-362"><a href="#cb2-362" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb2-363"><a href="#cb2-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-364"><a href="#cb2-364" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb2-365"><a href="#cb2-365" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"container"</span><span class="dt">&gt;</span></span>
+<span id="cb2-366"><a href="#cb2-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-367"><a href="#cb2-367" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">header</span><span class="dt">&gt;</span></span>
+<span id="cb2-368"><a href="#cb2-368" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand"</span><span class="dt">&gt;</span></span>
+<span id="cb2-369"><a href="#cb2-369" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-icon"</span><span class="dt">&gt;</span>🌡<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-370"><a href="#cb2-370" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-371"><a href="#cb2-371" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>ThermoLink<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb2-372"><a href="#cb2-372" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"subtitle"</span><span class="dt">&gt;</span>Temperature Monitoring System<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-373"><a href="#cb2-373" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-374"><a href="#cb2-374" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-375"><a href="#cb2-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-376"><a href="#cb2-376" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"connection"</span><span class="dt">&gt;</span></span>
+<span id="cb2-377"><a href="#cb2-377" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"dot"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"connectionDot"</span><span class="dt">&gt;&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-378"><a href="#cb2-378" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> id</span><span class="op">=</span><span class="st">"connectionStatus"</span><span class="dt">&gt;</span>Demo Mode<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-379"><a href="#cb2-379" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-380"><a href="#cb2-380" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">header</span><span class="dt">&gt;</span></span>
+<span id="cb2-381"><a href="#cb2-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-382"><a href="#cb2-382" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"page-title"</span><span class="dt">&gt;</span></span>
+<span id="cb2-383"><a href="#cb2-383" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Dashboard<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb2-384"><a href="#cb2-384" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Monitor your sensor and control connected hardware.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-385"><a href="#cb2-385" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-386"><a href="#cb2-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-387"><a href="#cb2-387" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">main</span><span class="ot"> class</span><span class="op">=</span><span class="st">"dashboard"</span><span class="dt">&gt;</span></span>
+<span id="cb2-388"><a href="#cb2-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-389"><a href="#cb2-389" aria-hidden="true" tabindex="-1"></a>        <span class="co">&lt;!-- Temperature --&gt;</span></span>
+<span id="cb2-390"><a href="#cb2-390" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">section</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card temperature-card"</span><span class="dt">&gt;</span></span>
+<span id="cb2-391"><a href="#cb2-391" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card-header"</span><span class="dt">&gt;</span></span>
+<span id="cb2-392"><a href="#cb2-392" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card-label"</span><span class="dt">&gt;</span>Current Temperature<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-393"><a href="#cb2-393" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"tag"</span><span class="dt">&gt;</span>LIVE SENSOR<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-394"><a href="#cb2-394" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-395"><a href="#cb2-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-396"><a href="#cb2-396" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"temperature-display"</span><span class="dt">&gt;</span></span>
+<span id="cb2-397"><a href="#cb2-397" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> id</span><span class="op">=</span><span class="st">"temperature"</span><span class="dt">&gt;</span>24.50<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-398"><a href="#cb2-398" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"unit"</span><span class="dt">&gt;</span>°C<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-399"><a href="#cb2-399" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-400"><a href="#cb2-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-401"><a href="#cb2-401" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"temp-description"</span><span class="dt">&gt;</span></span>
+<span id="cb2-402"><a href="#cb2-402" aria-hidden="true" tabindex="-1"></a>                Real-time temperature measurement</span>
+<span id="cb2-403"><a href="#cb2-403" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-404"><a href="#cb2-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-405"><a href="#cb2-405" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"temp-footer"</span><span class="dt">&gt;</span></span>
+<span id="cb2-406"><a href="#cb2-406" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="dt">&gt;</span>Last updated<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-407"><a href="#cb2-407" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> id</span><span class="op">=</span><span class="st">"lastUpdated"</span><span class="dt">&gt;</span>--:--:--<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-408"><a href="#cb2-408" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-409"><a href="#cb2-409" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span>
+<span id="cb2-410"><a href="#cb2-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-411"><a href="#cb2-411" aria-hidden="true" tabindex="-1"></a>        <span class="co">&lt;!-- LED Control --&gt;</span></span>
+<span id="cb2-412"><a href="#cb2-412" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">section</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card led-card"</span><span class="dt">&gt;</span></span>
+<span id="cb2-413"><a href="#cb2-413" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card-header"</span><span class="dt">&gt;</span></span>
+<span id="cb2-414"><a href="#cb2-414" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card-label"</span><span class="dt">&gt;</span>LED Control<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-415"><a href="#cb2-415" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"tag"</span><span class="dt">&gt;</span>OUTPUT<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-416"><a href="#cb2-416" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-417"><a href="#cb2-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-418"><a href="#cb2-418" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"led-visual"</span><span class="dt">&gt;</span></span>
+<span id="cb2-419"><a href="#cb2-419" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"led-bulb"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ledBulb"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-420"><a href="#cb2-420" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-421"><a href="#cb2-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-422"><a href="#cb2-422" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"led-status"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ledStatus"</span><span class="dt">&gt;</span>LED OFF<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-423"><a href="#cb2-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-424"><a href="#cb2-424" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"led-description"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ledDescription"</span><span class="dt">&gt;</span></span>
+<span id="cb2-425"><a href="#cb2-425" aria-hidden="true" tabindex="-1"></a>                The LED is currently disabled.</span>
+<span id="cb2-426"><a href="#cb2-426" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-427"><a href="#cb2-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-428"><a href="#cb2-428" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"toggle-container"</span><span class="dt">&gt;</span></span>
+<span id="cb2-429"><a href="#cb2-429" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> style</span><span class="op">=</span><span class="st">"font-size:12px;color:#8492a9"</span><span class="dt">&gt;</span>OFF<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-430"><a href="#cb2-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-431"><a href="#cb2-431" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> class</span><span class="op">=</span><span class="st">"switch"</span><span class="dt">&gt;</span></span>
+<span id="cb2-432"><a href="#cb2-432" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"checkbox"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"ledToggle"</span><span class="dt">&gt;</span></span>
+<span id="cb2-433"><a href="#cb2-433" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"slider"</span><span class="dt">&gt;&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-434"><a href="#cb2-434" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb2-435"><a href="#cb2-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-436"><a href="#cb2-436" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> style</span><span class="op">=</span><span class="st">"font-size:12px;color:#8492a9"</span><span class="dt">&gt;</span>ON<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-437"><a href="#cb2-437" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-438"><a href="#cb2-438" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span>
+<span id="cb2-439"><a href="#cb2-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-440"><a href="#cb2-440" aria-hidden="true" tabindex="-1"></a>        <span class="co">&lt;!-- Settings --&gt;</span></span>
+<span id="cb2-441"><a href="#cb2-441" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">section</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card settings-card"</span><span class="dt">&gt;</span></span>
+<span id="cb2-442"><a href="#cb2-442" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card-header"</span><span class="dt">&gt;</span></span>
+<span id="cb2-443"><a href="#cb2-443" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"card-label"</span><span class="dt">&gt;</span>Display Settings<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-444"><a href="#cb2-444" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"tag"</span><span class="dt">&gt;</span>CONFIGURATION<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-445"><a href="#cb2-445" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-446"><a href="#cb2-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-447"><a href="#cb2-447" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"settings-grid"</span><span class="dt">&gt;</span></span>
+<span id="cb2-448"><a href="#cb2-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-449"><a href="#cb2-449" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"setting-item"</span><span class="dt">&gt;</span></span>
+<span id="cb2-450"><a href="#cb2-450" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">"precision"</span><span class="dt">&gt;</span>Temperature Precision<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb2-451"><a href="#cb2-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-452"><a href="#cb2-452" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> id</span><span class="op">=</span><span class="st">"precision"</span><span class="dt">&gt;</span></span>
+<span id="cb2-453"><a href="#cb2-453" aria-hidden="true" tabindex="-1"></a>                        <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"0"</span><span class="dt">&gt;</span>0 decimal places<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb2-454"><a href="#cb2-454" aria-hidden="true" tabindex="-1"></a>                        <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"1"</span><span class="dt">&gt;</span>1 decimal place<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb2-455"><a href="#cb2-455" aria-hidden="true" tabindex="-1"></a>                        <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"2"</span><span class="ot"> selected</span><span class="dt">&gt;</span>2 decimal places<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb2-456"><a href="#cb2-456" aria-hidden="true" tabindex="-1"></a>                        <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"3"</span><span class="dt">&gt;</span>3 decimal places<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb2-457"><a href="#cb2-457" aria-hidden="true" tabindex="-1"></a>                        <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"4"</span><span class="dt">&gt;</span>4 decimal places<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb2-458"><a href="#cb2-458" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span>
+<span id="cb2-459"><a href="#cb2-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-460"><a href="#cb2-460" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"setting-description"</span><span class="dt">&gt;</span></span>
+<span id="cb2-461"><a href="#cb2-461" aria-hidden="true" tabindex="-1"></a>                        Choose how many decimal places are displayed</span>
+<span id="cb2-462"><a href="#cb2-462" aria-hidden="true" tabindex="-1"></a>                        in your temperature reading.</span>
+<span id="cb2-463"><a href="#cb2-463" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-464"><a href="#cb2-464" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-465"><a href="#cb2-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-466"><a href="#cb2-466" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"setting-item"</span><span class="dt">&gt;</span></span>
+<span id="cb2-467"><a href="#cb2-467" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">label</span><span class="dt">&gt;</span>Sensor Information<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb2-468"><a href="#cb2-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-469"><a href="#cb2-469" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"padding:13px 15px;background:#0e192a;</span></span>
+<span id="cb2-470"><a href="#cb2-470" aria-hidden="true" tabindex="-1"></a><span class="st">                                border:1px solid #35465f;border-radius:9px;</span></span>
+<span id="cb2-471"><a href="#cb2-471" aria-hidden="true" tabindex="-1"></a><span class="st">                                font-size:14px;color:#a9b8ce"</span><span class="dt">&gt;</span></span>
+<span id="cb2-472"><a href="#cb2-472" aria-hidden="true" tabindex="-1"></a>                        DS1722 Digital Temperature Sensor</span>
+<span id="cb2-473"><a href="#cb2-473" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-474"><a href="#cb2-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-475"><a href="#cb2-475" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"setting-description"</span><span class="dt">&gt;</span></span>
+<span id="cb2-476"><a href="#cb2-476" aria-hidden="true" tabindex="-1"></a>                        Connected through the STM32L432KC microcontroller.</span>
+<span id="cb2-477"><a href="#cb2-477" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-478"><a href="#cb2-478" aria-hidden="true" tabindex="-1"></a>                <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-479"><a href="#cb2-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-480"><a href="#cb2-480" aria-hidden="true" tabindex="-1"></a>            <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-481"><a href="#cb2-481" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;/</span><span class="kw">section</span><span class="dt">&gt;</span></span>
+<span id="cb2-482"><a href="#cb2-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-483"><a href="#cb2-483" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">main</span><span class="dt">&gt;</span></span>
+<span id="cb2-484"><a href="#cb2-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-485"><a href="#cb2-485" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb2-486"><a href="#cb2-486" aria-hidden="true" tabindex="-1"></a>        ThermoLink <span class="dv">&amp;nbsp;</span> | <span class="dv">&amp;nbsp;</span> Embedded Systems Monitoring Interface</span>
+<span id="cb2-487"><a href="#cb2-487" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb2-488"><a href="#cb2-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-489"><a href="#cb2-489" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-490"><a href="#cb2-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-491"><a href="#cb2-491" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb2-492"><a href="#cb2-492" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-493"><a href="#cb2-493" aria-hidden="true" tabindex="-1"></a>    <span class="co">// CONFIGURATION</span></span>
+<span id="cb2-494"><a href="#cb2-494" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-495"><a href="#cb2-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-496"><a href="#cb2-496" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> DEMO_MODE <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb2-497"><a href="#cb2-497" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> UPDATE_INTERVAL <span class="op">=</span> <span class="dv">1000</span><span class="op">;</span></span>
+<span id="cb2-498"><a href="#cb2-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-499"><a href="#cb2-499" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> currentTemperature <span class="op">=</span> <span class="fl">24.50</span><span class="op">;</span></span>
+<span id="cb2-500"><a href="#cb2-500" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> ledState <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb2-501"><a href="#cb2-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-502"><a href="#cb2-502" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> temperatureDisplay <span class="op">=</span></span>
+<span id="cb2-503"><a href="#cb2-503" aria-hidden="true" tabindex="-1"></a>        <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"temperature"</span>)<span class="op">;</span></span>
+<span id="cb2-504"><a href="#cb2-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-505"><a href="#cb2-505" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> precisionSelect <span class="op">=</span></span>
+<span id="cb2-506"><a href="#cb2-506" aria-hidden="true" tabindex="-1"></a>        <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"precision"</span>)<span class="op">;</span></span>
+<span id="cb2-507"><a href="#cb2-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-508"><a href="#cb2-508" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> ledToggle <span class="op">=</span></span>
+<span id="cb2-509"><a href="#cb2-509" aria-hidden="true" tabindex="-1"></a>        <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"ledToggle"</span>)<span class="op">;</span></span>
+<span id="cb2-510"><a href="#cb2-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-511"><a href="#cb2-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-512"><a href="#cb2-512" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-513"><a href="#cb2-513" aria-hidden="true" tabindex="-1"></a>    <span class="co">// TEMPERATURE DISPLAY</span></span>
+<span id="cb2-514"><a href="#cb2-514" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-515"><a href="#cb2-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-516"><a href="#cb2-516" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">updateTemperatureDisplay</span>(temp) {</span>
+<span id="cb2-517"><a href="#cb2-517" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> precision <span class="op">=</span> <span class="pp">parseInt</span>(precisionSelect<span class="op">.</span><span class="at">value</span>)<span class="op">;</span></span>
+<span id="cb2-518"><a href="#cb2-518" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-519"><a href="#cb2-519" aria-hidden="true" tabindex="-1"></a>        temperatureDisplay<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span></span>
+<span id="cb2-520"><a href="#cb2-520" aria-hidden="true" tabindex="-1"></a>            temp<span class="op">.</span><span class="fu">toFixed</span>(precision)<span class="op">;</span></span>
+<span id="cb2-521"><a href="#cb2-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-522"><a href="#cb2-522" aria-hidden="true" tabindex="-1"></a>        <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"lastUpdated"</span>)</span>
+<span id="cb2-523"><a href="#cb2-523" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toLocaleTimeString</span>()<span class="op">;</span></span>
+<span id="cb2-524"><a href="#cb2-524" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-525"><a href="#cb2-525" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-526"><a href="#cb2-526" aria-hidden="true" tabindex="-1"></a>    precisionSelect<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"change"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb2-527"><a href="#cb2-527" aria-hidden="true" tabindex="-1"></a>        <span class="fu">updateTemperatureDisplay</span>(currentTemperature)<span class="op">;</span></span>
+<span id="cb2-528"><a href="#cb2-528" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb2-529"><a href="#cb2-529" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-530"><a href="#cb2-530" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-531"><a href="#cb2-531" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-532"><a href="#cb2-532" aria-hidden="true" tabindex="-1"></a>    <span class="co">// LED CONTROL</span></span>
+<span id="cb2-533"><a href="#cb2-533" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-534"><a href="#cb2-534" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-535"><a href="#cb2-535" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="kw">function</span> <span class="fu">setLED</span>(state) {</span>
+<span id="cb2-536"><a href="#cb2-536" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-537"><a href="#cb2-537" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="op">!</span>DEMO_MODE) {</span>
+<span id="cb2-538"><a href="#cb2-538" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Replace with your STM32 backend endpoint.</span></span>
+<span id="cb2-539"><a href="#cb2-539" aria-hidden="true" tabindex="-1"></a>            <span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="st">"/api/led"</span><span class="op">,</span> {</span>
+<span id="cb2-540"><a href="#cb2-540" aria-hidden="true" tabindex="-1"></a>                <span class="dt">method</span><span class="op">:</span> <span class="st">"POST"</span><span class="op">,</span></span>
+<span id="cb2-541"><a href="#cb2-541" aria-hidden="true" tabindex="-1"></a>                <span class="dt">headers</span><span class="op">:</span> {</span>
+<span id="cb2-542"><a href="#cb2-542" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Content-Type"</span><span class="op">:</span> <span class="st">"application/json"</span></span>
+<span id="cb2-543"><a href="#cb2-543" aria-hidden="true" tabindex="-1"></a>                }<span class="op">,</span></span>
+<span id="cb2-544"><a href="#cb2-544" aria-hidden="true" tabindex="-1"></a>                <span class="dt">body</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>({ <span class="dt">state</span><span class="op">:</span> state })</span>
+<span id="cb2-545"><a href="#cb2-545" aria-hidden="true" tabindex="-1"></a>            })<span class="op">;</span></span>
+<span id="cb2-546"><a href="#cb2-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-547"><a href="#cb2-547" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (<span class="op">!</span>response<span class="op">.</span><span class="at">ok</span>) {</span>
+<span id="cb2-548"><a href="#cb2-548" aria-hidden="true" tabindex="-1"></a>                <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">"Failed to update LED"</span>)<span class="op">;</span></span>
+<span id="cb2-549"><a href="#cb2-549" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb2-550"><a href="#cb2-550" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-551"><a href="#cb2-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-552"><a href="#cb2-552" aria-hidden="true" tabindex="-1"></a>        ledState <span class="op">=</span> state<span class="op">;</span></span>
+<span id="cb2-553"><a href="#cb2-553" aria-hidden="true" tabindex="-1"></a>        <span class="fu">updateLEDDisplay</span>()<span class="op">;</span></span>
+<span id="cb2-554"><a href="#cb2-554" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-555"><a href="#cb2-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-556"><a href="#cb2-556" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">updateLEDDisplay</span>() {</span>
+<span id="cb2-557"><a href="#cb2-557" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> bulb <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"ledBulb"</span>)<span class="op">;</span></span>
+<span id="cb2-558"><a href="#cb2-558" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> status <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"ledStatus"</span>)<span class="op">;</span></span>
+<span id="cb2-559"><a href="#cb2-559" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> description <span class="op">=</span></span>
+<span id="cb2-560"><a href="#cb2-560" aria-hidden="true" tabindex="-1"></a>            <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"ledDescription"</span>)<span class="op">;</span></span>
+<span id="cb2-561"><a href="#cb2-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-562"><a href="#cb2-562" aria-hidden="true" tabindex="-1"></a>        bulb<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">toggle</span>(<span class="st">"on"</span><span class="op">,</span> ledState)<span class="op">;</span></span>
+<span id="cb2-563"><a href="#cb2-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-564"><a href="#cb2-564" aria-hidden="true" tabindex="-1"></a>        status<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> ledState <span class="op">?</span> <span class="st">"LED ON"</span> <span class="op">:</span> <span class="st">"LED OFF"</span><span class="op">;</span></span>
+<span id="cb2-565"><a href="#cb2-565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-566"><a href="#cb2-566" aria-hidden="true" tabindex="-1"></a>        description<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> ledState</span>
+<span id="cb2-567"><a href="#cb2-567" aria-hidden="true" tabindex="-1"></a>            <span class="op">?</span> <span class="st">"The LED is currently illuminated."</span></span>
+<span id="cb2-568"><a href="#cb2-568" aria-hidden="true" tabindex="-1"></a>            <span class="op">:</span> <span class="st">"The LED is currently disabled."</span><span class="op">;</span></span>
+<span id="cb2-569"><a href="#cb2-569" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-570"><a href="#cb2-570" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-571"><a href="#cb2-571" aria-hidden="true" tabindex="-1"></a>    ledToggle<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"change"</span><span class="op">,</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb2-572"><a href="#cb2-572" aria-hidden="true" tabindex="-1"></a>        ledToggle<span class="op">.</span><span class="at">disabled</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb2-573"><a href="#cb2-573" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-574"><a href="#cb2-574" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span> {</span>
+<span id="cb2-575"><a href="#cb2-575" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> <span class="fu">setLED</span>(ledToggle<span class="op">.</span><span class="at">checked</span>)<span class="op">;</span></span>
+<span id="cb2-576"><a href="#cb2-576" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">catch</span> (error) {</span>
+<span id="cb2-577"><a href="#cb2-577" aria-hidden="true" tabindex="-1"></a>            ledToggle<span class="op">.</span><span class="at">checked</span> <span class="op">=</span> ledState<span class="op">;</span></span>
+<span id="cb2-578"><a href="#cb2-578" aria-hidden="true" tabindex="-1"></a>            <span class="fu">alert</span>(<span class="st">"Unable to communicate with the LED."</span>)<span class="op">;</span></span>
+<span id="cb2-579"><a href="#cb2-579" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">finally</span> {</span>
+<span id="cb2-580"><a href="#cb2-580" aria-hidden="true" tabindex="-1"></a>            ledToggle<span class="op">.</span><span class="at">disabled</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb2-581"><a href="#cb2-581" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-582"><a href="#cb2-582" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb2-583"><a href="#cb2-583" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-584"><a href="#cb2-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-585"><a href="#cb2-585" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-586"><a href="#cb2-586" aria-hidden="true" tabindex="-1"></a>    <span class="co">// SENSOR COMMUNICATION</span></span>
+<span id="cb2-587"><a href="#cb2-587" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-588"><a href="#cb2-588" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-589"><a href="#cb2-589" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="kw">function</span> <span class="fu">getTemperature</span>() {</span>
+<span id="cb2-590"><a href="#cb2-590" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-591"><a href="#cb2-591" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (DEMO_MODE) {</span>
+<span id="cb2-592"><a href="#cb2-592" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Simulated temperature fluctuation.</span></span>
+<span id="cb2-593"><a href="#cb2-593" aria-hidden="true" tabindex="-1"></a>            currentTemperature <span class="op">+=</span></span>
+<span id="cb2-594"><a href="#cb2-594" aria-hidden="true" tabindex="-1"></a>                (<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="fl">0.15</span><span class="op">;</span></span>
+<span id="cb2-595"><a href="#cb2-595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-596"><a href="#cb2-596" aria-hidden="true" tabindex="-1"></a>            currentTemperature <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(</span>
+<span id="cb2-597"><a href="#cb2-597" aria-hidden="true" tabindex="-1"></a>                <span class="dv">15</span><span class="op">,</span></span>
+<span id="cb2-598"><a href="#cb2-598" aria-hidden="true" tabindex="-1"></a>                <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">35</span><span class="op">,</span> currentTemperature)</span>
+<span id="cb2-599"><a href="#cb2-599" aria-hidden="true" tabindex="-1"></a>            )<span class="op">;</span></span>
+<span id="cb2-600"><a href="#cb2-600" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-601"><a href="#cb2-601" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb2-602"><a href="#cb2-602" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Replace with your STM32 backend endpoint.</span></span>
+<span id="cb2-603"><a href="#cb2-603" aria-hidden="true" tabindex="-1"></a>            <span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="st">"/api/temperature"</span>)<span class="op">;</span></span>
+<span id="cb2-604"><a href="#cb2-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-605"><a href="#cb2-605" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (<span class="op">!</span>response<span class="op">.</span><span class="at">ok</span>) {</span>
+<span id="cb2-606"><a href="#cb2-606" aria-hidden="true" tabindex="-1"></a>                <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">"Sensor communication failed"</span>)<span class="op">;</span></span>
+<span id="cb2-607"><a href="#cb2-607" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb2-608"><a href="#cb2-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-609"><a href="#cb2-609" aria-hidden="true" tabindex="-1"></a>            <span class="kw">const</span> data <span class="op">=</span> <span class="cf">await</span> response<span class="op">.</span><span class="fu">json</span>()<span class="op">;</span></span>
+<span id="cb2-610"><a href="#cb2-610" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-611"><a href="#cb2-611" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Expected JSON: { "temperature": 24.50 }</span></span>
+<span id="cb2-612"><a href="#cb2-612" aria-hidden="true" tabindex="-1"></a>            currentTemperature <span class="op">=</span> data<span class="op">.</span><span class="at">temperature</span><span class="op">;</span></span>
+<span id="cb2-613"><a href="#cb2-613" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-614"><a href="#cb2-614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-615"><a href="#cb2-615" aria-hidden="true" tabindex="-1"></a>        <span class="fu">updateTemperatureDisplay</span>(currentTemperature)<span class="op">;</span></span>
+<span id="cb2-616"><a href="#cb2-616" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-617"><a href="#cb2-617" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-618"><a href="#cb2-618" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-619"><a href="#cb2-619" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-620"><a href="#cb2-620" aria-hidden="true" tabindex="-1"></a>    <span class="co">// CONNECTION STATUS</span></span>
+<span id="cb2-621"><a href="#cb2-621" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-622"><a href="#cb2-622" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-623"><a href="#cb2-623" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">setConnectionStatus</span>(connected) {</span>
+<span id="cb2-624"><a href="#cb2-624" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> status <span class="op">=</span></span>
+<span id="cb2-625"><a href="#cb2-625" aria-hidden="true" tabindex="-1"></a>            <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"connectionStatus"</span>)<span class="op">;</span></span>
+<span id="cb2-626"><a href="#cb2-626" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-627"><a href="#cb2-627" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> dot <span class="op">=</span></span>
+<span id="cb2-628"><a href="#cb2-628" aria-hidden="true" tabindex="-1"></a>            <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"connectionDot"</span>)<span class="op">;</span></span>
+<span id="cb2-629"><a href="#cb2-629" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-630"><a href="#cb2-630" aria-hidden="true" tabindex="-1"></a>        status<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> connected</span>
+<span id="cb2-631"><a href="#cb2-631" aria-hidden="true" tabindex="-1"></a>            <span class="op">?</span> (DEMO_MODE <span class="op">?</span> <span class="st">"Demo Mode"</span> <span class="op">:</span> <span class="st">"Connected"</span>)</span>
+<span id="cb2-632"><a href="#cb2-632" aria-hidden="true" tabindex="-1"></a>            <span class="op">:</span> <span class="st">"Disconnected"</span><span class="op">;</span></span>
+<span id="cb2-633"><a href="#cb2-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-634"><a href="#cb2-634" aria-hidden="true" tabindex="-1"></a>        dot<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">background</span> <span class="op">=</span></span>
+<span id="cb2-635"><a href="#cb2-635" aria-hidden="true" tabindex="-1"></a>            connected <span class="op">?</span> <span class="st">"#22c55e"</span> <span class="op">:</span> <span class="st">"#ef4444"</span><span class="op">;</span></span>
+<span id="cb2-636"><a href="#cb2-636" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-637"><a href="#cb2-637" aria-hidden="true" tabindex="-1"></a>        dot<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">boxShadow</span> <span class="op">=</span> connected</span>
+<span id="cb2-638"><a href="#cb2-638" aria-hidden="true" tabindex="-1"></a>            <span class="op">?</span> <span class="st">"0 0 10px #22c55e88"</span></span>
+<span id="cb2-639"><a href="#cb2-639" aria-hidden="true" tabindex="-1"></a>            <span class="op">:</span> <span class="st">"0 0 10px #ef444488"</span><span class="op">;</span></span>
+<span id="cb2-640"><a href="#cb2-640" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-641"><a href="#cb2-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-642"><a href="#cb2-642" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-643"><a href="#cb2-643" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-644"><a href="#cb2-644" aria-hidden="true" tabindex="-1"></a>    <span class="co">// MAIN UPDATE LOOP</span></span>
+<span id="cb2-645"><a href="#cb2-645" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ==========================================</span></span>
+<span id="cb2-646"><a href="#cb2-646" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-647"><a href="#cb2-647" aria-hidden="true" tabindex="-1"></a>    <span class="kw">async</span> <span class="kw">function</span> <span class="fu">refresh</span>() {</span>
+<span id="cb2-648"><a href="#cb2-648" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span> {</span>
+<span id="cb2-649"><a href="#cb2-649" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> <span class="fu">getTemperature</span>()<span class="op">;</span></span>
+<span id="cb2-650"><a href="#cb2-650" aria-hidden="true" tabindex="-1"></a>            <span class="fu">setConnectionStatus</span>(<span class="kw">true</span>)<span class="op">;</span></span>
+<span id="cb2-651"><a href="#cb2-651" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">catch</span> (error) {</span>
+<span id="cb2-652"><a href="#cb2-652" aria-hidden="true" tabindex="-1"></a>            <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(error)<span class="op">;</span></span>
+<span id="cb2-653"><a href="#cb2-653" aria-hidden="true" tabindex="-1"></a>            <span class="fu">setConnectionStatus</span>(<span class="kw">false</span>)<span class="op">;</span></span>
+<span id="cb2-654"><a href="#cb2-654" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-655"><a href="#cb2-655" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-656"><a href="#cb2-656" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-657"><a href="#cb2-657" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Initial setup</span></span>
+<span id="cb2-658"><a href="#cb2-658" aria-hidden="true" tabindex="-1"></a>    <span class="fu">updateLEDDisplay</span>()<span class="op">;</span></span>
+<span id="cb2-659"><a href="#cb2-659" aria-hidden="true" tabindex="-1"></a>    <span class="fu">refresh</span>()<span class="op">;</span></span>
+<span id="cb2-660"><a href="#cb2-660" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-661"><a href="#cb2-661" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Periodically retrieve sensor readings</span></span>
+<span id="cb2-662"><a href="#cb2-662" aria-hidden="true" tabindex="-1"></a>    <span class="pp">setInterval</span>(refresh<span class="op">,</span> UPDATE_INTERVAL)<span class="op">;</span></span>
+<span id="cb2-663"><a href="#cb2-663" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-664"><a href="#cb2-664" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb2-665"><a href="#cb2-665" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-666"><a href="#cb2-666" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb2-667"><a href="#cb2-667" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reflection-1" class="level3">
+<h3 class="anchored" data-anchor-id="reflection-1">Reflection:</h3>
+<p>ChatGPT gave out a Python Flask Backend? And an STM UART command. A little overdone.</p>
+<p>Now for embedded C:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Generated Code: Embedded C
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"stm32l432xx.h"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdint.h&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdbool.h&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">// DS1722 DEFINITIONS</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DS1722_SPI          SPI1</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DS1722_CE_HIGH</span><span class="op">()</span><span class="pp">    </span><span class="op">(</span><span class="pp">GPIOA</span><span class="op">-&gt;</span><span class="pp">BSRR </span><span class="op">=</span><span class="pp"> </span><span class="op">(</span><span class="dv">1</span><span class="bu">U</span><span class="pp"> </span><span class="op">&lt;&lt;</span><span class="pp"> </span><span class="dv">4</span><span class="op">))</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DS1722_CE_LOW</span><span class="op">()</span><span class="pp">     </span><span class="op">(</span><span class="pp">GPIOA</span><span class="op">-&gt;</span><span class="pp">BSRR </span><span class="op">=</span><span class="pp"> </span><span class="op">(</span><span class="dv">1</span><span class="bu">U</span><span class="pp"> </span><span class="op">&lt;&lt;</span><span class="pp"> </span><span class="op">(</span><span class="dv">4</span><span class="pp"> </span><span class="op">+</span><span class="pp"> </span><span class="dv">16</span><span class="op">)))</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DS1722_READ_TEMP_LSB    </span><span class="bn">0x01</span><span class="bu">U</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DS1722_WRITE_CONFIG     </span><span class="bn">0x80</span><span class="bu">U</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">// 12-bit resolution, continuous conversion mode</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DS1722_CONFIG_12BIT     </span><span class="bn">0x40</span><span class="bu">U</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SPI_TIMEOUT             </span><span class="dv">100000</span><span class="bu">U</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">// SMALL TIMING DELAY</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">void</span> DS1722_Delay<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">volatile</span> <span class="dt">uint32_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">50</span><span class="bu">U</span><span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        __NOP<span class="op">();</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co">// SPI1 INITIALIZATION</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> DS1722_SPI_Init<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Enable GPIOA and SPI1 clocks</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    RCC<span class="op">-&gt;</span>AHB2ENR <span class="op">|=</span> RCC_AHB2ENR_GPIOAEN<span class="op">;</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    RCC<span class="op">-&gt;</span>APB2ENR <span class="op">|=</span> RCC_APB2ENR_SPI1EN<span class="op">;</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">// PA4: GPIO output (CE)</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">// PA5, PA6, PA7: Alternate function (SPI1)</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    GPIOA<span class="op">-&gt;</span>MODER <span class="op">&amp;=</span> <span class="op">~(</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">4</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">5</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">6</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">7</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="op">);</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    GPIOA<span class="op">-&gt;</span>MODER <span class="op">|=</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">1</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">4</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">2</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">5</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">2</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">6</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">2</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">7</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">));</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configure PA5, PA6, PA7 for AF5 (SPI1)</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    GPIOA<span class="op">-&gt;</span>AFR<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">&amp;=</span> <span class="op">~(</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="bn">0xF</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">5</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">4</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="bn">0xF</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">6</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">4</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="bn">0xF</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">7</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">4</span><span class="bu">U</span><span class="op">))</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    <span class="op">);</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    GPIOA<span class="op">-&gt;</span>AFR<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">|=</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">5</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">5</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">4</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">5</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">6</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">4</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">5</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">7</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">4</span><span class="bu">U</span><span class="op">));</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configure GPIO output speed</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>    GPIOA<span class="op">-&gt;</span>OSPEEDR <span class="op">|=</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">4</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">5</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">6</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">7</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">));</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>    <span class="co">// No pull-up or pull-down</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>    GPIOA<span class="op">-&gt;</span>PUPDR <span class="op">&amp;=</span> <span class="op">~(</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">4</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">5</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">6</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span> <span class="op">|</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">3</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">7</span><span class="bu">U</span> <span class="op">*</span> <span class="dv">2</span><span class="bu">U</span><span class="op">))</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>    <span class="op">);</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>    <span class="co">// CE initially LOW (inactive)</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>    DS1722_CE_LOW<span class="op">();</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Disable SPI before configuring</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>    DS1722_SPI<span class="op">-&gt;</span>CR1 <span class="op">=</span> <span class="dv">0</span><span class="bu">U</span><span class="op">;</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    DS1722_SPI<span class="op">-&gt;</span>CR2 <span class="op">=</span> <span class="dv">0</span><span class="bu">U</span><span class="op">;</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configure SPI:</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Master mode</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    <span class="co">// CPOL = 0</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>    <span class="co">// CPHA = 1 (SPI Mode 1)</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Software NSS management</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Baud rate = PCLK2 / 32</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>    DS1722_SPI<span class="op">-&gt;</span>CR1 <span class="op">=</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>        SPI_CR1_MSTR <span class="op">|</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>        SPI_CR1_CPHA <span class="op">|</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>        SPI_CR1_SSM <span class="op">|</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>        SPI_CR1_SSI <span class="op">|</span></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>        SPI_CR1_BR_2<span class="op">;</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 8-bit data size and 8-bit RX FIFO threshold</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>    DS1722_SPI<span class="op">-&gt;</span>CR2 <span class="op">=</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">7</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="dv">8</span><span class="bu">U</span><span class="op">)</span> <span class="op">|</span></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dv">1</span><span class="bu">U</span> <span class="op">&lt;&lt;</span> <span class="dv">12</span><span class="bu">U</span><span class="op">);</span></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Enable SPI</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>    DS1722_SPI<span class="op">-&gt;</span>CR1 <span class="op">|=</span> SPI_CR1_SPE<span class="op">;</span></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="co">// SPI BYTE TRANSFER</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">bool</span> DS1722_SPI_Transfer<span class="op">(</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint8_t</span> tx_data<span class="op">,</span></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint8_t</span> <span class="op">*</span>rx_data</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint32_t</span> timeout <span class="op">=</span> SPI_TIMEOUT<span class="op">;</span></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Wait for transmit buffer to become empty</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(!(</span>DS1722_SPI<span class="op">-&gt;</span>SR <span class="op">&amp;</span> SPI_SR_TXE<span class="op">))</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(--</span>timeout <span class="op">==</span> <span class="dv">0</span><span class="bu">U</span><span class="op">)</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Transmit one byte</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>    <span class="op">*(</span>__IO <span class="dt">uint8_t</span> <span class="op">*)&amp;</span>DS1722_SPI<span class="op">-&gt;</span>DR <span class="op">=</span> tx_data<span class="op">;</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>    timeout <span class="op">=</span> SPI_TIMEOUT<span class="op">;</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Wait for received byte</span></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(!(</span>DS1722_SPI<span class="op">-&gt;</span>SR <span class="op">&amp;</span> SPI_SR_RXNE<span class="op">))</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(--</span>timeout <span class="op">==</span> <span class="dv">0</span><span class="bu">U</span><span class="op">)</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Read received byte</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>rx_data <span class="op">=</span> <span class="op">*(</span>__IO <span class="dt">uint8_t</span> <span class="op">*)&amp;</span>DS1722_SPI<span class="op">-&gt;</span>DR<span class="op">;</span></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a><span class="co">// DS1722 CONFIGURATION</span></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> DS1722_Init<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint8_t</span> dummy<span class="op">;</span></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Enable communication</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>    DS1722_CE_HIGH<span class="op">();</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>    DS1722_Delay<span class="op">();</span></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Write configuration register</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Address 0x80 = write configuration register</span></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>DS1722_SPI_Transfer<span class="op">(</span>DS1722_WRITE_CONFIG<span class="op">,</span> <span class="op">&amp;</span>dummy<span class="op">))</span></span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>        DS1722_CE_LOW<span class="op">();</span></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Set 12-bit resolution and continuous conversion</span></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>DS1722_SPI_Transfer<span class="op">(</span>DS1722_CONFIG_12BIT<span class="op">,</span> <span class="op">&amp;</span>dummy<span class="op">))</span></span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>        DS1722_CE_LOW<span class="op">();</span></span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Wait for last SPI transfer to finish</span></span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>DS1722_SPI<span class="op">-&gt;</span>SR <span class="op">&amp;</span> SPI_SR_BSY<span class="op">);</span></span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>    DS1722_Delay<span class="op">();</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>    DS1722_CE_LOW<span class="op">();</span></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Allow first 12-bit conversion to complete.</span></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Maximum conversion time is 1.2 seconds.</span></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a><span class="co">// READ TEMPERATURE</span></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="co">// =============================================</span></span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> DS1722_ReadTemperature<span class="op">(</span><span class="dt">float</span> <span class="op">*</span>temperature<span class="op">)</span></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint8_t</span> dummy<span class="op">;</span></span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint8_t</span> temp_lsb<span class="op">;</span></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint8_t</span> temp_msb<span class="op">;</span></span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>temperature <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Start SPI transaction</span></span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>    DS1722_CE_HIGH<span class="op">();</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>    DS1722_Delay<span class="op">();</span></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Send temperature LSB read address</span></span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>DS1722_SPI_Transfer<span class="op">(</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a>            DS1722_READ_TEMP_LSB<span class="op">,</span> <span class="op">&amp;</span>dummy<span class="op">))</span></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a>        DS1722_CE_LOW<span class="op">();</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Read temperature LSB</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Sending dummy bytes generates the SPI clock</span></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>DS1722_SPI_Transfer<span class="op">(</span><span class="bn">0xFF</span><span class="bu">U</span><span class="op">,</span> <span class="op">&amp;</span>temp_lsb<span class="op">))</span></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>        DS1722_CE_LOW<span class="op">();</span></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Read temperature MSB</span></span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DS1722 automatically increments register address</span></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>DS1722_SPI_Transfer<span class="op">(</span><span class="bn">0xFF</span><span class="bu">U</span><span class="op">,</span> <span class="op">&amp;</span>temp_msb<span class="op">))</span></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>        DS1722_CE_LOW<span class="op">();</span></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Wait until SPI transmission is complete</span></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint32_t</span> timeout <span class="op">=</span> SPI_TIMEOUT<span class="op">;</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>DS1722_SPI<span class="op">-&gt;</span>SR <span class="op">&amp;</span> SPI_SR_BSY<span class="op">)</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(--</span>timeout <span class="op">==</span> <span class="dv">0</span><span class="bu">U</span><span class="op">)</span></span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a>            DS1722_CE_LOW<span class="op">();</span></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>    <span class="co">// End SPI transaction</span></span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>    DS1722_Delay<span class="op">();</span></span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>    DS1722_CE_LOW<span class="op">();</span></span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Combine temperature bytes</span></span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DS1722 uses 16-bit two's complement format</span></span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int16_t</span> raw_temperature <span class="op">=</span></span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span><span class="dt">int16_t</span><span class="op">)(((</span><span class="dt">uint16_t</span><span class="op">)</span>temp_msb <span class="op">&lt;&lt;</span> <span class="dv">8</span><span class="bu">U</span><span class="op">)</span> <span class="op">|</span> temp_lsb<span class="op">);</span></span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Convert to degrees Celsius</span></span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 1 LSB = 1/256 degrees Celsius</span></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>temperature <span class="op">=</span> <span class="op">(</span><span class="dt">float</span><span class="op">)</span>raw_temperature <span class="op">/</span> <span class="fl">256.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>In my opinion, the Embedded C option was more friendlty to the platform, not calling on additional setup like Javascript or a Python Software to run, but I think given those things web devleopment code looks less convincing.</p>
 
 
 </section>
