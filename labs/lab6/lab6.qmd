@@ -97,9 +97,9 @@ This week is Claude Sonnet again. Its core advice was correct: since CE is activ
 
 Where it fell short was the temperature decode itself: it returned the raw register pair as a plain uint16_t and left interpreting the sign and fractional bits as an exercise, without mentioning that the MSB is signed two's-complement or that the LSB's upper nibble holds the fractional bits, worth 1/2 down to 1/16 of a degree. That part, including the negative-temperature edge case (-10.5 °C is stored as MSB = 0xF5 and LSB = 0x80), had to be worked out by hand from the datasheet.
 
-Code for Website: 
-
-
+::: {.callout-note collapse="true"}
+## Generated Code: Website
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -767,14 +767,17 @@ Code for Website:
 
 </body>
 </html>
+```
+:::
 
+### Reflection:
+ChatGPT gave out a Python Flask Backend? And an STM UART command. A little overdone.
 
-Reflection:
-ChatGPT gave out a Python Flask Backend? And an STM UART command. A little overdone. 
+Now for embedded C:
 
-Now for embedded C, 
-
-
+::: {.callout-note collapse="true"}
+## Generated Code: Embedded C
+```c
 #include "stm32l432xx.h"
 #include <stdint.h>
 #include <stdbool.h>
@@ -1038,6 +1041,7 @@ bool DS1722_ReadTemperature(float *temperature)
 
     return true;
 }
-
+```
+:::
 
 In my opinion, the Embedded C option was more friendlty to the platform, not calling on additional setup like Javascript or a Python Software to run, but I think given those things web devleopment code looks less convincing.
