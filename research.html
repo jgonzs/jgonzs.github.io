@@ -118,14 +118,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./publications.html"> 
 <span class="menu-text">Publications &amp; Reports</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./resources.html"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -160,6 +152,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#from-dev-kit-to-integrated-board-how-the-design-evolved" id="toc-from-dev-kit-to-integrated-board-how-the-design-evolved" class="nav-link" data-scroll-target="#from-dev-kit-to-integrated-board-how-the-design-evolved">From Dev Kit to Integrated Board: How the Design Evolved</a></li>
   <li><a href="#analog-front-end" id="toc-analog-front-end" class="nav-link" data-scroll-target="#analog-front-end">Analog Front End</a></li>
   <li><a href="#firmware" id="toc-firmware" class="nav-link" data-scroll-target="#firmware">Firmware</a></li>
   <li><a href="#integrated-micro-boards-im1-im2" id="toc-integrated-micro-boards-im1-im2" class="nav-link" data-scroll-target="#integrated-micro-boards-im1-im2">Integrated-Micro Boards (IM1 &amp; IM2)</a></li>
@@ -211,6 +204,41 @@ ul.task-list li input[type="checkbox"] {
     <figcaption style="font-size: 0.85rem; color: var(--muted);">Board assembly</figcaption>
   </figure>
 </div>
+</section>
+<section id="from-dev-kit-to-integrated-board-how-the-design-evolved" class="level2">
+<h2 class="anchored" data-anchor-id="from-dev-kit-to-integrated-board-how-the-design-evolved">From Dev Kit to Integrated Board: How the Design Evolved</h2>
+<ol class="process">
+  <li>
+    <span class="step-label">Problem</span>
+    <h4 class="anchored">A field instrument that was hard to deploy</h4>
+    <p>The existing EPG ran from two batteries and depended on an off-the-shelf nRF5340 DK, so it was bulky,
+    costly, and awkward to run in the field.</p>
+  </li>
+  <li>
+    <span class="step-label">Design</span>
+    <h4 class="anchored">Single-supply analog front end</h4>
+    <p>Redesigned the front end for a single supply with integrated battery management, keeping impedance matching,
+    instrumentation amplifiers, and up to 7,000x gain to resolve feeding signals.</p>
+  </li>
+  <li>
+    <span class="step-label">Build &amp; Analyze</span>
+    <h4 class="anchored">4 PCB revisions brought up in a 10-week sprint</h4>
+    <p>Brought up and verified 2 single-supply analog boards and 2 nRF5340 microcontroller boards, debugging power
+    faults with oscilloscopes, function generators, and bench supplies.</p>
+  </li>
+  <li>
+    <span class="step-label">Iterate</span>
+    <h4 class="anchored">nRF5340 DK → IM1 → IM2 → FI1</h4>
+    <p>IM1 recreated the DK with only the parts the instrument needs; IM2 shrank it around an nRF5340 module to cut
+    cost and assembly time; FI1 moves the microcontroller onto the instrument board itself.</p>
+  </li>
+  <li>
+    <span class="step-label">Firmware</span>
+    <h4 class="anchored">Configure the analog chain and stream data</h4>
+    <p>Zephyr drivers set gain, offset, and excitation over SPI and I²C, and Bluetooth firmware streams
+    measurements to client software in real time.</p>
+  </li>
+</ol>
 </section>
 <section id="analog-front-end" class="level2">
 <h2 class="anchored" data-anchor-id="analog-front-end">Analog Front End</h2>

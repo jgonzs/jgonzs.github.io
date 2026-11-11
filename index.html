@@ -119,14 +119,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./publications.html"> 
 <span class="menu-text">Publications &amp; Reports</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./resources.html"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -174,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
     <div class="hero-actions">
       <a class="btn btn-primary" href="images/Resume.pdf" target="_blank">View Resume</a>
-      <a class="btn btn-outline" href="#featured-work">See Projects</a>
+      <a class="btn btn-outline" href="#featured-projects">See Projects</a>
       <span class="icon-links">
         <a class="btn btn-outline btn-icon" href="mailto:jgonzalezsalgado@hmc.edu" title="Email" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
         <a class="btn btn-outline btn-icon" href="tel:+19099047494" title="Phone" aria-label="Phone"><i class="bi bi-telephone-fill"></i></a>
@@ -191,8 +183,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="current-work">Current Work</h2>
 <div class="now-grid">
   <div class="now-item">
-    <div class="now-label">Incoming · Jan. 2027</div>
-    <p><a href="https://www.stratarobot.com/careers" target="_blank"><strong>Strata Robotics</strong></a>: electrical &amp; firmware intern on V1 bring-up of an outdoor construction robot.</p>
+    <div class="now-label">Incoming · Spring 2027</div>
+    <p><a href="experience.html#harbinger"><strong>Harbinger Motors</strong></a>: HV electrical intern sizing and validating inverters, chargers, and DC-DC converters for electric trucks.</p>
   </div>
   <div class="now-item">
     <div class="now-label">Industry</div>
@@ -208,39 +200,16 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 </section>
-<section id="featured-work" class="level2">
-<h2 class="anchored" data-anchor-id="featured-work">Featured Work</h2>
+<section id="featured-projects" class="level2">
+<h2 class="anchored" data-anchor-id="featured-projects">Featured Projects</h2>
+<p class="section-lede">My strongest work, each taken from problem to tested hardware. Click a card for my role, design decisions, and results.</p>
 <div class="card-grid">
-  <a class="work-card" href="experience.html#blue-origin">
-    <div class="thumb"><img src="images/blueorigin/umbilical_sls_nasa.jpg" alt="Launch-tower umbilical arms connected to a launch vehicle"></div>
-    <div class="body">
-      <span class="tag">Industry · Blue Origin</span>
-      <h3 class="anchored">Umbilical Panel Validation</h3>
-      <p>Redundant radar, LiDAR, IMU, and vision sensors with Kalman filtering to align umbilical panels in 6 DOF to about 0.1&nbsp;mm.</p>
-    </div>
-  </a>
   <a class="work-card" href="research.html">
     <div class="thumb"><img src="images/pcb/im_boards.jpg" alt="IM2, IM1, and the nRF5340 DK"></div>
     <div class="body">
       <span class="tag">Research · Analog Circuit Lab</span>
       <h3 class="anchored">USDA Electropenetrograph</h3>
       <p>Analog front ends with up to 7,000x gain, single-supply battery management, and nRF5340 Bluetooth firmware on Zephyr.</p>
-    </div>
-  </a>
-  <a class="work-card" href="pcb.html#nfc-business-card">
-    <div class="thumb"><img src="images/pcb/nfc_card.jpg" alt="NFC Business Card"></div>
-    <div class="body">
-      <span class="tag">PCB · RF</span>
-      <h3 class="anchored">NFC Business Card</h3>
-      <p>Tap-to-open portfolio card with a PCB-trace loop antenna matched to 13.56&nbsp;MHz using a VNA.</p>
-    </div>
-  </a>
-  <a class="work-card" href="e155.html">
-    <div class="thumb"><img src="labs/lab1/images/uPBoard.jpeg" alt="uP Board"></div>
-    <div class="body">
-      <span class="tag">E155 · FPGA + MCU</span>
-      <h3 class="anchored">Microprocessor Projects</h3>
-      <p>iCE40 FPGA and STM32 labs: 7-segment multiplexing, keypad scanning, digital audio, interrupts, and SPI/IoT, plus an IR laser tag final project in progress.</p>
     </div>
   </a>
   <a class="work-card" href="projects.html#ev-design-team-project">
@@ -251,14 +220,6 @@ ul.task-list li input[type="checkbox"] {
       <p>Led the team and designed power distribution and protection for an EV that holds a steady 15&nbsp;mph.</p>
     </div>
   </a>
-  <a class="work-card" href="pcb.html">
-    <div class="thumb"><img src="images/pcb/epg1.jpeg" alt="Electropenetrograph PCB"></div>
-    <div class="body">
-      <span class="tag">PCB</span>
-      <h3 class="anchored">PCB Designs</h3>
-      <p>Mixed-signal electropenetrograph, LiPo charger and monitor, Analog Circuit Lab integrated-micro boards, and more.</p>
-    </div>
-  </a>
   <a class="work-card" href="projects.html#auv-ocean-floor-sonar-mapping">
     <div class="thumb"><img src="images/e80/e80a.jpeg" alt="AUV Robot"></div>
     <div class="body">
@@ -267,12 +228,20 @@ ul.task-list li input[type="checkbox"] {
       <p>Teensy firmware for GPS navigation, P-control dives, and 7.1&nbsp;kHz burst sampling, with from-scratch analog sensor circuits.</p>
     </div>
   </a>
-  <a class="work-card" href="pcb.html#muddsub-boards">
-    <div class="thumb"><img src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board"></div>
+  <a class="work-card" href="pcb.html#nfc-business-card">
+    <div class="thumb"><img src="images/pcb/nfc_card.jpg" alt="NFC Business Card"></div>
     <div class="body">
-      <span class="tag">MuddSub · RoboSub</span>
-      <h3 class="anchored">AUV Power &amp; Signal Boards</h3>
-      <p>Rev. 1 KiCad power and Teensy 4.1 signal boards for an 8-thruster AUV, now entering fabrication.</p>
+      <span class="tag">PCB · RF</span>
+      <h3 class="anchored">NFC Business Card</h3>
+      <p>Tap-to-open portfolio card with a PCB-trace loop antenna matched to 13.56&nbsp;MHz using a VNA.</p>
+    </div>
+  </a>
+  <a class="work-card" href="experience.html#blue-origin">
+    <div class="thumb"><img src="images/blueorigin/umbilical_sls_nasa.jpg" alt="Launch-tower umbilical arms connected to a launch vehicle"></div>
+    <div class="body">
+      <span class="tag">Industry · Blue Origin</span>
+      <h3 class="anchored">Umbilical Panel Validation</h3>
+      <p>Redundant radar, LiDAR, IMU, and vision sensors with Kalman filtering to align umbilical panels in 6 DOF to about 0.1&nbsp;mm.</p>
     </div>
   </a>
   <a class="work-card" href="experience.html#fsae">
@@ -281,6 +250,35 @@ ul.task-list li input[type="checkbox"] {
       <span class="tag">Formula SAE</span>
       <h3 class="anchored">CAN Bus &amp; Low-Voltage System</h3>
       <p>CAN bus between the ECU, PDM, and lambda sensor, plus ECU firmware and tuning to start the engine.</p>
+    </div>
+  </a>
+</div>
+</section>
+<section id="more-projects" class="level2">
+<h2 class="anchored" data-anchor-id="more-projects">More Projects</h2>
+<div class="card-grid card-grid-compact">
+  <a class="work-card" href="e155.html">
+    <div class="thumb"><img src="labs/lab1/images/uPBoard.jpeg" alt="uP Board"></div>
+    <div class="body">
+      <span class="tag">E155 · FPGA + MCU</span>
+      <h3 class="anchored">Microprocessor Projects</h3>
+      <p>iCE40 FPGA and STM32 labs: 7-segment multiplexing, keypad scanning, digital audio, interrupts, and SPI/IoT, plus an IR laser tag final project in progress.</p>
+    </div>
+  </a>
+  <a class="work-card" href="pcb.html">
+    <div class="thumb"><img src="images/pcb/epg1.jpeg" alt="Electropenetrograph PCB"></div>
+    <div class="body">
+      <span class="tag">PCB</span>
+      <h3 class="anchored">PCB Designs</h3>
+      <p>Mixed-signal electropenetrograph, LiPo charger and monitor, Analog Circuit Lab integrated-micro boards, and more.</p>
+    </div>
+  </a>
+  <a class="work-card" href="pcb.html#muddsub-boards">
+    <div class="thumb"><img src="images/pcb/muddsub_power.jpg" alt="MuddSub Power Board"></div>
+    <div class="body">
+      <span class="tag">MuddSub · RoboSub</span>
+      <h3 class="anchored">AUV Power &amp; Signal Boards</h3>
+      <p>Rev. 1 KiCad power and Teensy 4.1 signal boards for an 8-thruster AUV, now entering fabrication.</p>
     </div>
   </a>
   <a class="work-card" href="personal.html#built-a-multimeter">
